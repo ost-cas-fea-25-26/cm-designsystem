@@ -10,9 +10,10 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -30,14 +31,14 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: storybook-static
-  
+
   deploy:
     environment:
       name: Storybook
-      url: ${{ steps. deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     name: Deploy storybook to pages
     needs: build
     runs-on: ubuntu-latest
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v3
