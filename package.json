@@ -2,7 +2,12 @@
   "name": "@krrli/cm-designsystem",
   "version": "1.0.0",
   "description": "Design System",
-  "main": "index.js",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ost-cas-fea-25-26/cm-designsystem"
+  },
   "publishConfig": {
     "access": "public"
   },
