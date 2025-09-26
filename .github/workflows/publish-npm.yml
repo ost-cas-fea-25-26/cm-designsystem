@@ -20,7 +20,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: npm ci
       - name: semantic release
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
