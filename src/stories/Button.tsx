@@ -1,5 +1,3 @@
-import "./button.css";
-
 export interface ButtonProps {
   /** Is this the principal call to action on the page? */
   primary?: boolean;
@@ -21,21 +19,8 @@ export const Button = ({
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
   return (
-    <button
-      type="button"
-      className={[
-        "storybook-button",
-        `storybook-button--${size}`,
-        mode,
-        "bg-amber-300",
-      ].join(" ")}
-      style={{ backgroundColor }}
-      {...props}
-    >
+    <button type="button" className={["bg-slate-300"].join(" ")} {...props}>
       {label}
     </button>
   );
