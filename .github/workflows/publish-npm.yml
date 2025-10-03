@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main # only run on main branch
+    workflow_dispatch:
+
 jobs:
   release:
     runs-on: ubuntu-latest
