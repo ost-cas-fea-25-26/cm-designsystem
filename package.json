@@ -9,7 +9,8 @@
     "url": "https://github.com/ost-cas-fea-25-26/cm-designsystem"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
