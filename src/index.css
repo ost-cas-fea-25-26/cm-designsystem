@@ -64,12 +64,16 @@
 
   --text-h1: 48px;
   --text-h1--line-height: 125%;
+  --text-h1--line-spacing: 0px;
   --text-h2: 40px;
   --text-h2--line-height: 125%;
+  --text-h2--line-spacing: 0px;
   --text-h3: 32px;
   --text-h3--line-height: 125%;
+  --text-h3--line-spacing: 0px;
   --text-h4: 24px;
   --text-h4--line-height: 125%;
+  --text-h4--line-spacing: 0px;
 }
 
 @tailwind base;
