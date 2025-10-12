@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* -----------------------------------------
+    Color 
+  ----------------------------------------- */
   --color-*: initial;
-
-  /* ----------------------------------------- */
-  /* Color */
-  /* ----------------------------------------- */
   --color-slate-50: oklch(0.984 0.003 247.858);
   --color-slate-100: oklch(0.968 0.007 247.896);
   --color-slate-200: oklch(0.929 0.013 255.508);
@@ -41,4 +40,60 @@
   --color-violet-800: oklch(0.432 0.232 292.759);
   --color-violet-900: oklch(0.38 0.189 293.745);
   --color-violet-950: oklch(0.283 0.141 291.089);
+
+  /* -----------------------------------------
+    Typography 
+  ----------------------------------------- */
+  --font-*: initial;
+  --font-poppins: Poppins, sans-serif;
+
+  --font-weight-*: initial;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --text-*: initial;
+  --text-label-sm: 14px;
+  --text-label-sm--line-height: 100%;
+  --text-label-md: 16px;
+  --text-label-md--line-height: 100%;
+  --text-label-lg: 20px;
+  --text-label-lg--line-height: 100%;
+  --text-label-xl: 24px;
+  --text-label-xl--line-height: 100%;
+
+  --text-h1: 48px;
+  --text-h1--line-height: 125%;
+  --text-h1--line-spacing: 0px;
+  --text-h2: 40px;
+  --text-h2--line-height: 125%;
+  --text-h2--line-spacing: 0px;
+  --text-h3: 32px;
+  --text-h3--line-height: 125%;
+  --text-h3--line-spacing: 0px;
+  --text-h4: 24px;
+  --text-h4--line-height: 125%;
+  --text-h4--line-spacing: 0px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply font-poppins font-bold text-h1;
+  }
+  /*
+  h2 {
+    @apply text-h2 font-heading text-gray-900;
+  }
+
+  h3 {
+    @apply text-h3 font-heading text-gray-800;
+  }
+
+  p {
+    @apply text-base font-body text-gray-700 mb-4;
+  } */
 }

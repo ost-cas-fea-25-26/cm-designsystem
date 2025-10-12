@@ -20,8 +20,9 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button type="button" className={["bg-slate-300"].join(" ")} {...props}>
-      {label}
-    </button>
+    <h1>Test</h1>
+    // <button type="button" className={["bg-slate-300"].join(" ")} {...props}>
+    //   {label}
+    // </button>
   );
 };
