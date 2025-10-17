@@ -16,6 +16,9 @@ import {
   TimeIcon,
   ShareIcon,
   RepostIcon,
+  ArrowIcon,
+  ReplyIcon,
+  HeartIcon,
 } from "./Icons";
 
 const meta: Meta<typeof UploadIcon> = {
@@ -363,6 +366,121 @@ export const DesignSystemColors: Story = {
               <span className="text-xs text-gray-500 text-center">{use}</span>
             </div>
           ))}
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+export const DynamicIcons: Story = {
+  render: () => (
+    <div className="space-y-8">
+      <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+        <h3 className="text-lg font-semibold text-blue-800 mb-2">
+          🎯 Dynamic Icons with Props
+        </h3>
+        <div className="text-sm text-blue-700 space-y-2">
+          <p>
+            <strong>Smart Icons:</strong> These icons change appearance based on
+            props
+          </p>
+          <p>
+            <strong>Example:</strong>{" "}
+            <code className="bg-blue-100 px-1 rounded">
+              &lt;ArrowIcon direction="up" /&gt;
+            </code>{" "}
+            or{" "}
+            <code className="bg-blue-100 px-1 rounded">
+              &lt;HeartIcon filled /&gt;
+            </code>
+          </p>
+        </div>
+      </div>
+
+      {/* Arrow Icon */}
+      <div className="space-y-4">
+        <h4 className="font-medium text-slate-800">
+          ArrowIcon - direction prop
+        </h4>
+        <div className="grid grid-cols-4 gap-4">
+          {(["left", "up", "right", "down"] as const).map((direction) => (
+            <div
+              key={direction}
+              className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50"
+            >
+              <ArrowIcon
+                direction={direction}
+                size="xl"
+                className="text-slate-600"
+              />
+              <div className="text-center">
+                <div className="text-sm font-medium">
+                  direction="{direction}"
+                </div>
+                <div className="text-xs text-gray-500 font-mono">
+                  &lt;ArrowIcon direction="{direction}" /&gt;
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Reply Icon */}
+      <div className="space-y-4">
+        <h4 className="font-medium text-slate-800">ReplyIcon - filled prop</h4>
+        <div className="grid grid-cols-2 gap-4 max-w-md">
+          {[false, true].map((filled) => (
+            <div
+              key={String(filled)}
+              className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50"
+            >
+              <ReplyIcon filled={filled} size="xl" className="text-slate-600" />
+              <div className="text-center">
+                <div className="text-sm font-medium">
+                  filled={String(filled)}
+                </div>
+                <div className="text-xs text-gray-500 font-mono">
+                  &lt;ReplyIcon {filled ? "filled" : "filled={false}"} /&gt;
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Heart Icon */}
+      <div className="space-y-4">
+        <h4 className="font-medium text-slate-800">HeartIcon - filled prop</h4>
+        <div className="grid grid-cols-2 gap-4 max-w-md">
+          {[false, true].map((filled) => (
+            <div
+              key={String(filled)}
+              className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50"
+            >
+              <HeartIcon filled={filled} size="xl" className="text-slate-600" />
+              <div className="text-center">
+                <div className="text-sm font-medium">
+                  filled={String(filled)}
+                </div>
+                <div className="text-xs text-gray-500 font-mono">
+                  &lt;HeartIcon {filled ? "filled" : "filled={false}"} /&gt;
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Usage Examples */}
+      <div className="bg-gray-50 p-4 rounded-lg">
+        <h4 className="font-medium text-slate-800 mb-3">Usage Examples</h4>
+        <div className="space-y-2 text-sm font-mono text-slate-700">
+          <div>
+            {'<ArrowIcon direction="up" size="lg" className="text-blue-600" />'}
+          </div>
+          <div>{'<ReplyIcon filled className="text-slate-600" />'}</div>
+          <div>{'<HeartIcon filled={isLiked} className="text-red-500" />'}</div>
         </div>
       </div>
     </div>

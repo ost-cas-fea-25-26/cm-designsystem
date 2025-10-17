@@ -20,7 +20,14 @@ export {
   TimeIcon,
   ShareIcon,
   RepostIcon,
+  // Dynamic icons with props
+  ArrowIcon,
+  ReplyIcon,
+  HeartIcon,
 } from "./Icons";
+
+// Export prop types for dynamic icons
+export type { ArrowIconProps, ReplyIconProps, HeartIconProps } from "./Icons";
 
 // Base props type for creating new icons
 export type { BaseIconProps } from "./iconUtils";
