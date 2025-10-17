@@ -1,0 +1,10 @@
+#!/bin/sh
+# Source Husky's internal bootstrap script. This sets up PATH (including node_modules/.bin),
+# exposes variables like HUSKY=1, honors HUSKY_SKIP_HOOKS/HUSKY_DEBUG, and safely exits if hooks are disabled.
+. "$(dirname "$0")/_/husky.sh"
+
+# Run lint-staged (ESLint --fix + Prettier) on staged files
+npx lint-staged
+
+# Optional: uncomment to run full repo lint & prettier check (slower)
+# npm run prettier:check && npm run lint
