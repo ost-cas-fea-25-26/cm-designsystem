@@ -7,6 +7,15 @@ import {
   EditIcon,
   LocationIcon,
   SendIcon,
+  LogOutIcon,
+  SettingsIcon,
+  FullscreenIcon,
+  EyeIcon,
+  MumbleIcon,
+  ProfileIcon,
+  TimeIcon,
+  ShareIcon,
+  RepostIcon,
 } from "./Icons";
 
 const meta: Meta<typeof UploadIcon> = {
@@ -36,7 +45,7 @@ import { UploadIcon, CalendarIcon } from './components/Icon';
 - 🔧 **IDE support**: Better autocomplete
 
 ### Available Nucleo Icons:
-All icons are derived from your purchased Nucleo icon set and optimized for web use.
+All 16 icons are derived from your purchased Nucleo icon set and optimized for web use.
         `,
       },
     },
@@ -172,6 +181,96 @@ export const AllNucleoIcons: Story = {
             <div className="text-sm font-medium">SendIcon</div>
             <div className="text-xs text-gray-500 font-mono">
               &lt;SendIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <LogOutIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">LogOutIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;LogOutIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <SettingsIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">SettingsIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;SettingsIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <FullscreenIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">FullscreenIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;FullscreenIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <EyeIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">EyeIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;EyeIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <MumbleIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">MumbleIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;MumbleIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <ProfileIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">ProfileIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;ProfileIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <TimeIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">TimeIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;TimeIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <ShareIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">ShareIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;ShareIcon /&gt;
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 p-4 border rounded-lg hover:bg-gray-50">
+          <RepostIcon size="xl" className="text-slate-600" />
+          <div className="text-center">
+            <div className="text-sm font-medium">RepostIcon</div>
+            <div className="text-xs text-gray-500 font-mono">
+              &lt;RepostIcon /&gt;
             </div>
           </div>
         </div>

@@ -6,6 +6,15 @@ import {
   EditIcon,
   LocationIcon,
   SendIcon,
+  LogOutIcon,
+  SettingsIcon,
+  FullscreenIcon,
+  EyeIcon,
+  MumbleIcon,
+  ProfileIcon,
+  TimeIcon,
+  ShareIcon,
+  RepostIcon,
 } from "./Icons";
 import type { BaseIconProps } from "./iconUtils";
 
@@ -18,7 +27,16 @@ export interface IconProps extends BaseIconProps {
     | "checkmark"
     | "edit"
     | "location"
-    | "send";
+    | "send"
+    | "logout"
+    | "settings"
+    | "fullscreen"
+    | "eye"
+    | "mumble"
+    | "profile"
+    | "time"
+    | "share"
+    | "repost";
 }
 
 /**
@@ -38,6 +56,15 @@ export const Icon = ({ name, ...props }: IconProps) => {
     edit: EditIcon,
     location: LocationIcon,
     send: SendIcon,
+    logout: LogOutIcon,
+    settings: SettingsIcon,
+    fullscreen: FullscreenIcon,
+    eye: EyeIcon,
+    mumble: MumbleIcon,
+    profile: ProfileIcon,
+    time: TimeIcon,
+    share: ShareIcon,
+    repost: RepostIcon,
   };
 
   const IconComponent = iconComponents[name];

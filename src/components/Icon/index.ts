@@ -11,6 +11,15 @@ export {
   EditIcon,
   LocationIcon,
   SendIcon,
+  LogOutIcon,
+  SettingsIcon,
+  FullscreenIcon,
+  EyeIcon,
+  MumbleIcon,
+  ProfileIcon,
+  TimeIcon,
+  ShareIcon,
+  RepostIcon,
 } from "./Icons";
 
 // Base props type for creating new icons
