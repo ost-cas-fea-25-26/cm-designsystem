@@ -84,6 +84,12 @@
   h1 {
     @apply font-poppins font-bold text-h1;
   }
+
+  /* Ensure SVG icons inherit text color properly */
+  svg {
+    color: inherit;
+  }
+
   /*
   h2 {
     @apply text-h2 font-heading text-gray-900;

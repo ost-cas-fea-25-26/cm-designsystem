@@ -36,7 +36,7 @@ export const getIconProps = (props: BaseIconProps) => {
   const {
     size = "md",
     className = "",
-    color = "currentColor",
+    color,
     width,
     height,
     "aria-label": ariaLabel,
@@ -53,6 +53,10 @@ export const getIconProps = (props: BaseIconProps) => {
   const hasCustomSize = width || height;
   const sizeClass = hasCustomSize ? "" : sizeClasses[size];
 
+  // If no explicit color prop is provided, use currentColor to inherit from CSS color property
+  // This allows Tailwind text-* classes to work properly with SVG fill
+  const finalColor = color !== undefined ? color : "currentColor";
+
   return {
     width: finalWidth,
     height: finalHeight,
@@ -60,7 +64,7 @@ export const getIconProps = (props: BaseIconProps) => {
     style: hasCustomSize
       ? { width: finalWidth, height: finalHeight }
       : undefined,
-    color,
+    color: finalColor,
     ariaLabel,
     ariaHidden,
     ...rest,

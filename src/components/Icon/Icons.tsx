@@ -264,6 +264,28 @@ export const SendIcon = (props: BaseIconProps) => {
   );
 };
 
+// export const YourIconName = (props: BaseIconProps) => {
+//   const { width, height, className, color, ariaLabel, ariaHidden, style, ...rest } = getIconProps(props);
+//
+//   return (
+//     <svg
+//       width={width}
+//       height={height}
+//       viewBox="0 0 16 16" // Use your Nucleo icon's viewBox
+//       fill="none"
+//       xmlns="http://www.w3.org/2000/svg"
+//       className={className}
+//       style={style}
+//       aria-label={ariaLabel}
+//       aria-hidden={ariaHidden}
+//       {...rest}
+//     >
+//       {/* Paste your Nucleo SVG content here */}
+//       {/* Remember to replace fill="#000" with fill={color} */}
+//     </svg>
+//   );
+// };
+
 // Template for adding new Nucleo icons:
 //
 // 1. Export SVG from Nucleo with your icon
