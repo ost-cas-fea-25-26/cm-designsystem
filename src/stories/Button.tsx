@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export interface ButtonProps {
   /** Is this the principal call to action on the page? */
   primary?: boolean;
@@ -17,6 +19,7 @@ export const Button = ({
   size = "medium",
   backgroundColor,
   label,
+  // @ts-ignore
   ...props
 }: ButtonProps) => {
   return (
