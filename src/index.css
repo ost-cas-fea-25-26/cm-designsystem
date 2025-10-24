@@ -106,12 +106,6 @@
   --text-p-md--letter-spacing: 0px;
 
   /* label styles */
-  --text-label-sm--font-family: var(--font-poppins);
-  --text-label-sm--font-size: 14px;
-  --text-label-sm--font-weight: var(--font-weight-semibold);
-  --text-label-sm--color: var(--color-slate-600);
-  --text-label-sm--line-height: 100%;
-  --text-label-sm--letter-spacing: 0px;
   --text-label-md--font-family: var(--font-poppins);
   --text-label-md--font-size: 16px;
   --text-label-md--font-weight: var(--font-weight-semibold);
@@ -222,13 +216,13 @@
     letter-spacing: var(--text-label-md--letter-spacing);
   }
 
-  label.size-sm {
-    font-family: var(--text-label-sm--font-family);
-    font-size: var(--text-label-sm--font-size);
-    font-weight: var(--text-label-sm--font-weight);
-    color: var(--text-label-sm--color);
-    line-height: var(--text-label-sm--line-height);
-    letter-spacing: var(--text-label-sm--letter-spacing);
+  .label-sm {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-slate-600);
+    line-height: 100%;
+    letter-spacing: 0px;
   }
 
   span.placeholder {
