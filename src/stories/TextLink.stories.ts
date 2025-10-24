@@ -32,7 +32,7 @@ export const Default: Story = {
 
 export const Hover: Story = {
   args: {
-    to: "https://example.com",
+    href: "https://example.com",
     children: "Hover over this link",
   },
   parameters: {
