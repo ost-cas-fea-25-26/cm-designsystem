@@ -14,7 +14,7 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    to: { control: "text" },
+    href: { control: "text" },
     children: { control: "text" },
   },
 } satisfies Meta<typeof TextLink>;
