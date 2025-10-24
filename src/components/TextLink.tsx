@@ -5,7 +5,7 @@ export const TextLink = ({
   href,
   children,
 }: {
-  to: string;
+  href: string;
   children: ReactNode;
 }) => {
   return (
