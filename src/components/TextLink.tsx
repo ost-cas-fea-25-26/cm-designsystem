@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { LabelSm } from "./typography/LabelSM";
 
 export const TextLink = ({
   to,
@@ -7,5 +8,11 @@ export const TextLink = ({
   to: string;
   children: ReactNode;
 }) => {
-  return <a href={to}>{children}</a>;
+  return (
+    <LabelSm>
+      <a href={to} className="text-violet-600 underline">
+        {children}
+      </a>
+    </LabelSm>
+  );
 };
