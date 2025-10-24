@@ -10,7 +10,7 @@ export const TextLink = ({
 }) => {
   return (
     <LabelSm>
-      <a href={to} className="text-violet-600 underline">
+      <a href={to} className="text-violet-600 underline underline-offset-2">
         {children}
       </a>
     </LabelSm>
