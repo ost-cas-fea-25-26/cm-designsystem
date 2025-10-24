@@ -29,3 +29,18 @@ export const Default: Story = {
     children: "Example Link",
   },
 };
+
+export const Hover: Story = {
+  args: {
+    to: "https://example.com",
+    children: "Hover over this link",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Hover over the link to see the decoration color change from violet-600 to violet-200.",
+      },
+    },
+  },
+};
