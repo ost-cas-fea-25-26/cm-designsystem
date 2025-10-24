@@ -11,7 +11,7 @@ export const TextLink = ({
   return (
     <LabelSm>
       <a
-        href={to}
+        href={href}
         className="hover:decoration-violet-200 text-violet-600 underline underline-offset-2 decoration-violet-600"
       >
         {children}
