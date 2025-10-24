@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { LabelSm } from "./typography/LabelSM";
 
 export const TextLink = ({
-  to,
+  href,
   children,
 }: {
   to: string;
