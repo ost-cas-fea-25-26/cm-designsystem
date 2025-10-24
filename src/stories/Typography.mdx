@@ -1,4 +1,6 @@
 import { Meta, Source, Unstyled } from "@storybook/addon-docs/blocks";
+import { LabelSm } from "../components/typography/LabelSM";
+
 
 <Meta title="Typography" />
 
@@ -65,9 +67,11 @@ import { Meta, Source, Unstyled } from "@storybook/addon-docs/blocks";
   <Source
    code={`<span class="placeholder">Placeholder</span>`}
   />
+  
+  <LabelSm>Label S</LabelSm>
 
-  <label class="size-sm">Label S</label>
   <Source
-    code={`<label class="size-sm">Label S</label>`}
+    code={`<LabelSm>Small Label</LabelSm>`}
   />
+  
 </Unstyled>
