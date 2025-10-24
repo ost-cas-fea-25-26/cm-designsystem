@@ -124,12 +124,7 @@
   --text-label-md--color: var(--color-slate-600);
   --text-label-md--line-height: 100%;
   --text-label-md--letter-spacing: 0px;
-  --text-label-lg--font-family: var(--font-poppins);
-  --text-label-lg--font-size: 20px;
-  --text-label-lg--font-weight: var(--font-weight-semibold);
-  --text-label-lg--color: var(--color-slate-600);
-  --text-label-lg--line-height: 100%;
-  --text-label-lg--letter-spacing: 0px;
+
   --text-label-xl--font-family: var(--font-poppins);
   --text-label-xl--font-size: 24px;
   --text-label-xl--font-weight: var(--font-weight-semibold);
@@ -210,13 +205,13 @@
     letter-spacing: var(--text-label-xl--letter-spacing);
   }
 
-  label.size-lg {
-    font-family: var(--text-label-lg--font-family);
-    font-size: var(--text-label-lg--font-size);
-    font-weight: var(--text-label-lg--font-weight);
-    color: var(--text-label-lg--color);
-    line-height: var(--text-label-lg--line-height);
-    letter-spacing: var(--text-label-lg--letter-spacing);
+  .label-l {
+    font-family: var(--font-poppins);
+    font-size: 20px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-slate-600);
+    line-height: 100%;
+    letter-spacing: 0px;
   }
 
   label.size-md {
