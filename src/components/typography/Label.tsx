@@ -1,14 +1,21 @@
 import { createElement, type JSX, type ReactNode } from "react";
 
-export type LabelSize = "xl" | "lg" | "md" | "sm";
+export interface LabelProps {
+  size: "xl" | "lg" | "md" | "sm";
+  as?: keyof JSX.IntrinsicElements;
+  children: ReactNode;
+  className?: string;
+}
+
 export const Label = ({
   size,
   as = "label",
   children,
-}: {
-  size: LabelSize;
-  as: keyof JSX.IntrinsicElements;
-  children: ReactNode;
-}) => {
-  return createElement(as, { className: `label-${size}` }, children);
+  className,
+}: LabelProps) => {
+  return createElement(
+    as,
+    { className: `label-${size} ${className}` },
+    children,
+  );
 };
