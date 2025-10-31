@@ -55,13 +55,7 @@
     Spacing 
   ----------------------------------------- */
   --spacing-*: initial;
-  --spacing-xxs: 4px;
-  --spacing-xs: 8px;
-  --spacing-s: 16px;
-  --spacing-m: 24px;
-  --spacing-l: 32px;
-  --spacing-xl: 48px;
-  --spacing-xxl: 64px;
+  --spacing: 4px;
 
   /* -----------------------------------------
     Typography 
