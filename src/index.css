@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @theme {
   /* -----------------------------------------
     Color 
@@ -79,102 +75,81 @@
 }
 
 @layer base {
-  .heading-1 {
+  body {
     font-family: var(--font-poppins);
+    color: var(--color-slate-600);
+    letter-spacing: 0px;
+  }
+}
+
+@layer components {
+  /* -----------------------------------------
+    Typography components
+  ----------------------------------------- */
+  .heading-1 {
     font-size: 48px;
     font-weight: var(--font-weight-bold);
-    color: var(--color-slate-600);
     line-height: 125%;
-    letter-spacing: 0px;
   }
 
   .heading-2 {
-    font-family: var(--font-poppins);
     font-size: 40px;
     font-weight: var(--font-weight-bold);
-    color: var(--color-slate-600);
     line-height: 125%;
-    letter-spacing: 0px;
   }
 
   .heading-3 {
-    font-family: var(--font-poppins);
     font-size: 32px;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-slate-600);
     line-height: 125%;
-    letter-spacing: 0px;
   }
 
   .heading-4 {
-    font-family: var(--font-poppins);
     font-size: 24px;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-slate-600);
     line-height: 125%;
-    letter-spacing: 0px;
   }
 
   .paragraph-lg {
-    font-family: var(--font-poppins);
     font-size: 24px;
     font-weight: var(--font-weight-medium);
-    color: var(--color-slate-600);
     line-height: 145%;
-    letter-spacing: 0px;
   }
 
   .paragraph-md {
-    font-family: var(--font-poppins);
     font-size: 18px;
     font-weight: var(--font-weight-medium);
-    color: var(--color-slate-600);
     line-height: 140%;
-    letter-spacing: 0px;
   }
 
   .label-xl {
-    font-family: var(--font-poppins);
     font-size: 24px;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-slate-600);
     line-height: 100%;
-    letter-spacing: 0px;
   }
 
   .label-lg {
-    font-family: var(--font-poppins);
     font-size: 20px;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-slate-600);
     line-height: 100%;
-    letter-spacing: 0px;
   }
 
   .label-md {
-    font-family: var(--font-poppins);
     font-size: 16px;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-slate-600);
     line-height: 100%;
-    letter-spacing: 0px;
   }
 
   .label-sm {
-    font-family: var(--font-poppins);
     font-size: 14px;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-slate-600);
     line-height: 100%;
-    letter-spacing: 0px;
   }
 
   .placeholder {
-    font-family: var(--font-poppins);
     font-size: 16px;
     font-weight: var(--font-weight-medium);
     color: var(--color-slate-300);
     line-height: 100%;
-    letter-spacing: 0px;
   }
 }
