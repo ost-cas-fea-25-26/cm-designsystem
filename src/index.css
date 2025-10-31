@@ -84,18 +84,6 @@
 
 @layer components {
   /* -----------------------------------------
-    Animations
-  ----------------------------------------- */
-  @keyframes dissolve {
-    from {
-      background: var(--btn-bg-from);
-    }
-    to {
-      background: var(--btn-bg-to);
-    }
-  }
-
-  /* -----------------------------------------
     Typography components
   ----------------------------------------- */
   .heading-1 {
