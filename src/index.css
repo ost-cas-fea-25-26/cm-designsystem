@@ -84,6 +84,18 @@
 
 @layer components {
   /* -----------------------------------------
+    Animations
+  ----------------------------------------- */
+  @keyframes dissolve {
+    from {
+      background: var(--btn-bg-from);
+    }
+    to {
+      background: var(--btn-bg-to);
+    }
+  }
+
+  /* -----------------------------------------
     Typography components
   ----------------------------------------- */
   .heading-1 {
@@ -154,93 +166,86 @@
   }
 
   /* -----------------------------------------
-    Button 
+    Button component
   ----------------------------------------- */
-  @keyframes dissolve {
-    from {
-      background: var(--btn-bg-from);
-    }
-    to {
-      background: var(--btn-bg-to);
-    }
-  }
-
   .btn {
+    box-sizing: border-box;
+    border: calc(var(--spacing) * 0.75) solid var(--color-white);
     border-radius: calc(var(--spacing) * 2);
     color: var(--color-white);
     background: var(--btn-bg-from);
-  }
 
-  .btn:hover,
-  .btn:active {
-    animation: dissolve 300ms ease-in-out;
-  }
+    &:hover,
+    &:active {
+      animation: dissolve 300ms ease-in-out;
+    }
 
-  .btn:hover {
-    background: var(--btn-bg-to);
-    border: calc(var(--spacing) * 0.75) solid var(--btn-border-color-hover);
-  }
+    &:hover {
+      background: var(--btn-bg-to);
+      border: calc(var(--spacing) * 0.75) solid var(--btn-border-color-hover);
+    }
 
-  .btn:active {
-    background: var(--btn-bg-to);
-    border: var(--spacing) solid var(--btn-border-color-active);
-  }
+    &:active {
+      background: var(--btn-bg-to);
+      border: var(--spacing) solid var(--btn-border-color-active);
+    }
 
-  /* Sizes */
-  .btn-md {
-    padding-top: calc(var(--spacing) * 2);
-    padding-bottom: calc(var(--spacing) * 2);
-    padding-left: calc(var(--spacing) * 3);
-    padding-right: calc(var(--spacing) * 3);
-  }
+    /* Sizes */
+    &.btn-md {
+      padding-top: calc(var(--spacing) * 2);
+      padding-bottom: calc(var(--spacing) * 2);
+      padding-left: calc(var(--spacing) * 3);
+      padding-right: calc(var(--spacing) * 3);
+    }
 
-  .btn-lg {
-    padding-top: calc(var(--spacing) * 3);
-    padding-bottom: calc(var(--spacing) * 3);
-    padding-left: calc(var(--spacing) * 6);
-    padding-right: calc(var(--spacing) * 6);
-  }
+    &.btn-lg {
+      padding-top: calc(var(--spacing) * 3);
+      padding-bottom: calc(var(--spacing) * 3);
+      padding-left: calc(var(--spacing) * 6);
+      padding-right: calc(var(--spacing) * 6);
+    }
 
-  /* Primary variant */
-  .btn-primary {
-    --btn-bg-from: var(--color-slate-600);
-    --btn-bg-to: var(--color-slate-700);
-    --btn-border-color-hover: var(--color-slate-100);
-    --btn-border-color-active: var(--color-slate-200);
-  }
+    /* Primary variant */
+    &.btn-primary {
+      --btn-bg-from: var(--color-slate-600);
+      --btn-bg-to: var(--color-slate-700);
+      --btn-border-color-hover: var(--color-slate-100);
+      --btn-border-color-active: var(--color-slate-200);
+    }
 
-  /* Secondary variant */
-  .btn-secondary {
-    --btn-bg-from: var(--color-violet-600);
-    --btn-bg-to: var(--color-violet-700);
-    --btn-border-color-hover: var(--color-violet-100);
-    --btn-border-color-active: var(--color-violet-200);
-  }
+    /* Secondary variant */
+    &.btn-secondary {
+      --btn-bg-from: var(--color-violet-600);
+      --btn-bg-to: var(--color-violet-700);
+      --btn-border-color-hover: var(--color-violet-100);
+      --btn-border-color-active: var(--color-violet-200);
+    }
 
-  /* Tertiary variant */
-  .btn-tertiary {
-    --btn-bg-from: linear-gradient(
-      to right,
-      var(--color-pink-500),
-      50%,
-      var(--color-violet-600)
-    );
-    --btn-bg-to: linear-gradient(
-      to right,
-      var(--color-pink-500),
-      30%,
-      var(--color-violet-600)
-    );
-    --btn-border-color-hover: var(--color-violet-100);
-    --btn-border-color-active: var(--color-violet-200);
-  }
+    /* Tertiary variant */
+    &.btn-tertiary {
+      --btn-bg-from: linear-gradient(
+        to right,
+        var(--color-pink-500),
+        50%,
+        var(--color-violet-600)
+      );
+      --btn-bg-to: linear-gradient(
+        to right,
+        var(--color-pink-500),
+        30%,
+        var(--color-violet-600)
+      );
+      --btn-border-color-hover: var(--color-violet-100);
+      --btn-border-color-active: var(--color-violet-200);
+    }
 
-  .btn-tertiary:active {
-    --btn-bg-to: linear-gradient(
-      to right,
-      var(--color-pink-500),
-      20%,
-      var(--color-violet-600)
-    );
+    &.btn-tertiary:active {
+      --btn-bg-to: linear-gradient(
+        to right,
+        var(--color-pink-500),
+        20%,
+        var(--color-violet-600)
+      );
+    }
   }
 }
