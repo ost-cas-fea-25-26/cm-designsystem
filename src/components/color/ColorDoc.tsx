@@ -8,15 +8,22 @@ export const ColorDoc = ({
   return (
     <div className="flex flex-col">
       <div
-        className={`w-[125px] h-[125px] bg-${colorName}-${colorIntensity} flex justify-center items-center`}
+        className={`w-[125px] h-[125px] rounded-lg flex justify-center items-center bg-${getCssVariableSuffix(colorName, colorIntensity)}`}
       >
-        <span>{`${colorName}-${colorIntensity}`}</span>
+        <span className="bg-white rounded-lg p-1">{`${getCssVariableSuffix(colorName, colorIntensity)}`}</span>
       </div>
-      <div className="flex flex-col">
-        <span>{`--color-${colorName}-${colorIntensity}`}</span>
-        <span>{`.text-${colorName}-${colorIntensity}`}</span>
-        <span>{`.bg-${colorName}-${colorIntensity}`}</span>
+      <div className="flex flex-col items-center">
+        <span>{`--color-${getCssVariableSuffix(colorName, colorIntensity)}`}</span>
+        <span>{`.text-${getCssVariableSuffix(colorName, colorIntensity)}`}</span>
+        <span>{`.bg-${getCssVariableSuffix(colorName, colorIntensity)}`}</span>
       </div>
     </div>
   );
+};
+
+const getCssVariableSuffix = (colorName: string, colorIntensity?: number) => {
+  if (colorIntensity == null) {
+    return colorName;
+  }
+  return `${colorName}-${colorIntensity}`;
 };
