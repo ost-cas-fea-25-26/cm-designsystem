@@ -234,4 +234,13 @@
     --btn-border-color-hover: var(--color-violet-100);
     --btn-border-color-active: var(--color-violet-200);
   }
+
+  .btn-tertiary:active {
+    --btn-bg-to: linear-gradient(
+      to right,
+      var(--color-pink-500),
+      20%,
+      var(--color-violet-600)
+    );
+  }
 }
