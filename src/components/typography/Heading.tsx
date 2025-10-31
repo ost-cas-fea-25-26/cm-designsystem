@@ -1,14 +1,21 @@
 import { createElement, type JSX, type ReactNode } from "react";
 
 export type HeadingSize = "1" | "2" | "3" | "4";
-export const Heading = ({
-  size,
-  as = "h1",
-  children,
-}: {
+export interface HeadingProps {
   size: HeadingSize;
-  as: keyof JSX.IntrinsicElements;
+  role?: keyof JSX.IntrinsicElements;
   children: ReactNode;
-}) => {
-  return createElement(as, { className: `heading-${size}` }, children);
+}
+const HeadingStyle: Style<ButtonVariant, ButtonSize> = {
+  sizes: {
+    1: "font-bold text-heading-1",
+    2: "font-bold text-5xl",
+    3: "font-semibold",
+    4: "font-semibold",
+  },
+  default: "",
+};
+
+export const Heading = ({ size, role = "h1", children }: HeadingProps) => {
+  return createElement(role, { className: `text-heading-1` }, children);
 };

@@ -1,14 +1,22 @@
 import { createElement, type JSX, type ReactNode } from "react";
 
 export type LabelSize = "xl" | "lg" | "md" | "sm";
-export const Label = ({
-  size,
-  as = "label",
-  children,
-}: {
+export interface LabelProps {
   size: LabelSize;
-  as: keyof JSX.IntrinsicElements;
+  role?: keyof JSX.IntrinsicElements;
   children: ReactNode;
-}) => {
-  return createElement(as, { className: `label-${size}` }, children);
+}
+
+const LabelStyle: Style<ButtonVariant, LabelSize> = {
+  sizes: {
+    xl: "text-label-xl",
+    lg: "text-label-lg",
+    md: "text-label-md",
+    sm: "text-label-sm",
+  },
+  default: "font-semibold",
+};
+
+export const Label = ({ size, role = "label", children }: LabelProps) => {
+  return createElement(role, { className: `label-${size}` }, children);
 };

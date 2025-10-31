@@ -1,14 +1,20 @@
 import { createElement, type JSX, type ReactNode } from "react";
 
 export type ParagraphSize = "lg" | "md";
-export const Paragraph = ({
-  size,
-  as = "p",
-  children,
-}: {
+export interface ParagraphProps {
   size: ParagraphSize;
-  as: keyof JSX.IntrinsicElements;
+  role?: keyof JSX.IntrinsicElements;
   children: ReactNode;
-}) => {
-  return createElement(as, { className: `paragraph-${size}` }, children);
+}
+
+const ParagraphStyle: Style<ButtonVariant, ParagraphSize> = {
+  sizes: {
+    lg: "text-paragraph-lg",
+    md: "text-paragraph-md",
+  },
+  default: "font-medium",
+};
+
+export const Paragraph = ({ size, role = "p", children }: ParagraphProps) => {
+  return createElement(role, { className: `paragraph-${size}` }, children);
 };

@@ -1,11 +1,14 @@
 import { createElement, type JSX, type ReactNode } from "react";
 
-export const Placeholder = ({
-  as = "span",
-  children,
-}: {
-  as: keyof JSX.IntrinsicElements;
+export interface PlaceholderProps {
+  role?: keyof JSX.IntrinsicElements;
   children: ReactNode;
-}) => {
-  return createElement(as, { className: "placeholder" }, children);
+}
+
+export const Placeholder = ({ role = "span", children }: PlaceholderProps) => {
+  return createElement(
+    role,
+    { className: "font-medium text-slate-300 text-placeholder" },
+    children,
+  );
 };
