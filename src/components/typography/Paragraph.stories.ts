@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TextLink } from "../components/TextLink";
+import { Paragraph } from "./Paragraph";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/TextLink",
-  component: TextLink,
+  title: "Components/Typography/Paragraph",
+  component: Paragraph,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
@@ -14,33 +14,34 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    href: { control: "text" },
+    size: { control: "select" },
+    as: { control: "text" },
     children: { control: "text" },
   },
-} satisfies Meta<typeof TextLink>;
+} satisfies Meta<typeof Paragraph>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Default: Story = {
+export const ParagraphLarge: Story = {
   args: {
-    href: "https://example.com",
-    children: "Example Link",
+    size: "lg",
+    children: "Lorem ipsum dolor sit amet",
   },
 };
 
-export const Hover: Story = {
+export const ParagraphMedium: Story = {
   args: {
-    href: "https://example.com",
-    children: "Hover over this link",
+    size: "md",
+    children: "Lorem ipsum dolor sit amet",
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Hover over the link to see the decoration color change from violet-600 to violet-200.",
-      },
-    },
+};
+
+export const CustomTag: Story = {
+  args: {
+    size: "lg",
+    as: "span",
+    children: "Lorem ipsum dolor sit amet",
   },
 };
