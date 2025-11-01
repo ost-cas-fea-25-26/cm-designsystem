@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => <Tabs {...args} />,
-  args: {},
+  args: { textTabLeft: "Deine Mumbles", textTabRight: "Deine Links" },
   parameters: {
     docs: {
       description: {
