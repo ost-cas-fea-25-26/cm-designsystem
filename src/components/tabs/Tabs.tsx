@@ -1,16 +1,31 @@
-import { Label } from "../typography/Label";
+import { Label, type LabelTone } from "../typography/Label";
+
+/**
+ * Tabs (simple 2-tab variant)
+ * variant controls how inactive tabs are styled:
+ * - 'default': active = accent, inactive = default
+ * - 'muted':   active = accent, inactive = muted
+ *
+ * Deprecated: inactiveTone (use variant instead). If both are provided, inactiveTone wins for now.
+ */
 
 export const Tabs = ({
   textTabLeft,
   textTabRight,
   active = "left",
+  variant = "default",
 }: {
   textTabLeft: string;
   textTabRight: string;
   active?: "left" | "right";
+  variant?: "default" | "muted";
 }) => {
   const leftIsActive = active === "left";
   const rightIsActive = active === "right";
+
+  // Determine the tone for inactive tabs, considering deprecated prop.
+  const computedInactive: Extract<LabelTone, "muted" | "default"> =
+    variant === "default" ? "default" : "muted";
 
   return (
     <div
@@ -25,7 +40,11 @@ export const Tabs = ({
         aria-controls="tab-panel-left"
         id="tab-left"
       >
-        <Label size="lg" as="span" tone={leftIsActive ? "accent" : "muted"}>
+        <Label
+          size="lg"
+          as="span"
+          tone={leftIsActive ? "accent" : computedInactive}
+        >
           {textTabLeft}
         </Label>
       </div>
@@ -36,7 +55,11 @@ export const Tabs = ({
         aria-controls="tab-panel-right"
         id="tab-right"
       >
-        <Label size="lg" as="span" tone={rightIsActive ? "accent" : "muted"}>
+        <Label
+          size="lg"
+          as="span"
+          tone={rightIsActive ? "accent" : computedInactive}
+        >
           {textTabRight}
         </Label>
       </div>
