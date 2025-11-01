@@ -1,21 +1,31 @@
-import { createElement, type JSX, type ReactNode } from "react";
+import { createElement } from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 
-export type HeadingSize = "1" | "2" | "3" | "4";
-export interface HeadingProps {
-  size: HeadingSize;
-  role?: keyof JSX.IntrinsicElements;
-  children: ReactNode;
-}
-const HeadingStyle: Style<ButtonVariant, ButtonSize> = {
-  sizes: {
-    1: "font-bold text-heading-1",
-    2: "font-bold text-5xl",
-    3: "font-semibold",
-    4: "font-semibold",
+const headingStyles = tv({
+  base: ["font-poppins", "text-slate-600", "tracking-normal"],
+  variants: {
+    size: {
+      "1": ["font-bold", "text-[48px]/[125%]"],
+      "2": ["font-bold", "text-[40px]/[125%]"],
+      "3": ["font-semibold", "text-[32px]/[125%]"],
+      "4": ["font-semibold", "text-[24px]/[125%]"],
+    },
   },
-  default: "",
-};
+});
 
-export const Heading = ({ size, role = "h1", children }: HeadingProps) => {
-  return createElement(role, { className: `text-heading-1` }, children);
+type HeadingVariants = VariantProps<typeof headingStyles>;
+type HeadingSize = "1" | "2" | "3" | "4";
+
+interface HeadingProps extends HeadingVariants {
+  size: HeadingSize;
+  role?: string;
+  children: React.ReactNode;
+}
+
+export const Heading = ({ role = "h1", ...props }: HeadingProps) => {
+  return createElement(
+    role,
+    { className: headingStyles(props) },
+    props.children,
+  );
 };

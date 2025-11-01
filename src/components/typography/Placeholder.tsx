@@ -1,14 +1,27 @@
-import { createElement, type JSX, type ReactNode } from "react";
+import { createElement } from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 
-export interface PlaceholderProps {
-  role?: keyof JSX.IntrinsicElements;
-  children: ReactNode;
+const placeholderStyles = tv({
+  base: [
+    "font-poppins",
+    "font-medium",
+    "text-slate-300",
+    "text-[16px]/[100%]",
+    "tracking-normal",
+  ],
+});
+
+type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
+
+interface PlaceholderProps extends PlaceholderVariants {
+  role: string;
+  children: React.ReactNode;
 }
 
-export const Placeholder = ({ role = "span", children }: PlaceholderProps) => {
+export const Placeholder = ({ role = "span", ...props }: PlaceholderProps) => {
   return createElement(
     role,
-    { className: "font-medium text-slate-300 text-placeholder" },
-    children,
+    { className: placeholderStyles() },
+    props.children,
   );
 };

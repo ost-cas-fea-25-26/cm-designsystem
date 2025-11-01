@@ -1,20 +1,29 @@
-import { createElement, type JSX, type ReactNode } from "react";
+import { createElement } from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 
-export type ParagraphSize = "lg" | "md";
-export interface ParagraphProps {
+const paragraphStyles = tv({
+  base: ["font-poppins", "font-medium", "text-slate-600", "tracking-normal"],
+  variants: {
+    size: {
+      lg: ["text-[24px]/[145%]"],
+      md: ["text-[18px]/[140%]"],
+    },
+  },
+});
+
+type ParagraphVariants = VariantProps<typeof paragraphStyles>;
+type ParagraphSize = "lg" | "md";
+
+interface ParagraphProps extends ParagraphVariants {
   size: ParagraphSize;
-  role?: keyof JSX.IntrinsicElements;
-  children: ReactNode;
+  role: string;
+  children: React.ReactNode;
 }
 
-const ParagraphStyle: Style<ButtonVariant, ParagraphSize> = {
-  sizes: {
-    lg: "text-paragraph-lg",
-    md: "text-paragraph-md",
-  },
-  default: "font-medium",
-};
-
-export const Paragraph = ({ size, role = "p", children }: ParagraphProps) => {
-  return createElement(role, { className: `paragraph-${size}` }, children);
+export const Paragraph = ({ role = "p", ...props }: ParagraphProps) => {
+  return createElement(
+    role,
+    { className: paragraphStyles(props) },
+    props.children,
+  );
 };

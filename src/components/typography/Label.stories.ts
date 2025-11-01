@@ -15,7 +15,7 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     size: { control: "select" },
-    as: { control: "text" },
+    role: { control: "text" },
     children: { control: "text" },
   },
 } satisfies Meta<typeof Label>;
@@ -55,7 +55,7 @@ export const LabelSmall: Story = {
 export const CustomTag: Story = {
   args: {
     size: "lg",
-    as: "span",
+    role: "span",
     children: "Lorem ipsum dolor sit amet",
   },
 };
