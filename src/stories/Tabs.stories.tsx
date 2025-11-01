@@ -9,12 +9,8 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  args: {
-    children: undefined,
-  },
-  argTypes: {
-    children: { control: false },
-  },
+  args: {},
+  argTypes: {},
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
