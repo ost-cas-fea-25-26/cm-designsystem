@@ -14,9 +14,15 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    size: { control: "select" },
-    variant: { control: "select" },
-    text: { control: "text" },
+    intent: {
+      control: "select",
+    },
+    size: {
+      control: "select",
+    },
+    children: {
+      control: "text",
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -27,23 +33,23 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     size: "md",
-    variant: "primary",
-    text: "Lorem ipsum",
+    intent: "primary",
+    children: "Lorem ipsum",
   },
 };
 
 export const Secondary: Story = {
   args: {
     size: "md",
-    variant: "secondary",
-    text: "Lorem ipsum",
+    intent: "secondary",
+    children: "Lorem ipsum",
   },
 };
 
 export const Tertiary: Story = {
   args: {
     size: "md",
-    variant: "tertiary",
-    text: "Lorem ipsum",
+    intent: "tertiary",
+    children: "Lorem ipsum",
   },
 };
