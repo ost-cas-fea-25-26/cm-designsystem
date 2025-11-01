@@ -16,9 +16,9 @@ export const Label = ({
   children,
 }: {
   size: LabelSize;
-  tone?: LabelTone;
+  tone: LabelTone;
   as: keyof JSX.IntrinsicElements;
-  children: ReactNode;
+  children?: ReactNode;
 }) => {
   return createElement(
     as,
