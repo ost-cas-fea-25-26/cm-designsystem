@@ -9,8 +9,20 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  args: {},
-  argTypes: {},
+  args: {
+    textTabLeft: "Deine Mumbles",
+    textTabRight: "Deine Likes",
+    active: "left",
+    variant: "muted",
+  },
+  argTypes: {
+    active: { control: { type: "radio" }, options: ["left", "right"] },
+    variant: {
+      control: { type: "radio" },
+      options: ["muted", "default"],
+      description: "Variant defines inactive tone (muted vs default)",
+    },
+  },
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
@@ -19,12 +31,47 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => <Tabs {...args} />,
-  args: { textTabLeft: "Deine Mumbles", textTabRight: "Deine Links" },
   parameters: {
     docs: {
       description: {
         story:
-          "The Tabs component currently renders two static labels: 'Deine Mumbles' and 'Deine Links'. This story will evolve once dynamic tab data & interaction props are added.",
+          "Tabs with accent tone (active) and variant-driven inactive tone (muted | default). 'inactiveTone' is deprecated.",
+      },
+    },
+  },
+};
+
+export const VariantMuted: Story = {
+  render: (args) => <Tabs {...args} />,
+  args: {
+    textTabLeft: "Deine Mumbles",
+    textTabRight: "Deine Likes",
+    active: "left",
+    variant: "muted",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Variant 'muted': inactive tabs use muted tone (lower visual weight).",
+      },
+    },
+  },
+};
+
+export const VariantDefault: Story = {
+  render: (args) => <Tabs {...args} />,
+  args: {
+    textTabLeft: "Deine Mumbles",
+    textTabRight: "Deine Likes",
+    active: "left",
+    variant: "default",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Variant 'default': inactive tabs use default tone (higher contrast).",
       },
     },
   },
