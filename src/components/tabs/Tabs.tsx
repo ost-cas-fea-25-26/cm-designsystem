@@ -1,14 +1,5 @@
 import { Label, type LabelTone } from "../typography/Label";
 
-/**
- * Tabs (simple 2-tab variant)
- * variant controls how inactive tabs are styled:
- * - 'default': active = accent, inactive = default
- * - 'muted':   active = accent, inactive = muted
- *
- * Deprecated: inactiveTone (use variant instead). If both are provided, inactiveTone wins for now.
- */
-
 export const Tabs = ({
   textTabLeft,
   textTabRight,
@@ -23,7 +14,6 @@ export const Tabs = ({
   const leftIsActive = active === "left";
   const rightIsActive = active === "right";
 
-  // Determine the tone for inactive tabs, considering deprecated prop.
   const computedInactive: Extract<LabelTone, "muted" | "default"> =
     variant === "default" ? "default" : "muted";
 
