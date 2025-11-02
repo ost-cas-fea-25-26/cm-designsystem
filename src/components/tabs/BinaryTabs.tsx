@@ -92,6 +92,9 @@ export const BinaryTabs = ({
           </Label>
         </RadixTabs.Trigger>
       </RadixTabs.List>
+      {/* Hidden panels to satisfy aria-controls; replace with real content when available */}
+      <RadixTabs.Content value="left" className="sr-only" />
+      <RadixTabs.Content value="right" className="sr-only" />
     </RadixTabs.Root>
   );
 };
