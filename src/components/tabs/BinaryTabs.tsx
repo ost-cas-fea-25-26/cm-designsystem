@@ -17,16 +17,6 @@ const binaryTabsStyles = {
       "focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:border focus-visible:border-violet-300 focus-visible:shadow-[0_0_0_2px_rgba(124,58,237,0.25)]",
       "transition-colors",
     ],
-    variants: {
-      tone: {
-        default: "",
-        muted: "",
-      },
-      active: {
-        true: "",
-        false: "",
-      },
-    },
   }),
 };
 
@@ -100,7 +90,7 @@ export const BinaryTabs = ({
             <RadixTabs.Trigger
               key={item.value}
               value={item.value}
-              className={binaryTabsStyles.trigger({ tone: variant, active })}
+              className={binaryTabsStyles.trigger()}
             >
               <Label size="lg" as="span" tone={active ? "accent" : variant}>
                 {item.label}
