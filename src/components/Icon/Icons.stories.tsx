@@ -22,7 +22,7 @@ import {
 } from "./Icons";
 
 const meta: Meta<typeof UploadIcon> = {
-  title: "Components/Individual Icons",
+  title: "Components/Icons",
   component: UploadIcon,
   parameters: {
     layout: "centered",
@@ -83,13 +83,7 @@ All 16 icons are derived from your purchased Nucleo icon set and optimized for w
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Upload: Story = {
-  args: {
-    size: "md",
-  },
-};
-
-export const AllNucleoIcons: Story = {
+export const AllIcons: Story = {
   render: () => (
     <div className="space-y-6">
       <div className="bg-green-50 p-4 rounded-lg border border-green-200">
@@ -276,96 +270,6 @@ export const AllNucleoIcons: Story = {
               &lt;RepostIcon /&gt;
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  ),
-};
-
-export const SizeComparison: Story = {
-  render: () => (
-    <div className="flex items-center gap-6 p-4">
-      {(["sm", "md", "lg", "xl"] as const).map((size) => (
-        <div key={size} className="flex flex-col items-center gap-2">
-          <UploadIcon size={size} className="text-slate-600" />
-          <span className="text-sm text-gray-600">{size}</span>
-          <span className="text-xs text-gray-400">
-            {size === "sm" && "16px"}
-            {size === "md" && "24px"}
-            {size === "lg" && "32px"}
-            {size === "xl" && "40px"}
-          </span>
-        </div>
-      ))}
-    </div>
-  ),
-};
-
-export const DesignSystemColors: Story = {
-  render: () => (
-    <div className="space-y-6">
-      <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-        <h3 className="text-lg font-semibold text-slate-800 mb-2">
-          🎨 Standard Icon Color
-        </h3>
-        <div className="text-sm text-slate-700 space-y-2">
-          <p>
-            <strong>Default:</strong> All icons use{" "}
-            <code className="bg-slate-100 px-1 rounded">text-slate-600</code> as
-            per Figma design system
-          </p>
-          <p>
-            <strong>Usage:</strong>{" "}
-            <code className="bg-slate-100 px-1 rounded">
-              className="text-slate-600"
-            </code>{" "}
-            or leave blank for default
-          </p>
-        </div>
-      </div>
-
-      <div className="space-y-4">
-        <h4 className="font-medium text-slate-800">
-          Standard Icon Color (Recommended)
-        </h4>
-        <div className="flex items-center gap-4">
-          <div className="flex flex-col items-center gap-2">
-            <CheckmarkIcon size="xl" className="text-slate-600" />
-            <span className="text-xs text-gray-600">Default</span>
-            <span className="text-xs text-gray-400 font-mono">slate-600</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <LocationIcon size="xl" className="text-slate-600" />
-            <span className="text-xs text-gray-600">Standard</span>
-            <span className="text-xs text-gray-400 font-mono">slate-600</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <EditIcon size="xl" className="text-slate-600" />
-            <span className="text-xs text-gray-600">Consistent</span>
-            <span className="text-xs text-gray-400 font-mono">slate-600</span>
-          </div>
-        </div>
-
-        <h4 className="font-medium text-slate-800 mt-6">
-          Alternative Colors (When Needed)
-        </h4>
-        <p className="text-sm text-slate-600 mb-2">
-          Use sparingly for specific UI states or emphasis:
-        </p>
-        <div className="flex items-center gap-4">
-          {[
-            { shade: "slate-400", label: "Disabled", use: "Disabled state" },
-            { shade: "slate-800", label: "Emphasis", use: "Active/focused" },
-            { shade: "red-500", label: "Error", use: "Error states" },
-            { shade: "green-600", label: "Success", use: "Success states" },
-          ].map(({ shade, label, use }) => (
-            <div key={shade} className="flex flex-col items-center gap-2">
-              <UploadIcon size="xl" className={`text-${shade}`} />
-              <span className="text-xs text-gray-600">{label}</span>
-              <span className="text-xs text-gray-400 font-mono">{shade}</span>
-              <span className="text-xs text-gray-500 text-center">{use}</span>
-            </div>
-          ))}
         </div>
       </div>
     </div>
