@@ -91,53 +91,36 @@
     font-weight: var(--font-weight-bold);
     line-height: 125%;
   }
-
-  /* Ensure SVG icons inherit text color properly */
-  svg {
-    color: inherit;
-  }
-
-  /*
-  h2 {
-    @apply text-h2 font-heading text-gray-900;
-  }
-
   .paragraph-lg {
     font-size: 24px;
     font-weight: var(--font-weight-medium);
     line-height: 145%;
   }
-
   .paragraph-md {
     font-size: 18px;
     font-weight: var(--font-weight-medium);
     line-height: 140%;
   }
-
   .label-xl {
     font-size: 24px;
     font-weight: var(--font-weight-semibold);
     line-height: 100%;
   }
-
   .label-lg {
     font-size: 20px;
     font-weight: var(--font-weight-semibold);
     line-height: 100%;
   }
-
   .label-md {
     font-size: 16px;
     font-weight: var(--font-weight-semibold);
     line-height: 100%;
   }
-
   .label-sm {
     font-size: 14px;
     font-weight: var(--font-weight-semibold);
     line-height: 100%;
   }
-
   .placeholder {
     font-size: 16px;
     font-weight: var(--font-weight-medium);
