@@ -59,8 +59,8 @@ export const BinaryTabs = ({
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState<string>(initial);
   const activeValue = isControlled
-    ? allowed.has(value!)
-      ? value!
+    ? allowed.has(value)
+      ? value
       : first.value
     : internalValue;
 
