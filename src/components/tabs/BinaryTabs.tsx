@@ -39,6 +39,7 @@ export interface BinaryTabsProps {
  * - Active tab uses Label tone 'accent'.
  * - Muted tab uses tone derived from variant ('default' | 'muted').
  * - Always guarantees one active tab. if none is active, 'left' will be set.
+ * - value to be able to sync globally (controlled component). Parent is able to decide which tab shows.
  */
 export const BinaryTabs = ({
   items,
