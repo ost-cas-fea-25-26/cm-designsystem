@@ -27,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const ParagraphLarge: Story = {
   args: {
     size: "lg",
+    role: "p",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -34,6 +35,7 @@ export const ParagraphLarge: Story = {
 export const ParagraphMedium: Story = {
   args: {
     size: "md",
+    role: "p",
     children: "Lorem ipsum dolor sit amet",
   },
 };

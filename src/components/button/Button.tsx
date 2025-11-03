@@ -57,7 +57,7 @@ interface ButtonProps extends ButtonVariants {
 export const Button = (props: ButtonProps) => {
   return (
     <button className={buttonStyles(props)}>
-      <Label as="span" size="md">
+      <Label role="span" size="md">
         {props.children}
       </Label>
     </button>
