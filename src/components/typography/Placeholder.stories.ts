@@ -14,7 +14,7 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    as: { control: "text" },
+    role: { control: "text" },
     children: { control: "text" },
   },
 } satisfies Meta<typeof Placeholder>;
@@ -31,7 +31,7 @@ export const Default: Story = {
 
 export const CustomTag: Story = {
   args: {
-    as: "h1",
+    role: "h1",
     children: "Lorem ipsum dolor sit amet",
   },
 };
