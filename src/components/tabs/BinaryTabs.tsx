@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Label } from "../typography/Label";
 import { tv } from "tailwind-variants";
 
-// Tailwind-variants style system for BinaryTabs
 const binaryTabsStyles = {
   root: tv({
     base: "bg-slate-200 rounded-lg flex flex-row p-1",
@@ -14,31 +13,34 @@ const binaryTabsStyles = {
   trigger: tv({
     base: [
       "group rounded-xs p-3",
-      // active state background via Radix data-state attribute
       "data-[state=active]:bg-white data-[state=active]:rounded-md",
-      // focus styles (accessible but subtle)
       "focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:border focus-visible:border-violet-300 focus-visible:shadow-[0_0_0_2px_rgba(124,58,237,0.25)]",
       "transition-colors",
     ],
     variants: {
       tone: {
-        default: "", // rely on Label tone
-        muted: "", // rely on Label tone
+        default: "",
+        muted: "",
       },
       active: {
-        true: "", // active specific trigger styles could go here later
-        false: "", // inactive trigger styles could go here later
+        true: "",
+        false: "",
       },
     },
   }),
 };
 
+export interface BinaryTabsItem {
+  value: string;
+  label: string;
+  panel?: React.ReactNode;
+}
+
 export interface BinaryTabsProps {
-  leftLabel: string;
-  rightLabel: string;
-  value?: "left" | "right"; // controlled (optional)
-  defaultValue?: "left" | "right"; // uncontrolled initial
-  onValueChange?: (value: "left" | "right") => void;
+  items: [BinaryTabsItem, BinaryTabsItem];
+  value?: string; // controlled value
+  defaultValue?: string; // uncontrolled initial value
+  onValueChange?: (value: string) => void;
   variant?: "default" | "muted";
 }
 
@@ -46,30 +48,34 @@ export interface BinaryTabsProps {
  * BinaryTabs – genau zwei Tabs ('left' & 'right').
  * - Active tab uses Label tone 'accent'.
  * - Muted tab uses tone derived from variant ('default' | 'muted').
- * - Always guarantees one active tab; invalid controlled value coerces to 'left'.
+ * - Always guarantees one active tab. if none is active, 'left' will be set.
  */
 export const BinaryTabs = ({
-  leftLabel,
-  rightLabel,
+  items,
   value,
-  defaultValue = "left",
+  defaultValue,
   onValueChange,
   variant = "default",
 }: BinaryTabsProps) => {
-  const isControlled = value !== undefined;
-  const [internalValue, setInternalValue] = useState<"left" | "right">(
-    defaultValue,
-  );
+  const [first, second] = items;
+  const allowed = new Set([first.value, second.value]);
 
-  // Determine active value (set invalid controlled values to 'left')
-  const activeValue: "left" | "right" = isControlled
-    ? value === "right"
-      ? "right"
-      : "left"
+  const initial = (() => {
+    if (value && allowed.has(value)) return value;
+    if (defaultValue && allowed.has(defaultValue)) return defaultValue;
+    return first.value;
+  })();
+
+  const isControlled = value !== undefined;
+  const [internalValue, setInternalValue] = useState<string>(initial);
+  const activeValue = isControlled
+    ? allowed.has(value!)
+      ? value!
+      : first.value
     : internalValue;
 
   const handleChange = (next: string) => {
-    const coerced: "left" | "right" = next === "right" ? "right" : "left";
+    const coerced = allowed.has(next) ? next : first.value;
     if (isControlled) {
       onValueChange?.(coerced);
     } else {
@@ -88,40 +94,21 @@ export const BinaryTabs = ({
         aria-label="Binary Tabs"
         className={binaryTabsStyles.list()}
       >
-        <RadixTabs.Trigger
-          value="left"
-          className={binaryTabsStyles.trigger({
-            tone: variant,
-            active: activeValue === "left",
-          })}
-        >
-          <Label
-            size="lg"
-            as="span"
-            tone={activeValue === "left" ? "accent" : variant}
-          >
-            {leftLabel}
-          </Label>
-        </RadixTabs.Trigger>
-        <RadixTabs.Trigger
-          value="right"
-          className={binaryTabsStyles.trigger({
-            tone: variant,
-            active: activeValue === "right",
-          })}
-        >
-          <Label
-            size="lg"
-            as="span"
-            tone={activeValue === "right" ? "accent" : variant}
-          >
-            {rightLabel}
-          </Label>
-        </RadixTabs.Trigger>
+        {[first, second].map((item) => {
+          const active = activeValue === item.value;
+          return (
+            <RadixTabs.Trigger
+              key={item.value}
+              value={item.value}
+              className={binaryTabsStyles.trigger({ tone: variant, active })}
+            >
+              <Label size="lg" as="span" tone={active ? "accent" : variant}>
+                {item.label}
+              </Label>
+            </RadixTabs.Trigger>
+          );
+        })}
       </RadixTabs.List>
-      {/* Hidden panels to satisfy aria-controls; replace with real content when available */}
-      <RadixTabs.Content value="left" className="sr-only" />
-      <RadixTabs.Content value="right" className="sr-only" />
     </RadixTabs.Root>
   );
 };

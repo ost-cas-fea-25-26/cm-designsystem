@@ -7,11 +7,6 @@ const meta = {
   component: BinaryTabs,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-  args: {
-    leftLabel: "Deine Mumbles",
-    rightLabel: "Deine Likes",
-    variant: "muted",
-  },
   argTypes: {
     variant: { control: { type: "radio" }, options: ["muted", "default"] },
     value: { control: false },
@@ -25,9 +20,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Uncontrolled: Story = {
   args: {
-    leftLabel: "Deine Mumbles",
-    rightLabel: "Deine Likes",
-    defaultValue: "left",
+    items: [
+      { value: "mumbles", label: "Deine Mumbles" },
+      { value: "likes", label: "Deine Likes" },
+    ],
+    defaultValue: "mumbles",
     variant: "muted",
   },
   parameters: {
@@ -42,26 +39,28 @@ export const Uncontrolled: Story = {
 // Playground: use story controls & actions to observe changes.
 
 export const Controlled: Story = {
+  args: {
+    items: [
+      { value: "mumbles", label: "Deine Mumbles" },
+      { value: "likes", label: "Deine Likes" },
+    ],
+    variant: "muted",
+  },
   render: (args) => {
-    const ControlledExample: React.FC<typeof args> = (props) => {
-      const [val, setVal] = React.useState<"left" | "right">("left");
+    const ControlledWrapper: React.FC = () => {
+      const [val, setVal] = React.useState<string>(args.items[0].value);
       return (
         <BinaryTabs
-          {...props}
+          {...args}
           value={val}
           onValueChange={(v) => {
             setVal(v);
-            props.onValueChange?.(v);
+            args.onValueChange?.(v);
           }}
         />
       );
     };
-    return <ControlledExample {...args} />;
-  },
-  args: {
-    leftLabel: "Deine Mumbles",
-    rightLabel: "Deine Likes",
-    variant: "muted",
+    return <ControlledWrapper />;
   },
   parameters: {
     docs: { description: { story: "Controlled Beispiel mit externem State." } },
@@ -70,9 +69,11 @@ export const Controlled: Story = {
 
 export const VariantDefault: Story = {
   args: {
-    leftLabel: "Deine Mumbles",
-    rightLabel: "Deine Likes",
-    defaultValue: "left",
+    items: [
+      { value: "mumbles", label: "Deine Mumbles" },
+      { value: "likes", label: "Deine Likes" },
+    ],
+    defaultValue: "mumbles",
     variant: "default",
   },
   parameters: {
@@ -82,12 +83,16 @@ export const VariantDefault: Story = {
 
 export const VariantMuted: Story = {
   args: {
-    leftLabel: "Deine Mumbles",
-    rightLabel: "Deine Likes",
-    defaultValue: "left",
+    items: [
+      { value: "mumbles", label: "Deine Mumbles" },
+      { value: "likes", label: "Deine Likes" },
+    ],
+    defaultValue: "mumbles",
     variant: "muted",
   },
   parameters: {
     docs: { description: { story: "Muted Tone" } },
   },
 };
+
+// PanelsExample removed per request.
