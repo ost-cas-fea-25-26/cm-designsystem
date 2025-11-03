@@ -1,6 +1,37 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Label } from "../typography/Label";
+import { tv } from "tailwind-variants";
+
+// Tailwind-variants style system for BinaryTabs
+const binaryTabsStyles = {
+  root: tv({
+    base: "bg-slate-200 rounded-lg flex flex-row p-1",
+  }),
+  list: tv({
+    base: "flex flex-row gap-1",
+  }),
+  trigger: tv({
+    base: [
+      "group rounded-xs p-3",
+      // active state background via Radix data-state attribute
+      "data-[state=active]:bg-white data-[state=active]:rounded-md",
+      // focus styles (accessible but subtle)
+      "focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:border focus-visible:border-violet-300 focus-visible:shadow-[0_0_0_2px_rgba(124,58,237,0.25)]",
+      "transition-colors",
+    ],
+    variants: {
+      tone: {
+        default: "", // rely on Label tone
+        muted: "", // rely on Label tone
+      },
+      active: {
+        true: "", // active specific trigger styles could go here later
+        false: "", // inactive trigger styles could go here later
+      },
+    },
+  }),
+};
 
 export interface BinaryTabsProps {
   leftLabel: string;
@@ -23,40 +54,27 @@ export const BinaryTabs = ({
   value,
   defaultValue = "left",
   onValueChange,
-  variant = "muted",
+  variant = "default",
 }: BinaryTabsProps) => {
   const isControlled = value !== undefined;
-  // Internal state for uncontrolled usage.
   const [internalValue, setInternalValue] = useState<"left" | "right">(
-    defaultValue === "right" ? "right" : "left",
+    defaultValue,
   );
 
-  // Coerce invalid controlled value to 'left'.
-  const coercedControlled: "left" | "right" | undefined = isControlled
-    ? value === "right" || value === "left"
-      ? value
-      : "left"
-    : undefined;
-
-  // Active value depending on mode.
+  // Determine active value (set invalid controlled values to 'left')
   const activeValue: "left" | "right" = isControlled
-    ? (coercedControlled as "left" | "right")
+    ? value === "right"
+      ? "right"
+      : "left"
     : internalValue;
 
-  // Allow dynamic defaultValue changes (rare but defensive).
-  useEffect(() => {
-    if (!isControlled && defaultValue && defaultValue !== internalValue) {
-      setInternalValue(defaultValue === "right" ? "right" : "left");
-    }
-  }, [defaultValue, isControlled, internalValue]);
-
-  // Inactive tone is exactly the variant ('muted' | 'default').
-  // We only switch to 'accent' for the active tab.
-
   const handleChange = (next: string) => {
-    if (next === "left" || next === "right") {
-      if (!isControlled) setInternalValue(next);
-      onValueChange?.(next);
+    const coerced: "left" | "right" = next === "right" ? "right" : "left";
+    if (isControlled) {
+      onValueChange?.(coerced);
+    } else {
+      setInternalValue(coerced);
+      onValueChange?.(coerced);
     }
   };
 
@@ -64,12 +82,18 @@ export const BinaryTabs = ({
     <RadixTabs.Root
       value={activeValue}
       onValueChange={handleChange}
-      className="bg-slate-200 rounded-lg flex flex-row p-1"
+      className={binaryTabsStyles.root()}
     >
-      <RadixTabs.List aria-label="Binary Tabs" className="flex flex-row gap-1">
+      <RadixTabs.List
+        aria-label="Binary Tabs"
+        className={binaryTabsStyles.list()}
+      >
         <RadixTabs.Trigger
           value="left"
-          className="group rounded-xs p-3 data-[state=active]:bg-white data-[state=active]:rounded-md focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:border focus-visible:border-violet-300 focus-visible:shadow-[0_0_0_2px_rgba(124,58,237,0.25)]"
+          className={binaryTabsStyles.trigger({
+            tone: variant,
+            active: activeValue === "left",
+          })}
         >
           <Label
             size="lg"
@@ -81,7 +105,10 @@ export const BinaryTabs = ({
         </RadixTabs.Trigger>
         <RadixTabs.Trigger
           value="right"
-          className="group rounded-xs p-3 data-[state=active]:bg-white data-[state=active]:rounded-md focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:border focus-visible:border-violet-300 focus-visible:shadow-[0_0_0_2px_rgba(124,58,237,0.25)]"
+          className={binaryTabsStyles.trigger({
+            tone: variant,
+            active: activeValue === "right",
+          })}
         >
           <Label
             size="lg"
