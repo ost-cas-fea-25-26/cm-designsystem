@@ -100,6 +100,15 @@ export const BinaryTabs = ({
           );
         })}
       </RadixTabs.List>
+      {[first, second].map((item) => (
+        <RadixTabs.Content
+          key={item.value}
+          value={item.value}
+          className={item.panel ? "" : "sr-only"}
+        >
+          {item.panel}
+        </RadixTabs.Content>
+      ))}
     </RadixTabs.Root>
   );
 };
