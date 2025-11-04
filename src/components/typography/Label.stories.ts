@@ -27,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const LabelExtraLarge: Story = {
   args: {
     size: "xl",
+    role: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -34,6 +35,7 @@ export const LabelExtraLarge: Story = {
 export const LabelLarge: Story = {
   args: {
     size: "lg",
+    role: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -41,6 +43,7 @@ export const LabelLarge: Story = {
 export const LabelMedium: Story = {
   args: {
     size: "md",
+    role: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -48,6 +51,7 @@ export const LabelMedium: Story = {
 export const LabelSmall: Story = {
   args: {
     size: "sm",
+    role: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };

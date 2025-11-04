@@ -9,7 +9,7 @@ export const TextLink = ({
   children: ReactNode;
 }) => {
   return (
-    <Label size="sm" as="a">
+    <Label size="sm" role="a">
       <a
         href={href}
         className="hover:decoration-violet-200 text-violet-600 underline underline-offset-2 decoration-violet-600"
