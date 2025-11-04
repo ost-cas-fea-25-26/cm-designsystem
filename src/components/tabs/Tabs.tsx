@@ -1,0 +1,105 @@
+import * as RadixTabs from "@radix-ui/react-tabs";
+import React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
+import { Label } from "../typography/Label";
+import type { TabItemProps } from "./TabItem";
+
+const tabStyles = tv({
+  slots: {
+    list: ["bg-slate-200", "rounded-lg", "p-1", "flex", "gap-2", "group"],
+    trigger: ["pt-2", "pb-2", "pr-3", "pl-3", "rounded-md"],
+    label: [],
+  },
+  variants: {
+    selected: {
+      false: {
+        trigger: ["bg-slate-200"],
+        label: ["group-hover:text-slate-800"],
+      },
+      true: {
+        trigger: ["bg-white"],
+        label: ["text-violet-600"],
+      },
+    },
+    effect: {
+      first: {},
+      middle: {},
+      last: {},
+    },
+  },
+  compoundVariants: [
+    {
+      selected: true,
+      effect: "first",
+      class: {
+        trigger: ["group-hover:pr-6"],
+      },
+    },
+    {
+      selected: true,
+      effect: "middle",
+      class: {
+        trigger: ["group-hover:pr-6", "group-hover:pl-6"],
+      },
+    },
+    {
+      selected: true,
+      effect: "last",
+      class: {
+        trigger: ["group-hover:pl-6"],
+      },
+    },
+  ],
+});
+
+type TabVariants = VariantProps<typeof tabStyles>;
+
+export interface TabLabelProps {
+  value: string;
+  label: string;
+}
+
+export interface TabProps extends TabVariants {
+  items: TabLabelProps[];
+  value: string;
+  children: React.ReactElement<TabItemProps>[];
+}
+
+export const Tabs = (props: TabProps) => {
+  const { list, trigger, label } = tabStyles(props);
+
+  const getEffectVariant = (index: number, max: number) =>
+    index === 0 ? "first" : max === index ? "last" : "middle";
+
+  const [currentSelection, setSelection] = React.useState(props.value);
+
+  return (
+    <RadixTabs.Root defaultValue={props.value}>
+      <RadixTabs.List className={list()}>
+        {props.items.map((item, index) => (
+          <RadixTabs.Trigger
+            value={item.value}
+            className={trigger({
+              selected: item.value === currentSelection,
+              effect: getEffectVariant(index, props.items.length - 1),
+            })}
+            onClick={() => setSelection(item.value)}
+          >
+            <Label
+              size="lg"
+              className={label({
+                selected: item.value === currentSelection,
+              })}
+            >
+              {item.label}
+            </Label>
+          </RadixTabs.Trigger>
+        ))}
+      </RadixTabs.List>
+
+      {React.Children.map(props.children, (child) =>
+        React.cloneElement(child, { intent: "selected" }),
+      )}
+    </RadixTabs.Root>
+  );
+};
