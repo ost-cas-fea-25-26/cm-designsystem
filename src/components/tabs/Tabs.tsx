@@ -61,6 +61,7 @@ export interface TabLabelProps {
 
 export interface TabProps extends TabVariants {
   value: string;
+  onChange: (value: string) => void;
   children: React.ReactElement<TabItemProps>[];
 }
 
@@ -72,6 +73,11 @@ export const Tabs = (props: TabProps) => {
 
   const [currentSelection, setSelection] = React.useState(props.value);
 
+  const onClick = (value: string) => {
+    setSelection(value);
+    props.onChange(value);
+  };
+
   return (
     <RadixTabs.Root defaultValue={props.value}>
       <RadixTabs.List className={list()}>
@@ -82,7 +88,7 @@ export const Tabs = (props: TabProps) => {
               selected: child.props.value === currentSelection,
               effect: getEffectVariant(index, props.children.length - 1),
             })}
-            onClick={() => setSelection(child.props.value)}
+            onClick={() => onClick(child.props.value)}
           >
             <Label
               size="lg"
