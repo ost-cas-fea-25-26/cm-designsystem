@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import { Label } from "../typography/Label";
+import type { ReactNode } from "react";
 
 export const TextLink = ({
   href,
@@ -9,10 +9,10 @@ export const TextLink = ({
   children: ReactNode;
 }) => {
   return (
-    <Label size="sm" role="a">
+    <Label size="sm" as="span">
       <a
         href={href}
-        className="hover:decoration-violet-200 text-violet-600 underline underline-offset-2 decoration-violet-600"
+        className="text-violet-600 underline decoration-violet-600 underline-offset-2 hover:decoration-violet-200"
       >
         {children}
       </a>

@@ -26,6 +26,6 @@ export const Heading = ({ role = "h1", ...props }: HeadingProps) => {
   return createElement(
     role,
     { className: headingStyles(props) },
-    props.children,
+    props.children
   );
 };
