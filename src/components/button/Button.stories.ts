@@ -1,7 +1,6 @@
 import { Button } from "./Button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Components/Button",
