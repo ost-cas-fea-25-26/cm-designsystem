@@ -65,7 +65,6 @@ npm run build-storybook  # Build Storybook for production
 
 We use automated tools to enforce consistent code style:
 
-
 - **Prettier** for code formatting (with Tailwind class sorting)
 - **ESLint** for code linting and best practices
 - **TypeScript** for type checking
@@ -110,8 +109,8 @@ All pull requests must pass our CI checks:
 
 The CI pipeline runs automatically on:
 
-- Pull requests to `main` or `develop`
-- Pushes to `main` or `develop`
+- Pull requests to `main`
+- Pushes to `main`
 
 ### Why No Pre-commit Hooks?
 
@@ -136,7 +135,7 @@ You're still encouraged to run quality checks locally before pushing!
    ```
 
 2. Push your changes to your feature branch (`feature/<mm or ci>/<description>`)
-3. Create a pull request to the `main` branch 
+3. Create a pull request to the `main` branch
 4. Wait for CI checks to pass
 5. Request review from Matej / Carla
 6. Address any feedback
@@ -166,8 +165,6 @@ test: add tests for TextLink component
 - `refactor`: Code refactoring without feature changes
 - `test`: Adding or updating tests
 - `perf`: Performance improvements
-
-
 
 ---
 
