@@ -67,11 +67,10 @@ export interface TabProps extends TabVariants {
 
 export const Tabs = (props: TabProps) => {
   const { list, trigger, label } = tabStyles(props);
+  const [currentSelection, setSelection] = React.useState(props.value);
 
   const getEffectVariant = (index: number, max: number) =>
     index === 0 ? "first" : max === index ? "last" : "middle";
-
-  const [currentSelection, setSelection] = React.useState(props.value);
 
   const onClick = (value: string) => {
     setSelection(value);
