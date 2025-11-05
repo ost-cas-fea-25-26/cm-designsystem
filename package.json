@@ -14,7 +14,8 @@
     "format": "prettier . --write",
     "prettier:check": "prettier . --check",
     "prebuild": "npm run prettier:check && npm run lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "knip": "knip"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
@@ -41,7 +42,7 @@
     "@storybook/addon-onboarding": "^9.1.10",
     "@storybook/addon-vitest": "^9.1.10",
     "@storybook/react-vite": "^9.1.10",
-    "@types/node": "^24.6.0",
+    "@types/node": "^24.10.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
@@ -54,6 +55,7 @@
     "eslint-plugin-storybook": "^9.1.10",
     "globals": "^16.4.0",
     "husky": "^9.1.7",
+    "knip": "^5.67.1",
     "lint-staged": "^16.2.4",
     "playwright": "^1.55.1",
     "prettier": "3.6.2",
