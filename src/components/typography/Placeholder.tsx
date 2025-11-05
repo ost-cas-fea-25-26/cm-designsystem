@@ -22,6 +22,6 @@ export const Placeholder = ({ role = "span", ...props }: PlaceholderProps) => {
   return createElement(
     role,
     { className: placeholderStyles() },
-    props.children,
+    props.children
   );
 };

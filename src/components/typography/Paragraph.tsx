@@ -24,6 +24,6 @@ export const Paragraph = ({ role = "p", ...props }: ParagraphProps) => {
   return createElement(
     role,
     { className: paragraphStyles(props) },
-    props.children,
+    props.children
   );
 };
