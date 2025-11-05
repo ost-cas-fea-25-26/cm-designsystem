@@ -18,10 +18,10 @@ type LabelSize = "xl" | "lg" | "md" | "sm";
 
 interface LabelProps extends LabelVariants {
   size: LabelSize;
-  role: string;
+  as?: string;
   children: React.ReactNode;
 }
 
-export const Label = ({ role = "label", ...props }: LabelProps) => {
-  return createElement(role, { className: labelStyles(props) }, props.children);
+export const Label = ({ as = "label", ...props }: LabelProps) => {
+  return createElement(as, { className: labelStyles(props) }, props.children);
 };

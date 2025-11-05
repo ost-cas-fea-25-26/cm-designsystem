@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-
 import { Label } from "./Label";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -15,7 +14,7 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     size: { control: "select" },
-    role: { control: "text" },
+    as: { control: "text" },
     children: { control: "text" },
   },
 } satisfies Meta<typeof Label>;
@@ -27,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 export const LabelExtraLarge: Story = {
   args: {
     size: "xl",
-    role: "label",
+    as: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -35,7 +34,7 @@ export const LabelExtraLarge: Story = {
 export const LabelLarge: Story = {
   args: {
     size: "lg",
-    role: "label",
+    as: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -43,7 +42,7 @@ export const LabelLarge: Story = {
 export const LabelMedium: Story = {
   args: {
     size: "md",
-    role: "label",
+    as: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -51,7 +50,7 @@ export const LabelMedium: Story = {
 export const LabelSmall: Story = {
   args: {
     size: "sm",
-    role: "label",
+    as: "label",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -59,7 +58,7 @@ export const LabelSmall: Story = {
 export const CustomTag: Story = {
   args: {
     size: "lg",
-    role: "span",
+    as: "span",
     children: "Lorem ipsum dolor sit amet",
   },
 };
