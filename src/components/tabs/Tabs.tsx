@@ -60,7 +60,6 @@ export interface TabLabelProps {
 }
 
 export interface TabProps extends TabVariants {
-  items: TabLabelProps[];
   value: string;
   children: React.ReactElement<TabItemProps>[];
 }
@@ -76,30 +75,28 @@ export const Tabs = (props: TabProps) => {
   return (
     <RadixTabs.Root defaultValue={props.value}>
       <RadixTabs.List className={list()}>
-        {props.items.map((item, index) => (
+        {props.children.map((child, index) => (
           <RadixTabs.Trigger
-            value={item.value}
+            value={child.props.value}
             className={trigger({
-              selected: item.value === currentSelection,
-              effect: getEffectVariant(index, props.items.length - 1),
+              selected: child.props.value === currentSelection,
+              effect: getEffectVariant(index, props.children.length - 1),
             })}
-            onClick={() => setSelection(item.value)}
+            onClick={() => setSelection(child.props.value)}
           >
             <Label
               size="lg"
               className={label({
-                selected: item.value === currentSelection,
+                selected: child.props.value === currentSelection,
               })}
             >
-              {item.label}
+              {child.props.label}
             </Label>
           </RadixTabs.Trigger>
         ))}
       </RadixTabs.List>
 
-      {React.Children.map(props.children, (child) =>
-        React.cloneElement(child, { intent: "selected" }),
-      )}
+      {props.children}
     </RadixTabs.Root>
   );
 };

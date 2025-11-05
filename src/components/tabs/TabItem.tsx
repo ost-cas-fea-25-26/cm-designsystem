@@ -7,6 +7,7 @@ type TabItemVariants = VariantProps<typeof tabItemStyles>;
 
 export interface TabItemProps extends TabItemVariants {
   value: string;
+  label: string;
   children: React.ReactNode;
 }
 

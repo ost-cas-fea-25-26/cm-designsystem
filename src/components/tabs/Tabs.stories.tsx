@@ -15,8 +15,9 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    items: {
-      control: "object",
+    value: {
+      control: "text",
+      children: "object",
     },
   },
 } satisfies Meta<typeof Tabs>;
@@ -25,18 +26,19 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const Default: Story = {
   args: {
-    items: [
-      { value: "test", label: "Test" },
-      { value: "test2", label: "Test2" },
-      { value: "test3", label: "Test3" },
-    ],
-    value: "test",
+    value: "1",
     children: [
-      <TabItem value="test">Test</TabItem>,
-      <TabItem value="test2">Test2</TabItem>,
-      <TabItem value="test3">Test3</TabItem>,
+      <TabItem value="1" label="Lorem ipsum 1">
+        Lorem ipsum 1
+      </TabItem>,
+      <TabItem value="2" label="Lorem ipsum 2">
+        Lorem ipsum 2
+      </TabItem>,
+      <TabItem value="3" label="Lorem ipsum 3">
+        Lorem ipsum 3
+      </TabItem>,
     ],
   },
 };
