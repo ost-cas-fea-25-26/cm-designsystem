@@ -1,6 +1,5 @@
 {
   "sourceDir": "src/components/icons/svg",
   "outputDir": "src/components/icons/generated",
-  "baseComponentImport": { "name": "IconBase", "path": "../IconBase" },
-  "accessible": true
+  "baseComponentImport": { "name": "IconBase", "path": "../IconBase" }
 }
