@@ -187,9 +187,9 @@ Raw SVG files live in `src/components/icons/svg` and are converted into React co
 
 ```jsonc
 {
-  "sourceDir": "src/components/icons/svg",          // Source .svg files
-  "outputDir": "src/components/icons/generated",     // Destination for generated components
-  "baseComponentImport": { "name": "IconBase", "path": "../IconBase" }
+  "sourceDir": "src/components/icons/svg", // Source .svg files
+  "outputDir": "src/components/icons/generated", // Destination for generated components
+  "baseComponentImport": { "name": "IconBase", "path": "../IconBase" },
 }
 ```
 
