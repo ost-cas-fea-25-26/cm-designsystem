@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
+import { expect } from "storybook/test";
 import { TabItem } from "./TabItem";
 import { Tabs } from "./Tabs";
 
@@ -40,5 +40,34 @@ export const Default: Story = {
         Lorem ipsum 3
       </TabItem>,
     ],
+  },
+  play: async ({ canvas, userEvent, step }) => {
+    await step("Check initial render", async () => {
+      await expect(
+        canvas.getByRole("tab", { name: /Lorem ipsum 1/i })
+      ).toBeVisible();
+      await expect(
+        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
+      ).toBeVisible();
+      await expect(
+        canvas.getByRole("tab", { name: /Lorem ipsum 3/i })
+      ).toBeVisible();
+      await expect(
+        canvas.getByRole("tabpanel", {
+          name: /Lorem ipsum 1/i,
+        })
+      ).toBeVisible();
+    });
+
+    await step("Click second Tab", async () => {
+      await userEvent.click(
+        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
+      );
+      await expect(
+        canvas.getByRole("tabpanel", {
+          name: /Lorem ipsum 2/i,
+        })
+      ).toBeVisible();
+    });
   },
 };

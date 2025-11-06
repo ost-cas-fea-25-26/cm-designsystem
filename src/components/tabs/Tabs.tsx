@@ -61,7 +61,7 @@ export interface TabLabelProps {
 
 export interface TabProps extends TabVariants {
   value: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   children: React.ReactElement<TabItemProps>[];
 }
 
@@ -74,7 +74,7 @@ export const Tabs = (props: TabProps) => {
 
   const onClick = (value: string) => {
     setSelection(value);
-    props.onChange(value);
+    props.onChange?.(value);
   };
 
   return (
