@@ -85,7 +85,7 @@ async function build() {
 
   // Create index.ts barrel export
   const indexContent =
-    exportNames.map((name) => `export * from "./${name}";`).join("\n") + "\n";
+    exportNames.map((name) => `export * from './${name}';`).join("\n") + "\n";
   fs.writeFileSync(path.join(outDir, "index.ts"), indexContent);
   console.log(`📦 index.ts created with ${exportNames.length} export(s).`);
 }
