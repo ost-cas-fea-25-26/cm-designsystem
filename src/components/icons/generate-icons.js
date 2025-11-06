@@ -3,7 +3,9 @@
 import fs from "fs";
 import process from "node:process";
 import path from "path";
-import svgr from "@svgr/core";
+// We attempted to use @svgr/core with a custom template, but due to template substitution issues
+// we fallback to a lightweight manual wrapper approach that matches Calendar.tsx.
+// (SVGR still imported if we want to revisit.)
 
 // Load config (svg.config.json)
 const configPath = path.resolve("./svg.config.json");
@@ -43,52 +45,36 @@ const toPascalCase = (str) =>
     .replace(/(^\w|-(\w))/g, (m, p1, p2) => (p2 || p1).toUpperCase())
     .replace(/[^A-Za-z0-9]/g, "");
 
-// SVGR template wrapping with IconBase & AccessibleIcon optionally
-const template = ({ componentName, jsx }, { accessible }) => {
-  // Extract inner children: jsx is <svg ...>{children}</svg>
-  const children = jsx.children;
-  const accessibleImport = accessible
-    ? 'import { AccessibleIcon } from "@radix-ui/react-accessible-icon";'
-    : "";
-  const wrapStart = accessible
-    ? `<AccessibleIcon label="${componentName}">\n    <IconBase {...props}>`
-    : `<IconBase {...props}>`;
-  const wrapEnd = accessible
-    ? "    </IconBase>\n  </AccessibleIcon>"
-    : "</IconBase>";
-  return `import * as React from "react";
-${accessibleImport}
-import { ${cfg.baseComponentImport.name} } from "${cfg.baseComponentImport.path}";
-
-export interface ${componentName}Props extends React.ComponentProps<typeof ${cfg.baseComponentImport.name}> { label?: string }
-
-export const ${componentName}: React.FC<${componentName}Props> = (props) => (
-  ${wrapStart}
-    ${children}
-  ${wrapEnd}
-);
-`;
-};
+// (SVGR template no longer used; manual wrapping implemented below.)
 
 async function build() {
   console.log(`🔧 Generating ${files.length} icon component(s)...`);
   const exportNames = [];
   for (const file of files) {
     try {
-      const svgCode = fs.readFileSync(path.join(svgDir, file), "utf-8");
+      let svgCode = fs.readFileSync(path.join(svgDir, file), "utf-8");
+      // Normalize fills to currentColor
+      svgCode = svgCode.replace(/fill="#475569"/g, 'fill="currentColor"');
       const componentName = toPascalCase(file);
-      const code = await svgr.transform(
-        svgCode,
-        {
-          icon: false,
-          typescript: true,
-          jsxRuntime: "automatic",
-        },
-        {
-          componentName,
-          template: (vars) => template(vars, { accessible: cfg.accessible }),
-        }
-      );
+      // Extract inner contents of <svg> to place inside IconBase
+      const match = svgCode.match(/<svg[^>]*>([\s\S]*?)<\/svg>/i);
+      let inner = match ? match[1] : svgCode;
+      // Common SVG attribute camelCase conversions for React
+      const attrMap = [
+        ["clip-path", "clipPath"],
+        ["fill-rule", "fillRule"],
+        ["stroke-width", "strokeWidth"],
+        ["stroke-linecap", "strokeLinecap"],
+        ["stroke-linejoin", "strokeLinejoin"],
+        ["stroke-miterlimit", "strokeMiterlimit"],
+        ["stroke-dasharray", "strokeDasharray"],
+        ["stroke-dashoffset", "strokeDashoffset"],
+        ["color-interpolation-filters", "colorInterpolationFilters"],
+      ];
+      for (const [from, to] of attrMap) {
+        inner = inner.replace(new RegExp(from + "=", "gi"), to + "=");
+      }
+      const code = `import * as React from 'react';\nimport { ${cfg.baseComponentImport.name} } from '${cfg.baseComponentImport.path}';\n\nexport const ${componentName} = (props: React.ComponentProps<typeof ${cfg.baseComponentImport.name}>) => (\n  <${cfg.baseComponentImport.name} label='${componentName}' {...props}>\n    ${inner}\n  </${cfg.baseComponentImport.name}>\n);\n`;
       fs.writeFileSync(path.join(outDir, `${componentName}.tsx`), code);
       exportNames.push(componentName);
       console.log(`✅ ${componentName}.tsx generated`);
