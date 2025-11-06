@@ -17,7 +17,8 @@
     "prettier:check": "prettier . --check",
     "prebuild": "npm run prettier:check && npm run lint",
     "prepare": "husky",
-    "knip": "knip"
+    "knip": "knip",
+    "icons:generate": "node src/components/icons/generate-icons.js && prettier src/components/icons/generated --write"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
@@ -29,6 +30,7 @@
     ]
   },
   "dependencies": {
+    "@radix-ui/react-accessible-icon": "^1.1.8",
     "@tailwindcss/vite": "^4.1.14",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -45,6 +47,7 @@
     "@storybook/addon-onboarding": "^9.1.10",
     "@storybook/addon-vitest": "^9.1.10",
     "@storybook/react-vite": "^9.1.10",
+    "@svgr/core": "^8.1.0",
     "@types/node": "^24.10.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
