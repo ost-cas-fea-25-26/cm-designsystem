@@ -110,6 +110,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Playwright Browsers # needed for storybook interaction tests
+        run: npx playwright install --with-deps
+
       - name: Run Unit and Component Tests # Renamed for clarity
         run: npm run test
 
