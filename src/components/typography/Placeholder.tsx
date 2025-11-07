@@ -3,7 +3,6 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const placeholderStyles = tv({
   base: [
-    "font-poppins",
     "font-medium",
     "text-slate-300",
     "text-[16px]/[100%]",
@@ -14,14 +13,10 @@ const placeholderStyles = tv({
 type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
 
 interface PlaceholderProps extends PlaceholderVariants {
-  role: string;
+  as: string;
   children: React.ReactNode;
 }
 
-export const Placeholder = ({ role = "span", ...props }: PlaceholderProps) => {
-  return createElement(
-    role,
-    { className: placeholderStyles() },
-    props.children
-  );
+export const Placeholder = ({ as = "span", ...props }: PlaceholderProps) => {
+  return createElement(as, { className: placeholderStyles() }, props.children);
 };
