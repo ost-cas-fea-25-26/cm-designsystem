@@ -2,34 +2,36 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("Tabs: default", () => {
+  const componentName = "components-tabs";
+  const componentStory = "default";
+  const screenshotNamePrefix = `${componentName}--${componentStory}`;
+
   test("tabs default should look the same", async ({ page }) => {
     //Arrange
-    await goToStorybook(page, "components-tabs", "default");
+    await goToStorybook(page, componentName, componentStory);
 
     // Assert
-    await expect(page).toHaveScreenshot("components-tabs--default.png");
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
 
     await expect(
       page.getByRole("tab", { name: /Lorem ipsum 1/i })
-    ).toHaveScreenshot("components-tabs--default-inactive.png", {
+    ).toHaveScreenshot(`${screenshotNamePrefix}-inactive.png`, {
       threshold: 0,
     });
     await expect(
       page.getByRole("tab", { name: /Lorem ipsum 2/i })
-    ).toHaveScreenshot("components-tabs--default-active.png", { threshold: 0 });
+    ).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, { threshold: 0 });
   });
 
   test("tabs hover should look the same", async ({ page }) => {
     //Arrange
-    await goToStorybook(page, "components-tabs", "default");
+    await goToStorybook(page, componentName, componentStory);
 
     // Assert
-    await expect(page).toHaveScreenshot("components-tabs--default.png");
-
     const tab1 = page.getByRole("tab", { name: /Lorem ipsum 1/i });
     tab1.hover();
     await expect(tab1).toHaveScreenshot(
-      "components-tabs--default-inactive-hover.png",
+      `${screenshotNamePrefix}-inactive-hover.png`,
       {
         threshold: 0,
       }
@@ -38,7 +40,7 @@ test.describe("Tabs: default", () => {
     const tab2 = page.getByRole("tab", { name: /Lorem ipsum 1/i });
     tab2.hover();
     await expect(tab2).toHaveScreenshot(
-      "components-tabs--default-active-hover.png",
+      `${screenshotNamePrefix}-active-hover.png`,
       {
         threshold: 0,
       }
