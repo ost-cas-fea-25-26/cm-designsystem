@@ -8,7 +8,7 @@ export type IconBaseProps = React.SVGProps<SVGSVGElement> & {
 };
 
 const iconStyles = tv({
-  base: ["text-slate-600", "w-4", "h-4"],
+  base: ["w-4", "h-4"],
 });
 
 export const IconBase: React.FC<IconBaseProps> = ({
