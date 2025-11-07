@@ -18,14 +18,18 @@ type HeadingSize = "1" | "2" | "3" | "4";
 
 interface HeadingProps extends HeadingVariants {
   size: HeadingSize;
-  role?: string;
+  as: string;
   children: React.ReactNode;
 }
 
-export const Heading = ({ role = "h1", ...props }: HeadingProps) => {
+export const Heading = ({ ...props }: HeadingProps) => {
   return createElement(
-    role,
-    { className: headingStyles(props) },
+    props.as,
+    {
+      role: "heading",
+      "aria-level": props.size,
+      className: headingStyles(props),
+    },
     props.children
   );
 };
