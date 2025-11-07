@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
+import { render, screen } from "@testing-library/react";
 import { TextLink } from "./TextLink";
 
 describe("Text Link", () => {
