@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const headingStyles = tv({
-  base: ["font-poppins", "text-slate-600", "tracking-normal"],
+  base: ["tracking-normal"],
   variants: {
     size: {
       "1": ["font-bold", "text-[48px]/[125%]"],
