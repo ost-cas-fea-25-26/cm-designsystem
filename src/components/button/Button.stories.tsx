@@ -1,4 +1,4 @@
-import { expect } from "storybook/internal/test";
+import { expect, fn } from "storybook/internal/test";
 import { Calendar, Mumble } from "../icons/generated";
 import { Button } from "./Button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -39,14 +39,19 @@ export const Primary: Story = {
     size: "md",
     intent: "primary",
     label: "Lorem ipsum",
-    onClick: () => {},
+    onClick: fn(),
     children: <Mumble />,
   },
-  play: async ({ canvas, step }) => {
+  play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("button"));
+      await expect(args.onClick).toHaveBeenCalled();
     });
   },
 };
@@ -56,14 +61,19 @@ export const Secondary: Story = {
     size: "md",
     intent: "secondary",
     label: "Lorem ipsum",
-    onClick: () => {},
+    onClick: fn(),
     children: <Mumble />,
   },
-  play: async ({ canvas, step }) => {
+  play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("button"));
+      await expect(args.onClick).toHaveBeenCalled();
     });
   },
 };
@@ -73,14 +83,19 @@ export const Tertiary: Story = {
     size: "md",
     intent: "tertiary",
     label: "Lorem ipsum",
-    onClick: () => {},
+    onClick: fn(),
     children: <Mumble />,
   },
-  play: async ({ canvas, step }) => {
+  play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("button"));
+      await expect(args.onClick).toHaveBeenCalled();
     });
   },
 };
@@ -90,14 +105,19 @@ export const Large: Story = {
     size: "lg",
     intent: "tertiary",
     label: "Lorem ipsum",
-    onClick: () => {},
+    onClick: fn(),
     children: <Mumble />,
   },
-  play: async ({ canvas, step }) => {
+  play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("button"));
+      await expect(args.onClick).toHaveBeenCalled();
     });
   },
 };
@@ -107,13 +127,18 @@ export const NoIcon: Story = {
     size: "md",
     intent: "tertiary",
     label: "Lorem ipsum",
-    onClick: () => {},
+    onClick: fn(),
   },
-  play: async ({ canvas, step }) => {
+  play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.queryByText("Mumble")).not.toBeInTheDocument();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("button"));
+      await expect(args.onClick).toHaveBeenCalled();
     });
   },
 };
