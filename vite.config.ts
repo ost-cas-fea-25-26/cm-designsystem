@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
+import { configDefaults } from "vitest/config";
 
 // https://vite.dev/config/
 
@@ -47,6 +48,7 @@ export default defineConfig({
           environment: "jsdom",
           globals: true,
           setupFiles: "./src/setupTests.ts",
+          exclude: [...configDefaults.exclude, "tests/*"],
         },
       },
     ],
