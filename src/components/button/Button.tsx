@@ -1,8 +1,11 @@
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const buttonStyles = tv({
   base: [
+    "flex",
+    "gap-2",
     "text-white",
     "rounded-lg",
     "hover:border-3",
@@ -27,19 +30,20 @@ const buttonStyles = tv({
         "active:border-violet-200",
       ],
       tertiary: [
-        "bg-gradient-to-r",
+        "bg-linear-to-r",
         "from-pink-500",
-        "from-50%",
+        "from-0%",
+        "to-100%",
         "to-violet-600",
-        "hover:from-30%",
+        "hover:to-80%",
         "hover:border-violet-100",
-        "active:from-20%",
+        "active:to-70%",
         "active:border-violet-200",
       ],
     },
     size: {
-      md: ["pt-2", "pb-2", "pl-3", "pr-3"],
-      lg: ["pt-3", "pb-3", "pl-6", "pr-6"],
+      md: ["pt-3", "pb-3", "pl-3", "pr-3"],
+      lg: ["pt-4", "pb-4", "pl-6", "pr-6"],
     },
   },
 });
@@ -49,17 +53,20 @@ type ButtonIntent = "primary" | "secondary" | "tertiary";
 type ButtonSize = "md" | "lg";
 
 interface ButtonProps extends ButtonVariants {
+  label: string;
   intent: ButtonIntent;
   size: ButtonSize;
-  children: React.ReactNode;
+  onClick: () => void;
+  children?: React.ReactElement<IconBaseProps>;
 }
 
 export const Button = (props: ButtonProps) => {
   return (
-    <button className={buttonStyles(props)}>
+    <button className={buttonStyles(props)} onClick={props.onClick}>
       <Label as="span" size="md">
-        {props.children}
+        {props.label}
       </Label>
+      {props.children}
     </button>
   );
 };
