@@ -79,6 +79,7 @@ export const Tabs = (props: TabProps) => {
       <RadixTabs.List className={list()}>
         {props.children.map((child, index) => (
           <RadixTabs.Trigger
+            key={child.props.value}
             value={child.props.value}
             className={trigger({
               selected: child.props.value === currentSelection,
