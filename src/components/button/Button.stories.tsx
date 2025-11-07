@@ -1,5 +1,5 @@
-import { expect, fn } from "storybook/internal/test";
-import { Calendar, Mumble } from "../icons/generated";
+import { expect, fn } from "storybook/test";
+import { Mumble } from "../icons/generated";
 import { Button } from "./Button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 

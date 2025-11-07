@@ -21,12 +21,7 @@ describe("Button", () => {
   test("should render button without icon", async () => {
     // Arrange
     render(
-      <Button
-        intent="primary"
-        size="md"
-        label="button"
-        onClick={vi.fn()}
-      ></Button>
+      <Button intent="primary" size="md" label="button" onClick={vi.fn()} />
     );
 
     // Assert
