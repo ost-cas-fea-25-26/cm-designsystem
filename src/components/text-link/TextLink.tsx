@@ -1,20 +1,32 @@
+import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
-import type { ReactNode } from "react";
 
-export const TextLink = ({
-  href,
-  children,
-}: {
+const textLinkStyles = tv({
+  base: [
+    "text-violet-600",
+    "underline",
+    "decoration-violet-600",
+    "underline-offset-2",
+    "hover:decoration-violet-200",
+  ],
+});
+
+type TextLinkVariants = VariantProps<typeof textLinkStyles>;
+
+interface TextLinkProps extends TextLinkVariants {
   href: string;
-  children: ReactNode;
-}) => {
+  children: React.ReactNode;
+}
+
+export const TextLink = (props: TextLinkProps) => {
   return (
     <Label size="sm" as="span">
       <a
-        href={href}
-        className="text-violet-600 underline decoration-violet-600 underline-offset-2 hover:decoration-violet-200"
+        href={props.href}
+        aria-label={`Link to ${props.href}`}
+        className={textLinkStyles(props)}
       >
-        {children}
+        {props.children}
       </a>
     </Label>
   );

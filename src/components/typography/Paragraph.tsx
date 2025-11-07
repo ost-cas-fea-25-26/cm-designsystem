@@ -16,13 +16,13 @@ type ParagraphSize = "lg" | "md";
 
 interface ParagraphProps extends ParagraphVariants {
   size: ParagraphSize;
-  role: string;
+  as: string;
   children: React.ReactNode;
 }
 
-export const Paragraph = ({ role = "p", ...props }: ParagraphProps) => {
+export const Paragraph = ({ as = "p", ...props }: ParagraphProps) => {
   return createElement(
-    role,
+    as,
     { className: paragraphStyles(props) },
     props.children
   );
