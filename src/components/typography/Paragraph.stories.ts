@@ -14,7 +14,7 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     size: { control: "select" },
-    role: { control: "text" },
+    as: { control: "text" },
     children: { control: "text" },
   },
 } satisfies Meta<typeof Paragraph>;
@@ -26,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 export const ParagraphLarge: Story = {
   args: {
     size: "lg",
-    role: "p",
+    as: "p",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -34,7 +34,7 @@ export const ParagraphLarge: Story = {
 export const ParagraphMedium: Story = {
   args: {
     size: "md",
-    role: "p",
+    as: "p",
     children: "Lorem ipsum dolor sit amet",
   },
 };
@@ -42,7 +42,7 @@ export const ParagraphMedium: Story = {
 export const CustomTag: Story = {
   args: {
     size: "lg",
-    role: "span",
+    as: "span",
     children: "Lorem ipsum dolor sit amet",
   },
 };
