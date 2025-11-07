@@ -8,17 +8,14 @@ const tabStyles = tv({
   slots: {
     list: ["bg-slate-200", "rounded-lg", "p-1", "flex", "gap-2", "group"],
     trigger: ["pt-2", "pb-2", "pr-3", "pl-3", "rounded-md"],
-    label: [],
   },
   variants: {
     selected: {
       false: {
-        trigger: ["bg-slate-200"],
-        label: ["group-hover:text-slate-800"],
+        trigger: ["bg-slate-200", "group-hover:text-slate-800"],
       },
       true: {
-        trigger: ["bg-white"],
-        label: ["text-violet-600"],
+        trigger: ["bg-white", "text-violet-600"],
       },
     },
     effect: {
@@ -66,7 +63,7 @@ export interface TabProps extends TabVariants {
 }
 
 export const Tabs = (props: TabProps) => {
-  const { list, trigger, label } = tabStyles(props);
+  const { list, trigger } = tabStyles(props);
   const [currentSelection, setSelection] = React.useState(props.value);
 
   const getEffectVariant = (index: number, max: number) =>
@@ -89,14 +86,7 @@ export const Tabs = (props: TabProps) => {
             })}
             onClick={() => onClick(child.props.value)}
           >
-            <Label
-              size="lg"
-              className={label({
-                selected: child.props.value === currentSelection,
-              })}
-            >
-              {child.props.label}
-            </Label>
+            <Label size="lg">{child.props.label}</Label>
           </RadixTabs.Trigger>
         ))}
       </RadixTabs.List>
