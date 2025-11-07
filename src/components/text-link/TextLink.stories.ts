@@ -1,3 +1,4 @@
+import { expect } from "storybook/test";
 import { TextLink } from "./TextLink";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -26,5 +27,11 @@ export const Default: Story = {
   args: {
     href: "https://example.com",
     children: "Example Link",
+  },
+  play: async ({ canvas, step }) => {
+    await step("Check initial render", async () => {
+      const link = canvas.getByRole("link");
+      await expect(link).toBeVisible();
+    });
   },
 };
