@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const labelStyles = tv({
-  base: ["font-poppins", "font-semibold", "tracking-normal"],
+  base: ["font-semibold", "tracking-normal"],
   variants: {
     size: {
       xl: ["text-[24px]/[100%]"],

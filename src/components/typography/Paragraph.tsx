@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const paragraphStyles = tv({
-  base: ["font-poppins", "font-medium", "tracking-normal"],
+  base: ["font-medium", "tracking-normal"],
   variants: {
     size: {
       lg: ["text-[24px]/[145%]"],
