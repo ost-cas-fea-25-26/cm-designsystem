@@ -3,7 +3,6 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const placeholderStyles = tv({
   base: [
-    "font-poppins",
     "font-medium",
     "text-slate-300",
     "text-[16px]/[100%]",

@@ -73,3 +73,10 @@
   /* Text */
   --text-*: initial;
 }
+
+@layer base {
+  html {
+    font-family: var(--font-poppins);
+    color: var(--color-slate-600);
+  }
+}
