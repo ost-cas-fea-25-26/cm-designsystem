@@ -71,3 +71,43 @@ export const Default: Story = {
     });
   },
 };
+
+export const Binary: Story = {
+  args: {
+    value: "1",
+    children: [
+      <TabItem key="1" value="1" label="Lorem ipsum 1">
+        Lorem ipsum 1
+      </TabItem>,
+      <TabItem key="2" value="2" label="Lorem ipsum 2">
+        Lorem ipsum 2
+      </TabItem>,
+    ],
+  },
+  play: async ({ canvas, userEvent, step }) => {
+    await step("Check initial render", async () => {
+      await expect(
+        canvas.getByRole("tab", { name: /Lorem ipsum 1/i })
+      ).toBeVisible();
+      await expect(
+        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
+      ).toBeVisible();
+      await expect(
+        canvas.getByRole("tabpanel", {
+          name: /Lorem ipsum 1/i,
+        })
+      ).toBeVisible();
+    });
+
+    await step("Click second Tab", async () => {
+      await userEvent.click(
+        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
+      );
+      await expect(
+        canvas.getByRole("tabpanel", {
+          name: /Lorem ipsum 2/i,
+        })
+      ).toBeVisible();
+    });
+  },
+};
