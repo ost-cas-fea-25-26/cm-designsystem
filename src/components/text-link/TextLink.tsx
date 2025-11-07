@@ -21,7 +21,11 @@ interface TextLinkProps extends TextLinkVariants {
 export const TextLink = (props: TextLinkProps) => {
   return (
     <Label size="sm" as="span">
-      <a href={props.href} className={textLinkStyles(props)}>
+      <a
+        href={props.href}
+        aria-label={`Link to ${props.href}`}
+        className={textLinkStyles(props)}
+      >
         {props.children}
       </a>
     </Label>
