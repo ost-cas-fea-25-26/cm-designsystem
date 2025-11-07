@@ -178,3 +178,48 @@ This project uses:
 - **Storybook** for component documentation
 - **Vitest** for testing
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) for Fast Refresh
+
+## Icon Generation
+
+Raw SVG files live in `src/components/icons/svg` and are converted into React components that wrap their inner markup with `IconBase`. Accessibility is handled inside `IconBase` (it already uses Radix `AccessibleIcon`), so no extra wrapper is generated.
+
+### Config (`svg.config.json`)
+
+```jsonc
+{
+  "sourceDir": "src/components/icons/svg", // Source .svg files
+  "outputDir": "src/components/icons/generated", // Destination for generated components
+  "baseComponentImport": { "name": "IconBase", "path": "../IconBase" },
+}
+```
+
+### Generate
+
+```bash
+npm run icons:generate
+```
+
+Generation steps:
+
+1. Cleans the output directory.
+2. Converts file names to PascalCase (`log-out.svg` -> `LogOut`).
+3. Normalizes fills `#475569` → `currentColor` for theming.
+4. Wraps inner `<path/>` / `<g/>` / etc. in `<IconBase label="Name" />`.
+5. Produces a barrel `index.ts` exporting all icons.
+
+### Usage
+
+```tsx
+import { Calendar, LogOut } from "src/components/icons/generated";
+
+export function Example() {
+  return (
+    <div className="flex gap-2 text-slate-600">
+      <Calendar aria-hidden />
+      <LogOut className="text-red-600" />
+    </div>
+  );
+}
+```
+
+Add or modify SVGs, then re-run the generation script to refresh components.
