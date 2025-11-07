@@ -30,13 +30,13 @@ export const Default: Story = {
   args: {
     value: "1",
     children: [
-      <TabItem value="1" label="Lorem ipsum 1">
+      <TabItem key="1" value="1" label="Lorem ipsum 1">
         Lorem ipsum 1
       </TabItem>,
-      <TabItem value="2" label="Lorem ipsum 2">
+      <TabItem key="2" value="2" label="Lorem ipsum 2">
         Lorem ipsum 2
       </TabItem>,
-      <TabItem value="3" label="Lorem ipsum 3">
+      <TabItem key="3" value="3" label="Lorem ipsum 3">
         Lorem ipsum 3
       </TabItem>,
     ],
