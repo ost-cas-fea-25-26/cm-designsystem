@@ -101,9 +101,12 @@ export const Tabs = (props: TabProps) => {
         ))}
       </RadixTabs.List>
 
-      {React.Children.map(props.children, (child, index) =>
-        React.cloneElement(child, { key: child.props.value || index })
-      )}
+      {React.Children.map(props.children, (child, index) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { key: props.value || index });
+        }
+        return child;
+      })}
     </RadixTabs.Root>
   );
 };

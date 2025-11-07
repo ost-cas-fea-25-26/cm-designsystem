@@ -9,7 +9,7 @@ type TabItemVariants = VariantProps<typeof tabItemStyles>;
 export interface TabItemProps extends TabItemVariants {
   value: string;
   label: string;
-  children: React.ReactNode[];
+  children: React.ReactNode;
 }
 
 export const TabItem = (props: TabItemProps) => {
@@ -19,7 +19,6 @@ export const TabItem = (props: TabItemProps) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { key: props.value || index });
         }
-        // For non-element children, return as-is (or null)
         return child;
       })}
     </RadixTabs.Content>
