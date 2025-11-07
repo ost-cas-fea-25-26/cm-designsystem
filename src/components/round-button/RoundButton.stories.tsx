@@ -1,4 +1,4 @@
-import { expect, fn } from "storybook/internal/test";
+import { expect, fn } from "storybook/test";
 import { Mumble } from "../icons/generated";
 import { RoundButton } from "./RoundButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
