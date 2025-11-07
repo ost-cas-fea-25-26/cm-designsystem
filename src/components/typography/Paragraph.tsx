@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const paragraphStyles = tv({
-  base: ["font-poppins", "font-medium", "text-slate-600", "tracking-normal"],
+  base: ["font-medium", "tracking-normal"],
   variants: {
     size: {
       lg: ["text-[24px]/[145%]"],
@@ -16,13 +16,13 @@ type ParagraphSize = "lg" | "md";
 
 interface ParagraphProps extends ParagraphVariants {
   size: ParagraphSize;
-  role: string;
+  as: string;
   children: React.ReactNode;
 }
 
-export const Paragraph = ({ role = "p", ...props }: ParagraphProps) => {
+export const Paragraph = ({ as = "p", ...props }: ParagraphProps) => {
   return createElement(
-    role,
+    as,
     { className: paragraphStyles(props) },
     props.children
   );
