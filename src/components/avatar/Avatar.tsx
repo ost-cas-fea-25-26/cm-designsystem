@@ -3,7 +3,6 @@ import { tv, type VariantProps } from "tailwind-variants";
 import { Edit } from "../icons/generated";
 import { RoundButton } from "../round-button/RoundButton";
 
-
 const avatarStyles = tv({
   slots: {
     base: ["relative", "inline-block"],
