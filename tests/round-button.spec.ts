@@ -20,7 +20,7 @@ test.describe("RoundButton: primary", () => {
 
     // Assert
     const button = page.getByRole("button");
-    button.hover();
+    await button.hover();
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
     });

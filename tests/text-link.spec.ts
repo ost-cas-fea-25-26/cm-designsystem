@@ -21,7 +21,7 @@ test.describe("Text Link: default", () => {
 
     // Assert
     const link = page.getByRole("link");
-    link.hover();
+    await link.hover();
     await expect(link).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
     });
