@@ -1,5 +1,4 @@
 import { tv, type VariantProps } from "tailwind-variants";
-import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
 
 const roundButtonStyles = tv({
@@ -41,9 +40,7 @@ export const RoundButton = ({
 }: RoundButtonProps) => {
   return (
     <button className={roundButtonStyles({ intent })} onClick={props.onClick}>
-      <Label as="span" size="md">
-        {props.children}
-      </Label>
+      {props.children}
     </button>
   );
 };
