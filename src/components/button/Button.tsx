@@ -12,7 +12,8 @@ const buttonStyles = tv({
     "hover:ring-solid",
     "active:ring-4",
     "transition",
-    "duration-300",
+    "duration-350",
+    "active:duration-300",
     "ease-in-out",
   ],
   variants: {

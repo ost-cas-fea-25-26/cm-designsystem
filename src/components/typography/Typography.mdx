@@ -4,7 +4,7 @@ import { Paragraph } from "./Paragraph";
 import { Label } from "./Label";
 import { Placeholder } from "./Placeholder";
 
-<Meta title="Components/Typography/Typography" />
+<Meta title="Typography" />
 
 # Typography
 
@@ -15,30 +15,53 @@ import { Placeholder } from "./Placeholder";
 ## Headings
 
 <Unstyled>
-  <Heading size="1">Lorem ipsum dolor sit amet</Heading>
-  <Heading size="2">Lorem ipsum dolor sit amet</Heading>
-  <Heading size="3">Lorem ipsum dolor sit amet</Heading>
-  <Heading size="4">Lorem ipsum dolor sit amet</Heading>
+  <Heading size="1" as="h1">
+    Lorem ipsum dolor sit amet
+  </Heading>
+  <Heading size="2" as="h2">
+    Lorem ipsum dolor sit amet
+  </Heading>
+  <Heading size="3" as="h3">
+    Lorem ipsum dolor sit amet
+  </Heading>
+  <Heading size="4" as="h4">
+    Lorem ipsum dolor sit amet
+  </Heading>
 </Unstyled>
 
 ## Paragraphs
 
 <Unstyled>
-  <Paragraph size="lg">Lorem ipsum dolor sit amet</Paragraph>
-  <Paragraph size="md">Lorem ipsum dolor sit amet</Paragraph>
+  <Paragraph size="lg" as="p">
+    Lorem ipsum dolor sit amet
+  </Paragraph>
+  <Paragraph size="md" as="p">
+    Lorem ipsum dolor sit amet
+  </Paragraph>
 </Unstyled>
 
 ## Labels
 
 <Unstyled>
-  <Label size="xl">Lorem ipsum dolor sit amet</Label> <br />
-  <Label size="lg">Lorem ipsum dolor sit amet</Label> <br />
-  <Label size="md">Lorem ipsum dolor sit amet</Label> <br />
-  <Label size="sm">Lorem ipsum dolor sit amet</Label>
+  <Label size="xl" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>{" "}
+  <br />
+  <Label size="lg" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>{" "}
+  <br />
+  <Label size="md" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>{" "}
+  <br />
+  <Label size="sm" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>
 </Unstyled>
 
 ## Placeholders
 
 <Unstyled>
-  <Placeholder>Lorem ipsum dolor sit amet</Placeholder>
+  <Placeholder as="span">Lorem ipsum dolor sit amet</Placeholder>
 </Unstyled>
