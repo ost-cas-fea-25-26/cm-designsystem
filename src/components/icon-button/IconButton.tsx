@@ -1,6 +1,6 @@
+import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
-import React from "react";
 import type { IconBaseProps } from "../icons/IconBase";
 
 const iconButtonStyles = tv({
