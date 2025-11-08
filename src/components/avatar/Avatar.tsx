@@ -1,37 +1,49 @@
 import { tv, type VariantProps } from "tailwind-variants";
 import * as RadixAvatar from "@radix-ui/react-avatar";
+import { RoundButton } from "../round-button/RoundButton";
+import { Edit } from "../icons/generated";
 
 const avatarStyles = tv({
-  base: ["rounded-full", "transition", "duration-300", "ease-in-out"],
+  slots: {
+    base: ["relative", "inline-block"],
+    avatar: ["rounded-full", "transition", "duration-300", "ease-in-out"],
+    action: ["absolute", "bottom-2", "right-2"],
+  },
   variants: {
     size: {
-      sm: ["w-10", "h-10", "hover:scale-105"],
-      md: [
-        "w-16",
-        "h-16",
-        "border",
-        "border-solid",
-        "border-slate-100",
-        "border-6",
-        "hover:scale-105",
-      ],
-      lg: [
-        "w-24",
-        "h-24",
-        "border",
-        "border-solid",
-        "border-slate-100",
-        "border-6",
-        "hover:scale-95",
-      ],
-      xl: [
-        "w-40",
-        "h-40",
-        "border",
-        "border-solid",
-        "border-slate-100",
-        "border-6",
-      ],
+      sm: { avatar: ["w-10", "h-10", "hover:scale-105"] },
+      md: {
+        avatar: [
+          "w-16",
+          "h-16",
+          "border",
+          "border-solid",
+          "border-slate-100",
+          "border-6",
+          "hover:scale-105",
+        ],
+      },
+      lg: {
+        avatar: [
+          "w-24",
+          "h-24",
+          "border",
+          "border-solid",
+          "border-slate-100",
+          "border-6",
+          "hover:scale-95",
+        ],
+      },
+      xl: {
+        avatar: [
+          "w-40",
+          "h-40",
+          "border",
+          "border-solid",
+          "border-slate-100",
+          "border-6",
+        ],
+      },
     },
   },
 });
@@ -45,19 +57,33 @@ interface AvatarProps extends AvatarVariants {
   src: string;
   children: React.ReactNode;
   onClick: () => void;
+  onActionClick?: () => void;
 }
 
 export const Avatar = (props: AvatarProps) => {
+  const { base, avatar, action } = avatarStyles(props);
   return (
-    <RadixAvatar.Root onClick={props.onClick}>
+    <RadixAvatar.Root onClick={props.onClick} className={base(props)}>
       <RadixAvatar.Image
         src={props.src}
         alt={props.label}
-        className={avatarStyles(props)}
+        className={avatar(props)}
       />
+      {props.size === "xl" && props.onActionClick && (
+        <div className={action(props)}>
+          <RoundButton
+            intent="primary"
+            label={`Edit ${props.label}`}
+            onClick={props.onActionClick ?? (() => {})}
+          >
+            <Edit />
+          </RoundButton>
+        </div>
+      )}
+
       <RadixAvatar.Fallback
         delayMs={600}
-        className={avatarStyles(props)}
+        className={avatar(props)}
         aria-label={props.label}
       >
         {props.children}

@@ -44,6 +44,7 @@ export const Small: Story = {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("img")).toBeVisible();
       await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+      await expect(canvas.queryByRole("button")).not.toBeInTheDocument();
     });
 
     await step("Check click event", async () => {
@@ -65,6 +66,7 @@ export const Medium: Story = {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("img")).toBeVisible();
       await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+      await expect(canvas.queryByRole("button")).not.toBeInTheDocument();
     });
 
     await step("Check click event", async () => {
@@ -86,6 +88,7 @@ export const Large: Story = {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("img")).toBeVisible();
       await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+      await expect(canvas.queryByRole("button")).not.toBeInTheDocument();
     });
 
     await step("Check click event", async () => {
@@ -107,11 +110,40 @@ export const ExtraLarge: Story = {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("img")).toBeVisible();
       await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+      await expect(canvas.queryByRole("button")).not.toBeInTheDocument();
     });
 
     await step("Check click event", async () => {
       await userEvent.click(canvas.getByRole("img"));
       await expect(args.onClick).toHaveBeenCalled();
+    });
+  },
+};
+
+export const ExtraLargeWithAction: Story = {
+  args: {
+    size: "xl",
+    label: "Lorem ipsum",
+    src: avatarImage,
+    children: "PA",
+    onClick: fn(),
+    onActionClick: fn(),
+  },
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      await expect(canvas.getByRole("img")).toBeVisible();
+      await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+      await expect(canvas.getByRole("button")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("img"));
+      await expect(args.onClick).toHaveBeenCalled();
+    });
+
+    await step("Check action click event", async () => {
+      await userEvent.click(canvas.getByRole("button"));
+      await expect(args.onActionClick).toHaveBeenCalled();
     });
   },
 };
