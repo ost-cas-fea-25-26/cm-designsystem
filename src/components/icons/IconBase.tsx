@@ -17,7 +17,12 @@ export const IconBase: React.FC<IconBaseProps> = ({
   ...props
 }) => (
   <AccessibleIcon label={label}>
-    <svg className={iconStyles()} fill="currentColor" {...props}>
+    <svg
+      className={iconStyles()}
+      fill="currentColor"
+      {...props}
+      viewBox={props.viewBox || "0 0 16 16"}
+    >
       {children}
     </svg>
   </AccessibleIcon>
