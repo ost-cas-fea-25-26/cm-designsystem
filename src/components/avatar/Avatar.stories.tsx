@@ -1,4 +1,4 @@
-import { expect, fn } from "storybook/test";
+import { expect, fn, waitFor } from "storybook/test";
 import { Avatar } from "./Avatar";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import avatarImage from "../../assets/avatar.svg";
@@ -41,7 +41,7 @@ export const Small: Story = {
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
-      await expect(canvas.getByRole("img")).toBeVisible();
+      await waitFor(() => expect(canvas.getByRole("img")).toBeVisible());
       await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
       await expect(canvas.queryByRole("button")).not.toBeInTheDocument();
     });
