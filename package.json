@@ -4,32 +4,23 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "preflight": "npm run prettier && npm run lint && npm run typecheck && npm run build",
     "build": "tsc -b && vite build",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
+    "typecheck": "npx tsc -b --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check",
+    "build-storybook": "storybook build --docs",
     "prettier": "prettier . --write",
     "prettier:check": "prettier . --check",
-    "prebuild": "npm run prettier:check && npm run lint",
-    "prepare": "husky",
     "knip": "knip",
     "test": "vitest",
-    "icons:generate": "node src/scripts/generate-icons.js && prettier src/components/icons/generated --write",
     "coverage": "vitest run --coverage",
-    "e2e": "npx playwright test",
-    "e2e:ui": "npx playwright test --ui"
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "**/*.{css,md,json}": [
-      "prettier --write"
-    ]
+    "icons:generate": "node src/scripts/generate-icons.js && prettier src/components/icons/generated --write",
+    "e2e:build": "docker build -t cm-designsystem-visual-testing .",
+    "e2e:ci": "docker run --rm -i -e TEST_BASE_URL=http://localhost:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing sh -c \"npx http-server /app/storybook-static -p 6006 & npx playwright test\"",
+    "e2e:test": "npm run build-storybook & docker run --rm -i -e TEST_BASE_URL=http://localhost:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing sh -c \"npx http-server /app/storybook-static -p 6006 & npx playwright test\"",
+    "e2e:update": "npm run build-storybook & docker run --rm -i -e TEST_BASE_URL=http://localhost:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing sh -c \"npx http-server /app/storybook-static -p 6006 & npx playwright test --update-snapshots\""
   },
   "dependencies": {
     "@radix-ui/react-accessible-icon": "^1.1.8",

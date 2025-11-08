@@ -231,3 +231,60 @@ export function Example() {
 ```
 
 Add or modify SVGs, then re-run the generation script to refresh components.
+
+## Visual Testing
+
+We use **Playwright** to perform visual regression testing against **Storybook**.
+To ensure consistent and reliable results across environments, these tests are executed within a Docker container, removing any dependency on the host operating system.
+
+### Setup
+
+Before running the tests, you need to build the Docker image.
+A [Dockerfile](Dockerfile) is provided at the project root for this purpose.
+You can build the image using the following command:
+
+```bash
+npm run e2e:build
+```
+
+### Running Tests
+
+Once the Docker image has been built, you can execute the visual regression tests using:
+
+```bash
+npm run e2e:test
+```
+
+### Updating Snapshots
+
+If new or updated screenshots need to be added to the baseline, run:
+
+```bash
+npm run e2e:update
+```
+
+This will update the visual snapshots used for comparison in future test runs.
+
+### Viewing Test Reports
+
+All relevant Playwright paths are mapped to the container, allowing reports to be viewed from outside the container.
+To open the HTML report locally, use:
+
+```bash
+npx playwright show-report
+```
+
+### Storybook Configuration Note
+
+By default, Storybook only accepts connections from localhost.
+Since the Playwright tests run inside a Docker container, we must explicitly allow connections from `host.docker.internal`.
+
+This configuration has been added to [main.ts](./.storybook/main.ts):
+
+```ts
+viteFinal: async (config) => {
+  return mergeConfig(config, { server: { allowedHosts: true } });
+},
+```
+
+This ensures Storybook is accessible from within the Docker environment during test execution.
