@@ -3,7 +3,7 @@ import { Label } from "../typography/Label";
 
 const buttonStyles = tv({
   base: [
-    "text-white",
+    "text-black",
     "rounded-lg",
     "hover:border-3",
     "hover:border-solid",
