@@ -1,8 +1,8 @@
 import * as RadixToggle from "@radix-ui/react-toggle";
+import { useState, type ReactNode } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { HeartFilled, HeartOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
-import { useState, type ReactNode } from "react";
 
 const toggleStyles = tv({
   slots: {
