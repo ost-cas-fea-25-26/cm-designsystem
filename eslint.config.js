@@ -14,7 +14,14 @@ import tseslint from "typescript-eslint";
 export default [
   // Global ignores
   {
-    ignores: ["dist", "node_modules", "build", "storybook-static"],
+    ignores: [
+      "dist",
+      "node_modules",
+      "build",
+      "storybook-static",
+      "playwright-report/*",
+      "test-results/*",
+    ],
   },
   // Base JavaScript and TypeScript files
   js.configs.recommended,
