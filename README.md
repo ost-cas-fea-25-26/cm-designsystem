@@ -274,6 +274,15 @@ To open the HTML report locally, use:
 npx playwright show-report
 ```
 
+#### GitHub Artifacts
+
+Playwright reports are uploaded as artifacts of the CI pipeline, enabling post-run analysis of end-to-end tests.
+You can download and extract the artifact locally, then view it with:
+
+```bash
+npx playwright show-report <path/to/playwright-report-folder>
+```
+
 ### Storybook Configuration Note
 
 By default, Storybook only accepts connections from localhost.
