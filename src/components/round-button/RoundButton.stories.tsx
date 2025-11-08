@@ -31,6 +31,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     intent: "primary",
+    label: "AriaLabel",
     onClick: fn(),
     children: <Mumble />,
   },
@@ -38,6 +39,7 @@ export const Primary: Story = {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByText("Mumble")).toBeVisible();
+      await expect(canvas.getByLabelText("AriaLabel")).toBeVisible();
       await userEvent.click(canvas.getByRole("button"));
       await expect(args.onClick).toHaveBeenCalled();
     });

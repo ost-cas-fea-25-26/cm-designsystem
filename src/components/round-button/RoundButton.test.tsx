@@ -7,7 +7,7 @@ describe("RoundButton", () => {
   test("should render button with icon", async () => {
     // Arrange
     render(
-      <RoundButton onClick={vi.fn()}>
+      <RoundButton onClick={vi.fn()} label="Mumble">
         <Mumble />
       </RoundButton>
     );
@@ -21,7 +21,7 @@ describe("RoundButton", () => {
     // Arrange
     const onClick = vi.fn();
     render(
-      <RoundButton onClick={onClick}>
+      <RoundButton onClick={onClick} label="Mumble">
         <Mumble />
       </RoundButton>
     );
