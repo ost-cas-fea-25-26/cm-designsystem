@@ -18,8 +18,9 @@
     "knip": "knip",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "e2e": "npx playwright test",
-    "e2e:ui": "npx playwright test --ui"
+    "e2e:build": "docker build -t cm-designsystem-visual-testing .",
+    "e2e:test": "docker run --rm -it -p 9323:9323 -e TEST_BASE_URL=http://host.docker.internal:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing test",
+    "e2e:update": "docker run --rm -it -p 9323:9323 -e TEST_BASE_URL=http://host.docker.internal:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing test --update-snapshots"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
