@@ -8,7 +8,7 @@
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build --docs",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "prettier": "prettier . --write",
@@ -19,8 +19,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "e2e:build": "docker build -t cm-designsystem-visual-testing .",
-    "e2e:test": "docker run --rm -it -p 9323:9323 -e TEST_BASE_URL=http://host.docker.internal:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing test",
-    "e2e:update": "docker run --rm -it -p 9323:9323 -e TEST_BASE_URL=http://host.docker.internal:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing test --update-snapshots"
+    "e2e:test": "npm run build-storybook & docker run --rm -it -p 6006:6006 -e TEST_BASE_URL=http://localhost:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing -c \"npx http-server /app/storybook-static -p 6006 & npx playwright test\"",
+    "e2e:update": "npm run build-storybook & docker run --rm -it -p 6006:6006 -e TEST_BASE_URL=http://localhost:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing -c \"npx http-server /app/storybook-static -p 6006 & npx playwright test --update-snapshots\""
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [

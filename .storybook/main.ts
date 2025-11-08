@@ -14,10 +14,5 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  // Needed, so that storybook can be access from docker
-  // https://github.com/storybookjs/storybook/issues/30338
-  viteFinal: async (config) => {
-    return mergeConfig(config, { server: { allowedHosts: true } });
-  },
 };
 export default config;
