@@ -29,7 +29,7 @@ test.describe("Tabs: default", () => {
 
     // Assert
     const tab1 = page.getByRole("tab", { name: /Lorem ipsum 1/i });
-    tab1.hover();
+    await tab1.hover();
     await expect(tab1).toHaveScreenshot(
       `${screenshotNamePrefix}-inactive-hover.png`,
       {
@@ -38,7 +38,7 @@ test.describe("Tabs: default", () => {
     );
 
     const tab2 = page.getByRole("tab", { name: /Lorem ipsum 1/i });
-    tab2.hover();
+    await tab2.hover();
     await expect(tab2).toHaveScreenshot(
       `${screenshotNamePrefix}-active-hover.png`,
       {
