@@ -63,7 +63,11 @@ interface ButtonProps extends ButtonVariants {
 
 export const Button = (props: ButtonProps) => {
   return (
-    <button className={buttonStyles(props)} onClick={props.onClick}>
+    <button
+      className={buttonStyles(props)}
+      onClick={props.onClick}
+      aria-label={props.label}
+    >
       <Label as="span" size="md">
         {props.label}
       </Label>
