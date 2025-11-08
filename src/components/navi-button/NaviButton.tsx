@@ -1,7 +1,7 @@
+import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
-import React from "react";
 
 const naviButtonStyles = tv({
   base: [
