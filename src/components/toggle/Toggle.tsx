@@ -5,21 +5,31 @@ import { Label } from "../typography/Label";
 import type { ReactNode } from "react";
 
 const toggleStyles = tv({
-  base: [
-    // layout + spacing + shape
-    "inline-flex items-center justify-center gap-2 h-8 px-3 py-2 rounded-full",
-    // interaction & motion
-    "transition-all duration-150 ease-in-out",
-    // focus styles & disabled state
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
-  ],
+  slots: {
+    root: [
+      // layout + spacing + shape
+      "inline-flex items-center justify-center gap-2 h-8 px-3 py-2 rounded-full",
+      // interaction & motion
+      "transition-all duration-150 ease-in-out",
+      // focus styles & disabled state
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+      "disabled:opacity-50 disabled:pointer-events-none",
+    ],
+    icon: "inline-flex",
+    label: "", // optional — useful if you want to add size/color variants later
+  },
   variants: {
     pressed: {
-      // not sure if w-20  is needed
-  false: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
-      // NOTE: w-23 requires custom Tailwind config; if unavailable use w-[92px] (23*4) or a standardized size.
-      // not sure if w-23 is needed
-      true: "text-pink-900",
+      false: {
+        root: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
+        icon: "text-inherit",
+        label: "text-inherit",
+      },
+      true: {
+        root: "text-pink-900",
+        icon: "text-pink-500",
+        label: "text-pink-900",
+      },
     },
   },
   defaultVariants: {
@@ -27,20 +37,7 @@ const toggleStyles = tv({
   },
 });
 
-// Separate icon style variants so we can derive icon color from pressed state without
-// modifying the icon components themselves. Icons use currentColor, so wrapping span controls color.
-const iconStyles = tv({
-  base: "inline-flex",
-  variants: {
-    pressed: {
-      false: "text-inherit", // inherit text color from parent
-      true: "text-pink-500", // active state icon color
-    },
-  },
-  defaultVariants: {
-    pressed: false,
-  },
-});
+
 
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
@@ -51,13 +48,17 @@ interface ToggleProps extends ToggleVariants {
 }
 
 export const Toggle = ({ ariaLabel, pressed, children }: ToggleProps) => {
+    const { root, icon, label } = toggleStyles({ pressed });
+
   return (
     <RadixToggle.Root
       aria-label={ariaLabel}
-      className={toggleStyles({ pressed })}
-      
+      // className={toggleStyles({ pressed })}      
+      className={root()}      
     >
-         <span className={iconStyles({ pressed })}>
+
+      {/* todo: textfarbe setzen, icon farbe über span anpassen */}
+         <span className={icon()}>
            {pressed ? <HeartFilled /> : <HeartOutline />}
          </span>
 
