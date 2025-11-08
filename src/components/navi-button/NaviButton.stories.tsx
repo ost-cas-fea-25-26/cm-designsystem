@@ -41,8 +41,8 @@ export const Secondary: Story = {
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
-      await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
-      await expect(canvas.getByText("Mumble")).toBeVisible();
+      await expect(canvas.getByRole("button")).toHaveTextContent("Lorem");
+      await expect(canvas.getByText("Profile")).toBeVisible();
       await expect(canvas.getByLabelText("Lorem")).toBeVisible();
     });
 
