@@ -20,8 +20,8 @@ export const IconBase: React.FC<IconBaseProps> = ({
     <svg
       className={iconStyles()}
       fill="currentColor"
-      {...props}
       viewBox={props.viewBox || "0 0 16 16"}
+      {...props}
     >
       {children}
     </svg>
