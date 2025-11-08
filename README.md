@@ -183,6 +183,14 @@ This project uses:
 
 Raw SVG files live in `src/components/icons/svg` and are converted into React components that wrap their inner markup with `IconBase`. Accessibility is handled inside `IconBase` (it already uses Radix `AccessibleIcon`), so no extra wrapper is generated.
 
+### Optimize SVGs
+
+To reduce file size and remove metadata:
+
+```
+npx svgo -f src/components/icons/svg
+```
+
 ### Config (`svg.config.json`)
 
 ```jsonc

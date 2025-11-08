@@ -17,6 +17,7 @@
     "prepare": "husky",
     "knip": "knip",
     "test": "vitest",
+    "icons:generate": "node src/scripts/generate-icons.js && prettier src/components/icons/generated --write",
     "coverage": "vitest run --coverage",
     "e2e:build": "docker build -t cm-designsystem-visual-testing .",
     "e2e:test": "npm run build-storybook & docker run --rm -it -p 6006:6006 -e TEST_BASE_URL=http://localhost:6006 -e CI=true -v ./playwright-report:/app/playwright-report -v ./test-results:/app/test-results -v ./storybook-static:/app/storybook-static -v ./tests:/app/tests -v ./playwright.config.ts:/app/playwright.config.ts cm-designsystem-visual-testing -c \"npx http-server /app/storybook-static -p 6006 & npx playwright test\"",
