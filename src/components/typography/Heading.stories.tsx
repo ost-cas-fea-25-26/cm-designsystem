@@ -1,10 +1,10 @@
-import { Label } from "./Label";
+import { Heading } from "./Heading";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/Typography/Label",
-  component: Label,
+  title: "Typography/Heading",
+  component: Heading,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
@@ -17,47 +17,47 @@ const meta = {
     as: { control: "text" },
     children: { control: "text" },
   },
-} satisfies Meta<typeof Label>;
+} satisfies Meta<typeof Heading>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const LabelExtraLarge: Story = {
+export const Heading1: Story = {
   args: {
-    size: "xl",
-    as: "label",
+    size: "1",
+    as: "h1",
     children: "Lorem ipsum dolor sit amet",
   },
 };
 
-export const LabelLarge: Story = {
+export const Heading2: Story = {
   args: {
-    size: "lg",
-    as: "label",
+    size: "2",
+    as: "h2",
     children: "Lorem ipsum dolor sit amet",
   },
 };
 
-export const LabelMedium: Story = {
+export const Heading3: Story = {
   args: {
-    size: "md",
-    as: "label",
+    size: "3",
+    as: "h3",
     children: "Lorem ipsum dolor sit amet",
   },
 };
 
-export const LabelSmall: Story = {
+export const Heading4: Story = {
   args: {
-    size: "sm",
-    as: "label",
+    size: "4",
+    as: "h4",
     children: "Lorem ipsum dolor sit amet",
   },
 };
 
 export const CustomTag: Story = {
   args: {
-    size: "lg",
+    size: "1",
     as: "span",
     children: "Lorem ipsum dolor sit amet",
   },
