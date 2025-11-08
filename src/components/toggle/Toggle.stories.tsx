@@ -112,3 +112,20 @@ export const IncrementExistingLikes: Story = {
     );
   },
 };
+
+export const Liked: Story = {
+  args: {
+    pressed: true,
+    ariaLabel: "0 Like",
+    likes: 0,
+    children: "Toggle",
+  },
+  play: async ({ canvas, step }) => {
+    await step("Shows pressed liked state with final count", async () => {
+      await expect(
+        canvas.getByRole("button", { name: /1 Like/i })
+      ).toBeVisible();
+      await expect(canvas.getByText(/1 Like/)).toBeVisible();
+    });
+  },
+};

@@ -33,18 +33,50 @@ const toggleStyles = tv({
         icon: "text-pink-500",
         label: "text-pink-900",
       },
-    },
-    animating: {
-      true: {
-        label: "opacity-0 -translate-y-1", // Text verschwindet nach oben
-      },
-      false: {
-        label: "opacity-100 translate-y-0", // Text erscheint wieder
-      },
+    },    
+   animating: {
+      true: {},
+      false: {},
     },
   },
+  compoundVariants: [
+    // pressed like + animating  -> from "Liked" to "x Likes"
+    {
+      pressed: true,
+      animating: true,
+      class: {
+        label: "opacity-0 -translate-y-1 text-pink-900",        
+        icon: "text-pink-500",
+      },
+    },
+    // pressed like + not animating (does this case exist?) -> stays "x Likes"
+    {
+      pressed: true,
+      animating: false,
+      class: {
+        label: "opacity-100 translate-y-0",
+      },
+    },
+    // not pressed like + animating -> from "Like" to "1 Like"
+    {
+      pressed: false,
+      animating: true,
+      class: {
+        label: "opacity-0 -translate-y-1",
+      },
+    },
+     // not pressed like + not animating -> stays "Like"
+    {
+      pressed: false,
+      animating: false,
+      class: {
+        label: "opacity-100 translate-y-0",
+      },
+    },
+  ],
   defaultVariants: {
     pressed: false,
+    animating: false,
   },
 });
 
@@ -73,7 +105,7 @@ interface ToggleProps extends ToggleVariants {
   likes?: number;
 }
 
-export const Toggle = ({ ariaLabel, pressed, likes = 0 }: ToggleProps) => {
+export const Toggle = ({ ariaLabel, pressed = false, likes = 0 }: ToggleProps) => {
   /*
    * no likes: "Like"
    * clicked: "Liked"
@@ -88,13 +120,16 @@ export const Toggle = ({ ariaLabel, pressed, likes = 0 }: ToggleProps) => {
   const { base, icon, label: labelSlot } = toggleStyles({ pressed, animating });
 
   const handleClick = () => {
-    setLabel("Liked");
-    setAnimating(true);
-    setTimeout(() => {
-      setLabel(`${likes + 1} Like`);
-      setAnimating(false);
-    }, 2000);
-  };
+    // does it need an isPressed state?
+    
+      setLabel("Liked");
+      setAnimating(true);    
+      setTimeout(() => {
+        setLabel(`${likes + 1} Like`);
+        setAnimating(false);
+      }, 2000);
+    
+  }
 
   return (
     <RadixToggle.Root
@@ -113,4 +148,4 @@ export const Toggle = ({ ariaLabel, pressed, likes = 0 }: ToggleProps) => {
       </span>
     </RadixToggle.Root>
   );
-};
+}; 
