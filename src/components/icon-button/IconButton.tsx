@@ -1,7 +1,7 @@
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
-import type { IconBaseProps } from "../icons/IconBase";
 import React from "react";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const iconButtonStyles = tv({
   slots: {
