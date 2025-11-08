@@ -1,5 +1,4 @@
 import { expect, fn } from "storybook/test";
-import { Profile } from "../icons/generated";
 import { Avatar } from "./Avatar";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import avatarImage from "../../assets/avatar.svg";
