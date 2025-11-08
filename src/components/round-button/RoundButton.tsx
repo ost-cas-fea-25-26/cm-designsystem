@@ -5,11 +5,12 @@ import type { IconBaseProps } from "../icons/IconBase";
 const roundButtonStyles = tv({
   base: [
     "text-white",
-    "rounded-3xl",
+    "rounded-full",
     "hover:ring-3",
     "active:ring-4",
     "transition",
-    "duration-300",
+    "duration-350",
+    "active:duration-300",
     "ease-in-out",
     "p-4",
   ],
