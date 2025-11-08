@@ -34,7 +34,7 @@ jobs:
         run: npm run lint
 
       - name: Run TypeScript compiler
-        run: npx tsc -b --noEmit
+        run: npm run typecheck
 
   build:
     name: Build
