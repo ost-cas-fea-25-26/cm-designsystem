@@ -1,4 +1,4 @@
-import { Toggle as RadixToggle } from "radix-ui";
+import * as RadixToggle from "@radix-ui/react-toggle";
 import { tv, type VariantProps } from "tailwind-variants";
 import { HeartFilled, HeartOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
@@ -49,10 +49,7 @@ export const Toggle = ({ ariaLabel, pressed, children }: ToggleProps) => {
   const { root, icon } = toggleStyles({ pressed });
 
   return (
-    <RadixToggle.Root
-      aria-label={ariaLabel}      
-      className={root()}
-    >
+    <RadixToggle.Root aria-label={ariaLabel} className={root()}>
       <span className={icon()}>
         {pressed ? <HeartFilled /> : <HeartOutline />}
       </span>
