@@ -108,11 +108,8 @@ jobs:
       - name: Build docker image
         run: npm run e2e:build
 
-      - name: Build storybook
-        run: npm run build-storybook
-
       - name: Run E2E Tests
-        run: npm run e2e:ci
+        run: npm run e2e:test
 
       - name: Upload Playwright report
         if: ${{ !cancelled() }}
