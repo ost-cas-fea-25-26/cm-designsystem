@@ -18,5 +18,5 @@ export const Default: Story = {
 };
 
 export const Active: Story = {
-  render: () => <Toggle pressed aria-label="Like active" children={"Likes"} ariaLabel=":-)" />,
+  render: () => <Toggle pressed aria-label="Like active" children={"Liked"} ariaLabel=":-)" />,
 };

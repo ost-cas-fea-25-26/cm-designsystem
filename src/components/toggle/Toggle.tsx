@@ -16,10 +16,25 @@ const toggleStyles = tv({
   variants: {
     pressed: {
       // not sure if w-20  is needed
-      false: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
+  false: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
       // NOTE: w-23 requires custom Tailwind config; if unavailable use w-[92px] (23*4) or a standardized size.
       // not sure if w-23 is needed
-      true: " text-pink-900",
+      true: "text-pink-900",
+    },
+  },
+  defaultVariants: {
+    pressed: false,
+  },
+});
+
+// Separate icon style variants so we can derive icon color from pressed state without
+// modifying the icon components themselves. Icons use currentColor, so wrapping span controls color.
+const iconStyles = tv({
+  base: "inline-flex",
+  variants: {
+    pressed: {
+      false: "text-inherit", // inherit text color from parent
+      true: "text-pink-500", // active state icon color
     },
   },
   defaultVariants: {
@@ -40,8 +55,11 @@ export const Toggle = ({ ariaLabel, pressed, children }: ToggleProps) => {
     <RadixToggle.Root
       aria-label={ariaLabel}
       className={toggleStyles({ pressed })}
-    >    
-         {pressed ? <HeartFilled /> : <HeartOutline />}
+      
+    >
+         <span className={iconStyles({ pressed })}>
+           {pressed ? <HeartFilled /> : <HeartOutline />}
+         </span>
 
       <Label as="span" size="md">
         {children}
