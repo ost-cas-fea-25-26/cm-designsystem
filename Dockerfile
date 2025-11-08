@@ -11,4 +11,4 @@ RUN npx -y playwright install --with-deps
 # Install a simple static server
 RUN npm install -g http-server
 
-ENTRYPOINT ["sh"]
+CMD ["sh"]
