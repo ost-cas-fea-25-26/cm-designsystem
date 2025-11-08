@@ -5,44 +5,56 @@ import { Label } from "../typography/Label";
 
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
-// Figma spec mapping (provided):
-// Flow: Horizontal => flex row (default) + gap
-// Width: Hug (80px) => no fixed width; content + padding results ~80px
-// Height: Hug (32px) => h-8 (32px)
-// Padding: top/bottom 8px => py-2; left/right 12px => px-3
-// Gap: 8px => gap-2
-// Radius: 16px => rounded-2xl
-// Top/Left: 16px each => using margins (mt-4 ml-4) instead of positional 'top' offsets.
-// NOTE: Margins can be removed by consuming layout if not desired globally.
 const toggleStyles = tv({
   base: [
-    "flex",
+    "inline-flex",
     "items-center",
     "justify-center",
     "gap-2",
-    "h-8",
+    "rounded-full",
     "px-3",
     "py-2",
-    "rounded-2xl",
-    "mt-4",
-    "ml-4",
-    "hover:bg-violet3",
-    "data-[state=on]:bg-violet6",
-    "data-[state=on]:text-violet12",
-    "focus:shadow-[0_0_0_2px]",
-    "focus:shadow-black",
-    "transition-colors",
+    "transition-all",
+    "duration-150",
+    "ease-in-out",
+    "focus-visible:outline-none",
+    "focus-visible:ring-2",
+    "focus-visible:ring-offset-2",
   ],
-  variants: {},
+  variants: {
+    pressed: {
+      false: [
+        // not sure if this is needed
+        // "w-20",
+        "h-8",
+        "bg-transparent",
+        "hover:bg-pink-50",
+        "hover:text-pink-600",
+      ],
+      true: [
+        // NOTE: w-23 is not a default Tailwind class; ensure it's configured or replace with arbitrary value like w-[92px]
+        // not sure if this is needed
+        // "w-23",
+        "h-8",
+        "bg-pink-100",
+        "text-pink-900",
+        "hover:bg-pink-200",
+      ],
+    },
+  },
+  defaultVariants: {
+    pressed: false,
+  },
 });
 
 interface ToggleProps extends ToggleVariants {
   children: React.ReactNode;
+  ariaLabel: string;
 }
 
 export const Toggle = (_props: ToggleProps) => {
   return (
-    <RadixToggle.Root aria-label="Toggle" className={toggleStyles({})}>
+    <RadixToggle.Root aria-label={_props.ariaLabel} className={toggleStyles({})}>
       <HeartOutline />
       <Label as="span" size="md">
         Like
