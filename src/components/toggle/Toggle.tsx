@@ -1,45 +1,25 @@
 import { Toggle as RadixToggle } from "radix-ui";
-import { type VariantProps, tv } from "tailwind-variants";
-import { HeartOutline } from "../icons/generated";
+import { tv, type VariantProps } from "tailwind-variants";
+import { HeartFilled, HeartOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
-
-type ToggleVariants = VariantProps<typeof toggleStyles>;
+import type { ReactNode } from "react";
 
 const toggleStyles = tv({
   base: [
-    "inline-flex",
-    "items-center",
-    "justify-center",
-    "gap-2",
-    "rounded-full",
-    "px-3",
-    "py-2",
-    "transition-all",
-    "duration-150",
-    "ease-in-out",
-    "focus-visible:outline-none",
-    "focus-visible:ring-2",
-    "focus-visible:ring-offset-2",
+    // layout + spacing + shape
+    "inline-flex items-center justify-center gap-2 h-8 px-3 py-2 rounded-full",
+    // interaction & motion
+    "transition-all duration-150 ease-in-out",
+    // focus styles & disabled state
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
   ],
   variants: {
     pressed: {
-      false: [
-        // not sure if this is needed
-        // "w-20",
-        "h-8",
-        "bg-transparent",
-        "hover:bg-pink-50",
-        "hover:text-pink-600",
-      ],
-      true: [
-        // NOTE: w-23 is not a default Tailwind class; ensure it's configured or replace with arbitrary value like w-[92px]
-        // not sure if this is needed
-        // "w-23",
-        "h-8",
-        "bg-pink-100",
-        "text-pink-900",
-        "hover:bg-pink-200",
-      ],
+      // not sure if w-20  is needed
+      false: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
+      // NOTE: w-23 requires custom Tailwind config; if unavailable use w-[92px] (23*4) or a standardized size.
+      // not sure if w-23 is needed
+      true: " text-pink-900",
     },
   },
   defaultVariants: {
@@ -47,17 +27,24 @@ const toggleStyles = tv({
   },
 });
 
+type ToggleVariants = VariantProps<typeof toggleStyles>;
+
 interface ToggleProps extends ToggleVariants {
-  children: React.ReactNode;
+  children: ReactNode;
   ariaLabel: string;
+  pressed?: boolean;
 }
 
-export const Toggle = (_props: ToggleProps) => {
+export const Toggle = ({ ariaLabel, pressed, children }: ToggleProps) => {
   return (
-    <RadixToggle.Root aria-label={_props.ariaLabel} className={toggleStyles({})}>
-      <HeartOutline />
+    <RadixToggle.Root
+      aria-label={ariaLabel}
+      className={toggleStyles({ pressed })}
+    >    
+         {pressed ? <HeartFilled /> : <HeartOutline />}
+
       <Label as="span" size="md">
-        Like
+        {children}
       </Label>
     </RadixToggle.Root>
   );

@@ -1,3 +1,4 @@
+
 import { Toggle } from "./Toggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -13,13 +14,9 @@ export default meta;
 type Story = StoryObj<typeof Toggle>;
 
 export const Default: Story = {
-  render: () => <Toggle aria-label="Like">Like</Toggle>,
+  render: () => <Toggle aria-label="Like" children={"Likes"} ariaLabel="Huhu" />,
 };
 
-// export const Active: Story = {
-//   render: () => (
-//     <Toggle pressed aria-label="Like active">
-//       Like active
-//     </Toggle>
-//   ),
-// };
+export const Active: Story = {
+  render: () => <Toggle pressed aria-label="Like active" children={"Likes"} ariaLabel=":-)" />,
+};
