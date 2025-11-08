@@ -17,6 +17,7 @@
     "prepare": "husky",
     "knip": "knip",
     "test": "vitest",
+    "icons:generate": "node src/scripts/generate-icons.js && prettier src/components/icons/generated --write",
     "coverage": "vitest run --coverage",
     "e2e": "npx playwright test",
     "e2e:ui": "npx playwright test --ui"

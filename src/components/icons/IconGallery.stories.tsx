@@ -4,9 +4,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 // Build a list of icon entries (component functions)
 type IconComponent = React.ComponentType<React.ComponentProps<"svg">>;
-const iconEntries: [string, IconComponent][] = Object.entries(Icons).filter(
+let iconEntries: [string, IconComponent][] = Object.entries(Icons).filter(
   ([, val]) => typeof val === "function"
 ) as [string, IconComponent][];
+// Sort alphabetically by component name for stable gallery ordering
+iconEntries = iconEntries.sort(([a], [b]) => a.localeCompare(b));
 
 // A simple gallery component
 const Gallery: React.FC = () => (
@@ -14,8 +16,11 @@ const Gallery: React.FC = () => (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", // Etwas breiter für den Code
         gap: 16,
+        padding: 4,
+        // *** HINZUFÜGEN: Um 100% Höhe für die Kinder zu ermöglichen ***
+        alignItems: "stretch",
       }}
     >
       {iconEntries.map(([name, Icon]) => (
@@ -26,17 +31,50 @@ const Gallery: React.FC = () => (
             flexDirection: "column",
             alignItems: "center",
             fontSize: 12,
+            border: "1px solid #eee", // Optionale visuelle Trennung
+            padding: 8,
+            borderRadius: 4,
+            backgroundColor: "#fafafa",
+            // *** GEÄNDERT: Maximale Höhe nutzen und Inhalt verteilen ***
+            height: "100%", // Wichtig, damit Flexbox den Platz verteilen kann
+            justifyContent: "space-between", // Icon oben, Code unten
           }}
         >
-          <Icon aria-hidden />
-          <div style={{ marginTop: 8 }}>{name}</div>
+          {/* Wrapper für das Icon zur vertikalen Zentrierung */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexGrow: 1, // Nimmt den gesamten verfügbaren vertikalen Raum ein
+              width: "100%", // Zentrierung auch horizontal in diesem Bereich
+            }}
+          >
+            <Icon aria-hidden style={{ width: 24, height: 24 }} />
+          </div>
+
+          {/* Hinzugefügter kopierbarer Code-Block (unten fixiert) */}
+          <div
+            style={{
+              marginBlock: 8,
+              gap: 4,
+              width: "100%",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              // marginBlock: 8 bleibt hier, um einen Abstand zum Icon zu schaffen
+            }}
+          >
+            <code>{`<${name} />`}</code>
+          </div>
         </div>
       ))}
     </div>
   </div>
 );
 
-// Single icon preview component with controls
+// Single icon preview component with controls (unverändert gelassen)
 interface IconPreviewProps {
   icon: string;
   className?: string;
