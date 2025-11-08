@@ -1,10 +1,10 @@
-import { Placeholder } from "./Placeholder";
+import { Paragraph } from "./Paragraph";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/Typography/Placeholder",
-  component: Placeholder,
+  title: "Typography/Paragraph",
+  component: Paragraph,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
@@ -13,25 +13,36 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
+    size: { control: "select" },
     as: { control: "text" },
     children: { control: "text" },
   },
-} satisfies Meta<typeof Placeholder>;
+} satisfies Meta<typeof Paragraph>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Default: Story = {
+export const ParagraphLarge: Story = {
   args: {
-    as: "span",
+    size: "lg",
+    as: "p",
+    children: "Lorem ipsum dolor sit amet",
+  },
+};
+
+export const ParagraphMedium: Story = {
+  args: {
+    size: "md",
+    as: "p",
     children: "Lorem ipsum dolor sit amet",
   },
 };
 
 export const CustomTag: Story = {
   args: {
-    as: "h1",
+    size: "lg",
+    as: "span",
     children: "Lorem ipsum dolor sit amet",
   },
 };
