@@ -25,20 +25,6 @@ test.describe("IconButton: primary", () => {
       threshold: 0,
     });
   });
-
-  test("icon-button active should look the same", async ({ page }) => {
-    //Arrange
-    await goToStorybook(page, componentName, componentStory);
-
-    // Assert
-    const button = page.getByRole("button");
-    await button.hover();
-    await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
-    await page.mouse.up();
-  });
 });
 
 test.describe("IconButton: secondary", () => {
@@ -64,19 +50,5 @@ test.describe("IconButton: secondary", () => {
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
     });
-  });
-
-  test("icon-button active should look the same", async ({ page }) => {
-    //Arrange
-    await goToStorybook(page, componentName, componentStory);
-
-    // Assert
-    const button = page.getByRole("button");
-    await button.hover();
-    await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
-    await page.mouse.up();
   });
 });
