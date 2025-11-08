@@ -1,0 +1,60 @@
+import React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
+import type { IconBaseProps } from "../icons/IconBase";
+import { Avatar } from "../avatar/Avatar";
+
+const naviUserButtonStyles = tv({
+  base: [
+    "flex",
+    "flex-col",
+    "gap-1",
+    "transition",
+    "duration-300",
+    "ease-in-out",
+    "text-white",
+    "rounded-lg",
+    "items-center",
+    "pt-3",
+    "pb-3",
+    "pl-2",
+    "pr-2",
+  ],
+  variants: {
+    intent: {
+      secondary: ["bg-violet-600", "hover:bg-violet-700"],
+    },
+  },
+});
+
+type NaviUserButtonVariants = VariantProps<typeof naviUserButtonStyles>;
+type NaviUserButtonIntent = "secondary";
+
+interface NaviUserButtonProps extends NaviUserButtonVariants {
+  label: string;
+  intent?: NaviUserButtonIntent;
+  src: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}
+
+export const NaviUserButton = ({
+  intent = "secondary",
+  ...props
+}: NaviUserButtonProps) => {
+  return (
+    <button
+      className={naviUserButtonStyles({ intent, ...props })}
+      onClick={props.onClick}
+      aria-label={props.label}
+    >
+      <Avatar
+        label={props.label}
+        size="sm"
+        src={props.src}
+        onClick={props.onClick}
+      >
+        {props.children}
+      </Avatar>
+    </button>
+  );
+};

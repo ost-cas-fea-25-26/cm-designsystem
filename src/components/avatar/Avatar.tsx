@@ -6,7 +6,17 @@ import { RoundButton } from "../round-button/RoundButton";
 const avatarStyles = tv({
   slots: {
     base: ["relative", "inline-block"],
-    avatar: ["rounded-full", "transition", "duration-300", "ease-in-out"],
+    avatar: [
+      "rounded-full",
+      "transition",
+      "duration-300",
+      "ease-in-out",
+      "min-w-10",
+      "min-h-10",
+      "flex",
+      "items-center",
+      "justify-center",
+    ],
     action: ["absolute", "bottom-2", "right-2"],
   },
   variants: {
@@ -81,12 +91,8 @@ export const Avatar = (props: AvatarProps) => {
         </div>
       )}
 
-      <RadixAvatar.Fallback
-        delayMs={600}
-        className={avatar(props)}
-        aria-label={props.label}
-      >
-        {props.children}
+      <RadixAvatar.Fallback aria-label={props.label}>
+        <div className={avatar(props)}>{props.children}</div>
       </RadixAvatar.Fallback>
     </RadixAvatar.Root>
   );
