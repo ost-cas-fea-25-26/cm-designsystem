@@ -30,7 +30,7 @@ describe("Button", () => {
     expect(screen.queryByText("Mumble")).not.toBeInTheDocument();
   });
 
-  test("should call onChange when second tab clicked", () => {
+  test("should call onClick when clicked", () => {
     // Arrange
     const onClick = vi.fn();
     render(
