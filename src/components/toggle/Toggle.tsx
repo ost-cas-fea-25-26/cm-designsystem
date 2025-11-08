@@ -1,57 +1,51 @@
 import { Toggle as RadixToggle } from "radix-ui";
 import { type VariantProps, tv } from "tailwind-variants";
-import { Paragraph } from "../typography/Paragraph";
+import { HeartOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
 
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
+// Figma spec mapping (provided):
+// Flow: Horizontal => flex row (default) + gap
+// Width: Hug (80px) => no fixed width; content + padding results ~80px
+// Height: Hug (32px) => h-8 (32px)
+// Padding: top/bottom 8px => py-2; left/right 12px => px-3
+// Gap: 8px => gap-2
+// Radius: 16px => rounded-2xl
+// Top/Left: 16px each => using margins (mt-4 ml-4) instead of positional 'top' offsets.
+// NOTE: Margins can be removed by consuming layout if not desired globally.
 const toggleStyles = tv({
   base: [
-    "bg-violet-600",
-    "hover:bg-violet-700",
-    "hover:border-violet-100",
-    "active:border-violet-200",
+    "flex",
+    "items-center",
+    "justify-center",
+    "gap-2",
+    "h-8",
+    "px-3",
+    "py-2",
+    "rounded-2xl",
+    "mt-4",
+    "ml-4",
+    "hover:bg-violet3",
+    "data-[state=on]:bg-violet6",
+    "data-[state=on]:text-violet12",
+    "focus:shadow-[0_0_0_2px]",
+    "focus:shadow-black",
+    "transition-colors",
   ],
-  variants: {
-    intent: {
-      primary: [
-        "bg-slate-600",
-        "hover:bg-slate-700",
-        "hover:border-slate-100",
-        "active:border-violet-200",
-      ],
-      secondary: [
-        "bg-violet-600",
-        "hover:bg-violet-700",
-        "hover:border-violet-100",
-        "active:border-violet-200",
-      ],
-      tertiary: [
-        "bg-gradient-to-r",
-        "from-pink-500",
-        "from-50%",
-        "to-violet-600",
-        "hover:from-30%",
-        "hover:border-violet-100",
-        "active:from-20%",
-        "active:border-violet-200",
-      ],
-    },
-  },
+  variants: {},
 });
 
 interface ToggleProps extends ToggleVariants {
   children: React.ReactNode;
 }
 
-export const Toggle = (props: ToggleProps) => {
+export const Toggle = (_props: ToggleProps) => {
   return (
-    <RadixToggle.Root
-      aria-label="Toggle"
-      className={toggleStyles({ intent: props.intent })}
-    >
+    <RadixToggle.Root aria-label="Toggle" className={toggleStyles({})}>
+      <HeartOutline />
       <Label as="span" size="md">
-        "hoi"
+        Like
       </Label>
     </RadixToggle.Root>
   );
