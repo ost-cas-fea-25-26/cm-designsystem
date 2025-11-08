@@ -16,7 +16,7 @@ const toggleStyles = tv({
       "disabled:opacity-50 disabled:pointer-events-none",
     ],
     icon: "inline-flex",
-    label: "", // optional — useful if you want to add size/color variants later
+    label: "",
   },
   variants: {
     pressed: {
@@ -37,8 +37,6 @@ const toggleStyles = tv({
   },
 });
 
-
-
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
 interface ToggleProps extends ToggleVariants {
@@ -48,19 +46,16 @@ interface ToggleProps extends ToggleVariants {
 }
 
 export const Toggle = ({ ariaLabel, pressed, children }: ToggleProps) => {
-    const { root, icon, label } = toggleStyles({ pressed });
+  const { root, icon } = toggleStyles({ pressed });
 
   return (
     <RadixToggle.Root
-      aria-label={ariaLabel}
-      // className={toggleStyles({ pressed })}      
-      className={root()}      
+      aria-label={ariaLabel}      
+      className={root()}
     >
-
-      {/* todo: textfarbe setzen, icon farbe über span anpassen */}
-         <span className={icon()}>
-           {pressed ? <HeartFilled /> : <HeartOutline />}
-         </span>
+      <span className={icon()}>
+        {pressed ? <HeartFilled /> : <HeartOutline />}
+      </span>
 
       <Label as="span" size="md">
         {children}

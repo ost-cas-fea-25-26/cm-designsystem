@@ -1,4 +1,3 @@
-
 import { expect } from "storybook/test";
 import { Toggle } from "./Toggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -45,7 +44,9 @@ export const Pressed: Story = {
   },
   play: async ({ canvas, step }) => {
     await step("Check initial render (pressed)", async () => {
-      await expect(canvas.getByRole("button", { name: /Liked/i })).toBeVisible();
+      await expect(
+        canvas.getByRole("button", { name: /Liked/i })
+      ).toBeVisible();
       await expect(canvas.getByText("HeartFilled")).toBeVisible();
     });
   },
