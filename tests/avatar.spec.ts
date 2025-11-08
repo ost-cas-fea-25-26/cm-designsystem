@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
-test.describe("Button: primary", () => {
-  const componentName = "components-button";
-  const componentStory = "primary";
+test.describe("Avatar: small", () => {
+  const componentName = "components-avatar";
+  const componentStory = "small";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
-  test("button primary should look the same", async ({ page }) => {
+  test("avatar should look the same", async ({ page }) => {
     //Arrange
     await goToStorybook(page, componentName, componentStory);
 
@@ -14,39 +14,25 @@ test.describe("Button: primary", () => {
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
   });
 
-  test("button hover should look the same", async ({ page }) => {
+  test("avatar hover should look the same", async ({ page }) => {
     //Arrange
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
-    const button = page.getByRole("button");
+    const button = page.getByRole("img");
     await button.hover();
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
     });
   });
-
-  test("button active should look the same", async ({ page }) => {
-    //Arrange
-    await goToStorybook(page, componentName, componentStory);
-
-    // Assert
-    const button = page.getByRole("button");
-    await button.hover();
-    await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
-    await page.mouse.up();
-  });
 });
 
-test.describe("Button: secondary", () => {
-  const componentName = "components-button";
-  const componentStory = "secondary";
+test.describe("Avatar: medium", () => {
+  const componentName = "components-avatar";
+  const componentStory = "medium";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
-  test("button primary should look the same", async ({ page }) => {
+  test("avatar should look the same", async ({ page }) => {
     //Arrange
     await goToStorybook(page, componentName, componentStory);
 
@@ -54,97 +40,146 @@ test.describe("Button: secondary", () => {
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
   });
 
-  test("button hover should look the same", async ({ page }) => {
+  test("avatar hover should look the same", async ({ page }) => {
     //Arrange
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
-    const button = page.getByRole("button");
+    const button = page.getByRole("img");
     await button.hover();
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
     });
   });
-
-  test("button active should look the same", async ({ page }) => {
-    //Arrange
-    await goToStorybook(page, componentName, componentStory);
-
-    // Assert
-    const button = page.getByRole("button");
-    await button.hover();
-    await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
-    await page.mouse.up();
-  });
 });
 
-test.describe("Button: tertiary", () => {
-  const componentName = "components-button";
-  const componentStory = "tertiary";
-  const screenshotNamePrefix = `${componentName}--${componentStory}`;
-
-  test("button primary should look the same", async ({ page }) => {
-    //Arrange
-    await goToStorybook(page, componentName, componentStory);
-
-    // Assert
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
-  });
-
-  test("button hover should look the same", async ({ page }) => {
-    //Arrange
-    await goToStorybook(page, componentName, componentStory);
-
-    // Assert
-    const button = page.getByRole("button");
-    await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
-  });
-
-  test("button active should look the same", async ({ page }) => {
-    //Arrange
-    await goToStorybook(page, componentName, componentStory);
-
-    // Assert
-    const button = page.getByRole("button");
-    await button.hover();
-    await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
-    await page.mouse.up();
-  });
-});
-
-test.describe("Button: large", () => {
-  const componentName = "components-button";
+test.describe("Avatar: large", () => {
+  const componentName = "components-avatar";
   const componentStory = "large";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
-  test("button primary should look the same", async ({ page }) => {
+  test("avatar should look the same", async ({ page }) => {
     //Arrange
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
   });
+
+  test("avatar hover should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    const button = page.getByRole("img");
+    await button.hover();
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
+      threshold: 0,
+    });
+  });
 });
 
-test.describe("Button: no-icon", () => {
-  const componentName = "components-button";
-  const componentStory = "no-icon";
+test.describe("Avatar: extra-large", () => {
+  const componentName = "components-avatar";
+  const componentStory = "extra-large";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
-  test("button primary should look the same", async ({ page }) => {
+  test("avatar should look the same", async ({ page }) => {
     //Arrange
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
+  });
+
+  test("avatar hover should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    const button = page.getByRole("img");
+    await button.hover();
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
+      threshold: 0,
+    });
+  });
+});
+
+test.describe("Avatar: extra-large-with-action", () => {
+  const componentName = "components-avatar";
+  const componentStory = "extra-large-with-action";
+  const screenshotNamePrefix = `${componentName}--${componentStory}`;
+
+  test("avatar should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
+  });
+
+  test("avatar action should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    const button = page.getByRole("button");
+    await button.hover();
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-action.png`, {
+      threshold: 0,
+    });
+  });
+
+  test("avatar hover should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    const button = page.getByRole("img");
+    await button.hover();
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
+      threshold: 0,
+    });
+  });
+
+  test("avatar action hover should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    const button = page.getByRole("button");
+    await button.hover();
+    await expect(page).toHaveScreenshot(
+      `${screenshotNamePrefix}-action-hover.png`,
+      {
+        threshold: 0,
+      }
+    );
+  });
+});
+
+test.describe("Avatar: fallback", () => {
+  const componentName = "components-avatar";
+  const componentStory = "fallback";
+  const screenshotNamePrefix = `${componentName}--${componentStory}`;
+
+  test("avatar should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
+  });
+
+  test("avatar hover should look the same", async ({ page }) => {
+    //Arrange
+    await goToStorybook(page, componentName, componentStory);
+
+    // Assert
+    const fallback = page.getByLabel("Lorem ipsum");
+    await fallback.hover();
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
+      threshold: 0,
+    });
   });
 });
