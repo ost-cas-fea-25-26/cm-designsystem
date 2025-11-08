@@ -1,0 +1,140 @@
+import { expect, fn } from "storybook/test";
+import { Profile } from "../icons/generated";
+import { Avatar } from "./Avatar";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import avatarImage from "../../assets/avatar.svg";
+
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
+const meta = {
+  title: "Components/Avatar",
+  component: Avatar,
+  parameters: {
+    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
+    layout: "centered",
+  },
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
+  tags: ["autodocs"],
+  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  argTypes: {
+    size: {
+      control: "select",
+    },
+    label: {
+      control: "text",
+    },
+    children: {
+      control: "object",
+    },
+  },
+} satisfies Meta<typeof Avatar>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Small: Story = {
+  args: {
+    size: "sm",
+    label: "Lorem ipsum",
+    src: avatarImage,
+    children: "PA",
+    onClick: fn(),
+  },
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      await expect(canvas.getByRole("img")).toBeVisible();
+      await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("img"));
+      await expect(args.onClick).toHaveBeenCalled();
+    });
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    size: "md",
+    label: "Lorem ipsum",
+    src: avatarImage,
+    children: "PA",
+    onClick: fn(),
+  },
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      await expect(canvas.getByRole("img")).toBeVisible();
+      await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("img"));
+      await expect(args.onClick).toHaveBeenCalled();
+    });
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+    label: "Lorem ipsum",
+    src: avatarImage,
+    children: "PA",
+    onClick: fn(),
+  },
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      await expect(canvas.getByRole("img")).toBeVisible();
+      await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("img"));
+      await expect(args.onClick).toHaveBeenCalled();
+    });
+  },
+};
+
+export const ExtraLarge: Story = {
+  args: {
+    size: "xl",
+    label: "Lorem ipsum",
+    src: avatarImage,
+    children: "PA",
+    onClick: fn(),
+  },
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      await expect(canvas.getByRole("img")).toBeVisible();
+      await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await userEvent.click(canvas.getByRole("img"));
+      await expect(args.onClick).toHaveBeenCalled();
+    });
+  },
+};
+
+export const Fallback: Story = {
+  args: {
+    size: "md",
+    label: "Lorem ipsum",
+    src: "",
+    children: "PA",
+    onClick: fn(),
+  },
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      await expect(canvas.queryByRole("img")).not.toBeInTheDocument();
+      const fallback = await canvas.findByLabelText("Lorem ipsum");
+      await expect(fallback).toHaveTextContent("PA");
+    });
+
+    await step("Check click event", async () => {
+      const fallback = await canvas.findByLabelText("Lorem ipsum");
+      await userEvent.click(fallback);
+      await expect(args.onClick).toHaveBeenCalled();
+    });
+  },
+};
