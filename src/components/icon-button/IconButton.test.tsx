@@ -1,42 +1,30 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
-import { Mumble } from "../icons/generated";
-import { Button } from "./IconButton";
+import { Profile } from "../icons/generated";
+import { IconButton } from "./IconButton";
 
-describe("Button", () => {
-  test("should render button with icon", async () => {
+describe("IconButton", () => {
+  test("should render icon-button with icon", async () => {
     // Arrange
     render(
-      <Button intent="primary" size="md" label="button" onClick={vi.fn()}>
-        <Mumble />
-      </Button>
+      <IconButton intent="primary" label="button" onClick={vi.fn()}>
+        <Profile />
+      </IconButton>
     );
 
     // Assert
     expect(screen.getByRole("button")).toBeVisible();
     expect(screen.getByRole("button")).toHaveTextContent("button");
-    expect(screen.getByText("Mumble")).toBeVisible();
+    expect(screen.getByText("Profile")).toBeVisible();
   });
 
-  test("should render button without icon", async () => {
-    // Arrange
-    render(
-      <Button intent="primary" size="md" label="button" onClick={vi.fn()} />
-    );
-
-    // Assert
-    expect(screen.getByRole("button")).toBeVisible();
-    expect(screen.getByRole("button")).toHaveTextContent("button");
-    expect(screen.queryByText("Mumble")).not.toBeInTheDocument();
-  });
-
-  test("should call onChange when second tab clicked", () => {
+  test("should call onClick when clicked", () => {
     // Arrange
     const onClick = vi.fn();
     render(
-      <Button intent="primary" size="md" label="button" onClick={onClick}>
-        <Mumble />
-      </Button>
+      <IconButton intent="primary" label="button" onClick={onClick}>
+        <Profile />
+      </IconButton>
     );
 
     fireEvent.click(screen.getByRole("button"));
