@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Share } from "../icons/generated";
 import { Label } from "../typography/Label";
@@ -89,12 +89,21 @@ export const TimedButton = ({
 }: TimedButtonProps) => {
   const [pressed, setPressed] = useState(false);
   const [animating, setAnimating] = useState(false);
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
   const {
     base,
     icon: iconClass,
     label: labelClass,
   } = timedButtonStyles({ pressed, animating });
+
+  useEffect(() => {
+    // Cleanup all timeouts when component unmounts
+    return () => {
+      timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
+      timeoutsRef.current = [];
+    };
+  }, []);
 
   const handleClick = () => {
     // Klick -> Pressed
@@ -103,15 +112,18 @@ export const TimedButton = ({
     onClick();
 
     // Hover -> Pressed: Dissolve über 350ms
-    setTimeout(() => setAnimating(false), 350);
+    const timeout1 = setTimeout(() => setAnimating(false), 350);
+    timeoutsRef.current.push(timeout1);
 
     // Nach 1s Verzögerung -> zurück zu Default
-    setTimeout(() => {
+    const timeout2 = setTimeout(() => {
       setPressed(false);
       setAnimating(true);
       // Dissolve zurück
-      setTimeout(() => setAnimating(false), 350);
+      const timeout3 = setTimeout(() => setAnimating(false), 350);
+      timeoutsRef.current.push(timeout3);
     }, 1000);
+    timeoutsRef.current.push(timeout2);
   };
 
   return (
