@@ -62,7 +62,6 @@ export const Modal: React.FC<ModalProps> & {
         break;
     }
   });
-  console.log(modalBody, modalActions);
 
   const { overlay, content, title, container, actions } = modalStyles(props);
 

@@ -17,12 +17,23 @@ const meta = {
   argTypes: {
     intent: {
       control: "select",
+      description: "Button style variant (secondary).",
     },
     label: {
       control: "text",
+      description: "Accessible label for the button and avatar.",
+    },
+    src: {
+      control: "text",
+      description: "Image source URL for the avatar.",
+    },
+    onClick: {
+      description: "Callback function when button is clicked.",
     },
     children: {
       control: "object",
+      description:
+        "Fallback content (initials) for avatar when image is not available.",
     },
   },
 } satisfies Meta<typeof NaviUserButton>;

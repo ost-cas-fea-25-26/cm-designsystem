@@ -27,6 +27,9 @@ const meta = {
       control: "text",
       description: "Label of the button.",
     },
+    onClick: {
+      description: "Callback function when button is clicked.",
+    },
     children: {
       control: "object",
       description: "Icon that should be displayed in button.",

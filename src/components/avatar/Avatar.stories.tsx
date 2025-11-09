@@ -17,12 +17,26 @@ const meta = {
   argTypes: {
     size: {
       control: "select",
+      description: "Size of avatar (sm, md, lg, xl).",
     },
     label: {
       control: "text",
+      description: "Accessible label for the avatar.",
+    },
+    src: {
+      control: "text",
+      description: "Image source URL for the avatar.",
     },
     children: {
       control: "object",
+      description: "Fallback content (initials) when image is not available.",
+    },
+    onClick: {
+      description: "Callback function when avatar is clicked.",
+    },
+    onActionClick: {
+      description:
+        "Optional callback for action button (only visible in xl size).",
     },
   },
 } satisfies Meta<typeof Avatar>;
