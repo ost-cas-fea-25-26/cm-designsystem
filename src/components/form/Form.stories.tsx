@@ -27,11 +27,9 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
-  args: {
-    label: "Label",
-  },
-  render: (args) => (
-    <Form label={args.label}>
+  args: {},
+  render: () => (
+    <Form>
       <Form.Fields>
         <Input
           name="Test"
@@ -53,33 +51,8 @@ export const Default: Story = {
         />
       </Form.Fields>
       <Form.Action>
-        <Button
-          intent="primary"
-          size="md"
-          label="Submit"
-          onClick={fn()}
-         />
+        <Button intent="primary" size="md" label="Submit" onClick={fn()} />
       </Form.Action>
     </Form>
   ),
-  // play: async ({ args, userEvent, canvas, step }) => {
-  //   await step("Check initial render", async () => {
-  //     const input = canvas.getByPlaceholderText(/placeholder/i);
-  //     await expect(input).toBeVisible();
-  //     await expect(input).toHaveAccessibleName(/label/i);
-
-  //     const label = canvas.getByLabelText(/label/i);
-  //     await expect(label).toBeVisible();
-
-  //     const icon = canvas.getByText(/mumble/i);
-  //     await expect(icon).toBeVisible();
-  //   });
-
-  //   await step("Check click event", async () => {
-  //     const input = canvas.getByPlaceholderText(/placeholder/i);
-  //     await waitFor(() => userEvent.type(input, "a"));
-  //     input.blur();
-  //     await expect(args.onChange).toHaveBeenCalledWith("a");
-  //   });
-  // },
 };
