@@ -21,6 +21,18 @@ const meta = {
       control: "text",
       description: "Title of modal.",
     },
+    open: {
+      control: "boolean",
+      description: "Controls whether the modal is open or closed.",
+    },
+    onOpenChange: {
+      description: "Callback function when modal open state changes.",
+    },
+    children: {
+      control: "object",
+      description:
+        "Modal content including Modal.Body and Modal.Actions components.",
+    },
   },
 } satisfies Meta<typeof Modal>;
 

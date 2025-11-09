@@ -17,7 +17,14 @@ const meta = {
   argTypes: {
     value: {
       control: "text",
-      children: "object",
+      description: "Currently selected tab value.",
+    },
+    onChange: {
+      description: "Callback function when tab selection changes.",
+    },
+    children: {
+      control: "object",
+      description: "Array of TabItem components.",
     },
   },
 } satisfies Meta<typeof Tabs>;
@@ -31,13 +38,13 @@ export const Default: Story = {
     value: "1",
     children: [
       <TabItem key="1" value="1" label="Lorem ipsum 1">
-        Lorem ipsum 1
+        <div style={{ padding: "1rem", maxWidth: "400px" }}>Lorem ipsum 1</div>
       </TabItem>,
       <TabItem key="2" value="2" label="Lorem ipsum 2">
-        Lorem ipsum 2
+        <div style={{ padding: "1rem", maxWidth: "400px" }}>Lorem ipsum 2</div>
       </TabItem>,
       <TabItem key="3" value="3" label="Lorem ipsum 3">
-        Lorem ipsum 3
+        <div style={{ padding: "1rem", maxWidth: "400px" }}>Lorem ipsum 3</div>
       </TabItem>,
     ],
   },
@@ -77,10 +84,10 @@ export const Binary: Story = {
     value: "1",
     children: [
       <TabItem key="1" value="1" label="Lorem ipsum 1">
-        Lorem ipsum 1
+        <div style={{ padding: "1rem", maxWidth: "400px" }}>Lorem ipsum 1</div>
       </TabItem>,
       <TabItem key="2" value="2" label="Lorem ipsum 2">
-        Lorem ipsum 2
+        <div style={{ padding: "1rem", maxWidth: "400px" }}>Lorem ipsum 2</div>
       </TabItem>,
     ],
   },
