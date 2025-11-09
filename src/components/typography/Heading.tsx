@@ -1,4 +1,5 @@
-import { createElement } from "react";
+import { createElement, type JSX } from "react";
+import { twMerge } from "tailwind-merge";
 import { type VariantProps } from "tailwind-variants";
 import { headingStyles } from "./styles";
 
@@ -7,17 +8,18 @@ type HeadingSize = "1" | "2" | "3" | "4";
 
 interface HeadingProps extends HeadingVariants {
   size: HeadingSize;
-  as: string;
+  as: keyof JSX.IntrinsicElements;
+  className?: string;
   children: React.ReactNode;
 }
 
-export const Heading = ({ ...props }: HeadingProps) => {
+export const Heading = ({ as, className, ...props }: HeadingProps) => {
   return createElement(
-    props.as,
+    as,
     {
       role: "heading",
       "aria-level": props.size,
-      className: headingStyles(props),
+      className: twMerge(className, headingStyles(props)),
     },
     props.children
   );
