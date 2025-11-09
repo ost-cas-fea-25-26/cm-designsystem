@@ -1,3 +1,4 @@
+import { twMerge } from "tailwind-merge";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
@@ -58,13 +59,14 @@ interface ButtonProps extends ButtonVariants {
   intent: ButtonIntent;
   size: ButtonSize;
   onClick: () => void;
+  className?: string;
   children?: React.ReactElement<IconBaseProps>;
 }
 
 export const Button = (props: ButtonProps) => {
   return (
     <button
-      className={buttonStyles(props)}
+      className={twMerge(props.className, buttonStyles(props))}
       onClick={props.onClick}
       aria-label={props.label}
     >

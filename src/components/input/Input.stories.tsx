@@ -43,6 +43,9 @@ const meta = {
       control: "object",
       description: "Icon of the input.",
     },
+    onChange: {
+      description: "Event hook for input changes.",
+    },
   },
 } satisfies Meta<typeof Input>;
 
@@ -81,6 +84,7 @@ export const Default: Story = {
     await step("Check click event", async () => {
       const input = canvas.getByPlaceholderText(/placeholder/i);
       await waitFor(() => userEvent.type(input, "a"));
+      input.blur();
       await expect(args.onChange).toHaveBeenCalledWith("a");
     });
   },
@@ -213,8 +217,8 @@ export const NoIcon: Story = {
 
     await step("Check click event", async () => {
       const input = canvas.getByPlaceholderText(/placeholder/i);
-      await waitFor(() => userEvent.type(input, "a"));
-      await expect(args.onChange).toHaveBeenCalledWith("a");
+      await waitFor(() => userEvent.type(input, "abc[Tab]"));
+      await expect(args.onChange).toHaveBeenCalledWith("abc");
     });
   },
 };
