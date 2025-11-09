@@ -1,8 +1,8 @@
 import { fn } from "storybook/test";
+import { Button } from "../button/Button";
+import { Input } from "../input/Input";
 import { Form } from "./Form";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Input } from "../input/Input";
-import { Button } from "../button/Button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -58,7 +58,7 @@ export const Default: Story = {
           size="md"
           label="Submit"
           onClick={fn()}
-        ></Button>
+         />
       </Form.Action>
     </Form>
   ),

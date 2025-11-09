@@ -1,10 +1,9 @@
-import * as RadixForm from "@radix-ui/react-form";
 import { expect, fn, waitFor, fireEvent } from "storybook/test";
 import { Button } from "../button/Button";
+import { Form } from "../form/Form";
 import { Mumble } from "../icons/generated";
 import { Input } from "./Input";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Form } from "../form/Form";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
