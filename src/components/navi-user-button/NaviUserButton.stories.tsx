@@ -32,7 +32,8 @@ const meta = {
     },
     children: {
       control: "object",
-      description: "Fallback content (initials) for avatar when image is not available.",
+      description:
+        "Fallback content (initials) for avatar when image is not available.",
     },
   },
 } satisfies Meta<typeof NaviUserButton>;

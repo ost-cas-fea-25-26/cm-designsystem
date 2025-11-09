@@ -30,7 +30,8 @@ const meta = {
     },
     children: {
       control: "object",
-      description: "Modal content including Modal.Body and Modal.Actions components.",
+      description:
+        "Modal content including Modal.Body and Modal.Actions components.",
     },
   },
 } satisfies Meta<typeof Modal>;
