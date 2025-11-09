@@ -110,6 +110,7 @@ export const Toggle = ({
 }: ToggleProps) => {
   const [animating, setAnimating] = useState(false);
   const [selected, setSelected] = useState(pressed);
+  const [currentLikes, setCurrentLikes] = useState(likes);
   const [label, setLabel] = useState(
     likes ? (likes === 1 ? `${likes} Like` : `${likes} Likes`) : "Like"
   );
@@ -120,7 +121,7 @@ export const Toggle = ({
     label: labelSlot,
   } = toggleStyles({
     pressed: selected,
-    hasLikes: likes > 0,
+    hasLikes: currentLikes > 0,
     animating,
   });
 
@@ -132,17 +133,16 @@ export const Toggle = ({
     onLikeChange?.(nextSelected);
 
     // 2s warten, dann animieren
-    setTimeout(() => {
-      setAnimating(true); // startet die Animation
-      setLabel(
-        likes + (nextSelected ? 1 : -1) === 1
-          ? "1 Like"
-          : `${likes + (nextSelected ? 1 : -1)} Likes`
-      );
+     setTimeout(() => {
+    const nextLikes = currentLikes + (nextSelected ? 1 : -1);
 
-      // nach Animation zurücksetzen
-      setTimeout(() => setAnimating(false), 300);
-    }, 2000);
+    setCurrentLikes(nextLikes); 
+    setLabel(nextLikes === 1 ? "1 Like" : `${nextLikes} Likes`);
+    setAnimating(true);
+
+    
+    setTimeout(() => setAnimating(false), 300);
+  }, 2000);
   };
 
   return (
