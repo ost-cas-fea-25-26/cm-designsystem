@@ -7,7 +7,7 @@ const componentName = "components-toggle";
 const getToggle = (page: Page) => page.getByRole("button");
 
 test.describe("Heart Toggle Default", () => {
-  const story = "nolikes";
+  const story = "no-likes";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("No Likes", async ({ page }) => {
@@ -41,7 +41,7 @@ test.describe("Heart Toggle Default", () => {
  */
 
 test.describe("Toggle: First Like Animation", () => {
-  const story = "firstlikeanimation";
+  const story = "first-like-animation";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("Animation from Liked to 1 Like", async ({ page }) => {
@@ -70,7 +70,7 @@ test.describe("Toggle: First Like Animation", () => {
  * After delay: '6 Likes'.
  */
 test.describe("Toggle: existinglikes", () => {
-  const story = "existinglikes";
+  const story = "existing-likes";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("increments from 5 to 6 Likes", async ({ page }) => {
@@ -115,7 +115,7 @@ test.describe("Toggle: one like", () => {
 });
 
 test.describe("Toggle: multiple likes", () => {
-  const story = "likedmultiple";
+  const story = "liked-multiple";
   const screenshotNamePrefix = `${componentName}--${story}`;
   test("already existing multiple likes", async ({ page }) => {
     // Arrange
@@ -133,7 +133,7 @@ test.describe("Toggle: multiple likes", () => {
  */
 
 test.describe("Toggle: likedmultiple hover", () => {
-  const story = "likedmultiple";
+  const story = "liked-multiple";
   const screenshotNamePrefix = `${componentName}--${story}`;
   test("hover visual", async ({ page }) => {
     // Arrange
