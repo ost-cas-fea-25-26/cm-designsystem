@@ -5,7 +5,6 @@ import { HeartFilled, HeartOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
 
 const toggleStyles = tv({
-  // todo: add intent violett oder pink (see button primary / secondary)
   slots: {
     base: [
       // layout + spacing + shape
@@ -34,11 +33,11 @@ const toggleStyles = tv({
         // todo: label "liked" to "1 Like" transition
       },      
     },
-    hasData: {
+    hasLikes: {
       true: {
-        base:"hover:bg-pink-50",        
+        base:"hover:bg-pink-50 hover:text-pink-600",        
         icon: "text-pink-500 ",
-        label: "text-pink-900  hover:text-pink-600 ",                
+        label: "text-pink-900  ",                
       },
       false: ""
     }
@@ -109,11 +108,10 @@ interface ToggleProps extends ToggleVariants {
   children: ReactNode;
   ariaLabel: string;
   pressed?: boolean;
-  hasData?: boolean;
-  // onChange: () => void;
+  likes?: number;
 }
 
-export const Toggle = ({ ariaLabel, pressed = false, hasData = false }: ToggleProps) => {
+export const Toggle = ({ ariaLabel, pressed = false, likes = 0 }: ToggleProps) => {
   /*
    * no likes: "Like"
    * clicked: "Liked"
@@ -122,23 +120,20 @@ export const Toggle = ({ ariaLabel, pressed = false, hasData = false }: TogglePr
    */
   // const [animating, setAnimating] = useState(false);
   const [selected, setSelected] = useState(pressed);
-  // const [label, setLabel] = useState(
-  //   hasData ? (hasData  ? `${hasData} Like` : `${hasData} Likes`) : "Like"
-  // );
+  const [label, setLabel] = useState(
+    likes ? (likes === 1 ? `${likes} Like` : `${likes} Likes`) : "Like"
+  );
 
   
-  const { base, icon, label: labelSlot } = toggleStyles({ pressed: selected, hasData });
+  const { base, icon, label: labelSlot } = toggleStyles({ pressed: selected, hasLikes: likes > 0 });
 
   const handleClick = () => {
     // does it need an isPressed state?
-    // setLabel("Liked");
+    setLabel("Liked");
     setSelected(!selected);
     // setAnimating(true);
     setTimeout(() => {
-      // todo: handled by parent
-        // setLabel(`${hasData + 1} Like`);
-        // todo: let parent know to update count
-
+        setLabel(`${likes + 1} Like`);
         // setAnimating(false);
       }, 2000);
     
@@ -173,7 +168,6 @@ export const Toggle = ({ ariaLabel, pressed = false, hasData = false }: TogglePr
 
       <span className={labelSlot()}>
         <Label as="span" size="md">
-          // todo: label from parent after onChange
           {label}
         </Label>
       </span>

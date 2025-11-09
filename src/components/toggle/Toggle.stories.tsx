@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     pressed: { control: "boolean" },
     ariaLabel: { control: "text" },
-    hasData: { control: { type: "number", min: 0 } },
+    likes: { control: { type: "number", min: 0 } },
   },
 } satisfies Meta<typeof Toggle>;
 
@@ -24,7 +24,7 @@ export const NoLikes: Story = {
   args: {
     pressed: false,
     ariaLabel: "Like",
-    hasData: 0,
+    likes: 0,
     children: "Toggle", // required but unused
   },
   play: async ({ canvas, step }) => {
@@ -39,7 +39,7 @@ export const NoLikesHover: Story = {
   args: {
     pressed: false,
     ariaLabel: "Like",
-    hasData: 0,
+    likes: 0,
     children: "Toggle",
   },
   play: async ({ canvas, step, userEvent }) => {
@@ -57,7 +57,7 @@ export const ExistingLikes: Story = {
   args: {
     pressed: false,
     ariaLabel: "5 Likes",
-    hasData: 5,
+    likes: 5,
     children: "Toggle",
   },
   play: async ({ canvas, step }) => {
@@ -73,7 +73,7 @@ export const ExistingLikes: Story = {
 export const FirstLikeAnimation: Story = {
   args: {
     ariaLabel: "Like",
-    hasData: 0,
+    likes: 0,
     children: "Toggle",
   },
   render: (args) => {
@@ -95,7 +95,7 @@ export const FirstLikeAnimation: Story = {
 export const IncrementExistingLikes: Story = {
   args: {
     ariaLabel: "5 Likes",
-    hasData: 5,
+    likes: 5,
     children: "Toggle",
   },
   render: (args) => {
@@ -117,7 +117,7 @@ export const Liked: Story = {
   args: {
     pressed: true,
     ariaLabel: "0 Like",
-    hasData: 0,
+    likes: 0,
     children: "Toggle",
   },
   play: async ({ canvas, step }) => {
