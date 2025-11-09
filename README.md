@@ -80,6 +80,7 @@ npm run build-storybook  # Build Storybook for production
 We enforce consistent code style using automated tools:
 
 Prettier Configuration:
+
 - Uses double quotes
 - 2-space indentation
 - Semicolons required
@@ -87,6 +88,7 @@ Prettier Configuration:
 - Includes Tailwind CSS class sorting plugin
 
 ESLint Configuration:
+
 - TypeScript ESLint rules
 - React and React Hooks best practices
 - JSX Accessibility (a11y) rules
@@ -139,11 +141,11 @@ When to use `type` vs `interface`:
 - `export`: Export interfaces for public component APIs
 
 Best Practices:
+
 - Always extend `VariantProps` for styled components
 - Define union types for variant options to ensure type safety
 - Export prop interfaces for components
 - Use strict TypeScript (enabled by default)
-
 
 ### Project Structure
 
@@ -162,6 +164,7 @@ src/components/
 ```
 
 Benefits of co-location:
+
 - ✅ Related files stay together
 - ✅ Easier to find and maintain stories
 - ✅ Clear 1:1 relationship between components and documentation
@@ -218,6 +221,7 @@ export function Example() {
 ```
 
 How it works:
+
 - File names are converted to PascalCase (`log-out.svg` → `LogOut`)
 - Fill colors are normalized to `currentColor` for theming
 - All icons are wrapped in `IconBase` for accessibility
@@ -273,12 +277,15 @@ npx playwright show-report <path/to/extracted-artifact>
 ### Pull Request Process
 
 1. Create a feature branch:
+
    ```bash
    git checkout -b feature/initials/your-feature-name
    ```
+
    Use format: `feature/<mm or ci>/<description>`
 
 2. Make your changes and ensure quality:
+
    ```bash
    npm run preflight
    ```
@@ -286,6 +293,7 @@ npx playwright show-report <path/to/extracted-artifact>
 3. Commit with conventional commits (see below)
 
 4. Push to your feature branch:
+
    ```bash
    git push origin feature/initials/your-feature-name
    ```
@@ -303,6 +311,7 @@ npx playwright show-report <path/to/extracted-artifact>
 We use [Conventional Commits](https://www.conventionalcommits.org/) for consistent versioning and changelog generation.
 
 Format:
+
 ```
 <type>: <description>
 
@@ -310,6 +319,7 @@ Format:
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -320,6 +330,7 @@ Types:
 - `perf`: Performance improvements
 
 Examples:
+
 ```
 feat: add new Button variant
 fix: correct Typography component spacing
@@ -351,6 +362,7 @@ All pull requests are automatically validated through our CI pipeline.
 ### Why No Pre-commit Hooks?
 
 We intentionally don't use pre-commit hooks (like Husky):
+
 - ✅ Quality checks in CI can't be bypassed
 - ✅ Faster local development workflow
 - ✅ CI is the single source of truth
