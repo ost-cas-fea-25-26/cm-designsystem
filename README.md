@@ -60,6 +60,7 @@ This project uses:
 - **Storybook** for component documentation
 - **Vitest** for testing
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) for Fast Refresh
+- [Radix UI Primitives](https://www.radix-ui.com/primitives/docs/overview/introduction) as Component Libarary to help with Accessibility
 
 # Contributing
 
