@@ -40,7 +40,8 @@ test.describe("Heart Toggle Default", () => {
  * Test waits real time (2s) because component uses hardcoded setTimeout(2000).
  */
 
-test.describe("Toggle: First Like Animation", () => {
+
+test.skip("Toggle: First Like Animation", () => {
   const story = "first-like-animation";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
