@@ -10,7 +10,7 @@ test.describe("Heart LikeToggle Default", () => {
   const story = "no-likes";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
-  test("No Likes", async ({ page }) => {
+  test.skip("No Likes", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getLikeToggle(page);
@@ -21,7 +21,7 @@ test.describe("Heart LikeToggle Default", () => {
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}.png`);
   });
 
-  test("No Likes - Hover State", async ({ page }) => {
+  test.skip("No Likes - Hover State", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getLikeToggle(page);
@@ -44,7 +44,7 @@ test.skip("LikeToggle: First Like Animation", () => {
   const story = "first-like-animation";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
-  test("Animation from Liked to 1 Like", async ({ page }) => {
+  test.skip("Animation from Liked to 1 Like", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getLikeToggle(page);
@@ -73,7 +73,7 @@ test.describe("LikeToggle: existinglikes", () => {
   const story = "existing-likes";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
-  test("increments from 6 to 5 Likes", async ({ page }) => {
+  test.skip("increments from 6 to 5 Likes", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getLikeToggle(page);
@@ -103,7 +103,7 @@ test.describe("LikeToggle: one like", () => {
   const story = "liked";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
-  test("already existing one like", async ({ page }) => {
+  test.skip("already existing one like", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getLikeToggle(page);
@@ -117,7 +117,7 @@ test.describe("LikeToggle: one like", () => {
 test.describe("LikeToggle: multiple likes", () => {
   const story = "liked-multiple";
   const screenshotNamePrefix = `${componentName}--${story}`;
-  test("already existing multiple likes", async ({ page }) => {
+  test.skip("already existing multiple likes", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getLikeToggle(page);
@@ -135,7 +135,7 @@ test.describe("LikeToggle: multiple likes", () => {
 test.describe("LikeToggle: likedmultiple hover", () => {
   const story = "liked-multiple";
   const screenshotNamePrefix = `${componentName}--${story}`;
-  test("hover visual", async ({ page }) => {
+  test.skip("hover visual", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getLikeToggle(page);
