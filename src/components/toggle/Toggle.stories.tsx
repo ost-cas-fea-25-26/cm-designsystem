@@ -32,7 +32,7 @@ const meta = {
       control: "boolean",
       description: "Whether the toggle has data (affects icon state)",
     },
-    onChange: {
+    onToggle: {
       action: "toggled",
       description: "Callback invoked when the toggle state changes",
     },
@@ -48,7 +48,7 @@ export const NoData: Story = {
     labelText: "Comment",
     pressed: false,
     hasData: false,
-    onChange: fn(),
+    onToggle: fn(),
   },
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial render without data", async () => {
@@ -61,7 +61,7 @@ export const NoData: Story = {
 
     await step("Click toggle", async () => {
       await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
-      await expect(args.onChange).toHaveBeenCalledWith(true);
+      await expect(args.onToggle).toHaveBeenCalledWith(true);
     });
   },
 };
@@ -72,7 +72,7 @@ export const WithData: Story = {
     labelText: "Comment",
     pressed: false,
     hasData: true,
-    onChange: fn(),
+    onToggle: fn(),
   },
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial render with data", async () => {
@@ -85,7 +85,7 @@ export const WithData: Story = {
 
     await step("Click toggle", async () => {
       await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
-      await expect(args.onChange).toHaveBeenCalledWith(true);
+      await expect(args.onToggle).toHaveBeenCalledWith(true);
     });
   },
 };
@@ -96,7 +96,7 @@ export const Pressed: Story = {
     labelText: "Comment",
     pressed: true,
     hasData: true,
-    onChange: fn(),
+    onToggle: fn(),
   },
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial pressed state", async () => {
@@ -109,7 +109,7 @@ export const Pressed: Story = {
 
     await step("Click to unpress toggle", async () => {
       await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
-      await expect(args.onChange).toHaveBeenCalledWith(false);
+      await expect(args.onToggle).toHaveBeenCalledWith(false);
     });
   },
 };
@@ -120,7 +120,7 @@ export const CustomLabel: Story = {
     labelText: "Comment",
     pressed: false,
     hasData: false,
-    onChange: fn(),
+    onToggle: fn(),
   },
   play: async ({ canvas, step }) => {
     await step("Check custom labels", async () => {

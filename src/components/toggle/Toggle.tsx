@@ -59,7 +59,7 @@ interface ToggleProps extends ToggleVariants {
   labelText: string;
   pressed?: boolean;
   hasData: boolean;
-  onChange: (toggled: boolean) => void;
+  onToggle: (toggled: boolean) => void;
 }
 
 export const Toggle = ({
@@ -67,28 +67,15 @@ export const Toggle = ({
   labelText,
   pressed = false,
   hasData,
-  onChange,
+  onToggle,
 }: ToggleProps) => {
-  const [selected, setSelected] = useState(pressed);
-
-  useEffect(() => {
-    setSelected(pressed);
-  }, [pressed]);
-
-  const { base, icon, label: labelSlot } = toggleStyles({ pressed: selected });
-
-  const handlePressedChange = (nextSelected: boolean) => {
-    if (nextSelected === selected) return;
-    setSelected(nextSelected);
-
-    onChange(nextSelected);
-  };
+  const { base, icon, label: labelSlot } = toggleStyles({ pressed: pressed });
 
   return (
     <RadixToggle.Root
       aria-label={ariaLabel}
       className={base()}
-      onPressedChange={handlePressedChange}
+      onPressedChange={() => onToggle(!pressed)}
     >
       <span
         className={icon()}
