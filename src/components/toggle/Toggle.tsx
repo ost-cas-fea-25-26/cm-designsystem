@@ -27,6 +27,30 @@ const toggleStyles = tv({
     icon: ["inline-flex"],
     label: [],
   },
+  variants: {
+    pressed: {
+      true: {
+        base: [],
+        icon: [],
+        label: [],
+      },
+      false: {
+        base: ["hover:bg-violet-50", "hover:text-violet-600"],
+        icon: [
+          "text-inherit",
+          "hover:transition-all",
+          "hover:duration-350",
+          "hover:ease-in-out",
+        ],
+        label: [
+          "text-inherit",
+          "hover:transition-all",
+          "hover:duration-350",
+          "hover:ease-in-out",
+        ],
+      },
+    },
+  },
 });
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
@@ -51,7 +75,7 @@ export const Toggle = ({
     setSelected(pressed);
   }, [pressed]);
 
-  const { base, icon, label: labelSlot } = toggleStyles({});
+  const { base, icon, label: labelSlot } = toggleStyles({ pressed: selected });
 
   const handlePressedChange = (nextSelected: boolean) => {
     if (nextSelected === selected) return;

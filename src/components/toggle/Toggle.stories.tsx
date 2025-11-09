@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Toggle component displays a reply icon that switches between filled and outline states based on whether there is data. Used for toggling reply status.",
+          "Toggle component displays a Comment icon that switches between filled and outline states based on whether there is data. Used for toggling Comment status.",
       },
     },
   },
@@ -44,8 +44,8 @@ type Story = StoryObj<typeof meta>;
 
 export const NoData: Story = {
   args: {
-    ariaLabel: "Reply",
-    labelText: "Reply",
+    ariaLabel: "Comment",
+    labelText: "Comment",
     pressed: false,
     hasData: false,
     onChange: fn(),
@@ -53,14 +53,14 @@ export const NoData: Story = {
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial render without data", async () => {
       await expect(
-        canvas.getByRole("button", { name: /Reply/i })
+        canvas.getByRole("button", { name: /Comment/i })
       ).toBeVisible();
-      await expect(canvas.getByText("Reply")).toBeVisible();
-      await expect(canvas.getByLabelText("ReplyOutline")).toBeInTheDocument();
+      await expect(canvas.getByText("Comment")).toBeVisible();
+      await expect(canvas.getByLabelText("CommentOutline")).toBeInTheDocument();
     });
 
     await step("Click toggle", async () => {
-      await userEvent.click(canvas.getByRole("button", { name: /Reply/i }));
+      await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
       await expect(args.onChange).toHaveBeenCalledWith(true);
     });
   },
@@ -68,8 +68,8 @@ export const NoData: Story = {
 
 export const WithData: Story = {
   args: {
-    ariaLabel: "Reply",
-    labelText: "Reply",
+    ariaLabel: "Comment",
+    labelText: "Comment",
     pressed: false,
     hasData: true,
     onChange: fn(),
@@ -77,14 +77,14 @@ export const WithData: Story = {
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial render with data", async () => {
       await expect(
-        canvas.getByRole("button", { name: /Reply/i })
+        canvas.getByRole("button", { name: /Comment/i })
       ).toBeVisible();
-      await expect(canvas.getByText("Reply")).toBeVisible();
-      await expect(canvas.getByLabelText("ReplyFilled")).toBeInTheDocument();
+      await expect(canvas.getByText("Comment")).toBeVisible();
+      await expect(canvas.getByLabelText("CommentFilled")).toBeInTheDocument();
     });
 
     await step("Click toggle", async () => {
-      await userEvent.click(canvas.getByRole("button", { name: /Reply/i }));
+      await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
       await expect(args.onChange).toHaveBeenCalledWith(true);
     });
   },
@@ -92,8 +92,8 @@ export const WithData: Story = {
 
 export const Pressed: Story = {
   args: {
-    ariaLabel: "Reply",
-    labelText: "Reply",
+    ariaLabel: "Comment",
+    labelText: "Comment",
     pressed: true,
     hasData: true,
     onChange: fn(),
@@ -101,14 +101,14 @@ export const Pressed: Story = {
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial pressed state", async () => {
       await expect(
-        canvas.getByRole("button", { name: /Reply/i })
+        canvas.getByRole("button", { name: /Comment/i })
       ).toBeVisible();
-      await expect(canvas.getByText("Reply")).toBeVisible();
-      await expect(canvas.getByLabelText("ReplyFilled")).toBeInTheDocument();
+      await expect(canvas.getByText("Comment")).toBeVisible();
+      await expect(canvas.getByLabelText("CommentFilled")).toBeInTheDocument();
     });
 
     await step("Click to unpress toggle", async () => {
-      await userEvent.click(canvas.getByRole("button", { name: /Reply/i }));
+      await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
       await expect(args.onChange).toHaveBeenCalledWith(false);
     });
   },
