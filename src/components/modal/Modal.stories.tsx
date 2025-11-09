@@ -44,7 +44,7 @@ export const Default: Story = {
           size="lg"
           label="Click Me!"
           onClick={() => setOpen(true)}
-         />
+        />
 
         <Modal open={open} onOpenChange={setOpen} title={args.title}>
           <Modal.Body>Hello, this is a Modal!!!</Modal.Body>
@@ -69,25 +69,5 @@ export const Default: Story = {
         </Modal>
       </div>
     );
-  },
-  play: async ({ args, userEvent, canvas, step }) => {
-    await step("Check initial render", async () => {
-      const input = canvas.getByPlaceholderText(/placeholder/i);
-      await expect(input).toBeVisible();
-      await expect(input).toHaveAccessibleName(/label/i);
-
-      const label = canvas.getByLabelText(/label/i);
-      await expect(label).toBeVisible();
-
-      const icon = canvas.getByText(/mumble/i);
-      await expect(icon).toBeVisible();
-    });
-
-    await step("Check click event", async () => {
-      const input = canvas.getByPlaceholderText(/placeholder/i);
-      await waitFor(() => userEvent.type(input, "a"));
-      input.blur();
-      await expect(args.onChange).toHaveBeenCalledWith("a");
-    });
   },
 };
