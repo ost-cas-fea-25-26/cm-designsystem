@@ -1,6 +1,5 @@
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
-import type { IconBaseProps } from "../icons/IconBase";
 import { Avatar } from "../avatar/Avatar";
 
 const naviUserButtonStyles = tv({
