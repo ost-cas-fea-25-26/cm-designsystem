@@ -42,7 +42,7 @@ const toggleStyles = tv({
     },
   },
   compoundVariants: [
-    // pressed + animating → Label ausblenden / nach oben verschieben
+    // pressed + animating --> Label ausblenden / nach oben verschieben
     {
       pressed: true,
       animating: true,
@@ -51,7 +51,7 @@ const toggleStyles = tv({
         icon: "text-pink-500",
       },
     },
-    // pressed + nicht animating → Label sichtbar
+    // pressed + nicht animating --> Label sichtbar
     {
       pressed: true,
       animating: false,
@@ -60,7 +60,7 @@ const toggleStyles = tv({
         icon: "text-pink-500",
       },
     },
-    // pressed + hasLikes → überschreibt Hover-Farbe
+    // pressed + hasLikes --> überschreibt Hover-Farbe
     {
       pressed: true,
       hasLikes: true,
@@ -98,7 +98,7 @@ interface ToggleProps extends ToggleVariants {
   ariaLabel: string;
   pressed?: boolean;
   likes?: number;
-  onLikeChange?: (liked: boolean) => void;
+  onLikeChange: (liked: boolean) => void;
 }
 
 export const Toggle = ({
@@ -127,7 +127,7 @@ export const Toggle = ({
     setLabel(nextSelected ? "Liked" : "Like");
 
     // Parent informieren
-    onLikeChange?.(nextSelected);
+    onLikeChange(nextSelected);
 
     // Nach 2s Text auf "1 Like" oder "x Likes" animiert ändern
     setTimeout(() => {
