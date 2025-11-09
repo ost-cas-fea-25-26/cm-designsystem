@@ -1,10 +1,11 @@
 import * as RadixForm from "@radix-ui/react-form";
 import { expect, fn, waitFor } from "storybook/test";
-import { Cancel, Mumble } from "../icons/generated";
+import { Cancel, Checkmark, Mumble } from "../icons/generated";
 import { Modal } from "./Modal";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "../button/Button";
 import * as RadixDialog from "@radix-ui/react-dialog";
+import { useState } from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -31,27 +32,46 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
-    title: "Test",
-    children: [
-      // <Modal.Trigger>
-      //   {/* <Button
-      //     intent="primary"
-      //     label="Open Modal"
-      //     size="md"
-      //     onClick={fn()}
-      //   ></Button> */}
-      //   <button>Edit Profile</button>
-      // </Modal.Trigger>,
-      // <Modal.Content>
-      //   <span>Hellouuu</span>
-      // </Modal.Content>,
-    ],
+    title: "Modal",
+    open: false,
+    children: [],
+    onOpenChange: fn(),
   },
-  render: (args) => (
-    <div>
-      <Modal title="Test"></Modal>
-    </div>
-  ),
+  render: (args) => {
+    const [open, setOpen] = useState(args.open);
+    return (
+      <div>
+        <Button
+          intent="primary"
+          size="lg"
+          label="Click Me!"
+          onClick={() => setOpen(true)}
+        ></Button>
+
+        <Modal open={open} onOpenChange={setOpen} title={args.title}>
+          <Modal.Body>Hello, this is a Modal!!!</Modal.Body>
+          <Modal.Actions>
+            <Button
+              intent="primary"
+              size="md"
+              label="Cancel"
+              onClick={() => setOpen(false)}
+            >
+              <Cancel />
+            </Button>
+            <Button
+              intent="secondary"
+              size="md"
+              label="Save"
+              onClick={() => setOpen(false)}
+            >
+              <Checkmark />
+            </Button>
+          </Modal.Actions>
+        </Modal>
+      </div>
+    );
+  },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       const input = canvas.getByPlaceholderText(/placeholder/i);

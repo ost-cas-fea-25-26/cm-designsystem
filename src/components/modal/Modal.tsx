@@ -7,55 +7,72 @@ import { Button } from "../button/Button";
 
 const modalStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "gap-1"],
+    overlay: ["fixed", "inset-0", "bg-black/20"],
+    content: [
+      "fixed",
+      "top-1/2",
+      "left-1/2",
+      "w-full",
+      "max-w-md",
+      "-translate-x-1/2",
+      "-translate-y-1/2",
+      "rounded-2xl",
+      "bg-white",
+    ],
+    title: [
+      "flex",
+      "justify-between",
+      "rounded-t-2xl",
+      "bg-violet-600",
+      "pt-6",
+      "pr-8",
+      "pb-6",
+      "pl-8",
+      "text-white",
+    ],
+    container: ["flex", "flex-col", "items-center", "gap-12", "p-8"],
+    actions: ["flex", "items-center", "gap-4"],
   },
-  variants: {},
 });
 
 type ModalVariants = VariantProps<typeof modalStyles>;
 
 interface ModalProps extends ModalVariants {
   title: string;
-  children?: React.ReactNode;
-}
-
-ModalTrigger.displayName = "ModalTrigger";
-export function ModalTrigger({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
-}
-
-ModalContent.displayName = "ModalContent";
-export function ModalContent({ children }: { children: React.ReactNode }) {
-  return children;
+  open: boolean;
+  onOpenChange: (isOpen: boolean) => void;
+  children: React.ReactNode;
 }
 
 export const Modal: React.FC<ModalProps> & {
-  Trigger: typeof ModalTrigger;
-  Content: typeof ModalContent;
+  Body: typeof ModalBody;
+  Actions: typeof ModalActions;
 } = (props) => {
-  let trigger: React.ReactElement | null = null;
-  let content: React.ReactElement | null = null;
+  let modalBody: React.ReactElement | null = null;
+  let modalActions: React.ReactElement | null = null;
 
   React.Children.forEach(props.children, (child) => {
     if (!React.isValidElement(child)) return;
 
     switch (child.type) {
-      case ModalTrigger:
-        trigger = child;
+      case ModalBody:
+        modalBody = child;
         break;
-      case ModalContent:
-        content = child;
+      case ModalActions:
+        modalActions = child;
         break;
     }
   });
+  console.log(modalBody, modalActions);
+
+  const { overlay, content, title, container, actions } = modalStyles(props);
 
   return (
-    <RadixDialog.Root>
-      <RadixDialog.Trigger>Test</RadixDialog.Trigger>
+    <RadixDialog.Root open={props.open} onOpenChange={props.onOpenChange}>
       <RadixDialog.Portal>
-        <RadixDialog.Overlay className="fixed inset-0 bg-black/20" />
-        <RadixDialog.Content className="fixed top-1/2 left-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white">
-          <RadixDialog.Title className="flex justify-between rounded-t-2xl bg-violet-600 pt-6 pr-8 pb-6 pl-8 text-white">
+        <RadixDialog.Overlay className={overlay()} />
+        <RadixDialog.Content className={content()}>
+          <RadixDialog.Title className={title()}>
             <Heading as="span" size="3">
               {props.title}
             </Heading>
@@ -65,32 +82,11 @@ export const Modal: React.FC<ModalProps> & {
           </RadixDialog.Title>
 
           {/* Content */}
-          <div className="flex flex-col items-center gap-12 p-8">
+          <div className={container()}>
             {/* Body */}
-            <div>This is a Test Modal!!!</div>
+            <div>{modalBody}</div>
             {/* Footer */}
-            <div className="flex items-center gap-4">
-              <RadixDialog.Close asChild>
-                <Button
-                  intent="primary"
-                  size="md"
-                  label="Abbrechen"
-                  onClick={() => {}}
-                >
-                  <Cancel />
-                </Button>
-              </RadixDialog.Close>
-              <RadixDialog.Close asChild>
-                <Button
-                  intent="secondary"
-                  size="md"
-                  label="Speichern"
-                  onClick={() => {}}
-                >
-                  <Checkmark />
-                </Button>
-              </RadixDialog.Close>
-            </div>
+            <div className={actions()}>{modalActions}</div>
           </div>
         </RadixDialog.Content>
       </RadixDialog.Portal>
@@ -98,5 +94,15 @@ export const Modal: React.FC<ModalProps> & {
   );
 };
 
-Modal.Trigger = ModalTrigger;
-Modal.Content = ModalContent;
+ModalBody.displayName = "ModalBody";
+export function ModalBody({ children }: { children: React.ReactNode }) {
+  return children;
+}
+
+ModalActions.displayName = "ModalActions";
+export function ModalActions({ children }: { children: React.ReactNode }) {
+  return children;
+}
+
+Modal.Body = ModalBody;
+Modal.Actions = ModalActions;
