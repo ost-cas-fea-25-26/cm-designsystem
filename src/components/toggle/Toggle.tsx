@@ -1,5 +1,4 @@
 import * as RadixToggle from "@radix-ui/react-toggle";
-import { useEffect, useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { ReplyFilled, ReplyOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
@@ -30,9 +29,19 @@ const toggleStyles = tv({
   variants: {
     pressed: {
       true: {
-        base: [],
-        icon: [],
-        label: [],
+        base: ["hover:bg-violet-50", "hover:text-violet-600"],
+        icon: [
+          "text-violet-600",
+          "hover:transition-all",
+          "hover:duration-300",
+          "hover:ease-out",
+        ],
+        label: [
+          "text-inherit",
+          "hover:transition-all",
+          "hover:duration-300",
+          "hover:ease-out",
+        ],
       },
       false: {
         base: ["hover:bg-violet-50", "hover:text-violet-600"],
@@ -58,7 +67,6 @@ interface ToggleProps extends ToggleVariants {
   ariaLabel: string;
   labelText: string;
   pressed?: boolean;
-  hasData: boolean;
   onToggle: (toggled: boolean) => void;
 }
 
@@ -66,10 +74,9 @@ export const Toggle = ({
   ariaLabel,
   labelText,
   pressed = false,
-  hasData,
   onToggle,
 }: ToggleProps) => {
-  const { base, icon, label: labelSlot } = toggleStyles({ pressed: pressed });
+  const { base, icon, label: labelSlot } = toggleStyles({ pressed });
 
   return (
     <RadixToggle.Root
@@ -80,9 +87,9 @@ export const Toggle = ({
       <span
         className={icon()}
         aria-hidden="true"
-        aria-label={hasData ? "ReplyFilled" : "ReplyOutline"}
+        aria-label={pressed ? "ReplyFilled" : "ReplyOutline"}
       >
-        {hasData ? <ReplyFilled /> : <ReplyOutline />}
+        {pressed ? <ReplyFilled /> : <ReplyOutline />}
       </span>
       <span className={labelSlot()}>
         <Label as="span" size="md">

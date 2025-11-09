@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { expect, fn } from "storybook/test";
 import { Toggle } from "./Toggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -26,11 +27,7 @@ const meta = {
     },
     pressed: {
       control: "boolean",
-      description: "Initial pressed state of the toggle",
-    },
-    hasData: {
-      control: "boolean",
-      description: "Whether the toggle has data (affects icon state)",
+      description: "Pressed state of the toggle (affects icon and styling)",
     },
     onToggle: {
       action: "toggled",
@@ -42,48 +39,37 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const NoData: Story = {
+export const Unpressed: Story = {
   args: {
     ariaLabel: "Comment",
     labelText: "Comment",
     pressed: false,
-    hasData: false,
     onToggle: fn(),
   },
+  render: (args) => {
+    const [pressed, setPressed] = useState(args.pressed);
+
+    useEffect(() => {
+      setPressed(args.pressed);
+    }, [args.pressed]);
+
+    const handleToggle = (toggled: boolean) => {
+      setPressed(toggled);
+      args.onToggle?.(toggled);
+    };
+
+    return <Toggle {...args} pressed={pressed} onToggle={handleToggle} />;
+  },
   play: async ({ args, canvas, step, userEvent }) => {
-    await step("Check initial render without data", async () => {
+    await step("Check initial unpressed state", async () => {
       await expect(
         canvas.getByRole("button", { name: /Comment/i })
       ).toBeVisible();
       await expect(canvas.getByText("Comment")).toBeVisible();
-      await expect(canvas.getByLabelText("CommentOutline")).toBeInTheDocument();
+      await expect(canvas.getByLabelText("ReplyOutline")).toBeInTheDocument();
     });
 
-    await step("Click toggle", async () => {
-      await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
-      await expect(args.onToggle).toHaveBeenCalledWith(true);
-    });
-  },
-};
-
-export const WithData: Story = {
-  args: {
-    ariaLabel: "Comment",
-    labelText: "Comment",
-    pressed: false,
-    hasData: true,
-    onToggle: fn(),
-  },
-  play: async ({ args, canvas, step, userEvent }) => {
-    await step("Check initial render with data", async () => {
-      await expect(
-        canvas.getByRole("button", { name: /Comment/i })
-      ).toBeVisible();
-      await expect(canvas.getByText("Comment")).toBeVisible();
-      await expect(canvas.getByLabelText("CommentFilled")).toBeInTheDocument();
-    });
-
-    await step("Click toggle", async () => {
+    await step("Click toggle to press", async () => {
       await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
       await expect(args.onToggle).toHaveBeenCalledWith(true);
     });
@@ -95,8 +81,21 @@ export const Pressed: Story = {
     ariaLabel: "Comment",
     labelText: "Comment",
     pressed: true,
-    hasData: true,
     onToggle: fn(),
+  },
+  render: (args) => {
+    const [pressed, setPressed] = useState(args.pressed);
+
+    useEffect(() => {
+      setPressed(args.pressed);
+    }, [args.pressed]);
+
+    const handleToggle = (toggled: boolean) => {
+      setPressed(toggled);
+      args.onToggle?.(toggled);
+    };
+
+    return <Toggle {...args} pressed={pressed} onToggle={handleToggle} />;
   },
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial pressed state", async () => {
@@ -104,7 +103,7 @@ export const Pressed: Story = {
         canvas.getByRole("button", { name: /Comment/i })
       ).toBeVisible();
       await expect(canvas.getByText("Comment")).toBeVisible();
-      await expect(canvas.getByLabelText("CommentFilled")).toBeInTheDocument();
+      await expect(canvas.getByLabelText("ReplyFilled")).toBeInTheDocument();
     });
 
     await step("Click to unpress toggle", async () => {
@@ -119,8 +118,21 @@ export const CustomLabel: Story = {
     ariaLabel: "Comment on post",
     labelText: "Comment",
     pressed: false,
-    hasData: false,
     onToggle: fn(),
+  },
+  render: (args) => {
+    const [pressed, setPressed] = useState(args.pressed);
+
+    useEffect(() => {
+      setPressed(args.pressed);
+    }, [args.pressed]);
+
+    const handleToggle = (toggled: boolean) => {
+      setPressed(toggled);
+      args.onToggle?.(toggled);
+    };
+
+    return <Toggle {...args} pressed={pressed} onToggle={handleToggle} />;
   },
   play: async ({ canvas, step }) => {
     await step("Check custom labels", async () => {
