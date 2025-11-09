@@ -1,10 +1,10 @@
 import { expect, fn } from "storybook/test";
-import { CopyLinkButton } from "./CopyLinkButton";
+import { TimedButton } from "./TimedButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: "Components/CopyLinkButton",
-  component: CopyLinkButton,
+  title: "Components/TimedButton",
+  component: TimedButton,
   parameters: {
     layout: "centered",
   },
@@ -26,7 +26,7 @@ const meta = {
       action: "clicked",
     },
   },
-} satisfies Meta<typeof CopyLinkButton>;
+} satisfies Meta<typeof TimedButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
