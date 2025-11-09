@@ -79,13 +79,21 @@ const copyLinkButtonStyles = tv({
 type ShareButtonVariants = VariantProps<typeof copyLinkButtonStyles>;
 interface ShareButtonProps extends ShareButtonVariants {
   onClick: () => void;
+  icon: React.ReactElement;
 }
 
-export const CopyLinkButton = ({ onClick }: ShareButtonProps) => {
+export const CopyLinkButton = ({
+  onClick,
+  icon = <Share />,
+}: ShareButtonProps) => {
   const [pressed, setPressed] = useState(false);
   const [animating, setAnimating] = useState(false);
 
-  const { base, icon, label } = copyLinkButtonStyles({ pressed, animating });
+  const {
+    base,
+    icon: iconClass,
+    label,
+  } = copyLinkButtonStyles({ pressed, animating });
 
   const handleClick = () => {
     // Klick -> Pressed
@@ -107,8 +115,8 @@ export const CopyLinkButton = ({ onClick }: ShareButtonProps) => {
 
   return (
     <button className={base()} onClick={handleClick}>
-      <span className={icon()} aria-hidden="true">
-        <Share />
+      <span className={iconClass()} aria-hidden="true">
+        {icon}
       </span>
       <span className={label()}>
         <Label as="span" size="md">
