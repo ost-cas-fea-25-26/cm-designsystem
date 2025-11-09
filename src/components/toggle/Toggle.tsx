@@ -82,7 +82,8 @@ export const Toggle = ({
     <RadixToggle.Root
       aria-label={ariaLabel}
       className={base()}
-      onPressedChange={() => onToggle(!pressed)}
+      pressed={pressed}
+      onPressedChange={onToggle}
     >
       <span
         className={icon()}

@@ -62,16 +62,17 @@ export const Unpressed: Story = {
   },
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial unpressed state", async () => {
-      await expect(
-        canvas.getByRole("button", { name: /Comment/i })
-      ).toBeVisible();
+      const button = canvas.getByRole("button", { name: /Comment/i });
+      await expect(button).toBeVisible();
       await expect(canvas.getByText("Comment")).toBeVisible();
       await expect(canvas.getByLabelText("ReplyOutline")).toBeInTheDocument();
     });
 
     await step("Click toggle to press", async () => {
-      await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
+      const button = canvas.getByRole("button", { name: /Comment/i });
+      await userEvent.click(button);
       await expect(args.onToggle).toHaveBeenCalledWith(true);
+      await expect(canvas.getByLabelText("ReplyFilled")).toBeInTheDocument();
     });
   },
 };
@@ -99,16 +100,17 @@ export const Pressed: Story = {
   },
   play: async ({ args, canvas, step, userEvent }) => {
     await step("Check initial pressed state", async () => {
-      await expect(
-        canvas.getByRole("button", { name: /Comment/i })
-      ).toBeVisible();
+      const button = canvas.getByRole("button", { name: /Comment/i });
+      await expect(button).toBeVisible();
       await expect(canvas.getByText("Comment")).toBeVisible();
       await expect(canvas.getByLabelText("ReplyFilled")).toBeInTheDocument();
     });
 
     await step("Click to unpress toggle", async () => {
-      await userEvent.click(canvas.getByRole("button", { name: /Comment/i }));
+      const button = canvas.getByRole("button", { name: /Comment/i });
+      await userEvent.click(button);
       await expect(args.onToggle).toHaveBeenCalledWith(false);
+      await expect(canvas.getByLabelText("ReplyOutline")).toBeInTheDocument();
     });
   },
 };
