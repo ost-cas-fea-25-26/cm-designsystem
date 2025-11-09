@@ -1,5 +1,5 @@
 import * as RadixToggle from "@radix-ui/react-toggle";
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { HeartFilled, HeartOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
@@ -96,7 +96,6 @@ const toggleStyles = tv({
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
 interface ToggleProps extends ToggleVariants {
-  
   ariaLabel: string;
   pressed?: boolean;
   likes?: number;

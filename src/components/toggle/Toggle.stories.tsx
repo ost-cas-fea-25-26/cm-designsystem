@@ -29,6 +29,10 @@ const meta = {
       control: { type: "number", min: 0 },
       description: "Existing like count (0 = first like animation)",
     },
+    onLikeChange: {
+      action: "likeChanged",
+      description: "Callback invoked after user toggles like (pressed state).",
+    },
   },
 } satisfies Meta<typeof Toggle>;
 
@@ -40,7 +44,7 @@ export const NoLikes: Story = {
     pressed: false,
     ariaLabel: "Like",
     likes: 0,
-    children: "Toggle",
+    onLikeChange: () => {},
   },
   play: async ({ canvas, step }) => {
     await step("Initial label is 'Like'", async () => {
@@ -55,7 +59,7 @@ export const NoLikesHover: Story = {
     pressed: false,
     ariaLabel: "Like",
     likes: 0,
-    children: "Toggle",
+    onLikeChange: () => {},
   },
   play: async ({ canvas, step, userEvent }) => {
     const button = canvas.getByRole("button", { name: /Like/i });
@@ -73,7 +77,7 @@ export const ExistingLikes: Story = {
     pressed: false,
     ariaLabel: "5 Likes",
     likes: 5,
-    children: "Toggle",
+    onLikeChange: () => {},
   },
   play: async ({ canvas, step }) => {
     await step("Shows existing likes count", async () => {
@@ -89,7 +93,7 @@ export const FirstLikeAnimation: Story = {
   args: {
     ariaLabel: "Like",
     likes: 0,
-    children: "Toggle",
+    onLikeChange: () => {},
   },
   render: (args) => {
     return <Toggle {...args} />;
@@ -111,7 +115,7 @@ export const IncrementExistingLikes: Story = {
   args: {
     ariaLabel: "5 Likes",
     likes: 5,
-    children: "Toggle",
+    onLikeChange: () => {},
   },
   render: (args) => {
     return <Toggle {...args} />;
@@ -133,7 +137,7 @@ export const Liked: Story = {
     pressed: true,
     ariaLabel: "1 Like",
     likes: 1,
-    children: "Toggle",
+    onLikeChange: () => {},
   },
   play: async ({ canvas, step }) => {
     await step("Shows pressed liked state with final count", async () => {
@@ -150,7 +154,7 @@ export const LikedMultiple: Story = {
     pressed: true,
     ariaLabel: "12 Likes",
     likes: 12,
-    children: "Toggle",
+    onLikeChange: () => {},
   },
   play: async ({ canvas, step }) => {
     await step(
