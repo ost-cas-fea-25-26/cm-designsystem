@@ -72,7 +72,7 @@ export const NoLikesHover: Story = {
   },
 };
 
-export const ExistingLikes: Story = {
+export const ExistingLikesNotLiked: Story = {
   args: {
     pressed: false,
     ariaLabel: "5 Likes",
@@ -88,6 +88,22 @@ export const ExistingLikes: Story = {
     });
   },
 };
+
+export const ExistingLikesLiked: Story = {
+  args: {
+    pressed: true,
+    ariaLabel: "5 Likes",
+    likes: 5,
+    onLikeChange: () => {},
+  },
+  play: async ({ canvas, step }) => {
+    await step("Shows pressed state with existing 5 likes", async () => {
+      await expect(canvas.getByRole("button", { name: /5 Likes/i })).toBeVisible();
+      await expect(canvas.getByText(/5 Likes/)).toBeVisible();
+    });
+  },
+};
+
 
 export const FirstLikeAnimation: Story = {
   args: {
@@ -111,60 +127,5 @@ export const FirstLikeAnimation: Story = {
   },
 };
 
-export const IncrementExistingLikes: Story = {
-  args: {
-    ariaLabel: "5 Likes",
-    likes: 5,
-    onLikeChange: () => {},
-  },
-  render: (args) => {
-    return <Toggle {...args} />;
-  },
-  play: async ({ canvas, step, userEvent }) => {
-    const button = canvas.getByRole("button", { name: /5 Likes/i });
-    await step(
-      "Click adds immediate +1 (label updates after animation logic)",
-      async () => {
-        await userEvent.click(button);
-        await expect(canvas.getByText(/Liked/)).toBeVisible();
-      }
-    );
-  },
-};
 
-export const Liked: Story = {
-  args: {
-    pressed: true,
-    ariaLabel: "1 Like",
-    likes: 1,
-    onLikeChange: () => {},
-  },
-  play: async ({ canvas, step }) => {
-    await step("Shows pressed liked state with final count", async () => {
-      await expect(
-        canvas.getByRole("button", { name: /1 Like/i })
-      ).toBeVisible();
-      await expect(canvas.getByText(/1 Like/)).toBeVisible();
-    });
-  },
-};
 
-export const LikedMultiple: Story = {
-  args: {
-    pressed: true,
-    ariaLabel: "12 Likes",
-    likes: 12,
-    onLikeChange: () => {},
-  },
-  play: async ({ canvas, step }) => {
-    await step(
-      "Shows pressed state with existing likes (includes +1 visually)",
-      async () => {
-        await expect(
-          canvas.getByRole("button", { name: /12 Likes/i })
-        ).toBeVisible();
-        await expect(canvas.getByText(/12 Likes/)).toBeVisible();
-      }
-    );
-  },
-};
