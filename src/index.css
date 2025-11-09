@@ -1,6 +1,4 @@
 @import "tailwindcss";
-/* Explicit include of bg-* classes, so it can be dynamically displayed in Color documentation */
-@source "inline:bg-{slate,pink,violet}-{50,{100..900..100},950} bg-{white,black}";
 
 @theme {
   /* -----------------------------------------
