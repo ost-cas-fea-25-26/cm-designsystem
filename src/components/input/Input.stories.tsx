@@ -1,8 +1,9 @@
-import { fn } from "storybook/test";
+import * as RadixForm from "@radix-ui/react-form";
+import { expect, fn, waitFor, fireEvent } from "storybook/test";
+import { Button } from "../button/Button";
+import { Mumble } from "../icons/generated";
 import { Input } from "./Input";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Mumble } from "../icons/generated";
-import * as RadixForm from "@radix-ui/react-form";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -18,18 +19,29 @@ const meta = {
   argTypes: {
     label: {
       control: "text",
+      description: "Label of input.",
     },
     name: {
       control: "text",
+      description:
+        "Name of input, which is used for accessibility and validation messages.",
     },
     placeholder: {
       control: "text",
+      description: "Placeholder text.",
     },
     isRequired: {
       control: "boolean",
+      description:
+        "Sets inputs as required and shows validation messages when required.",
+    },
+    type: {
+      control: "text",
+      description: "Type of input (e.g text, email, ...)",
     },
     children: {
       control: "object",
+      description: "Icon of the input.",
     },
   },
 } satisfies Meta<typeof Input>;
@@ -40,10 +52,11 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {
-    label: "Enter Email",
-    name: "email",
-    placeholder: "hans.muster@email.com",
+    label: "Label",
+    name: "field",
+    placeholder: "Placeholder",
     isRequired: true,
+    type: "text",
     onChange: fn(),
     children: <Mumble />,
   },
@@ -52,16 +65,156 @@ export const Default: Story = {
       <Input {...args} />
     </RadixForm.Root>
   ),
-  // play: async ({ args, userEvent, canvas, step }) => {
-  //   await step("Check initial render", async () => {
-  //     await waitFor(() => expect(canvas.getByRole("img")).toBeVisible());
-  //     await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
-  //     await expect(canvas.queryByRole("button")).not.toBeInTheDocument();
-  //   });
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await expect(input).toBeVisible();
+      await expect(input).toHaveAccessibleName(/label/i);
 
-  //   await step("Check click event", async () => {
-  //     await userEvent.click(canvas.getByRole("img"));
-  //     await expect(args.onClick).toHaveBeenCalled();
-  //   });
-  // },
+      const label = canvas.getByLabelText(/label/i);
+      await expect(label).toBeVisible();
+
+      const icon = canvas.getByText(/mumble/i);
+      await expect(icon).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await waitFor(() => userEvent.type(input, "a"));
+      await expect(args.onChange).toHaveBeenCalledWith("a");
+    });
+  },
+};
+
+export const TypeValidation: Story = {
+  args: {
+    label: "Label",
+    name: "field",
+    placeholder: "Placeholder",
+    isRequired: true,
+    type: "email",
+    onChange: fn(),
+    children: <Mumble />,
+  },
+  render: (args) => (
+    <RadixForm.Root>
+      <Input {...args} />
+    </RadixForm.Root>
+  ),
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await expect(input).toBeVisible();
+      await expect(input).toHaveAccessibleName(/label/i);
+
+      const label = canvas.getByLabelText(/label/i);
+      await expect(label).toBeVisible();
+
+      const icon = canvas.getByText(/mumble/i);
+      await expect(icon).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await expect(
+        canvas.queryByText(/field is invalid/i)
+      ).not.toBeInTheDocument();
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await waitFor(() => userEvent.type(input, "hans.muster[Tab]"));
+      fireEvent.change(input, { target: { value: "hans.muster" } });
+      await waitFor(() => expect(args.onChange).toHaveBeenCalled());
+      await waitFor(() =>
+        expect(canvas.queryByText(/field is invalid/i)).toBeVisible()
+      );
+    });
+  },
+};
+
+export const RequiredValidation: Story = {
+  args: {
+    label: "Label",
+    name: "field",
+    placeholder: "Placeholder",
+    isRequired: true,
+    type: "email",
+    onChange: fn(),
+    children: <Mumble />,
+  },
+  render: (args) => (
+    <RadixForm.Root>
+      <Input {...args} />
+      <RadixForm.Submit asChild>
+        <Button
+          intent="secondary"
+          label="Test required"
+          size="md"
+          onClick={fn()}
+        />
+      </RadixForm.Submit>
+    </RadixForm.Root>
+  ),
+  play: async ({ userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await expect(input).toBeVisible();
+      await expect(input).toHaveAccessibleName(/label/i);
+
+      const label = canvas.getByLabelText(/label/i);
+      await expect(label).toBeVisible();
+
+      const icon = canvas.getByText(/mumble/i);
+      await expect(icon).toBeVisible();
+    });
+
+    await step("Check click event", async () => {
+      await expect(
+        canvas.queryByText(/field is required/i)
+      ).not.toBeInTheDocument();
+      const button = canvas.getByRole("button");
+      await waitFor(() => userEvent.click(button));
+      await expect(
+        canvas.queryByText(/field is required/i)
+      ).toBeInTheDocument();
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await waitFor(() => userEvent.type(input, "test[Tab]"));
+      await waitFor(() => userEvent.click(button));
+      await expect(
+        canvas.queryByText(/field is required/i)
+      ).not.toBeInTheDocument();
+    });
+  },
+};
+
+export const NoIcon: Story = {
+  args: {
+    label: "Label",
+    name: "field",
+    placeholder: "Placeholder",
+    isRequired: true,
+    type: "text",
+    onChange: fn(),
+  },
+  render: (args) => (
+    <RadixForm.Root>
+      <Input {...args} />
+    </RadixForm.Root>
+  ),
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await expect(input).toBeVisible();
+      await expect(input).toHaveAccessibleName(/label/i);
+
+      const label = canvas.getByLabelText(/label/i);
+      await expect(label).toBeVisible();
+
+      const icon = canvas.queryByText(/mumble/i);
+      await expect(icon).not.toBeInTheDocument();
+    });
+
+    await step("Check click event", async () => {
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await waitFor(() => userEvent.type(input, "a"));
+      await expect(args.onChange).toHaveBeenCalledWith("a");
+    });
+  },
 };

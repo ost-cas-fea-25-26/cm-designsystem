@@ -1,14 +1,6 @@
 import { createElement } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
-
-const placeholderStyles = tv({
-  base: [
-    "font-medium",
-    "text-slate-300",
-    "text-[16px]/[100%]",
-    "tracking-normal",
-  ],
-});
+import { type VariantProps } from "tailwind-variants";
+import type { placeholderStyles } from "./styles";
 
 type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
 

@@ -3,6 +3,7 @@ import { Heading } from "./Heading";
 import { Paragraph } from "./Paragraph";
 import { Label } from "./Label";
 import { Placeholder } from "./Placeholder";
+import { ValidationMessage } from "./ValidationMessage";
 
 <Meta title="Typography" />
 
@@ -64,4 +65,12 @@ import { Placeholder } from "./Placeholder";
 
 <Unstyled>
   <Placeholder as="span">Lorem ipsum dolor sit amet</Placeholder>
+</Unstyled>
+
+## Validation messages
+
+<Unstyled>
+  <ValidationMessage as="span" type="error">
+    Lorem ipsum dolor sit amet
+  </ValidationMessage>
 </Unstyled>

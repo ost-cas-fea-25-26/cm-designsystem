@@ -1,17 +1,6 @@
 import { createElement } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
-
-const labelStyles = tv({
-  base: ["font-semibold", "tracking-normal"],
-  variants: {
-    size: {
-      xl: ["text-[24px]/[100%]"],
-      lg: ["text-[20px]/[100%]"],
-      md: ["text-[16px]/[100%]"],
-      sm: ["text-[14px]/[100%]"],
-    },
-  },
-});
+import { type VariantProps } from "tailwind-variants";
+import type { labelStyles } from "./styles";
 
 type LabelVariants = VariantProps<typeof labelStyles>;
 type LabelSize = "xl" | "lg" | "md" | "sm";
