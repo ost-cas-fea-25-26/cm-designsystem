@@ -7,137 +7,135 @@ import { Label } from "../typography/Label";
 const toggleStyles = tv({
   slots: {
     base: [
-      // layout + spacing + shape
       "inline-flex items-center justify-center gap-2 h-8 px-3 py-2 rounded-full",
-      // interaction & motion
       "transition-all duration-150 ease-in-out",
-      // focus styles
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
       "disabled:opacity-50 disabled:pointer-events-none",
     ],
     icon: "inline-flex",
-    label: ""
+    label: "",
   },
   variants: {
     pressed: {
       false: {
         base: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
         icon: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
-        label: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out"
-        
+        label: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
       },
       true: {
-        base: "",
-        icon: "text-pink-500 transition-all duration-300  ease-out",
-        label: "text-pink-900  transition-transform delay-2000 duration-300  ease-out",        
-        // todo: label "liked" to "1 Like" transition
-      },      
+        base: "", // Farbe für pressed wird über label festgelegt
+        icon: "text-pink-500 transition-all duration-300 ease-out",
+        label: "text-pink-900 transition-transform duration-300 ease-out",
+      },
     },
     hasLikes: {
       true: {
-        base:"hover:bg-pink-50 hover:text-pink-600",        
-        icon: "text-pink-500 ",
-        label: "text-pink-900  ",                
+        base: "hover:bg-pink-50 hover:text-pink-600",
+        icon: "text-pink-500",
+        label: "text-pink-900",
       },
-      false: ""
-    }
-    
+      false: "",
+    },
+    animating: {
+      true: {},
+      false: {},
+    },
   },
-
-  // compoundVariants: [
-  //   // pressed like + animating  -> from "Liked" to "x Likes"
-  //   {
-  //     pressed: true,
-  //     animating: true,
-  //     class: {
-  //       label: "opacity-0 -translate-y-1 text-pink-900",        
-  //       icon: "text-pink-500",
-  //     },
-  //   },
-  //   // pressed like + not animating (does this case exist?) -> stays "x Likes"
-  //   {
-  //     pressed: true,
-  //     animating: false,
-  //     class: {
-  //       label: "opacity-100 translate-y-0 text-pink-900",
-  //       icon: "text-pink-500",
-  //     },
-  //   },
-  //   // not pressed like + animating -> from "Like" to "1 Like"
-  //   {
-  //     pressed: false,
-  //     animating: true,
-  //     class: {
-  //       label: "opacity-0 -translate-y-1",
-  //     },
-  //   },
-  //    // not pressed like + not animating -> stays "Like"
-  //   {
-  //     pressed: false,
-  //     animating: false,
-  //     class: {
-  //       label: "opacity-100 translate-y-0",
-  //     },
-  //   },
-  // ],
+  compoundVariants: [
+    // pressed + animating → Label ausblenden / nach oben verschieben
+    {
+      pressed: true,
+      animating: true,
+      class: {
+        label: "opacity-0 -translate-y-1 transition-all duration-300 ease-out",
+        icon: "text-pink-500",
+      },
+    },
+    // pressed + nicht animating → Label sichtbar
+    {
+      pressed: true,
+      animating: false,
+      class: {
+        label: "opacity-100 translate-y-0 text-pink-900 transition-all duration-300 ease-out",
+        icon: "text-pink-500",
+      },
+    },
+    // pressed + hasLikes → überschreibt Hover-Farbe
+    {
+      pressed: true,
+      hasLikes: true,
+      class: {
+        label: "text-pink-900",
+      },
+    },
+    // not pressed + animating
+    {
+      pressed: false,
+      animating: true,
+      class: {
+        label: "opacity-0 -translate-y-1 transition-all duration-300 ease-out",
+      },
+    },
+    // not pressed + nicht animating
+    {
+      pressed: false,
+      animating: false,
+      class: {
+        label: "opacity-100 translate-y-0 transition-all duration-300 ease-out",
+      },
+    },
+  ],
   defaultVariants: {
     pressed: false,
     animating: false,
   },
 });
 
-/*
- * Varianten:
- * Ohne Data
- * - pressed: active / "Liked"
- *  - todo: transition for 2s to "1 Like" after click
- * - not pressed:
- *  - default: schwarzes "Like"
- *  - hover: pinkes "Like" mit pinkem Hintergrund
- *
- * Mit Data (Es gibt schon Likes)
- * - pressed: active / "x Likes" (text: pink-900, icon: pink-500) + 1 like (achtung: state / data)
- * - not pressed:
- *  - default: "x Likes" (text: pink-900, icon: pink-500)
- *  - hover: pinkes "x Likes" mit pinkem Hintergrund (text: pink-500, icon: pink-500)
- */
-
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
 interface ToggleProps extends ToggleVariants {
-  children: ReactNode;
+  children?: ReactNode;
   ariaLabel: string;
   pressed?: boolean;
   likes?: number;
+  onLikeChange?: (liked: boolean) => void;
 }
 
-export const Toggle = ({ ariaLabel, pressed = false, likes = 0 }: ToggleProps) => {
-  /*
-   * no likes: "Like"
-   * clicked: "Liked"
-   * clicked + 2s: "1 Like"
-   * likes > 0: "x Likes"
-   */
-  // const [animating, setAnimating] = useState(false);
+export const Toggle = ({
+  ariaLabel,
+  pressed = false,
+  likes = 0,
+  onLikeChange,
+}: ToggleProps) => {
+  const [animating, setAnimating] = useState(false);
   const [selected, setSelected] = useState(pressed);
   const [label, setLabel] = useState(
     likes ? (likes === 1 ? `${likes} Like` : `${likes} Likes`) : "Like"
   );
 
-  
-  const { base, icon, label: labelSlot } = toggleStyles({ pressed: selected, hasLikes: likes > 0 });
+  const { base, icon, label: labelSlot } = toggleStyles({
+    pressed: selected,
+    hasLikes: likes > 0,
+    animating,
+  });
 
   const handleClick = () => {
-    // does it need an isPressed state?
-    setLabel("Liked");
-    setSelected(!selected);
-    // setAnimating(true);
+    const nextSelected = !selected;
+
+    setSelected(nextSelected);
+    setAnimating(true);
+    setLabel(nextSelected ? "Liked" : "Like");
+
+    // Parent informieren
+    onLikeChange?.(nextSelected);
+
+    // Nach 2s Text auf "1 Like" oder "x Likes" animiert ändern
     setTimeout(() => {
-        setLabel(`${likes + 1} Like`);
-        // setAnimating(false);
-      }, 2000);
-    
-  }
+      const nextLikes = likes + (nextSelected ? 1 : -1);
+      setLabel(nextLikes === 1 ? "1 Like" : `${nextLikes} Likes`);
+      setAnimating(false);
+    }, 2000);
+  };
 
   return (
     <RadixToggle.Root
@@ -146,26 +144,8 @@ export const Toggle = ({ ariaLabel, pressed = false, likes = 0 }: ToggleProps) =
       onClick={handleClick}
     >
       <span className={icon()}>
-        {selected ? <HeartFilled /> : <HeartOutline />}        
+        {selected ? <HeartFilled /> : <HeartOutline />}
       </span>
-
-{/* 
-// todo: transition from "Liked" to "1 Like"
-<span
-        className={`absolute transition-all duration-500 ${
-          showNew ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
-        }`}
->
-        Loading...
-</span>
-<span
-        className={`absolute transition-all duration-500 ${
-          showNew ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-        }`}
->
-        Complete!
-</span> */}
-
       <span className={labelSlot()}>
         <Label as="span" size="md">
           {label}
@@ -173,4 +153,4 @@ export const Toggle = ({ ariaLabel, pressed = false, likes = 0 }: ToggleProps) =
       </span>
     </RadixToggle.Root>
   );
-}; 
+};

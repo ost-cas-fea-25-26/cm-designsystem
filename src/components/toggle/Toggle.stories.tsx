@@ -8,12 +8,27 @@ const meta = {
   component: Toggle,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Toggle supports an ephemeral 'Liked' state for 2s when transitioning from 0 likes to 1 like. After the delay the label dissolves and shows '1 Like'. Passing likes > 0 skips the delay and increments immediately on press.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
-    pressed: { control: "boolean" },
-    ariaLabel: { control: "text" },
-    likes: { control: { type: "number", min: 0 } },
+    pressed: {
+      control: "boolean",
+      description: "Whether toggle is visually pressed",
+    },
+    ariaLabel: {
+      control: "text",
+      description: "Accessible label for the toggle",
+    },
+    likes: {
+      control: { type: "number", min: 0 },
+      description: "Existing like count (0 = first like animation)",
+    },
   },
 } satisfies Meta<typeof Toggle>;
 
@@ -25,7 +40,7 @@ export const NoLikes: Story = {
     pressed: false,
     ariaLabel: "Like",
     likes: 0,
-    children: "Toggle", // required but unused
+    children: "Toggle",
   },
   play: async ({ canvas, step }) => {
     await step("Initial label is 'Like'", async () => {
@@ -116,8 +131,8 @@ export const IncrementExistingLikes: Story = {
 export const Liked: Story = {
   args: {
     pressed: true,
-    ariaLabel: "0 Like",
-    likes: 0,
+    ariaLabel: "1 Like",
+    likes: 1,
     children: "Toggle",
   },
   play: async ({ canvas, step }) => {
@@ -127,5 +142,25 @@ export const Liked: Story = {
       ).toBeVisible();
       await expect(canvas.getByText(/1 Like/)).toBeVisible();
     });
+  },
+};
+
+export const LikedMultiple: Story = {
+  args: {
+    pressed: true,
+    ariaLabel: "12 Likes",
+    likes: 12,
+    children: "Toggle",
+  },
+  play: async ({ canvas, step }) => {
+    await step(
+      "Shows pressed state with existing likes (includes +1 visually)",
+      async () => {
+        await expect(
+          canvas.getByRole("button", { name: /12 Likes/i })
+        ).toBeVisible();
+        await expect(canvas.getByText(/12 Likes/)).toBeVisible();
+      }
+    );
   },
 };
