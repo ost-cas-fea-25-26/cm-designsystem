@@ -7,33 +7,59 @@ import { Label } from "../typography/Label";
 const toggleStyles = tv({
   slots: {
     base: [
-      "inline-flex items-center justify-center gap-2 h-8 px-3 py-2 rounded-full",
-      "transition-all duration-150 ease-in-out",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-      "disabled:opacity-50 disabled:pointer-events-none",
+      "inline-flex",
+      "items-center",
+      "justify-center",
+      "gap-2",
+      "h-8",
+      "px-3",
+      "py-2",
+      "rounded-full",
+      "transition-all",
+      "duration-150",
+      "ease-in-out",
+      "focus-visible:outline-none",
+      "focus-visible:ring-2",
+      "focus-visible:ring-offset-2",
+      "disabled:opacity-50",
+      "disabled:pointer-events-none",
     ],
-    icon: "inline-flex",
-    label: "",
+    icon: ["inline-flex"],
+    label: [],
   },
   variants: {
     pressed: {
       false: {
-        base: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
-        icon: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
-        label:
-          "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
+        base: ["bg-transparent", "hover:bg-pink-50", "hover:text-pink-600"],
+        icon: [
+          "text-inherit",
+          "hover:transition-all",
+          "hover:duration-350",
+          "hover:ease-in-out",
+        ],
+        label: [
+          "text-inherit",
+          "hover:transition-all",
+          "hover:duration-350",
+          "hover:ease-in-out",
+        ],
       },
       true: {
-        base: "",
-        icon: "text-pink-500 transition-all duration-300 ease-out",
-        label: "text-pink-900 transition-transform duration-300 ease-out",
+        base: [],
+        icon: ["text-pink-500", "transition-all", "duration-300", "ease-out"],
+        label: [
+          "text-pink-900",
+          "transition-transform",
+          "duration-300",
+          "ease-out",
+        ],
       },
     },
     hasLikes: {
       true: {
-        base: "hover:bg-pink-50 hover:text-pink-600",
-        icon: "text-pink-500",
-        label: "text-pink-900",
+        base: ["hover:bg-pink-50", "hover:text-pink-600"],
+        icon: ["text-pink-500"],
+        label: ["text-pink-900"],
       },
       false: "",
     },
@@ -48,8 +74,14 @@ const toggleStyles = tv({
       pressed: true,
       animating: true,
       class: {
-        label: "opacity-0 -translate-y-1 transition-all duration-300 ease-out",
-        icon: "text-pink-500",
+        label: [
+          "opacity-0",
+          "-translate-y-1",
+          "transition-all",
+          "duration-300",
+          "ease-out",
+        ],
+        icon: ["text-pink-500"],
       },
     },
     // pressed + nicht animating --> Label sichtbar
@@ -57,9 +89,15 @@ const toggleStyles = tv({
       pressed: true,
       animating: false,
       class: {
-        label:
-          "opacity-100 translate-y-0 text-pink-900 transition-all duration-300 ease-out",
-        icon: "text-pink-500",
+        label: [
+          "opacity-100",
+          "translate-y-0",
+          "text-pink-900",
+          "transition-all",
+          "duration-300",
+          "ease-out",
+        ],
+        icon: ["text-pink-500"],
       },
     },
     // pressed + hasLikes --> überschreibt Hover-Farbe
@@ -67,7 +105,7 @@ const toggleStyles = tv({
       pressed: true,
       hasLikes: true,
       class: {
-        label: "text-pink-900",
+        label: ["text-pink-900"],
       },
     },
     // not pressed + animating
@@ -75,7 +113,13 @@ const toggleStyles = tv({
       pressed: false,
       animating: true,
       class: {
-        label: "opacity-0 -translate-y-1 transition-all duration-300 ease-out",
+        label: [
+          "opacity-0",
+          "-translate-y-1",
+          "transition-all",
+          "duration-300",
+          "ease-out",
+        ],
       },
     },
     // not pressed + nicht animating
@@ -83,7 +127,13 @@ const toggleStyles = tv({
       pressed: false,
       animating: false,
       class: {
-        label: "opacity-100 translate-y-0 transition-all duration-300 ease-out",
+        label: [
+          "opacity-100",
+          "translate-y-0",
+          "transition-all",
+          "duration-300",
+          "ease-out",
+        ],
       },
     },
   ],
