@@ -17,7 +17,14 @@ const meta = {
   argTypes: {
     value: {
       control: "text",
-      children: "object",
+      description: "Currently selected tab value.",
+    },
+    onChange: {
+      description: "Callback function when tab selection changes.",
+    },
+    children: {
+      control: "object",
+      description: "Array of TabItem components.",
     },
   },
 } satisfies Meta<typeof Tabs>;

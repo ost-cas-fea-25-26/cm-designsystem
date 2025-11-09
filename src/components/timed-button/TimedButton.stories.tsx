@@ -24,6 +24,7 @@ const meta = {
     },
     onClick: {
       action: "clicked",
+      description: "Callback function when button is clicked.",
     },
   },
 } satisfies Meta<typeof TimedButton>;
