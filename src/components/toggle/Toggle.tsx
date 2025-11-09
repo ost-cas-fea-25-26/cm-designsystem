@@ -125,22 +125,37 @@ export const Toggle = ({
     animating,
   });
 
-  const handleClick = () => {
-    const nextSelected = !selected;
-
+  const handlePressedChange = (nextSelected: boolean) => {
+    // Ignore redundant events
+    if (nextSelected === selected) return;
     setSelected(nextSelected);
-    setLabel(nextSelected ? "Liked" : "Like");
+
+    // Immediate label: show 'Liked' when liking, otherwise reflect current count or 'Like' if zero
+    if (nextSelected) {
+      setLabel("Liked");
+    } else {
+      setLabel(
+        currentLikes === 0
+          ? "Like"
+          : currentLikes === 1
+            ? "1 Like"
+            : `${currentLikes} Likes`
+      );
+    }
     onLikeChange?.(nextSelected);
 
-    // 2s warten, dann animieren
+    // After 2s apply count change + dissolve animation
     setTimeout(() => {
-      const nextLikes = currentLikes + (nextSelected ? 1 : -1);
-
-      setCurrentLikes(nextLikes);
-      setLabel(nextLikes === 1 ? "1 Like" : `${nextLikes} Likes`);
-      setAnimating(true);
-
-      setTimeout(() => setAnimating(false), 300);
+      setCurrentLikes((prev) => {
+        const updated = Math.max(0, prev + (nextSelected ? 1 : -1));
+        // Final label after animation
+        setLabel(
+          updated === 0 ? "Like" : updated === 1 ? "1 Like" : `${updated} Likes`
+        );
+        setAnimating(true);
+        setTimeout(() => setAnimating(false), 300);
+        return updated;
+      });
     }, 2000);
   };
 
@@ -148,9 +163,10 @@ export const Toggle = ({
     <RadixToggle.Root
       aria-label={ariaLabel}
       className={base()}
-      onClick={handleClick}
+      pressed={selected}
+      onPressedChange={handlePressedChange}
     >
-      <span className={icon()}>
+      <span className={icon()} aria-hidden="true">
         {selected ? <HeartFilled /> : <HeartOutline />}
       </span>
       <span className={labelSlot()}>
