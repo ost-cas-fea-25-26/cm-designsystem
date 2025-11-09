@@ -1,7 +1,7 @@
 import { createElement, type JSX } from "react";
+import { twMerge } from "tailwind-merge";
 import { type VariantProps } from "tailwind-variants";
 import { validationMessageStyles } from "./styles";
-import { twMerge } from "tailwind-merge";
 
 type ValidationMessageVariants = VariantProps<typeof validationMessageStyles>;
 type ValidationMessageType = "error";

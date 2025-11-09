@@ -1,7 +1,7 @@
 import { createElement, type JSX } from "react";
+import { twMerge } from "tailwind-merge";
 import { type VariantProps } from "tailwind-variants";
 import { headingStyles } from "./styles";
-import { twMerge } from "tailwind-merge";
 
 type HeadingVariants = VariantProps<typeof headingStyles>;
 type HeadingSize = "1" | "2" | "3" | "4";

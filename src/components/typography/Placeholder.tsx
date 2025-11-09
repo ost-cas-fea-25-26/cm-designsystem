@@ -1,7 +1,7 @@
 import { createElement, type JSX } from "react";
+import { twMerge } from "tailwind-merge";
 import { type VariantProps } from "tailwind-variants";
 import { placeholderStyles } from "./styles";
-import { twMerge } from "tailwind-merge";
 
 type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
 

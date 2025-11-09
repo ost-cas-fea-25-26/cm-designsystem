@@ -1,7 +1,7 @@
 import { createElement, type JSX } from "react";
-import { cn, type VariantProps } from "tailwind-variants";
-import { labelStyles } from "./styles";
 import { twMerge } from "tailwind-merge";
+import { type VariantProps } from "tailwind-variants";
+import { labelStyles } from "./styles";
 
 type LabelVariants = VariantProps<typeof labelStyles>;
 type LabelSize = "xl" | "lg" | "md" | "sm";

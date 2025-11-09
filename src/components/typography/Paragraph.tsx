@@ -1,7 +1,7 @@
 import { createElement, type JSX } from "react";
+import { twMerge } from "tailwind-merge";
 import { type VariantProps } from "tailwind-variants";
 import { paragraphStyles } from "./styles";
-import { twMerge } from "tailwind-merge";
 
 type ParagraphVariants = VariantProps<typeof paragraphStyles>;
 type ParagraphSize = "lg" | "md";

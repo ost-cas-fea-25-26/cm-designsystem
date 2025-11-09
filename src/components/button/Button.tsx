@@ -1,7 +1,7 @@
+import { twMerge } from "tailwind-merge";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
-import { twMerge } from "tailwind-merge";
 
 const buttonStyles = tv({
   base: [
