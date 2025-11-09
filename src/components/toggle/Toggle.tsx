@@ -20,7 +20,8 @@ const toggleStyles = tv({
       false: {
         base: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
         icon: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
-        label: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
+        label:
+          "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
       },
       true: {
         base: "", // Farbe für pressed wird über label festgelegt
@@ -56,7 +57,8 @@ const toggleStyles = tv({
       pressed: true,
       animating: false,
       class: {
-        label: "opacity-100 translate-y-0 text-pink-900 transition-all duration-300 ease-out",
+        label:
+          "opacity-100 translate-y-0 text-pink-900 transition-all duration-300 ease-out",
         icon: "text-pink-500",
       },
     },
@@ -113,7 +115,11 @@ export const Toggle = ({
     likes ? (likes === 1 ? `${likes} Like` : `${likes} Likes`) : "Like"
   );
 
-  const { base, icon, label: labelSlot } = toggleStyles({
+  const {
+    base,
+    icon,
+    label: labelSlot,
+  } = toggleStyles({
     pressed: selected,
     hasLikes: likes > 0,
     animating,
@@ -123,17 +129,20 @@ export const Toggle = ({
     const nextSelected = !selected;
 
     setSelected(nextSelected);
-    setAnimating(true);
-    setLabel(nextSelected ? "Liked" : "Like");
+    setLabel(nextSelected ? "Liked" : "Like"); // sofort sichtbar
+    onLikeChange?.(nextSelected);
 
-    // Parent informieren
-    onLikeChange(nextSelected);
-
-    // Nach 2s Text auf "1 Like" oder "x Likes" animiert ändern
+    // 2s warten, dann animieren
     setTimeout(() => {
-      const nextLikes = likes + (nextSelected ? 1 : -1);
-      setLabel(nextLikes === 1 ? "1 Like" : `${nextLikes} Likes`);
-      setAnimating(false);
+      setAnimating(true); // startet die Animation
+      setLabel(
+        likes + (nextSelected ? 1 : -1) === 1
+          ? "1 Like"
+          : `${likes + (nextSelected ? 1 : -1)} Likes`
+      );
+
+      // nach Animation zurücksetzen
+      setTimeout(() => setAnimating(false), 300);
     }, 2000);
   };
 
