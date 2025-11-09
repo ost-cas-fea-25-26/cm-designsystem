@@ -1,43 +1,45 @@
-import * as RadixForm from "@radix-ui/react-form";
 import React, { useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
-import { Label } from "../typography/Label";
-import { labelStyles, placeholderStyles } from "../typography/styles";
-import { ValidationMessage } from "../typography/ValidationMessage";
-import type { IconBaseProps } from "../icons/IconBase";
-import { Cancel, Upload } from "../icons/generated";
-import { Paragraph } from "../typography/Paragraph";
 import { Button } from "../button/Button";
-import { IconButton } from "../icon-button/IconButton";
+import { Cancel, Upload } from "../icons/generated";
+import { Label } from "../typography/Label";
+import { Paragraph } from "../typography/Paragraph";
 
 const fileUploadStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "gap-1"],
-    controlContainer: ["relative", "inline-block"],
-    control: [
-      "ring",
-      "focus:ring-2",
-      "ring-slate-200",
-      "hover:ring-violet-600",
-      "focus-visible:ring-violet-600",
-      "focus-within:ring-violet-600",
-      "focus-visible:outline-none",
-      "bg-slate-50",
-      "rounded-lg",
-      "p-4",
-      "text-slate-700",
-      "transition",
-      "duration-300",
-      "ease-in-out",
+    base: ["flex", "flex-col", "items-center", "gap-4"],
+    dropzone: [
+      "flex",
+      "w-full",
+      "cursor-pointer",
+      "flex-col",
+      "items-center",
+      "justify-center",
+      "gap-2",
+      "rounded-xl",
+      "border-2",
+      "border-dashed",
+      "border-slate-200",
+      "pt-12",
+      "pr-4",
+      "pb-12",
+      "pl-4",
     ],
-    icon: ["absolute", "w-4", "h-4", "right-4", "top-4.5"],
-    message: ["text-error"],
-  },
-  variants: {
-    hasIcon: {
-      true: { control: ["pr-10"] },
-      false: { control: ["pr-4"] },
-    },
+    uploadIcon: ["h-8", "w-8", "text-slate-500"],
+    titleText: ["text-slate-500"],
+    subtitleText: ["text-slate-400"],
+    action: [
+      "flex",
+      "w-full",
+      "items-center",
+      "justify-center",
+      "bg-slate-300",
+      "text-slate-500",
+      "hover:bg-slate-300",
+    ],
+    input: ["hidden"],
+    preview: ["flex", "items-center", "gap-2"],
+    previewLabel: ["truncate"],
   },
 });
 
@@ -56,6 +58,17 @@ export const FileUpload = ({
   actionLabel = ".. or select your File",
   ...props
 }: FileUploadProps) => {
+  const {
+    base,
+    dropzone,
+    titleText,
+    subtitleText,
+    uploadIcon,
+    action,
+    input,
+    preview,
+    previewLabel,
+  } = fileUploadStyles(props);
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,25 +91,33 @@ export const FileUpload = ({
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className={base(props)}>
       {/* Dropzone */}
       <div
-        className="flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-200 pt-12 pr-4 pb-12 pl-4"
+        role="region"
+        aria-label="File upload dropzone"
+        className={dropzone(props)}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onClick={() => document.getElementById("fileInput")?.click()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            document.getElementById("fileInput")?.click();
+          }
+        }}
       >
-        <Upload className="h-8 w-8 text-slate-500" />
-        <Label size="xl" className="text-slate-500">
+        <Upload className={uploadIcon(props)} />
+        <Label size="xl" className={titleText(props)}>
           {title}
         </Label>
-        <Paragraph size="md" className="text-slate-400">
+        <Paragraph size="md" className={subtitleText(props)}>
           {subtitle}
         </Paragraph>
       </div>
 
       <Button
-        className="flex w-full items-center justify-center bg-slate-300 text-slate-500"
+        className={action(props)}
         intent="primary"
         size="md"
         label={actionLabel}
@@ -111,14 +132,14 @@ export const FileUpload = ({
         aria-label={title}
         type="file"
         accept=".jpg,.png"
-        className="hidden"
+        className={input(props)}
         onChange={handleFileChange}
       />
 
       {/* Selected File Preview */}
       {file && (
-        <div className="flex items-center gap-2">
-          <Label size="md" className="truncate">
+        <div className={preview(props)}>
+          <Label size="md" className={previewLabel(props)}>
             {file.name}
           </Label>
           <Cancel onClick={() => setFile(null)} />

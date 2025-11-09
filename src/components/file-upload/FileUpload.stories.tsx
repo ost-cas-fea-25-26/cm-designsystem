@@ -1,5 +1,4 @@
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
-import { Mumble } from "../icons/generated";
 import { FileUpload } from "./FileUpload";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
