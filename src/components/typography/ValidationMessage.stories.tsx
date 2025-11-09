@@ -16,6 +16,10 @@ const meta = {
     as: { control: "text", description: "Render test with given HTML tag." },
     type: { control: "text", description: "Type of Validation message." },
     children: { control: "text", description: "Validation message text." },
+    className: {
+      control: "text",
+      description: "Classes to override styling of component.",
+    },
   },
 } satisfies Meta<typeof ValidationMessage>;
 

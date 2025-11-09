@@ -17,9 +17,18 @@ const meta = {
   argTypes: {
     intent: {
       control: "select",
+      description: "Button style variant (primary).",
+    },
+    label: {
+      control: "text",
+      description: "Accessible label for the button.",
+    },
+    onClick: {
+      description: "Callback function when button is clicked.",
     },
     children: {
       control: "object",
+      description: "Icon component to display in the button.",
     },
   },
 } satisfies Meta<typeof RoundButton>;
