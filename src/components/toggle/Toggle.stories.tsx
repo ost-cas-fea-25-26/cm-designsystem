@@ -72,7 +72,7 @@ export const NoLikesHover: Story = {
   },
 };
 
-export const ExistingLikesNotLiked: Story = {
+export const ExistingLikes: Story = {
   args: {
     pressed: false,
     ariaLabel: "5 Likes",
@@ -124,6 +124,36 @@ export const FirstLikeAnimation: Story = {
     await step("After 2s label becomes '1 Like'", async () => {
       await new Promise((r) => setTimeout(r, 2100));
       await expect(canvas.getByText(/1 Like/)).toBeVisible();
+    });
+  },
+};
+
+export const Liked: Story = {
+  args: {
+    pressed: true,
+    ariaLabel: "1 Like",
+    likes: 1,
+    onLikeChange: () => {},
+  },
+  play: async ({ canvas, step }) => {
+    await step("Shows pressed single like", async () => {
+      await expect(canvas.getByRole("button", { name: /1 Like/i })).toBeVisible();
+      await expect(canvas.getByText(/1 Like/)).toBeVisible();
+    });
+  },
+};
+
+export const LikedMultiple: Story = {
+  args: {
+    pressed: true,
+    ariaLabel: "12 Likes",
+    likes: 12,
+    onLikeChange: () => {},
+  },
+  play: async ({ canvas, step }) => {
+    await step("Shows pressed multiple likes", async () => {
+      await expect(canvas.getByRole("button", { name: /12 Likes/i })).toBeVisible();
+      await expect(canvas.getByText(/12 Likes/)).toBeVisible();
     });
   },
 };
