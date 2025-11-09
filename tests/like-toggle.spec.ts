@@ -1,19 +1,19 @@
 import { expect, test, type Page } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
-const componentName = "components-toggle";
+const componentName = "components-liketoggle";
 
 // Helper to get button once story loaded
-const getToggle = (page: Page) => page.getByRole("button");
+const getLikeToggle = (page: Page) => page.getByRole("button");
 
-test.describe("Heart Toggle Default", () => {
+test.describe("Heart LikeToggle Default", () => {
   const story = "no-likes";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("No Likes", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);
+    const button = getLikeToggle(page);
 
     // Assert
     await expect(button).toBeVisible();
@@ -24,7 +24,7 @@ test.describe("Heart Toggle Default", () => {
   test("No Likes - Hover State", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);
+    const button = getLikeToggle(page);
     await button.hover();
 
     // Assert
@@ -40,14 +40,14 @@ test.describe("Heart Toggle Default", () => {
  * Test waits real time (2s) because component uses hardcoded setTimeout(2000).
  */
 
-test.skip("Toggle: First Like Animation", () => {
+test.skip("LikeToggle: First Like Animation", () => {
   const story = "first-like-animation";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("Animation from Liked to 1 Like", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);
+    const button = getLikeToggle(page);
 
     // Act
     await button.click();
@@ -69,14 +69,14 @@ test.skip("Toggle: First Like Animation", () => {
  * Click should show 'Liked' immediately
  * After delay: '6 Likes'.
  */
-test.describe("Toggle: existinglikes", () => {
+test.describe("LikeToggle: existinglikes", () => {
   const story = "existing-likes";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("increments from 6 to 5 Likes", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);
+    const button = getLikeToggle(page);
 
     // // Assert initial state
     await expect(button).toHaveText(/6 Likes/);
@@ -99,14 +99,14 @@ test.describe("Toggle: existinglikes", () => {
 /**
  * Liked and Mulitple Likes
  */
-test.describe("Toggle: one like", () => {
+test.describe("LikeToggle: one like", () => {
   const story = "liked";
   const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("already existing one like", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);
+    const button = getLikeToggle(page);
 
     // Assert
     await expect(button).toHaveText(/1 Like/);
@@ -114,13 +114,13 @@ test.describe("Toggle: one like", () => {
   });
 });
 
-test.describe("Toggle: multiple likes", () => {
+test.describe("LikeToggle: multiple likes", () => {
   const story = "liked-multiple";
   const screenshotNamePrefix = `${componentName}--${story}`;
   test("already existing multiple likes", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);
+    const button = getLikeToggle(page);
 
     // Assert
     await expect(button).toHaveText(/12 Likes/);
@@ -132,13 +132,13 @@ test.describe("Toggle: multiple likes", () => {
  *  Hover over multiple likes
  */
 
-test.describe("Toggle: likedmultiple hover", () => {
+test.describe("LikeToggle: likedmultiple hover", () => {
   const story = "liked-multiple";
   const screenshotNamePrefix = `${componentName}--${story}`;
   test("hover visual", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);
+    const button = getLikeToggle(page);
     // Act
     await button.hover();
     // Assert

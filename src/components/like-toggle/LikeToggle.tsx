@@ -93,21 +93,21 @@ const toggleStyles = tv({
   },
 });
 
-type ToggleVariants = VariantProps<typeof toggleStyles>;
+type LikeToggleVariants = VariantProps<typeof toggleStyles>;
 
-interface ToggleProps extends ToggleVariants {
+interface LikeToggleProps extends LikeToggleVariants {
   ariaLabel: string;
   pressed?: boolean;
   likes?: number;
   onLikeChange: (liked: boolean) => void;
 }
 
-export const Toggle = ({
+export const LikeToggle = ({
   ariaLabel,
   pressed = false,
   likes = 0,
   onLikeChange,
-}: ToggleProps) => {
+}: LikeToggleProps) => {
   const [animating, setAnimating] = useState(false);
   const [selected, setSelected] = useState(pressed);
   const [currentLikes, setCurrentLikes] = useState(likes);

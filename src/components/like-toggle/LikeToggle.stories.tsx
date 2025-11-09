@@ -1,11 +1,11 @@
 import { expect, userEvent } from "storybook/test";
-import { Toggle } from "./Toggle";
+import { LikeToggle } from "./LikeToggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 // Storybook meta configuration mirroring style of Tabs stories
 const meta = {
-  title: "Components/Toggle",
-  component: Toggle,
+  title: "Components/LikeToggle",
+  component: LikeToggle,
   parameters: {
     layout: "centered",
     docs: {
@@ -34,7 +34,7 @@ const meta = {
       description: "Callback invoked after user toggles like (pressed state).",
     },
   },
-} satisfies Meta<typeof Toggle>;
+} satisfies Meta<typeof LikeToggle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -121,7 +121,7 @@ export const FirstLikeAnimation: Story = {
     onLikeChange: () => {},
   },
   render: (args) => {
-    return <Toggle {...args} />;
+    return <LikeToggle {...args} />;
   },
   play: async ({ canvas, step, userEvent }) => {
     const button = canvas.getByRole("button", { name: /Like/i });

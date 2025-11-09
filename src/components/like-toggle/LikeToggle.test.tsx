@@ -1,11 +1,13 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
-import { Toggle } from "./Toggle";
+import { LikeToggle } from "./LikeToggle";
 
-describe("Toggle", () => {
+describe("LikeToggle", () => {
   test("should render icon and label", async () => {
     // Arrange
-    render(<Toggle ariaLabel="Like this" likes={3} onLikeChange={() => {}} />);
+    render(
+      <LikeToggle ariaLabel="Like this" likes={3} onLikeChange={() => {}} />
+    );
 
     const button = screen.getByRole("button");
     expect(button).toBeVisible();
@@ -19,7 +21,7 @@ describe("Toggle", () => {
     // Arrange
     const onLikeChange = vi.fn();
     render(
-      <Toggle ariaLabel="Like this" likes={3} onLikeChange={onLikeChange} />
+      <LikeToggle ariaLabel="Like this" likes={3} onLikeChange={onLikeChange} />
     );
 
     const button = screen.getByRole("button");
