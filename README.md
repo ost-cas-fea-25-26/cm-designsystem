@@ -9,11 +9,11 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 - [Development](#development)
   - [Quality Checks](#quality-checks)
   - [Code Style](#code-style)
+  - [TypeScript Guidelines](#typescript-guidelines)
+  - [Project Structure](#project-structure)
 - [Icon Generation](#icon-generation)
 - [Visual Testing](#visual-testing)
 - [Contributing](#contributing)
-  - [Pull Request Process](#pull-request-process)
-  - [Commit Messages](#commit-messages)
 - [Continuous Integration](#continuous-integration)
 
 ## Quick Start
@@ -28,17 +28,17 @@ npm run storybook
 
 Storybook will be available at [http://localhost:6006](http://localhost:6006)
 
-**📚 View the deployed Storybook:** [https://ost-cas-fea-25-26.github.io/cm-designsystem/](https://ost-cas-fea-25-26.github.io/cm-designsystem/?path=/docs/branding-assets--docs)
+📚 View the deployed Storybook: [https://ost-cas-fea-25-26.github.io/cm-designsystem/](https://ost-cas-fea-25-26.github.io/cm-designsystem/?path=/docs/branding-assets--docs)
 
 ## Technical Stack
 
-- **React 19** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS v4** for styling
-- **Storybook** for component documentation
-- **Vitest** for unit testing
-- **Playwright** for visual regression testing
-- **Radix UI Primitives** for accessible component primitives
+- React 19 with TypeScript
+- Vite for fast development and building
+- Tailwind CSS v4 for styling
+- Storybook for component documentation
+- Vitest for unit testing
+- Playwright for visual regression testing
+- Radix UI Primitives for accessible component primitives
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) for Fast Refresh
 
 ---
@@ -79,14 +79,14 @@ npm run build-storybook  # Build Storybook for production
 
 We enforce consistent code style using automated tools:
 
-**Prettier Configuration:**
+Prettier Configuration:
 - Uses double quotes
 - 2-space indentation
 - Semicolons required
 - Line width: 80 characters
 - Includes Tailwind CSS class sorting plugin
 
-**ESLint Configuration:**
+ESLint Configuration:
 - TypeScript ESLint rules
 - React and React Hooks best practices
 - JSX Accessibility (a11y) rules
@@ -98,7 +98,7 @@ We enforce consistent code style using automated tools:
 
 We follow a consistent pattern for component type definitions:
 
-**Standard Component Pattern:**
+Standard Component Pattern:
 
 ```tsx
 import { tv, type VariantProps } from "tailwind-variants";
@@ -132,13 +132,13 @@ interface ButtonProps extends ButtonVariants {
 }
 ```
 
-**When to use `type` vs `interface`:**
+When to use `type` vs `interface`:
 
-- **`type`**: For VariantProps, union types, and type aliases
-- **`interface`**: For component props (always extends variants)
-- **`export`**: Export interfaces for public component APIs
+- `type`: For VariantProps, union types, and type aliases
+- `interface`: For component props (always extends variants)
+- `export`: Export interfaces for public component APIs
 
-**Best Practices:**
+Best Practices:
 - Always extend `VariantProps` for styled components
 - Define union types for variant options to ensure type safety
 - Export prop interfaces for components
@@ -161,13 +161,13 @@ src/components/
 └── ...
 ```
 
-**Benefits of co-location:**
+Benefits of co-location:
 - ✅ Related files stay together
 - ✅ Easier to find and maintain stories
 - ✅ Clear 1:1 relationship between components and documentation
 - ✅ Stories serve as living documentation and examples
 
-**Story file naming:** Always use `ComponentName.stories.tsx` format for Storybook to auto-discover them.
+Story file naming: Always use `ComponentName.stories.tsx` format for Storybook to auto-discover them.
 
 ---
 
@@ -177,12 +177,12 @@ SVG icons are automatically converted to React components with proper accessibil
 
 ### Workflow
 
-1. **Add SVG files** to `src/components/icons/svg/`
-2. **Optimize SVGs** (optional but recommended):
+1. Add SVG files to `src/components/icons/svg/`
+2. Optimize SVGs (optional but recommended):
    ```bash
    npx svgo -f src/components/icons/svg
    ```
-3. **Generate React components**:
+3. Generate React components:
    ```bash
    npm run icons:generate
    ```
@@ -217,7 +217,7 @@ export function Example() {
 }
 ```
 
-**How it works:**
+How it works:
 - File names are converted to PascalCase (`log-out.svg` → `LogOut`)
 - Fill colors are normalized to `currentColor` for theming
 - All icons are wrapped in `IconBase` for accessibility
@@ -227,7 +227,7 @@ export function Example() {
 
 ## Visual Testing
 
-We use **Playwright** for visual regression testing against Storybook. Tests run in Docker for consistent results across environments.
+We use Playwright for visual regression testing against Storybook. Tests run in Docker for consistent results across environments.
 
 ### Setup
 
@@ -252,19 +252,19 @@ View test reports locally:
 npx playwright show-report
 ```
 
-**GitHub Artifacts:**
+GitHub Artifacts:
 Test reports are uploaded as CI artifacts. Download and view them with:
 
 ```bash
 npx playwright show-report <path/to/extracted-artifact>
 ```
 
-### Configuration Notes
+### Configuration
 
-- Tests run inside Docker to ensure consistency
-- Storybook is configured to accept connections from Docker (`host.docker.internal`)
-- Playwright config includes `maxDiffPixelRatio: 0.01` (1% tolerance)
-- Configuration in `playwright.config.ts` and `.storybook/main.ts`
+- Docker: Tests run in containers for consistency across environments
+- Network: Storybook accepts connections from `host.docker.internal`
+- Tolerance: 1% pixel difference allowed (`maxDiffPixelRatio: 0.01`)
+- Files: `playwright.config.ts` and `.storybook/main.ts`
 
 ---
 
@@ -272,44 +272,44 @@ npx playwright show-report <path/to/extracted-artifact>
 
 ### Pull Request Process
 
-1. **Create a feature branch:**
+1. Create a feature branch:
    ```bash
    git checkout -b feature/initials/your-feature-name
    ```
    Use format: `feature/<mm or ci>/<description>`
 
-2. **Make your changes and ensure quality:**
+2. Make your changes and ensure quality:
    ```bash
    npm run preflight
    ```
 
-3. **Commit with conventional commits** (see below)
+3. Commit with conventional commits (see below)
 
-4. **Push to your feature branch:**
+4. Push to your feature branch:
    ```bash
    git push origin feature/initials/your-feature-name
    ```
 
-5. **Create a pull request to `main`**
+5. Create a pull request to `main`
 
-6. **Wait for CI checks to pass**
+6. Wait for CI checks to pass
 
-7. **Request review from team members**
+7. Request review from team members
 
-8. **Address feedback and merge**
+8. Address feedback and merge
 
 ### Commit Messages
 
 We use [Conventional Commits](https://www.conventionalcommits.org/) for consistent versioning and changelog generation.
 
-**Format:**
+Format:
 ```
 <type>: <description>
 
 [optional body]
 ```
 
-**Types:**
+Types:
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -319,7 +319,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) for consiste
 - `chore`: Maintenance tasks (dependencies, config, etc.)
 - `perf`: Performance improvements
 
-**Examples:**
+Examples:
 ```
 feat: add new Button variant
 fix: correct Typography component spacing
@@ -336,12 +336,12 @@ All pull requests are automatically validated through our CI pipeline.
 
 ### Required Checks
 
-1. ✅ **Format & Lint** - Code must be properly formatted and pass linting
-2. ✅ **Type Check** - No TypeScript errors
-3. ✅ **Tests** - All unit tests must pass
-4. ✅ **Build** - Project must build successfully
-5. ✅ **Build Storybook** - Storybook must build successfully
-6. ✅ **Visual Tests** - Playwright visual regression tests must pass
+1. ✅ Format & Lint - Code must be properly formatted and pass linting
+2. ✅ Type Check - No TypeScript errors
+3. ✅ Tests - All unit tests must pass
+4. ✅ Build - Project must build successfully
+5. ✅ Build Storybook - Storybook must build successfully
+6. ✅ Visual Tests - Playwright visual regression tests must pass
 
 ### Pipeline Triggers
 
@@ -355,4 +355,4 @@ We intentionally don't use pre-commit hooks (like Husky):
 - ✅ Faster local development workflow
 - ✅ CI is the single source of truth
 
-**Note:** You're encouraged to run `npm run preflight` locally before pushing!
+Note: You're encouraged to run `npm run preflight` locally before pushing!
