@@ -37,42 +37,60 @@ export const Default: Story = {
   args: {
     value: "1",
     children: [
-      <TabItem key="1" value="1" label="Lorem ipsum 1">
-        Lorem ipsum 1
+      <TabItem key="1" value="1" label="Overview">
+        <div style={{ padding: "1rem" }}>
+          <h3 style={{ marginBottom: "0.5rem", fontWeight: "600" }}>
+            Overview
+          </h3>
+          <p>
+            This is the overview tab content. Here you can see general
+            information and a summary of the most important details.
+          </p>
+        </div>
       </TabItem>,
-      <TabItem key="2" value="2" label="Lorem ipsum 2">
-        Lorem ipsum 2
+      <TabItem key="2" value="2" label="Details">
+        <div style={{ padding: "1rem" }}>
+          <h3 style={{ marginBottom: "0.5rem", fontWeight: "600" }}>Details</h3>
+          <p>
+            This tab contains detailed information. You can add more specific
+            content, data, or components here.
+          </p>
+        </div>
       </TabItem>,
-      <TabItem key="3" value="3" label="Lorem ipsum 3">
-        Lorem ipsum 3
+      <TabItem key="3" value="3" label="Settings">
+        <div style={{ padding: "1rem" }}>
+          <h3 style={{ marginBottom: "0.5rem", fontWeight: "600" }}>
+            Settings
+          </h3>
+          <p>
+            Configure your preferences and options in this settings panel.
+            Customize the experience to your needs.
+          </p>
+        </div>
       </TabItem>,
     ],
   },
   play: async ({ canvas, userEvent, step }) => {
     await step("Check initial render", async () => {
       await expect(
-        canvas.getByRole("tab", { name: /Lorem ipsum 1/i })
+        canvas.getByRole("tab", { name: /Overview/i })
       ).toBeVisible();
+      await expect(canvas.getByRole("tab", { name: /Details/i })).toBeVisible();
       await expect(
-        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
-      ).toBeVisible();
-      await expect(
-        canvas.getByRole("tab", { name: /Lorem ipsum 3/i })
+        canvas.getByRole("tab", { name: /Settings/i })
       ).toBeVisible();
       await expect(
         canvas.getByRole("tabpanel", {
-          name: /Lorem ipsum 1/i,
+          name: /Overview/i,
         })
       ).toBeVisible();
     });
 
     await step("Click second Tab", async () => {
-      await userEvent.click(
-        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
-      );
+      await userEvent.click(canvas.getByRole("tab", { name: /Details/i }));
       await expect(
         canvas.getByRole("tabpanel", {
-          name: /Lorem ipsum 2/i,
+          name: /Details/i,
         })
       ).toBeVisible();
     });
@@ -83,36 +101,42 @@ export const Binary: Story = {
   args: {
     value: "1",
     children: [
-      <TabItem key="1" value="1" label="Lorem ipsum 1">
-        Lorem ipsum 1
+      <TabItem key="1" value="1" label="Profile">
+        <div style={{ padding: "1rem" }}>
+          <h3 style={{ marginBottom: "0.5rem", fontWeight: "600" }}>Profile</h3>
+          <p>
+            View and edit your profile information, including your name, email,
+            and other personal details.
+          </p>
+        </div>
       </TabItem>,
-      <TabItem key="2" value="2" label="Lorem ipsum 2">
-        Lorem ipsum 2
+      <TabItem key="2" value="2" label="Account">
+        <div style={{ padding: "1rem" }}>
+          <h3 style={{ marginBottom: "0.5rem", fontWeight: "600" }}>Account</h3>
+          <p>
+            Manage your account settings, security preferences, and notification
+            options.
+          </p>
+        </div>
       </TabItem>,
     ],
   },
   play: async ({ canvas, userEvent, step }) => {
     await step("Check initial render", async () => {
-      await expect(
-        canvas.getByRole("tab", { name: /Lorem ipsum 1/i })
-      ).toBeVisible();
-      await expect(
-        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
-      ).toBeVisible();
+      await expect(canvas.getByRole("tab", { name: /Profile/i })).toBeVisible();
+      await expect(canvas.getByRole("tab", { name: /Account/i })).toBeVisible();
       await expect(
         canvas.getByRole("tabpanel", {
-          name: /Lorem ipsum 1/i,
+          name: /Profile/i,
         })
       ).toBeVisible();
     });
 
     await step("Click second Tab", async () => {
-      await userEvent.click(
-        canvas.getByRole("tab", { name: /Lorem ipsum 2/i })
-      );
+      await userEvent.click(canvas.getByRole("tab", { name: /Account/i }));
       await expect(
         canvas.getByRole("tabpanel", {
-          name: /Lorem ipsum 2/i,
+          name: /Account/i,
         })
       ).toBeVisible();
     });
