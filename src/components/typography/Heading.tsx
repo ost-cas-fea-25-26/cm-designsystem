@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { type VariantProps } from "tailwind-variants";
-import type { headingStyles } from "./styles";
+import { headingStyles } from "./styles";
 
 type HeadingVariants = VariantProps<typeof headingStyles>;
 type HeadingSize = "1" | "2" | "3" | "4";

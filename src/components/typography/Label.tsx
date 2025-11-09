@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { type VariantProps } from "tailwind-variants";
-import type { labelStyles } from "./styles";
+import { labelStyles } from "./styles";
 
 type LabelVariants = VariantProps<typeof labelStyles>;
 type LabelSize = "xl" | "lg" | "md" | "sm";

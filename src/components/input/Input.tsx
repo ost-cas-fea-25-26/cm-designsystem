@@ -8,14 +8,7 @@ import type { IconBaseProps } from "../icons/IconBase";
 
 const inputStyles = tv({
   slots: {
-    base: [
-      "flex",
-      "flex-col",
-      "gap-1",
-      "transition",
-      "duration-300",
-      "ease-in-out",
-    ],
+    base: ["flex", "flex-col", "gap-1"],
     controlContainer: ["relative", "inline-block"],
     control: [
       "ring",
@@ -29,6 +22,9 @@ const inputStyles = tv({
       "rounded-lg",
       "p-4",
       "text-slate-700",
+      "transition",
+      "duration-300",
+      "ease-in-out",
     ],
     icon: ["absolute", "w-4", "h-4", "right-4", "top-4.5"],
     message: ["text-error"],
@@ -77,10 +73,7 @@ export const Input = ({
             type={type}
             required={isRequired}
             placeholder={props.placeholder}
-            onChange={(e) => {
-              console.log(e);
-              props.onChange(e.target.value);
-            }}
+            onChange={(e) => props.onChange(e.target.value)}
           />
         </RadixForm.Control>
         {props.children &&

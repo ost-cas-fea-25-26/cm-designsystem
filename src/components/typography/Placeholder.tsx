@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { type VariantProps } from "tailwind-variants";
-import type { placeholderStyles } from "./styles";
+import { placeholderStyles } from "./styles";
 
 type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
 

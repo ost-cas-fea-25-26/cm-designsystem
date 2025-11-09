@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { type VariantProps } from "tailwind-variants";
-import type { paragraphStyles } from "./styles";
+import { paragraphStyles } from "./styles";
 
 type ParagraphVariants = VariantProps<typeof paragraphStyles>;
 type ParagraphSize = "lg" | "md";
