@@ -1,9 +1,8 @@
 import * as RadixDialog from "@radix-ui/react-dialog";
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
+import { Cancel } from "../icons/generated";
 import { Heading } from "../typography/Heading";
-import { Cancel, Checkmark } from "../icons/generated";
-import { Button } from "../button/Button";
 
 const modalStyles = tv({
   slots: {

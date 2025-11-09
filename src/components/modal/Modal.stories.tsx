@@ -1,11 +1,9 @@
-import * as RadixForm from "@radix-ui/react-form";
+import { useState } from "react";
 import { expect, fn, waitFor } from "storybook/test";
-import { Cancel, Checkmark, Mumble } from "../icons/generated";
+import { Button } from "../button/Button";
+import { Cancel, Checkmark } from "../icons/generated";
 import { Modal } from "./Modal";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "../button/Button";
-import * as RadixDialog from "@radix-ui/react-dialog";
-import { useState } from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -46,7 +44,7 @@ export const Default: Story = {
           size="lg"
           label="Click Me!"
           onClick={() => setOpen(true)}
-        ></Button>
+         />
 
         <Modal open={open} onOpenChange={setOpen} title={args.title}>
           <Modal.Body>Hello, this is a Modal!!!</Modal.Body>
