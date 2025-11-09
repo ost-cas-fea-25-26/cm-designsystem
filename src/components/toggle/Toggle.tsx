@@ -96,7 +96,7 @@ const toggleStyles = tv({
 type ToggleVariants = VariantProps<typeof toggleStyles>;
 
 interface ToggleProps extends ToggleVariants {
-  children?: ReactNode;
+  
   ariaLabel: string;
   pressed?: boolean;
   likes?: number;
