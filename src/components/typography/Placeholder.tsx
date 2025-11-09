@@ -13,7 +13,7 @@ const placeholderStyles = tv({
 type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
 
 interface PlaceholderProps extends PlaceholderVariants {
-  as: string;
+  as?: string;
   children: React.ReactNode;
 }
 
