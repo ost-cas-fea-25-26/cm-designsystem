@@ -133,16 +133,15 @@ export const Toggle = ({
     onLikeChange?.(nextSelected);
 
     // 2s warten, dann animieren
-     setTimeout(() => {
-    const nextLikes = currentLikes + (nextSelected ? 1 : -1);
+    setTimeout(() => {
+      const nextLikes = currentLikes + (nextSelected ? 1 : -1);
 
-    setCurrentLikes(nextLikes); 
-    setLabel(nextLikes === 1 ? "1 Like" : `${nextLikes} Likes`);
-    setAnimating(true);
+      setCurrentLikes(nextLikes);
+      setLabel(nextLikes === 1 ? "1 Like" : `${nextLikes} Likes`);
+      setAnimating(true);
 
-    
-    setTimeout(() => setAnimating(false), 300);
-  }, 2000);
+      setTimeout(() => setAnimating(false), 300);
+    }, 2000);
   };
 
   return (

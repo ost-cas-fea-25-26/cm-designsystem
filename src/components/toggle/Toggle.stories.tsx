@@ -98,12 +98,13 @@ export const ExistingLikesLiked: Story = {
   },
   play: async ({ canvas, step }) => {
     await step("Shows pressed state with existing 5 likes", async () => {
-      await expect(canvas.getByRole("button", { name: /5 Likes/i })).toBeVisible();
+      await expect(
+        canvas.getByRole("button", { name: /5 Likes/i })
+      ).toBeVisible();
       await expect(canvas.getByText(/5 Likes/)).toBeVisible();
     });
   },
 };
-
 
 export const FirstLikeAnimation: Story = {
   args: {
@@ -126,6 +127,3 @@ export const FirstLikeAnimation: Story = {
     });
   },
 };
-
-
-
