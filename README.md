@@ -2,13 +2,13 @@
 
 A modern React component library built with TypeScript, Tailwind CSS, and Storybook.
 
-
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
 - [CM Design System](#cm-design-system)
 - [Quick Start](#quick-start)
+  - [Technical Stack](#technical-stack)
 - [Contributing](#contributing)
   - [Pull Request Process](#pull-request-process)
   - [Commit Messages](#commit-messages)
@@ -25,7 +25,6 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
   - [Continuous Integration](#continuous-integration)
     - [Why No Pre-commit Hooks?](#why-no-pre-commit-hooks)
     - [Types:](#types)
-  - [Technical Stack](#technical-stack)
   - [Icon Generation](#icon-generation)
     - [Optimize SVGs](#optimize-svgs)
     - [Config (`svg.config.json`)](#config-svgconfigjson)
@@ -41,8 +40,6 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 
 <!-- /code_chunk_output -->
 
-
-
 # Quick Start
 
 ```bash
@@ -53,18 +50,29 @@ npm install
 npm run storybook        # Start Storybook on port 6006
 ```
 
+## Technical Stack
+
+This project uses:
+
+- **React 19** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS v4** for styling
+- **Storybook** for component documentation
+- **Vitest** for testing
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) for Fast Refresh
+
 # Contributing
 
 ## Pull Request Process
 
-1. Edit code in feature branch 
+1. Edit code in feature branch
 1. Create a new branch: `git checkout -b feature/initials/your-feature-name`
 1. Ensure your code passes all quality checks locally:
 
    ```bash
    npm run preflight
    ```
- 
+
 1. Choose Commit Message wisely :-). See next Chapter [Commit Messages](#commit-messages)
 1. Push your changes to your feature branch (`feature/<mm or ci>/<description>`)
 1. Create a pull request to the `main` branch
@@ -87,15 +95,14 @@ refactor: simplify Icon component logic
 test: add tests for TextLink component
 ```
 
-
-
 ### Development Workflow
 
 Before committing your changes, ensure your code meets our quality standards:
 
 #### TLWR
+
 ```bash
-npm run preflight        # does everything 
+npm run preflight        # does everything
 ```
 
 #### Format Code
@@ -192,7 +199,6 @@ We've chosen not to use pre-commit hooks (like Husky) because:
 
 You're still encouraged to run quality checks locally before pushing!
 
-
 ### Types:
 
 - `feat`: New feature
@@ -205,17 +211,6 @@ You're still encouraged to run quality checks locally before pushing!
 - `perf`: Performance improvements
 
 ---
-
-## Technical Stack
-
-This project uses:
-
-- **React 19** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS v4** for styling
-- **Storybook** for component documentation
-- **Vitest** for testing
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) for Fast Refresh
 
 ## Icon Generation
 

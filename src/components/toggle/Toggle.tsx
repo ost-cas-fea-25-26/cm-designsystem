@@ -24,7 +24,7 @@ const toggleStyles = tv({
           "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
       },
       true: {
-        base: "", 
+        base: "",
         icon: "text-pink-500 transition-all duration-300 ease-out",
         label: "text-pink-900 transition-transform duration-300 ease-out",
       },
