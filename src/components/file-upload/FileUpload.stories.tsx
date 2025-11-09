@@ -28,7 +28,6 @@ const meta = {
       description: "Label of upload button.",
     },
     onFileSelect: {
-      control: "boolean",
       description: "Method gets called when file selected.",
     },
   },
