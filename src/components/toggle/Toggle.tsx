@@ -5,6 +5,7 @@ import { HeartFilled, HeartOutline } from "../icons/generated";
 import { Label } from "../typography/Label";
 
 const toggleStyles = tv({
+  // todo: add intent violett oder pink (see button primary / secondary)
   slots: {
     base: [
       // layout + spacing + shape
@@ -16,64 +17,70 @@ const toggleStyles = tv({
       "disabled:opacity-50 disabled:pointer-events-none",
     ],
     icon: "inline-flex",
-    label: [
-      "transition-all duration-300 ease-out", // dissolve + slide
-      "opacity-100 translate-y-0",
-    ],
+    label: ""
   },
   variants: {
     pressed: {
       false: {
         base: "bg-transparent hover:bg-pink-50 hover:text-pink-600",
-        icon: "text-inherit",
-        label: "text-inherit",
+        icon: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out",
+        label: "text-inherit hover:transition-all hover:duration-350 hover:ease-in-out"
+        
       },
       true: {
-        base: "text-pink-900",
-        icon: "text-pink-500",
-        label: "text-pink-900",
-      },
-    },    
-   animating: {
-      true: {},
-      false: {},
+        base: "",
+        icon: "text-pink-500 transition-all duration-300  ease-out",
+        label: "text-pink-900  transition-transform delay-2000 duration-300  ease-out",        
+        // todo: label "liked" to "1 Like" transition
+      },      
     },
+    hasData: {
+      true: {
+        base:"hover:bg-pink-50",        
+        icon: "text-pink-500 ",
+        label: "text-pink-900  hover:text-pink-600 ",                
+      },
+      false: ""
+    }
+    
   },
-  compoundVariants: [
-    // pressed like + animating  -> from "Liked" to "x Likes"
-    {
-      pressed: true,
-      animating: true,
-      class: {
-        label: "opacity-0 -translate-y-1 text-pink-900",        
-        icon: "text-pink-500",
-      },
-    },
-    // pressed like + not animating (does this case exist?) -> stays "x Likes"
-    {
-      pressed: true,
-      animating: false,
-      class: {
-        label: "opacity-100 translate-y-0",
-      },
-    },
-    // not pressed like + animating -> from "Like" to "1 Like"
-    {
-      pressed: false,
-      animating: true,
-      class: {
-        label: "opacity-0 -translate-y-1",
-      },
-    },
-     // not pressed like + not animating -> stays "Like"
-    {
-      pressed: false,
-      animating: false,
-      class: {
-        label: "opacity-100 translate-y-0",
-      },
-    },
-  ],
+
+  // compoundVariants: [
+  //   // pressed like + animating  -> from "Liked" to "x Likes"
+  //   {
+  //     pressed: true,
+  //     animating: true,
+  //     class: {
+  //       label: "opacity-0 -translate-y-1 text-pink-900",        
+  //       icon: "text-pink-500",
+  //     },
+  //   },
+  //   // pressed like + not animating (does this case exist?) -> stays "x Likes"
+  //   {
+  //     pressed: true,
+  //     animating: false,
+  //     class: {
+  //       label: "opacity-100 translate-y-0 text-pink-900",
+  //       icon: "text-pink-500",
+  //     },
+  //   },
+  //   // not pressed like + animating -> from "Like" to "1 Like"
+  //   {
+  //     pressed: false,
+  //     animating: true,
+  //     class: {
+  //       label: "opacity-0 -translate-y-1",
+  //     },
+  //   },
+  //    // not pressed like + not animating -> stays "Like"
+  //   {
+  //     pressed: false,
+  //     animating: false,
+  //     class: {
+  //       label: "opacity-100 translate-y-0",
+  //     },
+  //   },
+  // ],
   defaultVariants: {
     pressed: false,
     animating: false,
@@ -102,31 +109,37 @@ interface ToggleProps extends ToggleVariants {
   children: ReactNode;
   ariaLabel: string;
   pressed?: boolean;
-  likes?: number;
+  hasData?: boolean;
+  // onChange: () => void;
 }
 
-export const Toggle = ({ ariaLabel, pressed = false, likes = 0 }: ToggleProps) => {
+export const Toggle = ({ ariaLabel, pressed = false, hasData = false }: ToggleProps) => {
   /*
    * no likes: "Like"
    * clicked: "Liked"
    * clicked + 2s: "1 Like"
    * likes > 0: "x Likes"
    */
-  const [animating, setAnimating] = useState(false);
-  const [label, setLabel] = useState(
-    likes ? (likes === 1 ? `${likes} Like` : `${likes} Likes`) : "Like"
-  );
+  // const [animating, setAnimating] = useState(false);
+  const [selected, setSelected] = useState(pressed);
+  // const [label, setLabel] = useState(
+  //   hasData ? (hasData  ? `${hasData} Like` : `${hasData} Likes`) : "Like"
+  // );
 
-  const { base, icon, label: labelSlot } = toggleStyles({ pressed, animating });
+  
+  const { base, icon, label: labelSlot } = toggleStyles({ pressed: selected, hasData });
 
   const handleClick = () => {
     // does it need an isPressed state?
-    
-      setLabel("Liked");
-      setAnimating(true);    
-      setTimeout(() => {
-        setLabel(`${likes + 1} Like`);
-        setAnimating(false);
+    // setLabel("Liked");
+    setSelected(!selected);
+    // setAnimating(true);
+    setTimeout(() => {
+      // todo: handled by parent
+        // setLabel(`${hasData + 1} Like`);
+        // todo: let parent know to update count
+
+        // setAnimating(false);
       }, 2000);
     
   }
@@ -138,11 +151,29 @@ export const Toggle = ({ ariaLabel, pressed = false, likes = 0 }: ToggleProps) =
       onClick={handleClick}
     >
       <span className={icon()}>
-        {pressed ? <HeartFilled /> : <HeartOutline />}
+        {selected ? <HeartFilled /> : <HeartOutline />}        
       </span>
+
+{/* 
+// todo: transition from "Liked" to "1 Like"
+<span
+        className={`absolute transition-all duration-500 ${
+          showNew ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
+        }`}
+>
+        Loading...
+</span>
+<span
+        className={`absolute transition-all duration-500 ${
+          showNew ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+        }`}
+>
+        Complete!
+</span> */}
 
       <span className={labelSlot()}>
         <Label as="span" size="md">
+          // todo: label from parent after onChange
           {label}
         </Label>
       </span>
