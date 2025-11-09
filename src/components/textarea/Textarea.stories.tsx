@@ -142,7 +142,7 @@ export const NoLabel: Story = {
       <Textarea {...args} />
     </RadixForm.Root>
   ),
-  play: async ({ userEvent, canvas, step }) => {
+  play: async ({ canvas, step }) => {
     await step("Check initial render", async () => {
       const input = canvas.getByPlaceholderText(/placeholder/i);
       await expect(input).toBeVisible();
