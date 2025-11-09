@@ -1,4 +1,4 @@
-import { expect } from "storybook/test";
+import { expect, userEvent } from "storybook/test";
 import { Toggle } from "./Toggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -86,6 +86,14 @@ export const ExistingLikes: Story = {
       ).toBeVisible();
       await expect(canvas.getByText(/5 Likes/)).toBeVisible();
     });
+
+    await step("Click like -> 6 Likes", async () => {
+      await userEvent.click(canvas.getByRole("button", { name: /5 Likes/i }));
+      await expect(canvas.getByText(/Liked/)).toBeVisible();
+
+      await new Promise((r) => setTimeout(r, 2500));
+      await expect(canvas.getByText(/6 Likes/)).toBeVisible();
+    });
   },
 };
 
@@ -158,6 +166,12 @@ export const LikedMultiple: Story = {
         canvas.getByRole("button", { name: /12 Likes/i })
       ).toBeVisible();
       await expect(canvas.getByText(/12 Likes/)).toBeVisible();
+    });
+
+    await step("Unlike", async () => {
+      await userEvent.click(canvas.getByRole("button", { name: /12 Likes/i }));
+      await new Promise((r) => setTimeout(r, 2500));
+      await expect(canvas.getByText(/11 Likes/)).toBeVisible();
     });
   },
 };
