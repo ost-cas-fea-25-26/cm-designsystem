@@ -116,7 +116,7 @@ export const TimedButton = ({
 
   return (
     <button className={base()} onClick={handleClick}>
-      <span className={iconClass()} aria-hidden="true">
+      <span className={iconClass()} aria-hidden="true" aria-label="Share">
         {icon}
       </span>
       <span className={labelClass()}>
