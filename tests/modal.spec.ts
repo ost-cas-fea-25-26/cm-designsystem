@@ -6,7 +6,7 @@ test.describe("Modal: default", () => {
   const componentStory = "default";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
-  test("modal should look the same", async ({ page, userAgent }) => {
+  test("modal should look the same", async ({ page }) => {
     //Arrange
     await goToStorybook(page, componentName, componentStory);
 

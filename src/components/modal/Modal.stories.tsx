@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { expect, fn, waitFor } from "storybook/test";
+import { fn } from "storybook/test";
 import { Button } from "../button/Button";
 import { Cancel, Checkmark } from "../icons/generated";
 import { Modal } from "./Modal";
