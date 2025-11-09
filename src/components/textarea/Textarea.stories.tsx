@@ -65,15 +65,12 @@ export const Default: Story = {
 
       const label = canvas.getByLabelText(/label/i);
       await expect(label).toBeVisible();
-
-      const icon = canvas.getByText(/mumble/i);
-      await expect(icon).toBeVisible();
     });
 
     await step("Check click event", async () => {
       const input = canvas.getByPlaceholderText(/placeholder/i);
-      await waitFor(() => userEvent.type(input, "a"));
-      await expect(args.onChange).toHaveBeenCalledWith("a");
+      await waitFor(() => userEvent.type(input, "abc[Tab]"));
+      await expect(args.onChange).toHaveBeenCalledWith("abc");
     });
   },
 };
@@ -87,7 +84,12 @@ export const RequiredValidation: Story = {
     onChange: fn(),
   },
   render: (args) => (
-    <RadixForm.Root>
+    <RadixForm.Root
+      onSubmit={(e) => {
+        e.preventDefault();
+        e.currentTarget.checkValidity();
+      }}
+    >
       <Textarea {...args} />
       <RadixForm.Submit asChild>
         <Button
@@ -107,9 +109,6 @@ export const RequiredValidation: Story = {
 
       const label = canvas.getByLabelText(/label/i);
       await expect(label).toBeVisible();
-
-      const icon = canvas.getByText(/mumble/i);
-      await expect(icon).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -127,6 +126,30 @@ export const RequiredValidation: Story = {
       await expect(
         canvas.queryByText(/field is required/i)
       ).not.toBeInTheDocument();
+    });
+  },
+};
+
+export const NoLabel: Story = {
+  args: {
+    name: "field",
+    placeholder: "Placeholder",
+    isRequired: true,
+    onChange: fn(),
+  },
+  render: (args) => (
+    <RadixForm.Root>
+      <Textarea {...args} />
+    </RadixForm.Root>
+  ),
+  play: async ({ userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      const input = canvas.getByPlaceholderText(/placeholder/i);
+      await expect(input).toBeVisible();
+      await expect(input).not.toHaveAccessibleName(/label/i);
+
+      const label = canvas.queryByLabelText(/label/i);
+      await expect(label).not.toBeInTheDocument();
     });
   },
 };

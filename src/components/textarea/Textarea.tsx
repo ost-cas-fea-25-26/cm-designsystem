@@ -2,6 +2,7 @@ import * as RadixForm from "@radix-ui/react-form";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
 import { ValidationMessage } from "../typography/ValidationMessage";
+import { useState } from "react";
 
 const textareaStyles = tv({
   slots: {
@@ -51,6 +52,8 @@ export const Textarea = ({ isRequired = false, ...props }: TextareaProps) => {
   const { base, control, message } = textareaStyles({
     ...props,
   });
+  const [value, setValue] = useState("");
+
   return (
     <RadixForm.Field name={props.name} className={base(props)}>
       {/* Label */}
@@ -67,7 +70,8 @@ export const Textarea = ({ isRequired = false, ...props }: TextareaProps) => {
             className={control(props)}
             required={isRequired}
             placeholder={props.placeholder}
-            onChange={(e) => props.onChange(e.target.value)}
+            onChange={(e) => setValue(e.target.value)}
+            onBlur={() => props.onChange(value)}
           />
         </RadixForm.Control>
       </div>

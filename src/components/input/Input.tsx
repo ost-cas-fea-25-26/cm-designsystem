@@ -1,5 +1,5 @@
 import * as RadixForm from "@radix-ui/react-form";
-import React from "react";
+import React, { useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
 import { labelStyles, placeholderStyles } from "../typography/styles";
@@ -59,6 +59,8 @@ export const Input = ({
     hasIcon: !!props.children,
     ...props,
   });
+  const [value, setValue] = useState("");
+
   return (
     <RadixForm.Field name={props.name} className={base(props)}>
       {/* Label */}
@@ -74,7 +76,8 @@ export const Input = ({
             type={type}
             required={isRequired}
             placeholder={props.placeholder}
-            onChange={(e) => props.onChange(e.target.value)}
+            onChange={(e) => setValue(e.target.value)}
+            onBlur={() => props.onChange(value)}
           />
         </RadixForm.Control>
         {props.children &&
