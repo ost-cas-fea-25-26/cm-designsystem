@@ -14,9 +14,9 @@ const copyLinkButtonStyles = tv({
       "px-3",
       "py-2",
       "rounded-full",
-      "transition-colors",
-      "duration-150",
-      "ease-in-out",
+      // "transition-colors",
+      // "duration-150",
+      // "ease-in-out",
       "focus-visible:outline-none",
       "focus-visible:ring-2",
       "focus-visible:ring-offset-2",
@@ -26,7 +26,7 @@ const copyLinkButtonStyles = tv({
       "overflow-hidden",
     ],
     icon: ["inline-flex"],
-    label: ["transition-opacity", "duration-[350ms]", "ease-in-out"],
+    label: ["transition-opacity", "duration-350", "ease-in-out"],
   },
   variants: {
     pressed: {
@@ -88,15 +88,21 @@ export const CopyLinkButton = ({ onClick }: ShareButtonProps) => {
   const { base, icon, label } = copyLinkButtonStyles({ pressed, animating });
 
   const handleClick = () => {
+    // Klick -> Pressed
     setPressed(true);
     setAnimating(true);
     onClick();
 
-    // Dissolve Dauer 350ms
+    // Hover -> Pressed: Dissolve über 350ms
     setTimeout(() => setAnimating(false), 350);
 
-    // Optional: zurück auf Ausgangszustand nach 2s
-    // setTimeout(() => setPressed(false), 2000);
+    // Nach 1s Verzögerung -> zurück zu Default
+    setTimeout(() => {
+      setPressed(false);
+      setAnimating(true);
+      // Dissolve zurück
+      setTimeout(() => setAnimating(false), 350);
+    }, 1000);
   };
 
   return (
