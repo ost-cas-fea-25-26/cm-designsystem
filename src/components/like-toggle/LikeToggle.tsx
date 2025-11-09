@@ -192,7 +192,7 @@ export const LikeToggle = ({
             : `${currentLikes} Likes`
       );
     }
-    onLikeChange?.(nextSelected);
+    onLikeChange(nextSelected);
 
     // After 2s apply count change + dissolve animation
     setTimeout(() => {
