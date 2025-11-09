@@ -14,9 +14,6 @@ const copyLinkButtonStyles = tv({
       "px-3",
       "py-2",
       "rounded-full",
-      // "transition-colors",
-      // "duration-150",
-      // "ease-in-out",
       "focus-visible:outline-none",
       "focus-visible:ring-2",
       "focus-visible:ring-offset-2",
@@ -79,12 +76,16 @@ const copyLinkButtonStyles = tv({
 type ShareButtonVariants = VariantProps<typeof copyLinkButtonStyles>;
 interface ShareButtonProps extends ShareButtonVariants {
   onClick: () => void;
-  icon: React.ReactElement;
+  icon?: React.ReactNode;
+  label?: string;
+  labelActive?: string;
 }
 
 export const CopyLinkButton = ({
   onClick,
   icon = <Share />,
+  label = "Copy Link",
+  labelActive = "Link copied",
 }: ShareButtonProps) => {
   const [pressed, setPressed] = useState(false);
   const [animating, setAnimating] = useState(false);
@@ -92,7 +93,7 @@ export const CopyLinkButton = ({
   const {
     base,
     icon: iconClass,
-    label,
+    label: labelClass,
   } = copyLinkButtonStyles({ pressed, animating });
 
   const handleClick = () => {
@@ -118,9 +119,9 @@ export const CopyLinkButton = ({
       <span className={iconClass()} aria-hidden="true">
         {icon}
       </span>
-      <span className={label()}>
+      <span className={labelClass()}>
         <Label as="span" size="md">
-          {pressed ? "Link copied" : "Copy Link"}
+          {pressed ? labelActive : label}
         </Label>
       </span>
     </button>
