@@ -2,31 +2,109 @@
 
 A modern React component library built with TypeScript, Tailwind CSS, and Storybook.
 
-## Quick Start
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [CM Design System](#cm-design-system)
+- [Quick Start](#quick-start)
+  - [Technical Stack](#technical-stack)
+- [Contributing](#contributing)
+  - [Pull Request Process](#pull-request-process)
+  - [Commit Messages](#commit-messages)
+    - [Development Workflow](#development-workflow)
+      - [TLWR](#tlwr)
+      - [Format Code](#format-code)
+      - [Lint Code](#lint-code)
+      - [Type Check](#type-check)
+      - [Run Tests](#run-tests)
+      - [Build](#build)
+  - [Code Style](#code-style)
+    - [Prettier Configuration](#prettier-configuration)
+    - [ESLint Configuration](#eslint-configuration)
+  - [Continuous Integration](#continuous-integration)
+    - [Why No Pre-commit Hooks?](#why-no-pre-commit-hooks)
+    - [Types:](#types)
+  - [Icon Generation](#icon-generation)
+    - [Optimize SVGs](#optimize-svgs)
+    - [Config (`svg.config.json`)](#config-svgconfigjson)
+    - [Generate](#generate)
+    - [Usage](#usage)
+  - [Visual Testing](#visual-testing)
+    - [Setup](#setup)
+    - [Running Tests](#running-tests)
+    - [Updating Snapshots](#updating-snapshots)
+    - [Viewing Test Reports](#viewing-test-reports)
+      - [GitHub Artifacts](#github-artifacts)
+    - [Storybook Configuration Note](#storybook-configuration-note)
+
+<!-- /code_chunk_output -->
+
+# Quick Start
 
 ```bash
 # Install dependencies
 npm install
 
 # Start development
-npm run dev              # Start Vite dev server
 npm run storybook        # Start Storybook on port 6006
 ```
 
-## Contributing
+## Technical Stack
 
-Thank you for contributing to the CM Design System! Follow these guidelines to contribute.
+This project uses:
 
-### Getting Started
+- **React 19** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS v4** for styling
+- **Storybook** for component documentation
+- **Vitest** for testing
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) for Fast Refresh
+- [Radix UI Primitives](https://www.radix-ui.com/primitives/docs/overview/introduction) as Component Libarary to help with Accessibility
 
-1. Fork the repository
-2. Clone your fork: `git clone <your-fork-url>`
-3. Install dependencies: `npm install`
-4. Create a new branch: `git checkout -b feature/your-feature-name`
+# Contributing
+
+## Pull Request Process
+
+1. Edit code in feature branch
+1. Create a new branch: `git checkout -b feature/initials/your-feature-name`
+1. Ensure your code passes all quality checks locally:
+
+   ```bash
+   npm run preflight
+   ```
+
+1. Choose Commit Message wisely :-). See next Chapter [Commit Messages](#commit-messages)
+1. Push your changes to your feature branch (`feature/<mm or ci>/<description>`)
+1. Create a pull request to the `main` branch
+1. Wait for CI checks to pass
+1. Request review from Matej / Carla
+1. Address any feedback
+1. Merge PR
+
+## Commit Messages
+
+We use [Conventional Commits](https://www.conventionalcommits.org/) for automated versioning and changelog generation:
+
+```
+feat: add new Button variant
+fix: correct Typography component spacing
+docs: update README with new examples
+chore: update dependencies
+style: format code with prettier
+refactor: simplify Icon component logic
+test: add tests for TextLink component
+```
 
 ### Development Workflow
 
 Before committing your changes, ensure your code meets our quality standards:
+
+#### TLWR
+
+```bash
+npm run preflight        # does everything
+```
 
 #### Format Code
 
@@ -122,39 +200,6 @@ We've chosen not to use pre-commit hooks (like Husky) because:
 
 You're still encouraged to run quality checks locally before pushing!
 
-## Pull Request Process
-
-1. Ensure your code passes all quality checks locally:
-
-   ```bash
-   npm run format
-   npm run lint
-   npx tsc -b --noEmit
-   npm test
-   npm run build
-   ```
-
-2. Push your changes to your feature branch (`feature/<mm or ci>/<description>`)
-3. Create a pull request to the `main` branch
-4. Wait for CI checks to pass
-5. Request review from Matej / Carla
-6. Address any feedback
-7. Once approved, your PR will be merged
-
-## Commit Messages
-
-We use [Conventional Commits](https://www.conventionalcommits.org/) for automated versioning and changelog generation:
-
-```
-feat: add new Button variant
-fix: correct Typography component spacing
-docs: update README with new examples
-chore: update dependencies
-style: format code with prettier
-refactor: simplify Icon component logic
-test: add tests for TextLink component
-```
-
 ### Types:
 
 - `feat`: New feature
@@ -167,17 +212,6 @@ test: add tests for TextLink component
 - `perf`: Performance improvements
 
 ---
-
-## Technical Stack
-
-This project uses:
-
-- **React 19** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS v4** for styling
-- **Storybook** for component documentation
-- **Vitest** for testing
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) for Fast Refresh
 
 ## Icon Generation
 
