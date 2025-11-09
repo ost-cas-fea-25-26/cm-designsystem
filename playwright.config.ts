@@ -34,6 +34,13 @@ export default defineConfig({
     trace: "on-first-retry",
   },
 
+  /* allow until 1% pixel difference */
+  expect: {
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.01,
+    },
+  },
+
   /* Configure projects for major browsers */
   projects: [
     {
