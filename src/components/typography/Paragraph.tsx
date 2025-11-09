@@ -1,15 +1,6 @@
 import { createElement } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
-
-const paragraphStyles = tv({
-  base: ["font-medium", "tracking-normal"],
-  variants: {
-    size: {
-      lg: ["text-[24px]/[145%]"],
-      md: ["text-[18px]/[140%]"],
-    },
-  },
-});
+import { type VariantProps } from "tailwind-variants";
+import { paragraphStyles } from "./styles";
 
 type ParagraphVariants = VariantProps<typeof paragraphStyles>;
 type ParagraphSize = "lg" | "md";
