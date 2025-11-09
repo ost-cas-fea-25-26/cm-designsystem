@@ -129,7 +129,7 @@ export const Toggle = ({
     const nextSelected = !selected;
 
     setSelected(nextSelected);
-    setLabel(nextSelected ? "Liked" : "Like"); // sofort sichtbar
+    setLabel(nextSelected ? "Liked" : "Like"); 
     onLikeChange?.(nextSelected);
 
     // 2s warten, dann animieren
