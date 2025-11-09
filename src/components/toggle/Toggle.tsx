@@ -166,7 +166,11 @@ export const Toggle = ({
       pressed={selected}
       onPressedChange={handlePressedChange}
     >
-      <span className={icon()} aria-hidden="true" aria-label={selected ? "HeartFilled" : "HeartOutline"}>
+      <span
+        className={icon()}
+        aria-hidden="true"
+        aria-label={selected ? "HeartFilled" : "HeartOutline"}
+      >
         {selected ? <HeartFilled /> : <HeartOutline />}
       </span>
       <span className={labelSlot()}>

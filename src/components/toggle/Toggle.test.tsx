@@ -3,7 +3,7 @@ import { describe, expect, test, vi } from "vitest";
 import { Toggle } from "./Toggle";
 
 describe("Toggle", () => {
-   test("should render icon and label", async () => {
+  test("should render icon and label", async () => {
     // Arrange
     render(<Toggle ariaLabel="Like this" likes={3} onLikeChange={() => {}} />);
 
@@ -18,7 +18,9 @@ describe("Toggle", () => {
   test("renders initial state and toggles correctly", async () => {
     // Arrange
     const onLikeChange = vi.fn();
-    render(<Toggle ariaLabel="Like this" likes={3} onLikeChange={onLikeChange} />);
+    render(
+      <Toggle ariaLabel="Like this" likes={3} onLikeChange={onLikeChange} />
+    );
 
     const button = screen.getByRole("button");
     expect(button).toBeVisible();
@@ -40,7 +42,7 @@ describe("Toggle", () => {
       () => {
         expect(button).toHaveTextContent("4 Likes");
       },
-      { timeout: 2500 } 
+      { timeout: 2500 }
     );
   });
 });
