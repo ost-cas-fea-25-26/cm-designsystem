@@ -123,6 +123,7 @@ export const RequiredValidation: Story = {
       const input = canvas.getByPlaceholderText(/placeholder/i);
       await waitFor(() => userEvent.type(input, "test[Tab]"));
       await waitFor(() => userEvent.click(button));
+      input.blur();
       await expect(
         canvas.queryByText(/field is required/i)
       ).not.toBeInTheDocument();

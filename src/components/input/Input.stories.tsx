@@ -84,6 +84,7 @@ export const Default: Story = {
     await step("Check click event", async () => {
       const input = canvas.getByPlaceholderText(/placeholder/i);
       await waitFor(() => userEvent.type(input, "a"));
+      input.blur();
       await expect(args.onChange).toHaveBeenCalledWith("a");
     });
   },
