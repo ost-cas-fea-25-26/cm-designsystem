@@ -17,15 +17,23 @@ const meta = {
   argTypes: {
     intent: {
       control: "select",
+      description: "Button style variant.",
     },
     size: {
       control: "select",
+      description: "Button size (e.g lg, md, ...)",
     },
     label: {
       control: "text",
+      description: "Label of the button.",
     },
     children: {
       control: "object",
+      description: "Icon that should be displayed in button.",
+    },
+    className: {
+      control: "text",
+      description: "Classes to override styling of component.",
     },
   },
 } satisfies Meta<typeof Button>;
