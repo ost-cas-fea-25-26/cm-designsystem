@@ -13,9 +13,13 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    size: { control: "select" },
-    as: { control: "text" },
-    children: { control: "text" },
+    size: { control: "select", description: "Paragraph size." },
+    as: { control: "text", description: "Render test with given HTML tag." },
+    children: { control: "text", description: "Paragraph text." },
+    className: {
+      control: "text",
+      description: "Classes to override styling of component.",
+    },
   },
 } satisfies Meta<typeof Paragraph>;
 
