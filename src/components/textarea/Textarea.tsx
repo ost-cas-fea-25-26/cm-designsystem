@@ -1,62 +1,55 @@
 import * as RadixForm from "@radix-ui/react-form";
-import React, { useState } from "react";
+import { useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
-import { labelStyles, placeholderStyles } from "../typography/styles";
 import { ValidationMessage } from "../typography/ValidationMessage";
-import type { IconBaseProps } from "../icons/IconBase";
 
-const inputStyles = tv({
+const textareaStyles = tv({
   slots: {
     base: ["flex", "flex-col", "gap-1"],
-    controlContainer: ["relative", "inline-block"],
     control: [
       "w-full",
       "ring",
+      "hover:ring-2",
       "focus:ring-2",
       "ring-slate-200",
-      "hover:ring-violet-600",
+      "hover:ring-slate-300",
+      "focus:ring-violet-600",
       "focus-visible:ring-violet-600",
       "focus-within:ring-violet-600",
       "focus-visible:outline-none",
-      "bg-slate-50",
+      "bg-slate-100",
       "rounded-lg",
       "p-4",
-      "text-slate-700",
       "transition",
       "duration-300",
       "ease-in-out",
+      "font-medium",
+      "text-slate-900",
+      "text-[20px]/[135%]",
+      "tracking-normal",
+      "placeholder:font-medium",
+      "placeholder:text-slate-500",
+      "placeholder:text-[20px]/[135%]",
+      "placeholder:tracking-normal",
+      "resize-none",
     ],
-    icon: ["absolute", "w-4", "h-4", "right-4", "top-4.5"],
     message: ["text-error"],
-  },
-  variants: {
-    hasIcon: {
-      true: { control: ["pr-10"] },
-      false: { control: ["pr-4"] },
-    },
   },
 });
 
-type InputVariants = VariantProps<typeof inputStyles>;
+type TextareaVariants = VariantProps<typeof textareaStyles>;
 
-interface InputProps extends InputVariants {
-  label: string;
+interface TextareaProps extends TextareaVariants {
   name: string;
   placeholder: string;
-  type?: string;
+  label?: string;
   isRequired?: boolean;
-  children?: React.ReactElement<IconBaseProps>;
   onChange: (value: string) => void;
 }
 
-export const Input = ({
-  type = "text",
-  isRequired = false,
-  ...props
-}: InputProps) => {
-  const { base, controlContainer, control, message, icon } = inputStyles({
-    hasIcon: !!props.children,
+export const Textarea = ({ isRequired = false, ...props }: TextareaProps) => {
+  const { base, control, message } = textareaStyles({
     ...props,
   });
   const [value, setValue] = useState("");
@@ -64,24 +57,23 @@ export const Input = ({
   return (
     <RadixForm.Field name={props.name} className={base(props)}>
       {/* Label */}
-      <RadixForm.Label>
-        <Label size="md">{props.label}</Label>
-      </RadixForm.Label>
+      {props.label && (
+        <RadixForm.Label>
+          <Label size="md">{props.label}</Label>
+        </RadixForm.Label>
+      )}
 
       {/* Control */}
-      <div className={controlContainer(props)}>
+      <div>
         <RadixForm.Control asChild>
-          <input
-            className={`${control(props)} ${labelStyles({ size: "md" })} ${placeholderStyles()}`}
-            type={type}
+          <textarea
+            className={control(props)}
             required={isRequired}
             placeholder={props.placeholder}
             onChange={(e) => setValue(e.target.value)}
             onBlur={() => props.onChange(value)}
           />
         </RadixForm.Control>
-        {props.children &&
-          React.cloneElement(props.children, { className: icon(props) })}
       </div>
 
       {/* Validation Messages */}
@@ -91,9 +83,6 @@ export const Input = ({
             <ValidationMessage>{`${props.name} is required`}</ValidationMessage>
           </RadixForm.Message>
         )}
-        <RadixForm.Message match="typeMismatch">
-          <ValidationMessage>{`${props.name} is invalid`}</ValidationMessage>
-        </RadixForm.Message>
       </div>
     </RadixForm.Field>
   );
