@@ -1,6 +1,5 @@
-import { expect, fn } from "storybook/test";
+import { expect, fn, waitFor } from "storybook/test";
 import avatarImage from "../../assets/avatar.svg";
-import { Profile } from "../icons/generated";
 import { NaviUserButton } from "./NaviUserButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -38,13 +37,17 @@ export const Secondary: Story = {
     label: "Lorem ipsum",
     src: avatarImage,
     onClick: fn(),
-    children: <Profile />,
+    children: "PA",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
-      await expect(canvas.getByRole("button")).toBeVisible();
-      await expect(canvas.getByAltText("Lorem ipsum")).toBeVisible();
-      await expect(canvas.queryByText("Profile")).not.toBeInTheDocument();
+      const button = canvas.getByRole("button");
+      await expect(button).toBeVisible();
+      await expect(button).toHaveAccessibleName(/lorem ipsum/i);
+      await waitFor(() =>
+        expect(canvas.getByRole("img")).toHaveAccessibleName(/lorem ipsum/i)
+      );
+      await expect(canvas.queryByText("PA")).not.toBeInTheDocument();
     });
 
     await step("Check click event", async () => {
@@ -64,8 +67,9 @@ export const Fallback: Story = {
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
-      await expect(canvas.getByRole("button")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
+      await expect(
+        canvas.getByRole("button", { name: /lorem ipsum/i })
+      ).toBeVisible();
       const fallback = await canvas.findByText("PA");
       await expect(fallback).toBeVisible();
     });
