@@ -3,15 +3,12 @@ import { goToStorybook } from "./test.utils";
 
 const componentName = "components-toggle";
 
-
-
 // Helper to get button once story loaded
 const getToggle = (page: Page) => page.getByRole("button");
 
 test.describe("Heart Toggle Default", () => {
-    const story = "nolikes"; 
-    const screenshotNamePrefix = `${componentName}--${story}`;
-  
+  const story = "nolikes";
+  const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("No Likes", async ({ page }) => {
     // Arrange
@@ -27,7 +24,7 @@ test.describe("Heart Toggle Default", () => {
   test("No Likes - Hover State", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);    
+    const button = getToggle(page);
     await button.hover();
 
     // Assert
@@ -44,13 +41,13 @@ test.describe("Heart Toggle Default", () => {
  */
 
 test.describe("Toggle: First Like Animation", () => {
-  const story = "firstlikeanimation";      
-    const screenshotNamePrefix = `${componentName}--${story}`;
+  const story = "firstlikeanimation";
+  const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("Animation from Liked to 1 Like", async ({ page }) => {
     // Arrange
     await goToStorybook(page, componentName, story);
-    const button = getToggle(page);    
+    const button = getToggle(page);
 
     // Act
     await button.click();
@@ -59,13 +56,12 @@ test.describe("Toggle: First Like Animation", () => {
     await expect(button).toHaveText(/Liked/);
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-liked.png`);
 
-    // Assert after delay (2000ms + 300ms for animation - to be safe)     
+    // Assert after delay (2000ms + 300ms for animation - to be safe)
     await page.waitForTimeout(2300);
     await expect(button).toHaveText(/1 Like/);
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-final.png`);
   });
 });
-
 
 /**
  * Existing Likes Test
@@ -74,12 +70,10 @@ test.describe("Toggle: First Like Animation", () => {
  * After delay: '6 Likes'.
  */
 test.describe("Toggle: existinglikes", () => {
-  const story = "existinglikes";  
-      const screenshotNamePrefix = `${componentName}--${story}`;
-
+  const story = "existinglikes";
+  const screenshotNamePrefix = `${componentName}--${story}`;
 
   test("increments from 5 to 6 Likes", async ({ page }) => {
-
     // Arrange
     await goToStorybook(page, componentName, story);
     const button = getToggle(page);
@@ -96,13 +90,11 @@ test.describe("Toggle: existinglikes", () => {
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-liked.png`);
 
     // Assert after delay (2000ms + 300ms animation buffer)
-    await page.waitForTimeout(2300); 
+    await page.waitForTimeout(2300);
     await expect(button).toHaveText(/6 Likes/);
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-final.png`);
   });
 });
-
-
 
 /**
  * Liked and Mulitple Likes
@@ -139,7 +131,7 @@ test.describe("Toggle: multiple likes", () => {
 /**
  *  Hover over multiple likes
  */
-    
+
 test.describe("Toggle: likedmultiple hover", () => {
   const story = "likedmultiple";
   const screenshotNamePrefix = `${componentName}--${story}`;

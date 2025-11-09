@@ -137,7 +137,9 @@ export const Liked: Story = {
   },
   play: async ({ canvas, step }) => {
     await step("Shows pressed single like", async () => {
-      await expect(canvas.getByRole("button", { name: /1 Like/i })).toBeVisible();
+      await expect(
+        canvas.getByRole("button", { name: /1 Like/i })
+      ).toBeVisible();
       await expect(canvas.getByText(/1 Like/)).toBeVisible();
     });
   },
@@ -152,7 +154,9 @@ export const LikedMultiple: Story = {
   },
   play: async ({ canvas, step }) => {
     await step("Shows pressed multiple likes", async () => {
-      await expect(canvas.getByRole("button", { name: /12 Likes/i })).toBeVisible();
+      await expect(
+        canvas.getByRole("button", { name: /12 Likes/i })
+      ).toBeVisible();
       await expect(canvas.getByText(/12 Likes/)).toBeVisible();
     });
   },
