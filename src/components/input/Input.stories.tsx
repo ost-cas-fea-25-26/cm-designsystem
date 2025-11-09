@@ -4,6 +4,7 @@ import { Button } from "../button/Button";
 import { Mumble } from "../icons/generated";
 import { Input } from "./Input";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Form } from "../form/Form";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -64,9 +65,11 @@ export const Default: Story = {
     children: <Mumble />,
   },
   render: (args) => (
-    <RadixForm.Root>
-      <Input {...args} />
-    </RadixForm.Root>
+    <Form>
+      <Form.Fields>
+        <Input {...args} />
+      </Form.Fields>
+    </Form>
   ),
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -101,9 +104,11 @@ export const TypeValidation: Story = {
     children: <Mumble />,
   },
   render: (args) => (
-    <RadixForm.Root>
-      <Input {...args} />
-    </RadixForm.Root>
+    <Form>
+      <Form.Fields>
+        <Input {...args} />
+      </Form.Fields>
+    </Form>
   ),
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -144,17 +149,19 @@ export const RequiredValidation: Story = {
     children: <Mumble />,
   },
   render: (args) => (
-    <RadixForm.Root>
-      <Input {...args} />
-      <RadixForm.Submit asChild>
+    <Form>
+      <Form.Fields>
+        <Input {...args} />
+      </Form.Fields>
+      <Form.Action>
         <Button
           intent="secondary"
           label="Test required"
           size="md"
           onClick={fn()}
         />
-      </RadixForm.Submit>
-    </RadixForm.Root>
+      </Form.Action>
+    </Form>
   ),
   play: async ({ userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -198,9 +205,11 @@ export const NoIcon: Story = {
     onChange: fn(),
   },
   render: (args) => (
-    <RadixForm.Root>
-      <Input {...args} />
-    </RadixForm.Root>
+    <Form>
+      <Form.Fields>
+        <Input {...args} />
+      </Form.Fields>
+    </Form>
   ),
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {

@@ -12,7 +12,6 @@ const formStyles = tv({
 type FormVariants = VariantProps<typeof formStyles>;
 
 interface FormProps extends FormVariants {
-  label: string;
   children?: React.ReactNode;
 }
 
