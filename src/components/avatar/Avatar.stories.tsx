@@ -161,6 +161,28 @@ export const ExtraLargeWithAction: Story = {
   },
 };
 
+export const DefaultFallback: Story = {
+  args: {
+    size: "md",
+    label: "Lorem ipsum",
+    src: "",
+    onClick: fn(),
+  },
+  play: async ({ args, userEvent, canvas, step }) => {
+    await step("Check initial render", async () => {
+      await expect(canvas.queryByRole("img")).not.toBeInTheDocument();
+      const fallback = await canvas.findByLabelText("Lorem ipsum");
+      await expect(fallback).toHaveTextContent("PA");
+    });
+
+    await step("Check click event", async () => {
+      const fallback = await canvas.findByLabelText("Lorem ipsum");
+      await userEvent.click(fallback);
+      await expect(args.onClick).toHaveBeenCalled();
+    });
+  },
+};
+
 export const Fallback: Story = {
   args: {
     size: "md",

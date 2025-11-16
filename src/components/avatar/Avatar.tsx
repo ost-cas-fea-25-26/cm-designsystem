@@ -2,6 +2,7 @@ import * as RadixAvatar from "@radix-ui/react-avatar";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Edit } from "../icons/generated";
 import { RoundButton } from "../round-button/RoundButton";
+import fallbackImage from "../../assets/fallback.png";
 
 const avatarStyles = tv({
   slots: {
@@ -65,8 +66,8 @@ interface AvatarProps extends AvatarVariants {
   label: string;
   size: AvatarSize;
   src: string;
-  children: React.ReactNode;
-  onClick: () => void;
+  children?: React.ReactNode;
+  onClick?: () => void;
   onActionClick?: () => void;
 }
 
@@ -92,7 +93,15 @@ export const Avatar = (props: AvatarProps) => {
       )}
 
       <RadixAvatar.Fallback aria-label={props.label}>
-        <div className={avatar(props)}>{props.children}</div>
+        {props.children ? (
+          <div className={avatar(props)}>{props.children}</div>
+        ) : (
+          <img
+            src={fallbackImage}
+            alt={props.label}
+            className={avatar(props)}
+          />
+        )}
       </RadixAvatar.Fallback>
     </RadixAvatar.Root>
   );

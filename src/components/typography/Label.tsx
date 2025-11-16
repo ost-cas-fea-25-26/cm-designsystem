@@ -4,7 +4,7 @@ import { type VariantProps } from "tailwind-variants";
 import { labelStyles } from "./styles";
 
 type LabelVariants = VariantProps<typeof labelStyles>;
-type LabelSize = "xl" | "lg" | "md" | "sm";
+export type LabelSize = "xl" | "lg" | "md" | "sm";
 
 interface LabelProps extends LabelVariants {
   size: LabelSize;
