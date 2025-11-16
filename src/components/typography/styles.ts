@@ -37,7 +37,7 @@ export const labelStyles = tv({
 export const placeholderStyles = tv({
   base: [
     "font-medium",
-    "text-slate-300",
+    "text-slate-500",
     "text-[16px]/[100%]",
     "tracking-normal",
     "placeholder:font-medium",
