@@ -1,8 +1,8 @@
 import * as RadixAvatar from "@radix-ui/react-avatar";
 import { tv, type VariantProps } from "tailwind-variants";
+import fallbackImage from "../../assets/fallback.png";
 import { Edit } from "../icons/generated";
 import { RoundButton } from "../round-button/RoundButton";
-import fallbackImage from "../../assets/fallback.png";
 
 const avatarStyles = tv({
   slots: {

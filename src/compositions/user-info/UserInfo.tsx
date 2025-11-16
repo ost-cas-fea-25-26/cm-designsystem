@@ -1,13 +1,13 @@
 import { tv, type VariantProps } from "tailwind-variants";
 import { Avatar } from "../../components/avatar/Avatar";
-import { Label, type LabelSize } from "../../components/typography/Label";
 import { IconButton } from "../../components/icon-button/IconButton";
 import { Profile, Time } from "../../components/icons/generated";
+import { Label, type LabelSize } from "../../components/typography/Label";
 
 const userInfoStyles = tv({
   slots: {
     base: ["flex", "gap-2", "items-center", "cursor-pointer"],
-    userInfo: ["flex", "flex-col", "gap-2", "justify-center"],
+    userInfo: ["flex", "flex-col", "gap-2", "justify-center", "items-start"],
     displayName: ["cursor-pointer", "text-slate-900"],
     detailInfo: ["flex", "flex", "gap-4"],
   },
@@ -77,8 +77,8 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
   const { base, userInfo, displayName, detailInfo } = userInfoStyles(props);
 
   return (
-    <div className={base()} onClick={props.onClick}>
-      {props.src && <Avatar label="Profile" size="sm" src={props.src}></Avatar>}
+    <button className={base()} onClick={props.onClick}>
+      {props.src && <Avatar label="Profile" size="sm" src={props.src} />}
       <div className={userInfo()}>
         <Label size={getLabelSize(props.size)} className={displayName()}>
           {props.displayName}
@@ -101,6 +101,6 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
           </IconButton>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
