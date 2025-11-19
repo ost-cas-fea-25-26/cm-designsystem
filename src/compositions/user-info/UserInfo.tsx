@@ -8,16 +8,8 @@ const userInfoStyles = tv({
   slots: {
     base: ["flex", "gap-2", "items-center", "cursor-pointer"],
     userInfo: ["flex", "flex-col", "gap-2", "justify-center", "items-start"],
-    displayName: ["cursor-pointer", "text-slate-900"],
+    displayName: ["text-slate-900"],
     detailInfo: ["flex", "flex", "gap-4"],
-  },
-  variants: {
-    size: {
-      sm: {},
-      md: {},
-      lg: {},
-      xl: {},
-    },
   },
 });
 
@@ -77,10 +69,10 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
   const { base, userInfo, displayName, detailInfo } = userInfoStyles(props);
 
   return (
-    <button className={base()} onClick={props.onClick}>
-      {props.src && <Avatar label="Profile" size="sm" src={props.src} />}
+    <div className={base()}>
+      {props.src && <Avatar label="Profile" size="sm" src={props.src} onClick={props.onClick}/>}
       <div className={userInfo()}>
-        <Label size={getLabelSize(props.size)} className={displayName()}>
+        <Label size={getLabelSize(props.size)} className={displayName()} onClick={props.onClick}>
           {props.displayName}
         </Label>
         <div className={detailInfo()}>
@@ -101,6 +93,6 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
           </IconButton>
         </div>
       </div>
-    </button>
+    </div>
   );
 };
