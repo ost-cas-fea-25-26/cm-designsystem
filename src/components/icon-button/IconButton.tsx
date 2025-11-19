@@ -5,7 +5,14 @@ import type { IconBaseProps } from "../icons/IconBase";
 
 const iconButtonStyles = tv({
   slots: {
-    base: ["flex", "gap-1", "transition", "duration-350", "ease-in-out"],
+    base: [
+      "flex",
+      "gap-1",
+      "transition",
+      "duration-350",
+      "ease-in-out",
+      "cursor-pointer",
+    ],
     icon: ["w-3", "h-3"],
   },
   variants: {
