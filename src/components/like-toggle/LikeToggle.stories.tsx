@@ -21,10 +21,6 @@ const meta = {
       control: "boolean",
       description: "Whether toggle is visually pressed",
     },
-    ariaLabel: {
-      control: "text",
-      description: "Accessible label for the toggle",
-    },
     likes: {
       control: { type: "number", min: 0 },
       description: "Existing like count (0 = first like animation)",
@@ -42,7 +38,6 @@ type Story = StoryObj<typeof meta>;
 export const NoLikes: Story = {
   args: {
     pressed: false,
-    ariaLabel: "Like",
     likes: 0,
     onLikeChange: () => {},
   },
@@ -57,7 +52,6 @@ export const NoLikes: Story = {
 export const NoLikesHover: Story = {
   args: {
     pressed: false,
-    ariaLabel: "Like",
     likes: 0,
     onLikeChange: () => {},
   },
@@ -75,7 +69,6 @@ export const NoLikesHover: Story = {
 export const ExistingLikes: Story = {
   args: {
     pressed: false,
-    ariaLabel: "5 Likes",
     likes: 5,
     onLikeChange: () => {},
   },
@@ -100,7 +93,6 @@ export const ExistingLikes: Story = {
 export const ExistingLikesLiked: Story = {
   args: {
     pressed: true,
-    ariaLabel: "5 Likes",
     likes: 5,
     onLikeChange: () => {},
   },
@@ -116,7 +108,6 @@ export const ExistingLikesLiked: Story = {
 
 export const FirstLikeAnimation: Story = {
   args: {
-    ariaLabel: "Like",
     likes: 0,
     onLikeChange: () => {},
   },
@@ -139,7 +130,6 @@ export const FirstLikeAnimation: Story = {
 export const Liked: Story = {
   args: {
     pressed: true,
-    ariaLabel: "1 Like",
     likes: 1,
     onLikeChange: () => {},
   },
@@ -156,7 +146,6 @@ export const Liked: Story = {
 export const LikedMultiple: Story = {
   args: {
     pressed: true,
-    ariaLabel: "12 Likes",
     likes: 12,
     onLikeChange: () => {},
   },
