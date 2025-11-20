@@ -59,7 +59,7 @@ export const NoLikesHover: Story = {
     const button = canvas.getByRole("button", { name: /Like/i });
     await step("Hover over Like", async () => {
       await userEvent.hover(button);
-      // We can't directly assert Tailwind classes via testing-library, but we can check aria-label stays and text still visible
+
       await expect(button).toBeVisible();
       await expect(canvas.getByText(/Like$/)).toBeVisible();
     });
