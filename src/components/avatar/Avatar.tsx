@@ -66,7 +66,7 @@ interface AvatarProps extends AvatarVariants {
   size: AvatarSize;
   src: string;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   onActionClick?: () => void;
 }
 
