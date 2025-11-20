@@ -46,12 +46,7 @@ export const NaviUserButton = ({
       onClick={props.onClick}
       aria-label={props.label}
     >
-      <Avatar
-        label={props.label}
-        size="sm"
-        src={props.src}
-        onClick={props.onClick}
-      >
+      <Avatar label={props.label} size="sm" src={props.src}>
         {props.children}
       </Avatar>
     </button>
