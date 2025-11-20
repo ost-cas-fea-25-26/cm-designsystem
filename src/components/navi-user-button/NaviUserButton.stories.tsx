@@ -19,9 +19,9 @@ const meta = {
       control: "select",
       description: "Button style variant (secondary).",
     },
-    label: {
+    ariaLabel: {
       control: "text",
-      description: "Accessible label for the button and avatar.",
+      description: "Accessible label for the icon-only button.",
     },
     src: {
       control: "text",
@@ -45,7 +45,7 @@ type Story = StoryObj<typeof meta>;
 export const Secondary: Story = {
   args: {
     intent: "secondary",
-    label: "Lorem ipsum",
+    ariaLabel: "Lorem ipsum",
     src: avatarImage,
     onClick: fn(),
     children: "PA",
@@ -71,7 +71,7 @@ export const Secondary: Story = {
 export const Fallback: Story = {
   args: {
     intent: "secondary",
-    label: "Lorem ipsum",
+    ariaLabel: "Lorem ipsum",
     src: "",
     onClick: fn(),
     children: "PA",
