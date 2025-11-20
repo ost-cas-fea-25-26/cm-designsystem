@@ -54,26 +54,43 @@ type ButtonVariants = VariantProps<typeof buttonStyles>;
 type ButtonIntent = "primary" | "secondary" | "tertiary";
 type ButtonSize = "md" | "lg";
 
-interface ButtonProps extends ButtonVariants {
-  label: string;
+type BaseButtonProps = ButtonVariants & {
   intent: ButtonIntent;
   size: ButtonSize;
   onClick: () => void;
   className?: string;
   children?: React.ReactElement<IconBaseProps>;
-}
+};
+
+type ButtonWithLabel = BaseButtonProps & {
+  label: string;
+  ariaLabel?: string;
+};
+
+type ButtonIconOnly = BaseButtonProps & {
+  label?: undefined;
+  ariaLabel: string;
+};
+
+type ButtonProps = ButtonWithLabel | ButtonIconOnly;
 
 export const Button = (props: ButtonProps) => {
+  const { label, ariaLabel, children, ...rest } = props;
+
+  // aria-label nur setzen, wenn kein sichtbares Label existiert
+  const finalAriaLabel = label ? undefined : ariaLabel;
+
   return (
     <button
+      {...rest}
       className={twMerge(props.className, buttonStyles(props))}
       onClick={props.onClick}
-      aria-label={props.label}
+      aria-label={finalAriaLabel}
     >
       <Label as="span" size="md">
-        {props.label}
+        {label}
       </Label>
-      {props.children}
+      {children}
     </button>
   );
 };
