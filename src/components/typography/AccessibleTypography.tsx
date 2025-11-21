@@ -25,6 +25,11 @@ export interface AccessibleTypographyProps {
   className?: string;
 
   /**
+   * Defines the ARIA role of the element.
+   */
+  role?: string;
+
+  /**
    * The accessible label associated with this element.
    * Useful when the visible text isn’t descriptive enough.
    */

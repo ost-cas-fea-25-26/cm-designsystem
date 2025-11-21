@@ -1,11 +1,9 @@
-import { createElement, type JSX } from "react";
-import { twMerge } from "tailwind-merge";
 import { cnBase, type VariantProps } from "tailwind-variants";
-import { validationMessageStyles } from "./styles";
 import {
   AccessibleTypography,
   type AccessibleTypographyProps,
 } from "./AccessibleTypography";
+import { validationMessageStyles } from "./styles";
 
 type ValidationMessageVariants = VariantProps<typeof validationMessageStyles>;
 type ValidationMessageType = "error";
@@ -40,6 +38,6 @@ export const ValidationMessage: React.FC<ValidationMessageProps> = ({
       as={as}
       className={styles}
       {...props}
-    ></AccessibleTypography>
+     />
   );
 };

@@ -1,9 +1,9 @@
 import { cnBase, type VariantProps } from "tailwind-variants";
-import { labelStyles } from "./styles";
 import {
   AccessibleTypography,
   type AccessibleTypographyProps,
 } from "./AccessibleTypography";
+import { labelStyles } from "./styles";
 
 type LabelVariants = VariantProps<typeof labelStyles>;
 type LabelSize = "xl" | "lg" | "md" | "sm";
@@ -35,6 +35,6 @@ export const Label: React.FC<LabelProps> = ({
       as={as}
       className={styles}
       {...props}
-    ></AccessibleTypography>
+     />
   );
 };

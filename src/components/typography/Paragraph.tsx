@@ -1,9 +1,9 @@
 import { cnBase, type VariantProps } from "tailwind-variants";
-import { paragraphStyles } from "./styles";
 import {
   AccessibleTypography,
   type AccessibleTypographyProps,
 } from "./AccessibleTypography";
+import { paragraphStyles } from "./styles";
 
 type ParagraphVariants = VariantProps<typeof paragraphStyles>;
 type ParagraphSize = "lg" | "md";
@@ -35,6 +35,6 @@ export const Paragraph: React.FC<ParagraphProps> = ({
       as={as}
       className={styles}
       {...props}
-    ></AccessibleTypography>
+     />
   );
 };
