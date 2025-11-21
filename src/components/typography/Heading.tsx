@@ -26,7 +26,11 @@ interface HeadingProps extends HeadingVariants, AccessibleTypographyProps {
 /**
  * A semantic, accessible Heading component built on top of the AccessibleTypography component.
  */
-export const Heading: React.FC<HeadingProps> = ({ as, className, ...props }: HeadingProps) => {
+export const Heading: React.FC<HeadingProps> = ({
+  as,
+  className,
+  ...props
+}: HeadingProps) => {
   const styles = cnBase(className, headingStyles(props));
   return (
     <AccessibleTypography
