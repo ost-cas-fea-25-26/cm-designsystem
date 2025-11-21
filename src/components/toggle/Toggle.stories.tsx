@@ -8,6 +8,9 @@ const meta = {
   component: Toggle,
   parameters: {
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
     docs: {
       description: {
         component:
