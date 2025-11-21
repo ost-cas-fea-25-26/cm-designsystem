@@ -6,7 +6,7 @@ import fallbackImage from "../../assets/fallback.png";
 
 const avatarStyles = tv({
   slots: {
-    base: ["relative", "inline-block", "cursor-pointer"],
+    base: ["relative", "inline-block"],
     avatar: [
       "rounded-full",
       "transition",
@@ -21,6 +21,9 @@ const avatarStyles = tv({
     action: ["absolute", "bottom-2", "right-2"],
   },
   variants: {
+    isClickable: {
+      true: { base: ["cursor-pointer"] },
+    },
     size: {
       sm: { avatar: ["w-10", "h-10", "hover:scale-105"] },
       md: {
@@ -117,7 +120,10 @@ interface AvatarProps extends AvatarVariants {
 export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
   const { base, avatar, action } = avatarStyles(props);
   return (
-    <RadixAvatar.Root onClick={props.onAvatarClick} className={base(props)}>
+    <RadixAvatar.Root
+      onClick={props.onAvatarClick}
+      className={base({ isClickable: !!props.onAvatarClick, ...props })}
+    >
       <RadixAvatar.Image
         src={props.src}
         alt={props.alt}
