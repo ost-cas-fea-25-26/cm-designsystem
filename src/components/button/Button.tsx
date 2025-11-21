@@ -77,7 +77,7 @@ type ButtonProps = ButtonWithLabel | ButtonIconOnly;
 export const Button = (props: ButtonProps) => {
   const { label, ariaLabel, children, ...rest } = props;
 
-  // aria-label nur setzen, wenn kein sichtbares Label existiert
+  // Set aria-label when no visible label exists
   const finalAriaLabel = label ? undefined : ariaLabel;
 
   return (
