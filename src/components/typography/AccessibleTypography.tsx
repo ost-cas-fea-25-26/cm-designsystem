@@ -1,0 +1,65 @@
+import { createElement, type JSX } from "react";
+import { cnBase, tv } from "tailwind-variants";
+
+const accessibleTypographyStyles = tv({
+  variants: {
+    isClickable: {
+      true: ["cursor-pointer"],
+    },
+  },
+});
+
+/**
+ * Props for the Typography component.
+ */
+export interface AccessibleTypographyProps {
+  /**
+   * The HTML tag to render (e.g., "p", "h1", "span").
+   * Determines the semantic element used for the text.
+   */
+  as?: keyof JSX.IntrinsicElements;
+
+  /**
+   * Additional Tailwind or custom class names to apply.
+   */
+  className?: string;
+
+  /**
+   * The accessible label associated with this element.
+   * Useful when the visible text isn’t descriptive enough.
+   */
+  ariaLabel?: string;
+
+  /**
+   * Optional click handler.
+   * When provided, the component becomes visually clickable.
+   */
+  onClick?: () => void;
+
+  /**
+   * The content to be rendered inside the element.
+   */
+  children: React.ReactNode;
+}
+
+/**
+ * A flexible, semantic, accessible typography component that allows you
+ * to set the HTML tag and optionally make it clickable.
+ */
+export const AccessibleTypography: React.FC<AccessibleTypographyProps> = (
+  props: AccessibleTypographyProps
+) => {
+  const styles = cnBase(
+    props.className,
+    accessibleTypographyStyles({ isClickable: !!props.onClick })
+  );
+  return createElement(
+    props.as ?? "div",
+    {
+      className: styles,
+      "aria-label": props.ariaLabel,
+      onClick: props.onClick,
+    },
+    props.children
+  );
+};

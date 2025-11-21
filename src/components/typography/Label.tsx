@@ -1,22 +1,40 @@
-import { createElement, type JSX } from "react";
-import { twMerge } from "tailwind-merge";
-import { type VariantProps } from "tailwind-variants";
+import { cnBase, type VariantProps } from "tailwind-variants";
 import { labelStyles } from "./styles";
+import {
+  AccessibleTypography,
+  type AccessibleTypographyProps,
+} from "./AccessibleTypography";
 
 type LabelVariants = VariantProps<typeof labelStyles>;
 type LabelSize = "xl" | "lg" | "md" | "sm";
 
-interface LabelProps extends LabelVariants {
+/**
+ * Label component props.
+ *
+ * @inheritDoc TypographyProps
+ * @inheritDoc LabelVariants
+ */
+interface LabelProps extends LabelVariants, AccessibleTypographyProps {
+  /**
+   * Controls the visual size of the label.
+   */
   size: LabelSize;
-  as?: keyof JSX.IntrinsicElements;
-  className?: string;
-  children: React.ReactNode;
 }
 
-export const Label = ({ as = "label", className, ...props }: LabelProps) => {
-  return createElement(
-    as,
-    { className: twMerge(className, labelStyles(props)) },
-    props.children
+/**
+ * A semantic, accessible Label component built on top of the AccessibleTypography component.
+ */
+export const Label: React.FC<LabelProps> = ({
+  as = "label",
+  className,
+  ...props
+}: LabelProps) => {
+  const styles = cnBase(className, labelStyles(props));
+  return (
+    <AccessibleTypography
+      as={as}
+      className={styles}
+      {...props}
+    ></AccessibleTypography>
   );
 };

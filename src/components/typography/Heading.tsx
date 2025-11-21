@@ -1,26 +1,40 @@
-import { createElement, type JSX } from "react";
-import { twMerge } from "tailwind-merge";
-import { type VariantProps } from "tailwind-variants";
+import { cnBase, type VariantProps } from "tailwind-variants";
 import { headingStyles } from "./styles";
+import {
+  AccessibleTypography,
+  type AccessibleTypographyProps,
+} from "./AccessibleTypography";
+import type { JSX } from "react";
 
 type HeadingVariants = VariantProps<typeof headingStyles>;
 type HeadingSize = "1" | "2" | "3" | "4";
 
-interface HeadingProps extends HeadingVariants {
-  size: HeadingSize;
+/**
+ * Heading component props.
+ *
+ * @inheritDoc TypographyProps
+ * @inheritDoc HeadingVariants
+ */
+interface HeadingProps extends HeadingVariants, AccessibleTypographyProps {
   as: keyof JSX.IntrinsicElements;
-  className?: string;
-  children: React.ReactNode;
+  /**
+   * Controls the visual size of the heading.
+   */
+  size: HeadingSize;
 }
 
-export const Heading = ({ as, className, ...props }: HeadingProps) => {
-  return createElement(
-    as,
-    {
-      role: "heading",
-      "aria-level": props.size,
-      className: twMerge(className, headingStyles(props)),
-    },
-    props.children
+/**
+ * A semantic, accessible Heading component built on top of the AccessibleTypography component.
+ */
+export const Heading: React.FC<HeadingProps> = ({ as, className, ...props }: HeadingProps) => {
+  const styles = cnBase(className, headingStyles(props));
+  return (
+    <AccessibleTypography
+      as={as}
+      className={styles}
+      aria-role="heading"
+      aria-level={props.size}
+      {...props}
+    ></AccessibleTypography>
   );
 };

@@ -1,26 +1,40 @@
-import { createElement, type JSX } from "react";
-import { twMerge } from "tailwind-merge";
-import { type VariantProps } from "tailwind-variants";
+import { cnBase, type VariantProps } from "tailwind-variants";
 import { paragraphStyles } from "./styles";
+import {
+  AccessibleTypography,
+  type AccessibleTypographyProps,
+} from "./AccessibleTypography";
 
 type ParagraphVariants = VariantProps<typeof paragraphStyles>;
 type ParagraphSize = "lg" | "md";
 
-interface ParagraphProps extends ParagraphVariants {
+/**
+ * Paragraph component props.
+ *
+ * @inheritDoc TypographyProps
+ * @inheritDoc ParagraphVariants
+ */
+interface ParagraphProps extends ParagraphVariants, AccessibleTypographyProps {
+  /**
+   * Controls the visual size of the paragraph.
+   */
   size: ParagraphSize;
-  as?: keyof JSX.IntrinsicElements;
-  className?: string;
-  children: React.ReactNode;
 }
 
-export const Paragraph = ({
+/**
+ * A semantic, accessible Paragraph component built on top of the AccessibleTypography component.
+ */
+export const Paragraph: React.FC<ParagraphProps> = ({
   as = "p",
   className,
   ...props
 }: ParagraphProps) => {
-  return createElement(
-    as,
-    { className: twMerge(className, paragraphStyles(props)) },
-    props.children
+  const styles = cnBase(className, paragraphStyles(props));
+  return (
+    <AccessibleTypography
+      as={as}
+      className={styles}
+      {...props}
+    ></AccessibleTypography>
   );
 };
