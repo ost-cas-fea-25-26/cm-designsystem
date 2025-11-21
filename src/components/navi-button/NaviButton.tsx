@@ -29,25 +29,26 @@ const naviButtonStyles = tv({
 type NaviButtonVariants = VariantProps<typeof naviButtonStyles>;
 type NaviButtonIntent = "secondary";
 
-type NaviButtonProps = NaviButtonVariants & {
+interface NaviButtonProps extends NaviButtonVariants {
   label: string;
   intent?: NaviButtonIntent;
   onClick: () => void;
   children: React.ReactElement<IconBaseProps>;
-};
+}
 
 export const NaviButton = ({
   intent = "secondary",
-  label,
-  onClick,
-  children,
-  ...rest
+  ...props
 }: NaviButtonProps) => {
   return (
-    <button className={naviButtonStyles({ intent, ...rest })} onClick={onClick}>
-      {children}
+    <button
+      className={naviButtonStyles({ intent, ...props })}
+      onClick={props.onClick}
+      aria-label={props.label}
+    >
+      {props.children}
       <Label as="span" size="sm">
-        {label}
+        {props.label}
       </Label>
     </button>
   );
