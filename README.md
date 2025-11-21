@@ -15,6 +15,7 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 - [Visual Testing](#visual-testing)
 - [Contributing](#contributing)
 - [Continuous Integration](#continuous-integration)
+- [EditorConfig & VS Code Settings](#editorconfig--vs-code-settings)
 
 ## Quick Start
 
@@ -368,3 +369,23 @@ We intentionally don't use pre-commit hooks (like Husky):
 - ✅ CI is the single source of truth
 
 Note: You're encouraged to run `npm run preflight` locally before pushing!
+
+---
+
+## EditorConfig & VS Code Settings
+
+This project uses a strict `.editorconfig` to ensure consistent code style across all editors and platforms. Most formatting rules (indentation, line endings, trailing whitespace, etc.) are enforced automatically if you have the [EditorConfig extension](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) installed in VS Code.
+
+Additionally, the repository includes a `.vscode/settings.json` file to avoid conflicts between VS Code's built-in formatting and EditorConfig:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": false,
+  "files.insertFinalNewline": false,
+  "files.eol": "\n"
+}
+```
+
+- No further VS Code settings are required—just make sure the EditorConfig extension is enabled.
+- These settings ensure that formatting is always consistent, regardless of individual developer/editor preferences.

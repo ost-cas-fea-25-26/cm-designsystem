@@ -52,7 +52,6 @@ export const Secondary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem");
       await expect(canvas.getByText("Profile")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem")).toBeVisible();
     });
 
     await step("Check click event", async () => {

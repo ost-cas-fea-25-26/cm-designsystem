@@ -146,14 +146,12 @@ const toggleStyles = tv({
 type LikeToggleVariants = VariantProps<typeof toggleStyles>;
 
 interface LikeToggleProps extends LikeToggleVariants {
-  ariaLabel: string;
   pressed?: boolean;
   likes?: number;
   onLikeChange: (liked: boolean) => void;
 }
 
 export const LikeToggle = ({
-  ariaLabel,
   pressed = false,
   likes = 0,
   onLikeChange,
@@ -211,7 +209,6 @@ export const LikeToggle = ({
 
   return (
     <RadixToggle.Root
-      aria-label={ariaLabel}
       className={base()}
       pressed={selected}
       onPressedChange={handlePressedChange}

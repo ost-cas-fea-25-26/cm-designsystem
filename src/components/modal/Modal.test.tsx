@@ -32,8 +32,8 @@ describe("Modal", () => {
     expect(screen.getByRole("dialog")).toBeVisible();
     expect(screen.getByText(/body/i)).toBeVisible();
     expect(screen.getByText(/modal/i)).toBeVisible();
-    expect(screen.getByLabelText(/exit/i)).toBeVisible();
-    expect(screen.getByLabelText(/save/i)).toBeVisible();
+    expect(screen.getByRole("button", { name: /exit/i })).toBeVisible();
+    expect(screen.getByRole("button", { name: /save/i })).toBeVisible();
   });
 
   test("should open modal", async () => {
