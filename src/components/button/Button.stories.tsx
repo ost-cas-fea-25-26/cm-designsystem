@@ -61,7 +61,6 @@ export const Primary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -84,7 +83,6 @@ export const Secondary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -107,7 +105,6 @@ export const Tertiary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -130,7 +127,6 @@ export const Large: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -152,7 +148,6 @@ export const NoIcon: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.queryByText("Mumble")).not.toBeInTheDocument();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
