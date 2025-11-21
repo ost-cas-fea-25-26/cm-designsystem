@@ -2,10 +2,11 @@ import * as RadixAvatar from "@radix-ui/react-avatar";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Edit } from "../icons/generated";
 import { RoundButton } from "../round-button/RoundButton";
+import fallbackImage from "../../assets/fallback.png";
 
 const avatarStyles = tv({
   slots: {
-    base: ["relative", "inline-block"],
+    base: ["relative", "inline-block", "cursor-pointer"],
     avatar: [
       "rounded-full",
       "transition",
@@ -61,29 +62,72 @@ const avatarStyles = tv({
 type AvatarVariants = VariantProps<typeof avatarStyles>;
 type AvatarSize = "sm" | "md" | "lg" | "xl";
 
+/**
+ * Props for the Avatar component.
+ */
 interface AvatarProps extends AvatarVariants {
-  label: string;
+  /**
+   * Alternative text describing the avatar image.
+   */
+  alt: string;
+
+  /**
+   * Controls the visual size of the avatar.
+   */
   size: AvatarSize;
+
+  /**
+   * The URL source of the avatar image.
+   */
   src: string;
-  children: React.ReactNode;
-  onClick?: () => void;
+
+  /**
+   * Accessible label for the action button that appears on extra-large (`xl`)
+   * avatars when `onActionClick` is provided.
+   */
+  actionAriaLabel?: string;
+
+  /**
+   * Optional fallback content rendered when the image cannot load.
+   * Typically initials or an icon.
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Click handler for the entire avatar.
+   * Makes the outer wrapper clickable.
+   */
+  onAvatarClick?: () => void;
+
+  /**
+   * Optional click handler for the action button.
+   * Only visible when:
+   * - `size === "xl"`
+   * - `onActionClick` is provided
+   *
+   * Useful for “Edit avatar” or “Change photo” actions.
+   */
   onActionClick?: () => void;
 }
 
-export const Avatar = (props: AvatarProps) => {
+/**
+ * A flexible and accessible user avatar component.
+ * Built on top of Radix UI’s `Avatar` primitives and styled with Tailwind variants.
+ */
+export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
   const { base, avatar, action } = avatarStyles(props);
   return (
-    <RadixAvatar.Root onClick={props.onClick} className={base(props)}>
+    <RadixAvatar.Root onClick={props.onAvatarClick} className={base(props)}>
       <RadixAvatar.Image
         src={props.src}
-        alt={props.label}
+        alt={props.alt}
         className={avatar(props)}
       />
       {props.size === "xl" && props.onActionClick && (
         <div className={action(props)}>
           <RoundButton
             intent="primary"
-            ariaLabel={`Edit ${props.label}`}
+            ariaLabel={props.actionAriaLabel ?? ""}
             onClick={props.onActionClick ?? (() => {})}
           >
             <Edit />
@@ -92,7 +136,7 @@ export const Avatar = (props: AvatarProps) => {
       )}
 
       <RadixAvatar.Fallback>
-        <div className={avatar(props)}>{props.children}</div>
+        <img src={fallbackImage} alt={props.alt} className={avatar(props)} />
       </RadixAvatar.Fallback>
     </RadixAvatar.Root>
   );
