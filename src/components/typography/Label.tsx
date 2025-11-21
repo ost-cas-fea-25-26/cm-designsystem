@@ -30,11 +30,5 @@ export const Label: React.FC<LabelProps> = ({
   ...props
 }: LabelProps) => {
   const styles = cnBase(className, labelStyles(props));
-  return (
-    <AccessibleTypography
-      as={as}
-      className={styles}
-      {...props}
-     />
-  );
+  return <AccessibleTypography as={as} className={styles} {...props} />;
 };

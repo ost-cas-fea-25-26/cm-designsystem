@@ -26,11 +26,5 @@ export const Placeholder: React.FC<PlaceholderProps> = ({
   ...props
 }: PlaceholderProps) => {
   const styles = cnBase(className, placeholderStyles(props));
-  return (
-    <AccessibleTypography
-      as={as}
-      className={styles}
-      {...props}
-     />
-  );
+  return <AccessibleTypography as={as} className={styles} {...props} />;
 };

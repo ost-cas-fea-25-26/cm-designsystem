@@ -33,11 +33,5 @@ export const ValidationMessage: React.FC<ValidationMessageProps> = ({
   ...props
 }: ValidationMessageProps) => {
   const styles = cnBase(className, validationMessageStyles({ type, ...props }));
-  return (
-    <AccessibleTypography
-      as={as}
-      className={styles}
-      {...props}
-     />
-  );
+  return <AccessibleTypography as={as} className={styles} {...props} />;
 };

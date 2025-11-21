@@ -30,11 +30,5 @@ export const Paragraph: React.FC<ParagraphProps> = ({
   ...props
 }: ParagraphProps) => {
   const styles = cnBase(className, paragraphStyles(props));
-  return (
-    <AccessibleTypography
-      as={as}
-      className={styles}
-      {...props}
-     />
-  );
+  return <AccessibleTypography as={as} className={styles} {...props} />;
 };
