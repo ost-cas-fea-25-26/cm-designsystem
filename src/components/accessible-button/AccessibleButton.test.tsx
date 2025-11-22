@@ -1,43 +1,35 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
-import { Mumble } from "../icons/generated";
-import { Button } from "./AccessibleButton";
+import { AccessibleButton } from "./AccessibleButton";
 
 describe("Button", () => {
-  test("should render button with icon", async () => {
+  test("should render button", async () => {
     // Arrange
-    render(
-      <Button intent="primary" size="md" label="button" onClick={vi.fn()}>
-        <Mumble />
-      </Button>
-    );
+    render(<AccessibleButton onClick={vi.fn()}>button</AccessibleButton>);
 
     // Assert
     expect(screen.getByRole("button")).toBeVisible();
     expect(screen.getByRole("button")).toHaveTextContent("button");
-    expect(screen.getByText("Mumble")).toBeVisible();
   });
 
-  test("should render button without icon", async () => {
+  test("should render button with ariaLabel", async () => {
     // Arrange
     render(
-      <Button intent="primary" size="md" label="button" onClick={vi.fn()} />
+      <AccessibleButton ariaLabel="This is a button" onClick={vi.fn()}>
+        button
+      </AccessibleButton>
     );
 
     // Assert
     expect(screen.getByRole("button")).toBeVisible();
     expect(screen.getByRole("button")).toHaveTextContent("button");
-    expect(screen.queryByText("Mumble")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("This is a button")).toBeInTheDocument();
   });
 
   test("should call onClick when clicked", () => {
     // Arrange
     const onClick = vi.fn();
-    render(
-      <Button intent="primary" size="md" label="button" onClick={onClick}>
-        <Mumble />
-      </Button>
-    );
+    render(<AccessibleButton onClick={onClick}>button</AccessibleButton>);
 
     fireEvent.click(screen.getByRole("button"));
     expect(onClick).toHaveBeenCalled();

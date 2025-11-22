@@ -156,12 +156,9 @@ export const RequiredValidation: Story = {
         <Input {...args} />
       </Form.Fields>
       <Form.Action>
-        <Button
-          intent="secondary"
-          label="Test required"
-          size="md"
-          onClick={fn()}
-        />
+        <Button type="submit" intent="secondary" size="md" onClick={fn()}>
+          Test required
+        </Button>
       </Form.Action>
     </Form>
   ),

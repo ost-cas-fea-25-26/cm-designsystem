@@ -7,13 +7,16 @@ describe("RoundButton", () => {
   test("should render button with icon", async () => {
     // Arrange
     render(
-      <RoundButton onClick={vi.fn()} ariaLabel="Mumble">
-        <Mumble />
-      </RoundButton>
+      <RoundButton
+        onClick={vi.fn()}
+        ariaLabel="Mumble"
+        icon={Mumble}
+      ></RoundButton>
     );
 
     // Assert
     expect(screen.getByRole("button")).toBeVisible();
+    expect(screen.getByLabelText("Mumble")).toBeVisible();
     expect(screen.getByText("Mumble")).toBeVisible();
   });
 
@@ -21,9 +24,11 @@ describe("RoundButton", () => {
     // Arrange
     const onClick = vi.fn();
     render(
-      <RoundButton onClick={onClick} ariaLabel="Mumble">
-        <Mumble />
-      </RoundButton>
+      <RoundButton
+        onClick={onClick}
+        ariaLabel="Mumble"
+        icon={Mumble}
+      ></RoundButton>
     );
 
     fireEvent.click(screen.getByRole("button"));

@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import { TimedButton } from "./TimedButton";
+import { Share } from "../icons/generated";
 
 describe("TimedButton", () => {
   test("should render icon and label", async () => {
@@ -8,6 +9,7 @@ describe("TimedButton", () => {
     render(
       <TimedButton
         onClick={function (): void {}}
+        icon={Share}
         label="Copy Link"
         labelActive="Link Copied"
       />
@@ -18,7 +20,7 @@ describe("TimedButton", () => {
     expect(button).toHaveTextContent("Copy Link");
 
     // Icon prüfen
-    expect(screen.getByLabelText("Share")).toBeInTheDocument();
+    expect(screen.getByText("Share")).toBeInTheDocument();
   });
 
   test("renders initial state and toggles correctly", async () => {
@@ -27,6 +29,7 @@ describe("TimedButton", () => {
     render(
       <TimedButton
         onClick={onClick}
+        icon={Share}
         label="Copy Link"
         labelActive="Link Copied"
       />
@@ -37,14 +40,14 @@ describe("TimedButton", () => {
 
     // Initial state with Likes
     expect(button).toHaveTextContent("Copy Link");
-    expect(screen.getByLabelText("Share")).toBeInTheDocument();
+    expect(screen.getByText("Share")).toBeInTheDocument();
 
     // Simulate click
     fireEvent.click(button);
 
     // Immediate state after click: "Liked" label + HeartFilled
     expect(button).toHaveTextContent("Link Copied");
-    expect(screen.getByLabelText("Share")).toBeInTheDocument();
+    expect(screen.getByText("Share")).toBeInTheDocument();
     expect(onClick).toHaveBeenCalled();
 
     // Wait for animation + likes count update (1s delay + 350ms animation)
