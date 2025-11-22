@@ -1,11 +1,11 @@
 import { expect, fn } from "storybook/test";
-import { Profile } from "../icons/generated";
-import { NaviButton } from "./NaviButton";
+import { AccessibleButton } from "./AccessibleButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Label } from "../typography/Label";
 
 const meta = {
-  title: "Components/Buttons/NaviButton",
-  component: NaviButton,
+  title: "Components/Buttons/AccessibleButton",
+  component: AccessibleButton,
   parameters: {
     layout: "centered",
     a11y: {
@@ -13,23 +13,22 @@ const meta = {
     },
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof NaviButton>;
+} satisfies Meta<typeof AccessibleButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Secondary: Story = {
+export const Default: Story = {
   args: {
-    intent: "secondary",
+    ariaLabel: "Lorem ipsum",
     onClick: fn(),
-    icon: Profile,
-    children: "Lorem",
+    children: <Label size="md">Lorem ipsum</Label>,
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
-      await expect(canvas.getByRole("button")).toHaveTextContent("Lorem");
-      await expect(canvas.getByText("Profile")).toBeVisible();
+      await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
+      await expect(canvas.getByText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {

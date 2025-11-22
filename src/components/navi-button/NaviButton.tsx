@@ -1,7 +1,11 @@
 import React from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { cnBase, tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
+import {
+  AccessibleButton,
+  type BaseAccessibleButtonProps,
+} from "../accessible-button/AccessibleButton";
 
 const naviButtonStyles = tv({
   base: [
@@ -29,27 +33,49 @@ const naviButtonStyles = tv({
 type NaviButtonVariants = VariantProps<typeof naviButtonStyles>;
 type NaviButtonIntent = "secondary";
 
-interface NaviButtonProps extends NaviButtonVariants {
-  label: string;
+/**
+ * Props for the NaviButton component.
+ *
+ * @inheritdoc BaseAccessibleButtonProps
+ * @inheritdoc NaviButtonVariants
+ */
+interface NaviButtonProps
+  extends NaviButtonVariants,
+    BaseAccessibleButtonProps {
+  /**
+   * Visual intent of the button (controls background color, hover, and active styles).
+   */
   intent?: NaviButtonIntent;
-  onClick: () => void;
-  children: React.ReactElement<IconBaseProps>;
+
+  /**
+   * Optional icon element rendered alongside the button label.
+   */
+  icon?: React.ComponentType<IconBaseProps>;
+
+  /**
+   * Visible text label displayed inside the button.
+   */
+  children: string;
 }
 
-export const NaviButton = ({
+/**
+ * A navigation-style button component that combines an accessible,
+ * keyboard-friendly button foundation with variant-based styling.
+ */
+export const NaviButton: React.FC<NaviButtonProps> = ({
   intent = "secondary",
+  className,
   ...props
 }: NaviButtonProps) => {
   return (
-    <button
-      className={naviButtonStyles({ intent, ...props })}
-      onClick={props.onClick}
-      aria-label={props.label}
+    <AccessibleButton
+      className={cnBase(className, naviButtonStyles({ intent, ...props }))}
+      {...props}
     >
-      {props.children}
-      <Label as="span" size="sm">
-        {props.label}
+      {props.icon && <props.icon></props.icon>}
+      <Label as="span" size="md">
+        {props.children}
       </Label>
-    </button>
+    </AccessibleButton>
   );
 };

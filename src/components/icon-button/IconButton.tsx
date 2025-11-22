@@ -1,7 +1,12 @@
-import React from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import React, { type ReactElement } from "react";
+import { cnBase, tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
-import type { IconBaseProps } from "../icons/IconBase";
+import type { IconBase, IconBaseProps } from "../icons/IconBase";
+import {
+  AccessibleButton,
+  type AccessibleButtonProps,
+  type BaseAccessibleButtonProps,
+} from "../accessible-button/AccessibleButton";
 
 const iconButtonStyles = tv({
   slots: {
@@ -19,28 +24,47 @@ const iconButtonStyles = tv({
 type IconButtonVariants = VariantProps<typeof iconButtonStyles>;
 type IconButtonIntent = "primary" | "secondary";
 
-interface IconButtonProps extends IconButtonVariants {
-  label: string;
+/**
+ * Props for the IconButton component.
+ *
+ * @inheritdoc BaseAccessibleButtonProps
+ * @inheritdoc IconButtonVariants
+ */
+interface IconButtonProps
+  extends IconButtonVariants,
+    BaseAccessibleButtonProps {
+  /**
+   * Visual intent of the button (controls background color, hover, and active styles).
+   */
   intent: IconButtonIntent;
-  onClick: () => void;
-  children: React.ReactElement<IconBaseProps>;
+
+  /**
+   * Icon element rendered alongside the button label.
+   */
+  icon?: React.ComponentType<IconBaseProps>;
+
+  /**
+   * Visible text label displayed inside the button.
+   */
+  children: string;
 }
 
-export const IconButton = (props: IconButtonProps) => {
+/**
+ * A compact, accessible button component that displays an icon alongside
+ * a text label.
+ */
+export const IconButton: React.FC<IconButtonProps> = ({
+  className,
+  ...props
+}: IconButtonProps) => {
   const { base, icon } = iconButtonStyles();
 
   return (
-    <button
-      className={base(props)}
-      onClick={props.onClick}
-      aria-label={props.label}
-    >
-      {React.cloneElement(props.children, {
-        className: `${icon(props)}`,
-      })}
-      <Label as="span" size="sm">
-        {props.label}
+    <AccessibleButton className={cnBase(className, base(props))} {...props}>
+      {props.icon && <props.icon className={icon(props)}></props.icon>}
+      <Label as="span" size="md">
+        {props.children}
       </Label>
-    </button>
+    </AccessibleButton>
   );
 };
