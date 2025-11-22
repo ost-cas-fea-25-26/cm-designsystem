@@ -91,7 +91,7 @@ export const Avatar = (props: AvatarProps) => {
         </div>
       )}
 
-      <RadixAvatar.Fallback aria-label={props.label}>
+      <RadixAvatar.Fallback>
         <div className={avatar(props)}>{props.children}</div>
       </RadixAvatar.Fallback>
     </RadixAvatar.Root>
