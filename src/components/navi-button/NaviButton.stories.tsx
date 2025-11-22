@@ -10,6 +10,9 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
@@ -49,7 +52,6 @@ export const Secondary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem");
       await expect(canvas.getByText("Profile")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem")).toBeVisible();
     });
 
     await step("Check click event", async () => {

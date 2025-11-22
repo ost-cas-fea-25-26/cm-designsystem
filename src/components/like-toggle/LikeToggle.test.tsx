@@ -5,9 +5,7 @@ import { LikeToggle } from "./LikeToggle";
 describe("LikeToggle", () => {
   test("should render icon and label", async () => {
     // Arrange
-    render(
-      <LikeToggle ariaLabel="Like this" likes={3} onLikeChange={() => {}} />
-    );
+    render(<LikeToggle likes={3} onLikeChange={() => {}} />);
 
     const button = screen.getByRole("button");
     expect(button).toBeVisible();
@@ -20,9 +18,7 @@ describe("LikeToggle", () => {
   test("renders initial state and toggles correctly", async () => {
     // Arrange
     const onLikeChange = vi.fn();
-    render(
-      <LikeToggle ariaLabel="Like this" likes={3} onLikeChange={onLikeChange} />
-    );
+    render(<LikeToggle likes={3} onLikeChange={onLikeChange} />);
 
     const button = screen.getByRole("button");
     expect(button).toBeVisible();

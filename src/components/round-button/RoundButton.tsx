@@ -30,7 +30,7 @@ type RoundButtonIntent = "primary";
 
 interface RoundButtonProps extends RoundButtonVariants {
   intent?: RoundButtonIntent;
-  label: string;
+  ariaLabel: string;
   onClick: () => void;
   children: React.ReactElement<IconBaseProps>;
 }
@@ -43,7 +43,7 @@ export const RoundButton = ({
     <button
       className={roundButtonStyles({ intent })}
       onClick={props.onClick}
-      aria-label={props.label}
+      aria-label={props.ariaLabel}
     >
       {props.children}
     </button>

@@ -10,6 +10,9 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
@@ -19,9 +22,9 @@ const meta = {
       control: "select",
       description: "Button style variant (primary).",
     },
-    label: {
+    ariaLabel: {
       control: "text",
-      description: "Accessible label for the button.",
+      description: "Accessible label for the icon-only button.",
     },
     onClick: {
       description: "Callback function when button is clicked.",
@@ -40,7 +43,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     intent: "primary",
-    label: "AriaLabel",
+    ariaLabel: "AriaLabel",
     onClick: fn(),
     children: <Mumble />,
   },

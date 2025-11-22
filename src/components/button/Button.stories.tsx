@@ -10,6 +10,9 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
@@ -58,7 +61,6 @@ export const Primary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -81,7 +83,6 @@ export const Secondary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -104,7 +105,6 @@ export const Tertiary: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -127,7 +127,6 @@ export const Large: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.getByText("Mumble")).toBeVisible();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
@@ -149,7 +148,6 @@ export const NoIcon: Story = {
       await expect(canvas.getByRole("button")).toBeVisible();
       await expect(canvas.getByRole("button")).toHaveTextContent("Lorem ipsum");
       await expect(canvas.queryByText("Mumble")).not.toBeInTheDocument();
-      await expect(canvas.getByLabelText("Lorem ipsum")).toBeVisible();
     });
 
     await step("Check click event", async () => {
