@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { tv, type VariantProps } from "tailwind-variants";
+import { cnBase, tv, type VariantProps } from "tailwind-variants";
 import { Share } from "../icons/generated";
 import { Label } from "../typography/Label";
+import {
+  AccessibleButton,
+  type BaseAccessibleButtonProps,
+} from "../accessible-button/AccessibleButton";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const timedButtonStyles = tv({
   slots: {
@@ -22,7 +27,7 @@ const timedButtonStyles = tv({
       "hover:bg-slate-100",
       "overflow-hidden",
     ],
-    icon: ["inline-flex"],
+    icon: ["w-4", "h-4", "inline-flex"],
     label: ["transition-opacity", "duration-350", "ease-in-out"],
   },
   variants: {
@@ -74,18 +79,43 @@ const timedButtonStyles = tv({
 });
 
 type TimedButtonVariants = VariantProps<typeof timedButtonStyles>;
-interface TimedButtonProps extends TimedButtonVariants {
-  onClick: () => void;
-  icon?: React.ReactNode;
-  label?: string;
-  labelActive?: string;
+
+/**
+ * Props for the TimedButton component.
+ *
+ * @inheritdoc BaseAccessibleButtonProps
+ * @inheritdoc TimedButtonVariants
+ */
+interface TimedButtonProps
+  extends TimedButtonVariants,
+    BaseAccessibleButtonProps {
+  /**
+   * Optional icon element rendered alongside the button label.
+   */
+  icon?: React.ComponentType<IconBaseProps>;
+
+  /**
+   * Default label displayed on the button.
+   *
+   * This is the visible text before the button is clicked or activated.
+   */
+  label: string;
+
+  /**
+   * Active label displayed temporarily after the button is clicked.
+   *
+   * Typically used to show feedback, e.g., `"Link copied!"`.
+   */
+  labelActive: string;
 }
 
-export const TimedButton = ({
+/**
+ * A button component that temporarily changes its label when pressed.
+ */
+export const TimedButton: React.FC<TimedButtonProps> = ({
+  className,
   onClick,
-  icon = <Share />,
-  label = "Copy Link",
-  labelActive = "Link copied",
+  ...props
 }: TimedButtonProps) => {
   const [pressed, setPressed] = useState(false);
   const [animating, setAnimating] = useState(false);
@@ -127,15 +157,17 @@ export const TimedButton = ({
   };
 
   return (
-    <button className={base()} onClick={handleClick}>
-      <span className={iconClass()} aria-hidden="true" aria-label="Share">
-        {icon}
-      </span>
-      <span className={labelClass()}>
-        <Label as="span" size="md">
-          {pressed ? labelActive : label}
-        </Label>
-      </span>
-    </button>
+    <AccessibleButton
+      className={cnBase(className, base(props))}
+      onClick={handleClick}
+      {...props}
+    >
+      {props.icon && (
+        <props.icon className={iconClass()} aria-hidden="true"></props.icon>
+      )}
+      <Label as="span" size="md" className={labelClass()}>
+        {pressed ? props.labelActive : props.label}
+      </Label>
+    </AccessibleButton>
   );
 };

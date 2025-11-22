@@ -1,5 +1,9 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import { Avatar } from "../avatar/Avatar";
+import {
+  AccessibleButton,
+  type BaseAccessibleButtonProps,
+} from "../accessible-button/AccessibleButton";
 
 const naviUserButtonStyles = tv({
   base: [
@@ -27,25 +31,54 @@ const naviUserButtonStyles = tv({
 type NaviUserButtonVariants = VariantProps<typeof naviUserButtonStyles>;
 type NaviUserButtonIntent = "secondary";
 
-interface NaviUserButtonProps extends NaviUserButtonVariants {
-  ariaLabel: string;
-  alt: string;
+/**
+ * Props for the NaviUserButton component.
+ *
+ * @inheritdoc BaseAccessibleButtonProps
+ * @inheritdoc NaviUserButtonVariants
+ */
+interface NaviUserButtonProps
+  extends NaviUserButtonVariants, BaseAccessibleButtonProps {
+  /**
+   * Visual intent of the button (controls background color, hover, and active styles).
+   */
   intent?: NaviUserButtonIntent;
+
+  /**
+   * Source URL for the user avatar image.
+   */
   src: string;
-  onClick: () => void;
+
+  /**
+   * Accessible alt text describing the avatar.
+   * Required for proper screen reader support.
+   */
+  alt: string;
+
+  /**
+   * Optional fallback content rendered when the image cannot load.
+   * Typically initials or an icon.
+   */
+  children?: React.ReactNode;
 }
 
-export const NaviUserButton = ({
+/**
+ * A user-focused navigation button that displays a user avatar and behaves
+ * like an accessible, keyboard-friendly button.
+ */
+export const NaviUserButton: React.FC<NaviUserButtonProps> = ({
   intent = "secondary",
+  className,
   ...props
 }: NaviUserButtonProps) => {
   return (
-    <button
-      className={naviUserButtonStyles({ intent, ...props })}
-      onClick={props.onClick}
-      aria-label={props.ariaLabel}
+    <AccessibleButton
+      className={cn(className, naviUserButtonStyles({ intent, ...props }))}
+      {...props}
     >
-      <Avatar alt={props.alt} size="sm" src={props.src} />
-    </button>
+      <Avatar alt={props.alt} size="sm" src={props.src}>
+        {props.children}
+      </Avatar>
+    </AccessibleButton>
   );
 };
