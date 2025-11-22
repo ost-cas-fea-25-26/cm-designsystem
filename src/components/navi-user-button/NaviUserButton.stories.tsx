@@ -77,6 +77,7 @@ export const Fallback: Story = {
     intent: "secondary",
     ariaLabel: "Lorem ipsum",
     src: "",
+    alt: "Alt Description",
     onClick: fn(),
     children: "PA",
   },
