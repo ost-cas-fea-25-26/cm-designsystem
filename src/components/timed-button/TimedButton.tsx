@@ -161,9 +161,7 @@ export const TimedButton: React.FC<TimedButtonProps> = ({
       onClick={handleClick}
       {...props}
     >
-      {props.icon && (
-        <props.icon className={iconClass()} aria-hidden="true" />
-      )}
+      {props.icon && <props.icon className={iconClass()} aria-hidden="true" />}
       <Label as="span" size="md" className={labelClass()}>
         {pressed ? props.labelActive : props.label}
       </Label>
