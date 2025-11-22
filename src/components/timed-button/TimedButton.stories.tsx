@@ -1,9 +1,10 @@
 import { expect, fn } from "storybook/test";
+import { Share } from "../icons/generated";
 import { TimedButton } from "./TimedButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: "Components/TimedButton",
+  title: "Components/Buttons/TimedButton",
   component: TimedButton,
   parameters: {
     layout: "centered",
@@ -12,24 +13,6 @@ const meta = {
     },
   },
   tags: ["autodocs"],
-  argTypes: {
-    icon: {
-      control: false,
-      description: "Icon element to display (not controllable in Storybook)",
-    },
-    label: {
-      control: "text",
-      description: "Default button label",
-    },
-    labelActive: {
-      control: "text",
-      description: "Label shown when pressed",
-    },
-    onClick: {
-      action: "clicked",
-      description: "Callback function when button is clicked.",
-    },
-  },
 } satisfies Meta<typeof TimedButton>;
 
 export default meta;
@@ -37,6 +20,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    icon: Share,
+    label: "Copy Link",
+    labelActive: "Link copied",
     onClick: fn(),
   },
   play: async ({ canvas, step }) => {
@@ -50,6 +36,9 @@ export const Default: Story = {
 
 export const DefaultHover: Story = {
   args: {
+    icon: Share,
+    label: "Copy Link",
+    labelActive: "Link copied",
     onClick: fn(),
   },
   play: async ({ canvas, step, userEvent }) => {
@@ -64,6 +53,9 @@ export const DefaultHover: Story = {
 
 export const Pressed: Story = {
   args: {
+    icon: Share,
+    label: "Copy Link",
+    labelActive: "Link copied",
     onClick: fn(),
   },
   play: async ({ canvas, step, userEvent }) => {
@@ -78,6 +70,9 @@ export const Pressed: Story = {
 
 export const InteractiveFlow: Story = {
   args: {
+    icon: Share,
+    label: "Copy Link",
+    labelActive: "Link copied",
     onClick: fn(),
   },
   play: async ({ args, canvas, step, userEvent }) => {
