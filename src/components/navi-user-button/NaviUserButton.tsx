@@ -30,6 +30,7 @@ type NaviUserButtonIntent = "secondary";
 
 interface NaviUserButtonProps extends NaviUserButtonVariants {
   ariaLabel: string;
+  alt: string;
   intent?: NaviUserButtonIntent;
   src: string;
   onClick: () => void;
@@ -46,7 +47,7 @@ export const NaviUserButton = ({
       onClick={props.onClick}
       aria-label={props.ariaLabel}
     >
-      <Avatar label={props.ariaLabel} size="sm" src={props.src}>
+      <Avatar alt={props.alt} size="sm" src={props.src}>
         {props.children}
       </Avatar>
     </button>
