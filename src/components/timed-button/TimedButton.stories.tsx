@@ -1,7 +1,7 @@
 import { expect, fn } from "storybook/test";
+import { Share } from "../icons/generated";
 import { TimedButton } from "./TimedButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Share } from "../icons/generated";
 
 const meta = {
   title: "Components/Buttons/TimedButton",

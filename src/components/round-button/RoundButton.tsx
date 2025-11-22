@@ -1,9 +1,9 @@
 import { cnBase, tv, type VariantProps } from "tailwind-variants";
-import type { IconBaseProps } from "../icons/IconBase";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
 } from "../accessible-button/AccessibleButton";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const roundButtonStyles = tv({
   base: [
@@ -71,7 +71,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
       className={cnBase(className, roundButtonStyles({ intent }))}
       {...props}
     >
-      {<props.icon></props.icon>}
+      <props.icon />
     </AccessibleButton>
   );
 };

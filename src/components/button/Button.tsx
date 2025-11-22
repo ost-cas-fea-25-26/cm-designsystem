@@ -101,7 +101,7 @@ export const Button: React.FC<ButtonProps> = ({
       <Label as="span" size="md">
         {props.children}
       </Label>
-      {props.icon && <props.icon></props.icon>}
+      {props.icon && <props.icon />}
     </AccessibleButton>
   );
 };

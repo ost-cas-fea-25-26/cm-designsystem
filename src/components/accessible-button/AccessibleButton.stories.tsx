@@ -1,7 +1,7 @@
 import { expect, fn } from "storybook/test";
+import { Label } from "../typography/Label";
 import { AccessibleButton } from "./AccessibleButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Label } from "../typography/Label";
 
 const meta = {
   title: "Components/Buttons/AccessibleButton",
