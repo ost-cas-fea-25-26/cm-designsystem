@@ -1,10 +1,10 @@
 import React from "react";
 import { cnBase, tv, type VariantProps } from "tailwind-variants";
-import { Avatar } from "../avatar/Avatar";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
 } from "../accessible-button/AccessibleButton";
+import { Avatar } from "../avatar/Avatar";
 
 const naviUserButtonStyles = tv({
   base: [

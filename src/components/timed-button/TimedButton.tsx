@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { cnBase, tv, type VariantProps } from "tailwind-variants";
-import { Share } from "../icons/generated";
-import { Label } from "../typography/Label";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
 } from "../accessible-button/AccessibleButton";
+import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
 
 const timedButtonStyles = tv({
@@ -163,7 +162,7 @@ export const TimedButton: React.FC<TimedButtonProps> = ({
       {...props}
     >
       {props.icon && (
-        <props.icon className={iconClass()} aria-hidden="true"></props.icon>
+        <props.icon className={iconClass()} aria-hidden="true" />
       )}
       <Label as="span" size="md" className={labelClass()}>
         {pressed ? props.labelActive : props.label}

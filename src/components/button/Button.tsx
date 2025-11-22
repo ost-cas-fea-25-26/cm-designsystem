@@ -1,13 +1,10 @@
-import { twMerge } from "tailwind-merge";
 import { cnBase, tv, type VariantProps } from "tailwind-variants";
-import { Label } from "../typography/Label";
-import type { IconBase, IconBaseProps } from "../icons/IconBase";
 import {
   AccessibleButton,
-  type AccessibleButtonProps,
   type BaseAccessibleButtonProps,
 } from "../accessible-button/AccessibleButton";
-import type { ReactElement } from "react";
+import { Label } from "../typography/Label";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const buttonStyles = tv({
   base: [
@@ -107,7 +104,7 @@ export const Button: React.FC<ButtonProps> = ({
       <Label as="span" size="md">
         {props.children}
       </Label>
-      {props.icon && <props.icon></props.icon>}
+      {props.icon && <props.icon />}
     </AccessibleButton>
   );
 };

@@ -1,12 +1,11 @@
-import React, { type ReactElement } from "react";
+import React from "react";
 import { cnBase, tv, type VariantProps } from "tailwind-variants";
-import { Label } from "../typography/Label";
-import type { IconBase, IconBaseProps } from "../icons/IconBase";
 import {
   AccessibleButton,
-  type AccessibleButtonProps,
   type BaseAccessibleButtonProps,
 } from "../accessible-button/AccessibleButton";
+import { Label } from "../typography/Label";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const iconButtonStyles = tv({
   slots: {
@@ -61,7 +60,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
 
   return (
     <AccessibleButton className={cnBase(className, base(props))} {...props}>
-      {props.icon && <props.icon className={icon(props)}></props.icon>}
+      {props.icon && <props.icon className={icon(props)} />}
       <Label as="span" size="md">
         {props.children}
       </Label>

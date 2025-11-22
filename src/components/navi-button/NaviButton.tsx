@@ -1,11 +1,11 @@
 import React from "react";
 import { cnBase, tv, type VariantProps } from "tailwind-variants";
-import { Label } from "../typography/Label";
-import type { IconBaseProps } from "../icons/IconBase";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
 } from "../accessible-button/AccessibleButton";
+import { Label } from "../typography/Label";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const naviButtonStyles = tv({
   base: [
@@ -72,7 +72,7 @@ export const NaviButton: React.FC<NaviButtonProps> = ({
       className={cnBase(className, naviButtonStyles({ intent, ...props }))}
       {...props}
     >
-      {props.icon && <props.icon></props.icon>}
+      {props.icon && <props.icon />}
       <Label as="span" size="md">
         {props.children}
       </Label>
