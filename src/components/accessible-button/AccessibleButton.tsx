@@ -23,6 +23,11 @@ export interface BaseAccessibleButtonProps {
   className?: string;
 
   /**
+   * HTML button type attribute.
+   */
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
+
+  /**
    * Click handler for the button.
    */
   onClick: () => void;
@@ -42,11 +47,12 @@ export const AccessibleButton: React.FC<AccessibleButtonProps> = ({
   className,
   ariaLabel,
   onClick,
+  type = "button",
   ...props
 }: AccessibleButtonProps) => {
   return (
     <button
-      type="button"
+      type={type}
       className={cnBase(
         className,
         accessibleButtonStyles({ isClickable: !!onClick })

@@ -54,12 +54,9 @@ export const Default: Story = {
     const [open, setOpen] = useState(args.open);
     return (
       <div>
-        <Button
-          intent="primary"
-          size="lg"
-          label="Click Me!"
-          onClick={() => setOpen(true)}
-        />
+        <Button intent="primary" size="lg" onClick={() => setOpen(true)}>
+          Click Me!
+        </Button>
 
         <Modal open={open} onOpenChange={setOpen} title={args.title}>
           <Modal.Body>Hello, this is a Modal!!!</Modal.Body>
@@ -67,18 +64,18 @@ export const Default: Story = {
             <Button
               intent="primary"
               size="md"
-              label="Cancel"
+              icon={Cancel}
               onClick={() => setOpen(false)}
             >
-              <Cancel />
+              Cancel
             </Button>
             <Button
               intent="secondary"
               size="md"
-              label="Save"
+              icon={Checkmark}
               onClick={() => setOpen(false)}
             >
-              <Checkmark />
+              Save
             </Button>
           </Modal.Actions>
         </Modal>

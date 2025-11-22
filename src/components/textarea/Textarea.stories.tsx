@@ -95,12 +95,9 @@ export const RequiredValidation: Story = {
     >
       <Textarea {...args} />
       <RadixForm.Submit asChild>
-        <Button
-          intent="secondary"
-          label="Test required"
-          size="md"
-          onClick={fn()}
-        />
+        <Button type="submit" intent="secondary" size="md" onClick={fn()}>
+          Test required
+        </Button>
       </RadixForm.Submit>
     </RadixForm.Root>
   ),

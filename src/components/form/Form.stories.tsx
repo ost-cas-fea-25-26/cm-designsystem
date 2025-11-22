@@ -54,7 +54,9 @@ export const Default: Story = {
         />
       </Form.Fields>
       <Form.Action>
-        <Button intent="primary" size="md" label="Submit" onClick={fn()} />
+        <Button type="submit" intent="primary" size="md" onClick={fn()}>
+          Submit
+        </Button>
       </Form.Action>
     </Form>
   ),

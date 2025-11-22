@@ -7,8 +7,8 @@ describe("Button", () => {
   test("should render button with icon", async () => {
     // Arrange
     render(
-      <Button intent="primary" size="md" label="button" onClick={vi.fn()}>
-        <Mumble />
+      <Button intent="primary" size="md" icon={Mumble} onClick={vi.fn()}>
+        button
       </Button>
     );
 
@@ -21,7 +21,9 @@ describe("Button", () => {
   test("should render button without icon", async () => {
     // Arrange
     render(
-      <Button intent="primary" size="md" label="button" onClick={vi.fn()} />
+      <Button intent="primary" size="md" onClick={vi.fn()}>
+        button
+      </Button>
     );
 
     // Assert
@@ -34,8 +36,8 @@ describe("Button", () => {
     // Arrange
     const onClick = vi.fn();
     render(
-      <Button intent="primary" size="md" label="button" onClick={onClick}>
-        <Mumble />
+      <Button intent="primary" size="md" icon={Mumble} onClick={onClick}>
+        button
       </Button>
     );
 

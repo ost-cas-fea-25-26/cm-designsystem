@@ -84,10 +84,9 @@ export const Avatar = (props: AvatarProps) => {
           <RoundButton
             intent="primary"
             ariaLabel={`Edit ${props.label}`}
+            icon={Edit}
             onClick={props.onActionClick ?? (() => {})}
-          >
-            <Edit />
-          </RoundButton>
+          ></RoundButton>
         </div>
       )}
 
