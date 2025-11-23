@@ -123,6 +123,6 @@ jobs:
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-blob-report-${{ matrix.shardIndex }}
-          path: playwright-blob-report
+          name: blob-report-${{ matrix.shardIndex }}
+          path: blob-report
           retention-days: 15
