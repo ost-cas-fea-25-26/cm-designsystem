@@ -56,6 +56,8 @@ interface NaviButtonProps
    * Visible text label displayed inside the button.
    */
   children: string;
+
+  iconClassName?: string;
 }
 
 /**
@@ -72,7 +74,7 @@ export const NaviButton: React.FC<NaviButtonProps> = ({
       className={cnBase(className, naviButtonStyles({ intent, ...props }))}
       {...props}
     >
-      {props.icon && <props.icon />}
+      {props.icon && <props.icon className={props.iconClassName} />}
       <Label as="span" size="md">
         {props.children}
       </Label>
