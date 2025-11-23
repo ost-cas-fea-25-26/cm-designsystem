@@ -3,7 +3,7 @@ import { cnBase, tv } from "tailwind-variants";
 const accessibleButtonStyles = tv({
   variants: {
     isClickable: {
-      true: ["cursor-pointer", "[&_*]:cursor-pointer"],
+      true: ["cursor-pointer", "**:cursor-pointer"],
     },
   },
 });
