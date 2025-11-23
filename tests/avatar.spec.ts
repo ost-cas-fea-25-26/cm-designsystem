@@ -176,9 +176,6 @@ test.describe("Avatar: default fallback", () => {
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
-<<<<<<< HEAD
-    const fallback = page.getByTestId("fallback");
-=======
     const fallback = page.getByAltText("Lorem ipsum");
     await fallback.hover();
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
@@ -206,7 +203,6 @@ test.describe("Avatar: custom fallback", () => {
 
     // Assert
     const fallback = page.getByText("PA");
->>>>>>> f44da84 (fix: intorduce test for fallback)
     await fallback.hover();
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
