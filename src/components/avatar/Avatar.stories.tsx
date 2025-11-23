@@ -170,17 +170,17 @@ export const CustomFallback: Story = {
     size: "md",
     alt: "Lorem ipsum",
     src: "",
-    children: "PA",
+    children: <span data-testid="fallback">PA</span>,
     onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.queryByRole("img")).not.toBeInTheDocument();
-      await expect(canvas.queryByText("PA")).toBeInTheDocument();
+      await expect(canvas.getByTestId("fallback")).toBeInTheDocument();
     });
 
     await step("Check click event", async () => {
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.getByTestId("fallback");
       await userEvent.click(fallback);
       await expect(args.onAvatarClick).toHaveBeenCalled();
     });
