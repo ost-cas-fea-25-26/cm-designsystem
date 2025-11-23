@@ -169,18 +169,18 @@ export const Fallback: Story = {
     size: "md",
     label: "Lorem ipsum",
     src: "",
-    children: "PA",
+    children: <span data-testid="fallback">PA</span>,
     onClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.queryByRole("img")).not.toBeInTheDocument();
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.getByTestId("fallback");
       await expect(fallback).toHaveTextContent("PA");
     });
 
     await step("Check click event", async () => {
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.getByTestId("fallback");
       await userEvent.click(fallback);
       await expect(args.onClick).toHaveBeenCalled();
     });
