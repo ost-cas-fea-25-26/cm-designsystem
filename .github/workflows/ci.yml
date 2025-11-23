@@ -92,6 +92,11 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -112,12 +117,12 @@ jobs:
         run: npm run e2e:build-storybook
 
       - name: Run E2E Tests
-        run: npm run e2e:ci
+        run: npm run e2e:ci --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      - name: Upload Playwright report
+      - name: Upload blob report to GitHub Actions Artifacts
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          name: playwright-blob-report-${{ matrix.shardIndex }}
+          path: playwright-blob-report
+          retention-days: 15
