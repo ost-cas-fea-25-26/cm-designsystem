@@ -53,11 +53,14 @@ interface NaviButtonProps
   icon?: React.ComponentType<IconBaseProps>;
 
   /**
+   * Optional className applied to the icon element.
+   */
+  iconClassName?: string;
+
+  /**
    * Visible text label displayed inside the button.
    */
   children: string;
-
-  iconClassName?: string;
 }
 
 /**

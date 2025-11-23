@@ -39,6 +39,9 @@ export const Secondary: Story = {
   },
 };
 
+/**
+ * Animated settings button
+ */
 export const SettingsButton: Story = {
   args: {
     intent: "secondary",
@@ -61,6 +64,9 @@ export const SettingsButton: Story = {
   },
 };
 
+/**
+ * Animated log out button
+ */
 export const LogOutButton: Story = {
   args: {
     intent: "secondary",
