@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
-import { TimedButton } from "./TimedButton";
 import { Share } from "../icons/generated";
+import { TimedButton } from "./TimedButton";
 
 describe("TimedButton", () => {
   test("should render icon and label", async () => {

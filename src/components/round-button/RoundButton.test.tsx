@@ -11,7 +11,7 @@ describe("RoundButton", () => {
         onClick={vi.fn()}
         ariaLabel="Mumble"
         icon={Mumble}
-      ></RoundButton>
+       />
     );
 
     // Assert
@@ -28,7 +28,7 @@ describe("RoundButton", () => {
         onClick={onClick}
         ariaLabel="Mumble"
         icon={Mumble}
-      ></RoundButton>
+       />
     );
 
     fireEvent.click(screen.getByRole("button"));

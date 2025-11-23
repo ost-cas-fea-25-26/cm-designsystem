@@ -129,6 +129,7 @@ export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
           <RoundButton
             intent="primary"
             ariaLabel={props.actionAriaLabel ?? ""}
+            icon={Edit}
             onClick={props.onActionClick}
           >
             <Edit />
