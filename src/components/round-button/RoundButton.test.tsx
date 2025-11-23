@@ -6,13 +6,7 @@ import { RoundButton } from "./RoundButton";
 describe("RoundButton", () => {
   test("should render button with icon", async () => {
     // Arrange
-    render(
-      <RoundButton
-        onClick={vi.fn()}
-        ariaLabel="Mumble"
-        icon={Mumble}
-       />
-    );
+    render(<RoundButton onClick={vi.fn()} ariaLabel="Mumble" icon={Mumble} />);
 
     // Assert
     expect(screen.getByRole("button")).toBeVisible();
@@ -23,13 +17,7 @@ describe("RoundButton", () => {
   test("should call onChange when second tab clicked", () => {
     // Arrange
     const onClick = vi.fn();
-    render(
-      <RoundButton
-        onClick={onClick}
-        ariaLabel="Mumble"
-        icon={Mumble}
-       />
-    );
+    render(<RoundButton onClick={onClick} ariaLabel="Mumble" icon={Mumble} />);
 
     fireEvent.click(screen.getByRole("button"));
     expect(onClick).toHaveBeenCalled();
