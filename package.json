@@ -1,7 +1,12 @@
 {
   "name": "cm-designsystem",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "files": [
+    "dist/"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "preflight": "npm run prettier && npm run lint && npm run typecheck && npm run build",
