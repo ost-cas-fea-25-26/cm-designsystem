@@ -4,9 +4,10 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Usage in Your Project](#usage-in-your-project)
 - [Technical Stack](#technical-stack)
 - [Development](#development)
+  - [Quick Start Development](#quick-start-development)
   - [Quality Checks](#quality-checks)
   - [Code Style](#code-style)
   - [TypeScript Guidelines](#typescript-guidelines)
@@ -17,19 +18,35 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 - [Continuous Integration](#continuous-integration)
 - [EditorConfig & VS Code Settings](#editorconfig--vs-code-settings)
 
-## Quick Start
+## Usage in Your Project
+
+To use the components and styles in your project:
+
+1. Install the package:
 
 ```bash
-# Install dependencies
-npm install
-
-# Start Storybook development server
-npm run storybook
+npm i @krrli/cm-designsystem
 ```
 
-Storybook will be available at [http://localhost:6006](http://localhost:6006)
+2. Import the bundled CSS in your app entry (e.g., `main.tsx` or `App.tsx`):
 
-📚 View the deployed Storybook: [https://ost-cas-fea-25-26.github.io/cm-designsystem/](https://ost-cas-fea-25-26.github.io/cm-designsystem/?path=/docs/branding-assets--docs)
+```js
+import "cm-designsystem/dist/cm-designsystem.css";
+```
+
+3. Import and use components as needed:
+
+```js
+import { Button } from "cm-designsystem";
+
+function App() {
+  return (
+    <Button label="Click me" intent="primary" size="md" onClick={() => {}} />
+  );
+}
+```
+
+---
 
 ## Technical Stack
 
@@ -45,6 +62,20 @@ Storybook will be available at [http://localhost:6006](http://localhost:6006)
 ---
 
 ## Development
+
+### Quick Start Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start Storybook development server
+npm run storybook
+```
+
+Storybook will be available at [http://localhost:6006](http://localhost:6006)
+
+📚 View the deployed Storybook: [https://ost-cas-fea-25-26.github.io/cm-designsystem/](https://ost-cas-fea-25-26.github.io/cm-designsystem/?path=/docs/branding-assets--docs)
 
 ### Quality Checks
 
