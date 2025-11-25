@@ -31,19 +31,20 @@ npm i @krrli/cm-designsystem
 2. Import the bundled CSS in your app entry (e.g., `main.tsx` or `App.tsx`):
 
 ```js
-import 'cm-designsystem/dist/cm-designsystem.css';
+import "cm-designsystem/dist/cm-designsystem.css";
 ```
 
 3. Import and use components as needed:
 
 ```js
-import { Button } from 'cm-designsystem';
+import { Button } from "cm-designsystem";
 
 function App() {
-  return <Button label="Click me" intent="primary" size="md" onClick={() => {}} />;
+  return (
+    <Button label="Click me" intent="primary" size="md" onClick={() => {}} />
+  );
 }
 ```
-
 
 ---
 
@@ -57,8 +58,6 @@ function App() {
 - Playwright for visual regression testing
 - Radix UI Primitives for accessible component primitives
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) for Fast Refresh
-
-
 
 ---
 
@@ -77,8 +76,6 @@ npm run storybook
 Storybook will be available at [http://localhost:6006](http://localhost:6006)
 
 📚 View the deployed Storybook: [https://ost-cas-fea-25-26.github.io/cm-designsystem/](https://ost-cas-fea-25-26.github.io/cm-designsystem/?path=/docs/branding-assets--docs)
-
-
 
 ### Quality Checks
 
