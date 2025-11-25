@@ -2,7 +2,8 @@
   "name": "@krrli/cm-designsystem",
   "version": "0.1.0",
   "files": [
-    "dist/"
+    "dist/",
+    "dist/cm-designsystem.css"
   ],
   "main": "dist/index.js",
   "module": "dist/index.es.js",
