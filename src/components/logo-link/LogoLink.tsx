@@ -3,7 +3,6 @@
 import { tv } from "tailwind-variants";
 import hoverLogoDefault from "../branding/hover-logo-default.svg";
 import hoverLogoHovered from "../branding/hover-logo-hovered.svg";
-import type { ElementType } from "react";
 
 const logoStyles = tv({
   slots: {
@@ -36,37 +35,29 @@ const logoStyles = tv({
   },
 });
 
-interface LogoLinkProps {
+type LogoLinkProps = React.ComponentPropsWithoutRef<"a"> & {
   href?: string;
-  asLink?: ElementType;
-  asImage?: ElementType;
-}
+};
 
-export const LogoLink = ({
-  href = "/",
-  asLink: LinkTag = "a",
-  asImage: ImageTag = "img",
-
-  ...props
-}: LogoLinkProps) => {
+export const LogoLink = ({ href = "/", ...props }: LogoLinkProps) => {
   const styles = logoStyles();
   return (
-    <LinkTag href={href} className={styles.link()} {...props}>
+    <a href={href} className={styles.link()} {...props}>
       {/* Logo Container */}
       <div className={styles.container()}>
-        <ImageTag
+        <img
           src={hoverLogoDefault}
           alt="Logo Default"
           className={styles.default()}
           draggable={false}
         />
-        <ImageTag
+        <img
           src={hoverLogoHovered}
           alt="Logo Hovered"
           className={styles.hover()}
           draggable={false}
         />
       </div>
-    </LinkTag>
+    </a>
   );
 };
