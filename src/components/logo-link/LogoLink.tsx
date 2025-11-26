@@ -35,7 +35,13 @@ const logoStyles = tv({
   },
 });
 
+/**
+ * Props for LogoLink component *
+ */
 type LogoLinkProps = React.ComponentPropsWithoutRef<"a"> & {
+  /**
+   * The URL to navigate to when the logo is clicked.  Defaults to "/".
+   */
   href?: string;
 };
 
