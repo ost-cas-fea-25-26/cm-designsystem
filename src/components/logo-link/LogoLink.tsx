@@ -1,20 +1,18 @@
 // LogoLink.tsx
+
 import { tv } from "tailwind-variants";
 import hoverLogoDefault from "../branding/hover-logo-default.svg";
 import hoverLogoHovered from "../branding/hover-logo-hovered.svg";
 import type { ElementType } from "react";
 
-// Tailwind Variants für das Logo
 const logoStyles = tv({
-  base: "transition-all duration-200 select-none",
-  variants: {
-    state: {
-      default: "block h-10 w-auto group-hover:hidden",
-      hover: "hidden h-[44px] w-auto group-hover:block",
-    },
-  },
-  defaultVariants: {
-    state: "default",
+  slots: {
+    container: "group relative w-auto",
+    link: "focus-ring-neutral inline-flex items-center gap-2 align-middle",
+    default:
+      "transition-all duration-200 select-none block h-10 w-auto group-hover:hidden",
+    hover:
+      "transition-all duration-200 select-none hidden h-[44px] w-auto group-hover:block",
   },
 });
 
@@ -31,24 +29,21 @@ export const LogoLink = ({
 
   ...props
 }: LogoLinkProps) => {
+  const styles = logoStyles();
   return (
-    <LinkTag
-      href={href}
-      className="focus-ring-neutral inline-flex items-center gap-2 align-middle"
-      {...props}
-    >
+    <LinkTag href={href} className={styles.link()} {...props}>
       {/* Logo Container */}
-      <div className="group relative w-auto">
+      <div className={styles.container()}>
         <ImageTag
           src={hoverLogoDefault}
           alt="Logo Default"
-          className={logoStyles({ state: "default" })}
+          className={styles.default()}
           draggable={false}
         />
         <ImageTag
           src={hoverLogoHovered}
           alt="Logo Hovered"
-          className={logoStyles({ state: "hover" })}
+          className={styles.hover()}
           draggable={false}
         />
       </div>
