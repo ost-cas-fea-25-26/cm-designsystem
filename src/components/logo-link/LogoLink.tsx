@@ -1,8 +1,8 @@
 // LogoLink.tsx
 import { tv } from "tailwind-variants";
-import type { ElementType } from "react";
 import hoverLogoDefault from "../branding/hover-logo-default.svg";
 import hoverLogoHovered from "../branding/hover-logo-hovered.svg";
+import type { ElementType } from "react";
 
 // Tailwind Variants für das Logo
 const logoStyles = tv({

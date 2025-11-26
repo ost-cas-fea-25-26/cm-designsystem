@@ -1,6 +1,6 @@
 // LogoLink.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
 import { LogoLink } from "./LogoLink";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof LogoLink> = {
   title: "Branding/LogoLink",
