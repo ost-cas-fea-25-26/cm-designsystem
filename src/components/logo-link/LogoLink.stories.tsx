@@ -1,25 +1,27 @@
 // LogoLink.stories.tsx
-import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { LogoLink } from "./LogoLink";
 
 const meta: Meta<typeof LogoLink> = {
   title: "Branding/LogoLink",
   component: LogoLink,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+    backgrounds: { default: "violet" }, // Storybook Background
+  },
 };
 
 export default meta;
-
 type Story = StoryObj<typeof LogoLink>;
 
 export const Default: Story = {
+  args: {
+    href: "#",
+  },
   render: (args) => (
-    <div className="inline-block bg-violet-600 p-8">
+    <div className="bg-violet-600 p-10">
       <LogoLink {...args} />
-      <p className="mt-4 text-white">
-        Hover über das Logo, um den Wechsel zu sehen
-      </p>
     </div>
   ),
 };

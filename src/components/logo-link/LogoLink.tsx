@@ -22,14 +22,13 @@ interface LogoLinkProps {
   href?: string;
   asLink?: ElementType;
   asImage?: ElementType;
-  text?: string;
 }
 
 export const LogoLink = ({
   href = "/",
   asLink: LinkTag = "a",
   asImage: ImageTag = "img",
-  text,
+
   ...props
 }: LogoLinkProps) => {
   return (
@@ -53,9 +52,6 @@ export const LogoLink = ({
           draggable={false}
         />
       </div>
-
-      {/* Text rechts vom Logo */}
-      {text && <span className="text-white select-none">{text}</span>}
     </LinkTag>
   );
 };
