@@ -3,7 +3,7 @@ import { LogoLink } from "./LogoLink";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta: Meta<typeof LogoLink> = {
-  title: "Branding/LogoLink",
+  title: "Components/LogoLink",
   component: LogoLink,
   tags: ["autodocs"],
   parameters: {
