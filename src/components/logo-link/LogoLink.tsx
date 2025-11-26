@@ -7,12 +7,32 @@ import type { ElementType } from "react";
 
 const logoStyles = tv({
   slots: {
-    container: "group relative w-auto",
-    link: "focus-ring-neutral inline-flex items-center gap-2 align-middle",
-    default:
-      "transition-all duration-200 select-none block h-10 w-auto group-hover:hidden",
-    hover:
-      "transition-all duration-200 select-none hidden h-[44px] w-auto group-hover:block",
+    link: [
+      "focus-ring-neutral",
+      "inline-flex",
+      "items-center",
+      "gap-2",
+      "align-middle",
+    ],
+    container: ["group", "relative", "w-auto"],
+    default: [
+      "transition-all",
+      "duration-200",
+      "select-none",
+      "block",
+      "h-10",
+      "w-auto",
+      "group-hover:hidden",
+    ],
+    hover: [
+      "transition-all",
+      "duration-200",
+      "select-none",
+      "hidden",
+      "h-[44px]",
+      "w-auto",
+      "group-hover:block",
+    ],
   },
 });
 
