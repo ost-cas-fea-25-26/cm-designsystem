@@ -1,4 +1,4 @@
-import { cnBase, type VariantProps } from "tailwind-variants";
+import { cn, type VariantProps } from "tailwind-variants";
 import {
   AccessibleTypography,
   type AccessibleTypographyProps,
@@ -29,6 +29,6 @@ export const Label: React.FC<LabelProps> = ({
   className,
   ...props
 }: LabelProps) => {
-  const styles = cnBase(className, labelStyles(props));
+  const styles = cn(className, labelStyles(props));
   return <AccessibleTypography as={as} className={styles} {...props} />;
 };
