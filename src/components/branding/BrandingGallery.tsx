@@ -1,6 +1,7 @@
 import appIconGradient from "./app-icon-gradient.svg";
 import appIconWhite from "./app-icon-white.svg";
-import hoverLogo from "./hover-logo.svg";
+import hoverLogoDefault from "./hover-logo-default.svg";
+import hoverLogoHovered from "./hover-logo-hovered.svg";
 import logoInlineGradient from "./logo-inline-gradient.svg";
 import logoInlineViolet from "./logo-inline-violet.svg";
 import logoInlineWhite from "./logo-inline-white.svg";
@@ -73,13 +74,21 @@ const brandingAssets = {
   ],
   "Hover Logo": [
     {
-      name: "Hover Logo",
-      src: hoverLogo,
+      name: "Hover Logo Default",
+      src: hoverLogoDefault,
       width: 64,
       height: 64,
-      filename: "hover-logo.svg",
+      filename: "hover-logo-default.svg",
+    },
+    {
+      name: "Hover Logo Hovered",
+      src: hoverLogoHovered,
+      width: 64,
+      height: 64,
+      filename: "hover-logo-hovered.svg",
     },
   ],
+
   Superzeichen: [
     {
       name: "Superzeichen",
