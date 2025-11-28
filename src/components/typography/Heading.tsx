@@ -1,4 +1,4 @@
-import { cnBase, type VariantProps } from "tailwind-variants";
+import { cn, type VariantProps } from "tailwind-variants";
 import {
   AccessibleTypography,
   type AccessibleTypographyProps,
@@ -31,6 +31,6 @@ export const Heading: React.FC<HeadingProps> = ({
   className,
   ...props
 }: HeadingProps) => {
-  const styles = cnBase(className, headingStyles(props));
+  const styles = cn(className, headingStyles(props));
   return <AccessibleTypography as={as} className={styles} {...props} />;
 };
