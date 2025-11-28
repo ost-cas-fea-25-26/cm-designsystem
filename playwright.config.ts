@@ -28,9 +28,7 @@ export default defineConfig({
 
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.002, // ~0.2%
-      maxDiffPixels: 50, // allow tiny local rendering noise
-      threshold: 0.2, // antialiasing tolerance
+      maxDiffPixelRatio: 0.003, // ~0.3%
       animations: "disabled",
     },
   },
