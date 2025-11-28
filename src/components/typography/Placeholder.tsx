@@ -1,24 +1,30 @@
-import { createElement, type JSX } from "react";
-import { twMerge } from "tailwind-merge";
-import { type VariantProps } from "tailwind-variants";
+import { cnBase, type VariantProps } from "tailwind-variants";
+import {
+  AccessibleTypography,
+  type AccessibleTypographyProps,
+} from "./AccessibleTypography";
 import { placeholderStyles } from "./styles";
 
 type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
 
-interface PlaceholderProps extends PlaceholderVariants {
-  as?: keyof JSX.IntrinsicElements;
-  className?: string;
-  children: React.ReactNode;
-}
+/**
+ * Placeholder component props.
+ *
+ * @inheritDoc TypographyProps
+ * @inheritDoc PlaceholderVariants
+ */
+interface PlaceholderProps
+  extends PlaceholderVariants,
+    AccessibleTypographyProps {}
 
-export const Placeholder = ({
+/**
+ * A semantic, accessible Placeholder component built on top of the AccessibleTypography component.
+ */
+export const Placeholder: React.FC<PlaceholderProps> = ({
   as = "span",
   className,
   ...props
 }: PlaceholderProps) => {
-  return createElement(
-    as,
-    { className: twMerge(className, placeholderStyles(props)) },
-    props.children
-  );
+  const styles = cnBase(className, placeholderStyles(props));
+  return <AccessibleTypography as={as} className={styles} {...props} />;
 };
