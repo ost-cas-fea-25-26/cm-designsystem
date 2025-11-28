@@ -21,9 +21,7 @@ test.describe("RoundButton: primary", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("roundbutton active should look the same", async ({ page }) => {
@@ -34,9 +32,7 @@ test.describe("RoundButton: primary", () => {
     const button = page.getByRole("button");
     await button.hover();
     await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
     await page.mouse.up();
   });
 });

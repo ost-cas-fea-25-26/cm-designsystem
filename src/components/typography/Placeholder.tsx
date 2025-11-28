@@ -1,4 +1,4 @@
-import { cnBase, type VariantProps } from "tailwind-variants";
+import { cn, type VariantProps } from "tailwind-variants";
 import {
   AccessibleTypography,
   type AccessibleTypographyProps,
@@ -14,8 +14,7 @@ type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
  * @inheritDoc PlaceholderVariants
  */
 interface PlaceholderProps
-  extends PlaceholderVariants,
-    AccessibleTypographyProps {}
+  extends PlaceholderVariants, AccessibleTypographyProps {}
 
 /**
  * A semantic, accessible Placeholder component built on top of the AccessibleTypography component.
@@ -25,6 +24,6 @@ export const Placeholder: React.FC<PlaceholderProps> = ({
   className,
   ...props
 }: PlaceholderProps) => {
-  const styles = cnBase(className, placeholderStyles(props));
+  const styles = cn(className, placeholderStyles(props));
   return <AccessibleTypography as={as} className={styles} {...props} />;
 };
