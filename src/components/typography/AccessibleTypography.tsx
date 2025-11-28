@@ -1,13 +1,4 @@
 import { createElement, type JSX } from "react";
-import { cnBase, tv } from "tailwind-variants";
-
-const accessibleTypographyStyles = tv({
-  variants: {
-    isClickable: {
-      true: ["cursor-pointer"],
-    },
-  },
-});
 
 /**
  * Props for the Typography component.
@@ -36,12 +27,6 @@ export interface AccessibleTypographyProps {
   ariaLabel?: string;
 
   /**
-   * Optional click handler.
-   * When provided, the component becomes visually clickable.
-   */
-  onClick?: () => void;
-
-  /**
    * The content to be rendered inside the element.
    */
   children: React.ReactNode;
@@ -54,14 +39,10 @@ export interface AccessibleTypographyProps {
 export const AccessibleTypography: React.FC<AccessibleTypographyProps> = (
   props: AccessibleTypographyProps
 ) => {
-  const styles = cnBase(
-    props.className,
-    accessibleTypographyStyles({ isClickable: !!props.onClick })
-  );
   return createElement(
-    props.as ?? "div",
+    props.as ?? "span",
     {
-      className: styles,
+      className: props.className,
       "aria-label": props.ariaLabel,
       onClick: props.onClick,
     },
