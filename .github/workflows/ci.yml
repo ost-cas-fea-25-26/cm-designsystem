@@ -120,7 +120,7 @@ jobs:
         run: npm run e2e:build-storybook
 
       - name: Run E2E Tests
-        run: npm run e2e:ci --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: npm run e2e:ci
 
       - name: Upload blob report to GitHub Actions Artifacts
         if: ${{ !cancelled() }}
