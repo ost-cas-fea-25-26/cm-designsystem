@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
+          node-version: "22.x"
           cache: npm
 
       - name: Install dependencies
@@ -50,7 +50,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
+          node-version: "22.x"
           cache: npm
 
       - name: Install dependencies
@@ -70,7 +70,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
+          node-version: "22.x"
           cache: npm
 
       - name: Install dependencies
@@ -107,20 +107,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
+          node-version: "22.x"
           cache: npm
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Build docker image
-        run: npm run e2e:build
-
-      - name: Build Storybook
-        run: npm run e2e:build-storybook
-
-      - name: Run Storybook
-        run: npx playwright run-server --port 6006 --path storybook-static
 
       - name: Run E2E Tests
         run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
@@ -145,7 +136,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.x"
+          node-version: "22.x"
           cache: npm
 
       - name: Install dependencies

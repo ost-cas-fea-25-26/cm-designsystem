@@ -80,11 +80,9 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: process.env.CI
-    ? undefined
-    : {
-        command: "npm run storybook",
-        url: BASE_URL,
-        reuseExistingServer: true,
-      },
+  webServer: {
+    command: "npm run storybook",
+    url: BASE_URL,
+    reuseExistingServer: true,
+  },
 });
