@@ -10,7 +10,7 @@ const iconButtonStyles = tv({
   },
   variants: {
     intent: {
-      primary: { base: ["text-slate-400", "hover:text-slate-600"] },
+      primary: { base: ["text-slate-500", "hover:text-slate-600"] },
       secondary: { base: ["text-violet-600", "hover:text-violet-900"] },
     },
   },

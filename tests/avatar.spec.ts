@@ -176,7 +176,7 @@ test.describe("Avatar: fallback", () => {
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
-    const fallback = page.getByLabel("Lorem ipsum");
+    const fallback = page.getByTestId("fallback");
     await fallback.hover();
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
