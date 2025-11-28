@@ -8,6 +8,7 @@ export * from "./icon-button/IconButton";
 export * from "./icons/IconBase";
 export * from "./input/Input";
 export * from "./like-toggle/LikeToggle";
+export * from "./logo-link/LogoLink";
 export * from "./modal/Modal";
 export * from "./navi-button/NaviButton";
 export * from "./navi-user-button/NaviUserButton";
