@@ -1,4 +1,4 @@
-import { cnBase, type VariantProps } from "tailwind-variants";
+import { cn, type VariantProps } from "tailwind-variants";
 import {
   AccessibleTypography,
   type AccessibleTypographyProps,
@@ -32,6 +32,6 @@ export const ValidationMessage: React.FC<ValidationMessageProps> = ({
   className,
   ...props
 }: ValidationMessageProps) => {
-  const styles = cnBase(className, validationMessageStyles({ type, ...props }));
+  const styles = cn(className, validationMessageStyles({ type, ...props }));
   return <AccessibleTypography as={as} className={styles} {...props} />;
 };
