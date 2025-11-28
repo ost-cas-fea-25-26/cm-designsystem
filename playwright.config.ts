@@ -31,6 +31,7 @@ export default defineConfig({
       maxDiffPixelRatio: 0.002, // ~0.2%
       maxDiffPixels: 50, // allow tiny local rendering noise
       threshold: 0.2, // antialiasing tolerance
+      animations: "disabled",
     },
   },
 
