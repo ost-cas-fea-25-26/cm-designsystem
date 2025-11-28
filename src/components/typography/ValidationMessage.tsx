@@ -15,8 +15,7 @@ type ValidationMessageType = "error";
  * @inheritDoc ValidationMessageVariants
  */
 interface ValidationMessageProps
-  extends ValidationMessageVariants,
-    AccessibleTypographyProps {
+  extends ValidationMessageVariants, AccessibleTypographyProps {
   /**
    * Controls the visual variant of the validation message.
    */
