@@ -45,7 +45,7 @@ export const NaviUserButton = ({
       onClick={props.onClick}
       aria-label={props.ariaLabel}
     >
-      <Avatar alt={props.alt} size="sm" src={props.src}></Avatar>
+      <Avatar alt={props.alt} size="sm" src={props.src} />
     </button>
   );
 };
