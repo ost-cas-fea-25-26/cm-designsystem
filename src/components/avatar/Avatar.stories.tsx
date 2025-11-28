@@ -23,7 +23,6 @@ export const Small: Story = {
     size: "sm",
     alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
     onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
@@ -45,7 +44,6 @@ export const Medium: Story = {
     size: "md",
     alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
     onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
@@ -67,7 +65,6 @@ export const Large: Story = {
     size: "lg",
     alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
     onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
@@ -89,7 +86,6 @@ export const ExtraLarge: Story = {
     size: "xl",
     alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
     onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
@@ -115,7 +111,6 @@ export const ExtraLargeWithAction: Story = {
     alt: "Lorem ipsum",
     actionAriaLabel: "Edit Profile",
     src: avatarImage,
-    children: "PA",
     onAvatarClick: fn(),
     onActionClick: fn(),
   },
@@ -170,7 +165,6 @@ export const CustomFallback: Story = {
     size: "md",
     alt: "Lorem ipsum",
     src: "",
-    children: <span data-testid="fallback">PA</span>,
     onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {

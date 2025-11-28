@@ -91,12 +91,6 @@ interface AvatarProps extends AvatarVariants {
   actionAriaLabel?: string;
 
   /**
-   * Optional fallback content rendered when the image cannot load.
-   * Typically initials or an icon.
-   */
-  children?: React.ReactNode;
-
-  /**
    * Click handler for the entire avatar.
    * Makes the outer wrapper clickable.
    */
@@ -134,7 +128,7 @@ export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
           <RoundButton
             intent="primary"
             ariaLabel={props.actionAriaLabel ?? ""}
-            onClick={props.onActionClick ?? (() => {})}
+            onClick={props.onActionClick}
           >
             <Edit />
           </RoundButton>
