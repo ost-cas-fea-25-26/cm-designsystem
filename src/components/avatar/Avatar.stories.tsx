@@ -10,6 +10,9 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
@@ -166,18 +169,18 @@ export const Fallback: Story = {
     size: "md",
     label: "Lorem ipsum",
     src: "",
-    children: "PA",
+    children: <span data-testid="fallback">PA</span>,
     onClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.queryByRole("img")).not.toBeInTheDocument();
-      const fallback = await canvas.findByLabelText("Lorem ipsum");
+      const fallback = await canvas.getByTestId("fallback");
       await expect(fallback).toHaveTextContent("PA");
     });
 
     await step("Check click event", async () => {
-      const fallback = await canvas.findByLabelText("Lorem ipsum");
+      const fallback = await canvas.getByTestId("fallback");
       await userEvent.click(fallback);
       await expect(args.onClick).toHaveBeenCalled();
     });
