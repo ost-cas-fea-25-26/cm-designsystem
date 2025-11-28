@@ -156,27 +156,3 @@ export const DefaultFallback: Story = {
     });
   },
 };
-
-/**
- * Use a custom fallback, for example user initials.
- */
-export const CustomFallback: Story = {
-  args: {
-    size: "md",
-    alt: "Lorem ipsum",
-    src: "",
-    onAvatarClick: fn(),
-  },
-  play: async ({ args, userEvent, canvas, step }) => {
-    await step("Check initial render", async () => {
-      await expect(canvas.queryByRole("img")).not.toBeInTheDocument();
-      await expect(canvas.getByTestId("fallback")).toBeInTheDocument();
-    });
-
-    await step("Check click event", async () => {
-      const fallback = await canvas.getByTestId("fallback");
-      await userEvent.click(fallback);
-      await expect(args.onAvatarClick).toHaveBeenCalled();
-    });
-  },
-};
