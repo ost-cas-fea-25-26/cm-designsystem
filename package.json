@@ -1,8 +1,17 @@
 {
-  "name": "cm-designsystem",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@krrli/cm-designsystem",
+  "version": "0.1.0",
+  "files": [
+    "dist/",
+    "dist/cm-designsystem.css"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "preflight": "npm run prettier && npm run lint && npm run typecheck && npm run build",
     "build": "tsc -b && vite build",
