@@ -1,4 +1,3 @@
-import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Avatar } from "../avatar/Avatar";
 
