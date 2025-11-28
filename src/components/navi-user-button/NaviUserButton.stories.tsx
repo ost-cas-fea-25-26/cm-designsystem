@@ -52,7 +52,6 @@ export const Secondary: Story = {
     alt: "Alt Description",
     src: avatarImage,
     onClick: fn(),
-    children: "PA",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -79,7 +78,6 @@ export const Fallback: Story = {
     src: "",
     alt: "Alt Description",
     onClick: fn(),
-    children: "PA",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {

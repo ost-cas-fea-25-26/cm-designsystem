@@ -34,7 +34,6 @@ interface NaviUserButtonProps extends NaviUserButtonVariants {
   intent?: NaviUserButtonIntent;
   src: string;
   onClick: () => void;
-  children: React.ReactNode;
 }
 
 export const NaviUserButton = ({
@@ -47,9 +46,7 @@ export const NaviUserButton = ({
       onClick={props.onClick}
       aria-label={props.ariaLabel}
     >
-      <Avatar alt={props.alt} size="sm" src={props.src}>
-        {props.children}
-      </Avatar>
+      <Avatar alt={props.alt} size="sm" src={props.src}></Avatar>
     </button>
   );
 };
