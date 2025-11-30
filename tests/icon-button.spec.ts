@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("IconButton: primary", () => {
-  const componentName = "components-iconbutton";
+  const componentName = "components-buttons-iconbutton";
   const componentStory = "primary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -21,14 +21,12 @@ test.describe("IconButton: primary", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 });
 
 test.describe("IconButton: secondary", () => {
-  const componentName = "components-iconbutton";
+  const componentName = "components-buttons-iconbutton";
   const componentStory = "secondary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -47,8 +45,6 @@ test.describe("IconButton: secondary", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 });

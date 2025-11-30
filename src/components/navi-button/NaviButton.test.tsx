@@ -7,8 +7,8 @@ describe("NaviButton", () => {
   test("should render button with icon", async () => {
     // Arrange
     render(
-      <NaviButton label="button" onClick={vi.fn()}>
-        <Mumble />
+      <NaviButton onClick={vi.fn()} icon={Mumble}>
+        button
       </NaviButton>
     );
 
@@ -22,8 +22,8 @@ describe("NaviButton", () => {
     // Arrange
     const onClick = vi.fn();
     render(
-      <NaviButton label="button" onClick={onClick}>
-        <Mumble />
+      <NaviButton onClick={onClick} icon={Mumble}>
+        button
       </NaviButton>
     );
 

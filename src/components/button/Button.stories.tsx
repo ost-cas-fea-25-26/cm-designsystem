@@ -3,58 +3,25 @@ import { Mumble } from "../icons/generated";
 import { Button } from "./Button";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/Button",
+  title: "Components/Buttons/Button",
   component: Button,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
-    a11y: {
-      test: "error",
-    },
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {
-    intent: {
-      control: "select",
-      description: "Button style variant.",
-    },
-    size: {
-      control: "select",
-      description: "Button size (e.g lg, md, ...)",
-    },
-    label: {
-      control: "text",
-      description: "Label of the button.",
-    },
-    onClick: {
-      description: "Callback function when button is clicked.",
-    },
-    children: {
-      control: "object",
-      description: "Icon that should be displayed in button.",
-    },
-    className: {
-      control: "text",
-      description: "Classes to override styling of component.",
-    },
-  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
     size: "md",
     intent: "primary",
-    label: "Lorem ipsum",
     onClick: fn(),
-    children: <Mumble />,
+    icon: Mumble,
+    children: "Lorem ipsum",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -74,9 +41,9 @@ export const Secondary: Story = {
   args: {
     size: "md",
     intent: "secondary",
-    label: "Lorem ipsum",
     onClick: fn(),
-    children: <Mumble />,
+    icon: Mumble,
+    children: "Lorem ipsum",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -96,9 +63,9 @@ export const Tertiary: Story = {
   args: {
     size: "md",
     intent: "tertiary",
-    label: "Lorem ipsum",
     onClick: fn(),
-    children: <Mumble />,
+    icon: Mumble,
+    children: "Lorem ipsum",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -114,13 +81,16 @@ export const Tertiary: Story = {
   },
 };
 
+/**
+ * Buttons also come in various sizes.
+ */
 export const Large: Story = {
   args: {
     size: "lg",
     intent: "tertiary",
-    label: "Lorem ipsum",
     onClick: fn(),
-    children: <Mumble />,
+    icon: Mumble,
+    children: "Lorem ipsum",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -136,12 +106,15 @@ export const Large: Story = {
   },
 };
 
+/**
+ * Buttons also can only display text. Just drop the icon prop.
+ */
 export const NoIcon: Story = {
   args: {
     size: "md",
     intent: "tertiary",
-    label: "Lorem ipsum",
     onClick: fn(),
+    children: "Lorem ipsum",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {

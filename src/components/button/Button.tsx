@@ -1,5 +1,8 @@
-import { twMerge } from "tailwind-merge";
-import { tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
+import {
+  AccessibleButton,
+  type BaseAccessibleButtonProps,
+} from "../accessible-button/AccessibleButton";
 import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
 
@@ -16,6 +19,10 @@ const buttonStyles = tv({
     "duration-350",
     "active:duration-300",
     "ease-in-out",
+    "flex",
+    "justify-center",
+    "w-full",
+    "cursor-pointer",
   ],
   variants: {
     intent: {
@@ -54,43 +61,47 @@ type ButtonVariants = VariantProps<typeof buttonStyles>;
 type ButtonIntent = "primary" | "secondary" | "tertiary";
 type ButtonSize = "md" | "lg";
 
-type BaseButtonProps = ButtonVariants & {
+/**
+ * Props for the Button component.
+ *
+ * @inheritdoc BaseAccessibleButtonProps
+ * @inheritdoc ButtonVariants
+ */
+interface ButtonProps extends ButtonVariants, BaseAccessibleButtonProps {
+  /**
+   * Visual intent of the button (controls background color, hover, and active styles).
+   */
   intent: ButtonIntent;
+
+  /**
+   * Visual size of the button (padding and spacing).
+   */
   size: ButtonSize;
-  onClick: () => void;
-  className?: string;
-  children?: React.ReactElement<IconBaseProps>;
-};
 
-type ButtonWithLabel = BaseButtonProps & {
-  label: string;
-  ariaLabel?: string;
-};
+  /**
+   * Optional icon element rendered alongside the button label.
+   */
+  icon?: React.ComponentType<IconBaseProps>;
 
-type ButtonIconOnly = BaseButtonProps & {
-  label?: undefined;
-  ariaLabel: string;
-};
+  /**
+   * Visible text label displayed inside the button.
+   */
+  children: string;
+}
 
-type ButtonProps = ButtonWithLabel | ButtonIconOnly;
-
-export const Button = (props: ButtonProps) => {
-  const { label, ariaLabel, children, ...rest } = props;
-
-  // Set aria-label when no visible label exists
-  const finalAriaLabel = label ? undefined : ariaLabel;
-
+/**
+ * A fully accessible, stylable button component.
+ */
+export const Button: React.FC<ButtonProps> = ({
+  className,
+  ...props
+}: ButtonProps) => {
   return (
-    <button
-      {...rest}
-      className={twMerge(props.className, buttonStyles(props))}
-      onClick={props.onClick}
-      aria-label={finalAriaLabel}
-    >
+    <AccessibleButton className={cn(buttonStyles(props), className)} {...props}>
       <Label as="span" size="md">
-        {label}
+        {props.children}
       </Label>
-      {children}
-    </button>
+      {props.icon && <props.icon />}
+    </AccessibleButton>
   );
 };

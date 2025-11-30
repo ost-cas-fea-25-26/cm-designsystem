@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vite";
 import { configDefaults } from "vitest/config";
 
@@ -17,13 +18,32 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    lib: {
+      entry: path.resolve(dirname, "src/index.ts"),
+      name: "CmDesignSystem",
+      formats: ["es"],
+      fileName: (format) => `index.${format}.js`,
+    },
+    rollupOptions: {
+      // Externalize peer dependencies (like react)
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          assetFileNames: "[name][extname]",
+        },
+      },
+    },
+    outDir: "dist",
+    emptyOutDir: false,
+  },
   test: {
     projects: [
       {
         extends: true,
         plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
           storybookTest({
             configDir: path.join(dirname, ".storybook"),
           }),
@@ -33,7 +53,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: "playwright",
+            provider: playwright(),
             instances: [
               {
                 browser: "chromium",

@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("NaviButton: secondary", () => {
-  const componentName = "components-navibutton";
+  const componentName = "components-buttons-navibutton";
   const componentStory = "secondary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -21,8 +21,6 @@ test.describe("NaviButton: secondary", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 });

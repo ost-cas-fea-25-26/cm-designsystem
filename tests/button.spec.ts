@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("Button: primary", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "primary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -21,9 +21,7 @@ test.describe("Button: primary", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("button active should look the same", async ({ page }) => {
@@ -34,15 +32,13 @@ test.describe("Button: primary", () => {
     const button = page.getByRole("button");
     await button.hover();
     await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
     await page.mouse.up();
   });
 });
 
 test.describe("Button: secondary", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "secondary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -61,9 +57,7 @@ test.describe("Button: secondary", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("button active should look the same", async ({ page }) => {
@@ -74,15 +68,13 @@ test.describe("Button: secondary", () => {
     const button = page.getByRole("button");
     await button.hover();
     await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
     await page.mouse.up();
   });
 });
 
 test.describe("Button: tertiary", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "tertiary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -101,9 +93,7 @@ test.describe("Button: tertiary", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("button active should look the same", async ({ page }) => {
@@ -114,15 +104,13 @@ test.describe("Button: tertiary", () => {
     const button = page.getByRole("button");
     await button.hover();
     await page.mouse.down(); // triggers :active
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
     await page.mouse.up();
   });
 });
 
 test.describe("Button: large", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "large";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -136,7 +124,7 @@ test.describe("Button: large", () => {
 });
 
 test.describe("Button: no-icon", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "no-icon";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 

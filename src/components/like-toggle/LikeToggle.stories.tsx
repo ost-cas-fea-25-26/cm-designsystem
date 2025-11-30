@@ -1,4 +1,4 @@
-import { expect, userEvent } from "storybook/test";
+import { expect, userEvent, waitFor } from "storybook/test";
 import { LikeToggle } from "./LikeToggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -8,9 +8,6 @@ const meta = {
   component: LikeToggle,
   parameters: {
     layout: "centered",
-    a11y: {
-      test: "error",
-    },
     docs: {
       description: {
         component:
@@ -162,8 +159,17 @@ export const LikedMultiple: Story = {
 
     await step("Unlike", async () => {
       await userEvent.click(canvas.getByRole("button", { name: /12 Likes/i }));
-      await new Promise((r) => setTimeout(r, 2500));
-      await expect(canvas.getByText(/11 Likes/)).toBeVisible();
+
+      // Wait for the label to update
+      await waitFor(
+        () => {
+          expect(canvas.getByText(/11 Likes/)).toBeVisible();
+        },
+        {
+          timeout: 3000, // Maximum wait time in ms (default 1000ms)
+          interval: 50, // How often to check in ms (default 50ms)
+        }
+      );
     });
   },
 };

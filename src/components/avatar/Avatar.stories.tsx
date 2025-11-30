@@ -3,55 +3,24 @@ import avatarImage from "../../assets/avatar.svg";
 import { Avatar } from "./Avatar";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Components/Avatar",
   component: Avatar,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {
-    size: {
-      control: "select",
-      description: "Size of avatar (sm, md, lg, xl).",
-    },
-    label: {
-      control: "text",
-      description: "Accessible label for the avatar.",
-    },
-    src: {
-      control: "text",
-      description: "Image source URL for the avatar.",
-    },
-    children: {
-      control: "object",
-      description: "Fallback content (initials) when image is not available.",
-    },
-    onClick: {
-      description: "Callback function when avatar is clicked.",
-    },
-    onActionClick: {
-      description:
-        "Optional callback for action button (only visible in xl size).",
-    },
-  },
 } satisfies Meta<typeof Avatar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Small: Story = {
   args: {
     size: "sm",
-    label: "Lorem ipsum",
+    alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
-    onClick: fn(),
+    onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -61,8 +30,8 @@ export const Small: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
-      await expect(args.onClick).toHaveBeenCalled();
+      await userEvent.click(canvas.getByTestId("avatar"));
+      await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
 };
@@ -70,10 +39,9 @@ export const Small: Story = {
 export const Medium: Story = {
   args: {
     size: "md",
-    label: "Lorem ipsum",
+    alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
-    onClick: fn(),
+    onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -83,8 +51,8 @@ export const Medium: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
-      await expect(args.onClick).toHaveBeenCalled();
+      await userEvent.click(canvas.getByTestId("avatar"));
+      await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
 };
@@ -92,10 +60,9 @@ export const Medium: Story = {
 export const Large: Story = {
   args: {
     size: "lg",
-    label: "Lorem ipsum",
+    alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
-    onClick: fn(),
+    onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -105,8 +72,8 @@ export const Large: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
-      await expect(args.onClick).toHaveBeenCalled();
+      await userEvent.click(canvas.getByTestId("avatar"));
+      await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
 };
@@ -114,10 +81,9 @@ export const Large: Story = {
 export const ExtraLarge: Story = {
   args: {
     size: "xl",
-    label: "Lorem ipsum",
+    alt: "Lorem ipsum",
     src: avatarImage,
-    children: "PA",
-    onClick: fn(),
+    onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -127,19 +93,22 @@ export const ExtraLarge: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
-      await expect(args.onClick).toHaveBeenCalled();
+      await userEvent.click(canvas.getByTestId("avatar"));
+      await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
 };
 
+/**
+ * The extra large variant of the Avatar component provides an optional edit action button.
+ */
 export const ExtraLargeWithAction: Story = {
   args: {
     size: "xl",
-    label: "Lorem ipsum",
+    alt: "Lorem ipsum",
+    actionAriaLabel: "Edit Profile",
     src: avatarImage,
-    children: "PA",
-    onClick: fn(),
+    onAvatarClick: fn(),
     onActionClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
@@ -150,8 +119,8 @@ export const ExtraLargeWithAction: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
-      await expect(args.onClick).toHaveBeenCalled();
+      await userEvent.click(canvas.getByTestId("avatar"));
+      await expect(args.onAvatarClick).toHaveBeenCalled();
     });
 
     await step("Check action click event", async () => {
@@ -161,25 +130,26 @@ export const ExtraLargeWithAction: Story = {
   },
 };
 
-export const Fallback: Story = {
+/**
+ * Fallback to a default image.
+ */
+export const DefaultFallback: Story = {
   args: {
     size: "md",
-    label: "Lorem ipsum",
+    alt: "Lorem ipsum",
     src: "",
-    children: "PA",
-    onClick: fn(),
+    onAvatarClick: fn(),
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
-      await expect(canvas.queryByRole("img")).not.toBeInTheDocument();
-      const fallback = await canvas.findByLabelText("Lorem ipsum");
-      await expect(fallback).toHaveTextContent("PA");
+      await expect(canvas.queryByRole("img")).toBeInTheDocument();
+      await canvas.findByAltText("Lorem ipsum");
     });
 
     await step("Check click event", async () => {
-      const fallback = await canvas.findByLabelText("Lorem ipsum");
+      const fallback = await canvas.findByAltText("Lorem ipsum");
       await userEvent.click(fallback);
-      await expect(args.onClick).toHaveBeenCalled();
+      await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
 };

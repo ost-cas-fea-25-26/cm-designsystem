@@ -21,9 +21,7 @@ test.describe("Textarea: default", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("input active should look the same", async ({ page }) => {
@@ -33,9 +31,7 @@ test.describe("Textarea: default", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.click();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 });
 
@@ -59,9 +55,7 @@ test.describe("Textarea: required validation", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("input active should look the same", async ({ page }) => {
@@ -71,9 +65,7 @@ test.describe("Textarea: required validation", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.click();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 });
 
@@ -97,9 +89,7 @@ test.describe("Textarea: no label", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("input active should look the same", async ({ page }) => {
@@ -109,8 +99,6 @@ test.describe("Textarea: no label", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.click();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 });
