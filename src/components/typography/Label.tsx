@@ -6,7 +6,7 @@ import {
 import { labelStyles } from "./styles";
 
 type LabelVariants = VariantProps<typeof labelStyles>;
-type LabelSize = "xl" | "lg" | "md" | "sm";
+export type LabelSize = "xl" | "lg" | "md" | "sm";
 
 /**
  * Label component props.
