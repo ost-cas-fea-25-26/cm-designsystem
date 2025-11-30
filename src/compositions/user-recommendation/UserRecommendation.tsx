@@ -9,26 +9,35 @@ const userRecommendationStyles = tv({
   slots: {
     base: ["flex", "flex-col", "gap-4", "items-center", "p-4", "bg-white"],
     userInfo: ["flex", "flex-col", "gap-2", "items-center"],
-    displayName: ["text-slate-900"],
+    displayName: ["text-slate-900", "**:cursor-pointer"],
   },
 });
 
 type UserRecommendationVariants = VariantProps<typeof userRecommendationStyles>;
 
 interface UserRecommendationProps extends UserRecommendationVariants {
-  /** Avatar image URL */
+  /** URL of the user's avatar image. */
   src: string;
-  /** Display name of the user */
+  /** Display name of the user (e.g., "Jane Doe"). */
   displayName: string;
-  /** Username of the user */
+  /** Username/handle of the user (e.g., "@jane"). */
   userName: string;
-  /** Label of the button */
+  /** Label shown on the follow button (e.g., "Follow"). */
   label: string;
-  /** Click handler for the whole UserRecommendation component */
+  /** Handler invoked when the "Follow" button is clicked. */
   onFollowClick: () => void;
+  /** Handler invoked when user profile elements (avatar or username) are clicked. */
   onProfileClick: () => void;
 }
 
+/**
+ * UserRecommendation Component
+ *
+ * Displays a recommended user with:
+ * - A clickable avatar
+ * - Display name and username
+ * - A follow button
+ */
 export const UserRecommendation: React.FC<UserRecommendationProps> = (
   props: UserRecommendationProps
 ) => {
@@ -37,34 +46,30 @@ export const UserRecommendation: React.FC<UserRecommendationProps> = (
   return (
     <div className={base()}>
       <Avatar
-        label="Profile"
+        alt="Profile"
         size="lg"
         src={props.src}
-        onClick={props.onProfileClick}
+        onAvatarClick={props.onProfileClick}
       />
       <div className={userInfo()}>
-        <Label
-          size="lg"
-          className={displayName()}
-          onClick={props.onProfileClick}
-        >
-          {props.displayName}
-        </Label>
+        <button onClick={props.onProfileClick} className={displayName()}>
+          <Label size="lg">{props.displayName}</Label>
+        </button>
         <IconButton
-          label={props.userName}
+          icon={Profile}
           intent="secondary"
           onClick={props.onProfileClick}
         >
-          <Profile />
+          {props.userName}
         </IconButton>
       </div>
       <Button
-        label={props.label}
+        icon={Mumble}
         intent="secondary"
         onClick={props.onFollowClick}
         size="md"
       >
-        <Mumble />
+        {props.label}
       </Button>
     </div>
   );
