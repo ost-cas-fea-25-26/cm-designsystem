@@ -70,26 +70,25 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
 
   return (
     <div className={base()}>
-      {props.src && <Avatar label="Profile" size="sm" src={props.src} onClick={props.onClick}/>}
+      {props.src && (
+        <Avatar
+          alt="Profile"
+          size="sm"
+          src={props.src}
+          onAvatarClick={props.onClick}
+        />
+      )}
       <div className={userInfo()}>
-        <Label size={getLabelSize(props.size)} className={displayName()} onClick={props.onClick}>
+        <Label size={getLabelSize(props.size)} className={displayName()}>
           {props.displayName}
         </Label>
         <div className={detailInfo()}>
-          <IconButton
-            label={props.userName}
-            intent="secondary"
-            onClick={props.onClick}
-          >
-            <Profile />
+          <IconButton intent="secondary" onClick={props.onClick} icon={Profile}>
+            {props.userName}
           </IconButton>
 
-          <IconButton
-            label={timeSince(props.timestamp)}
-            intent="primary"
-            onClick={props.onClick}
-          >
-            <Time />
+          <IconButton intent="primary" onClick={props.onClick} icon={Time}>
+            {timeSince(props.timestamp)}
           </IconButton>
         </div>
       </div>
