@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("RoundButton: primary", () => {
-  const componentName = "components-roundbutton";
+  const componentName = "components-buttons-roundbutton";
   const componentStory = "primary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 

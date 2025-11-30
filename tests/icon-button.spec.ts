@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("IconButton: primary", () => {
-  const componentName = "components-iconbutton";
+  const componentName = "components-buttons-iconbutton";
   const componentStory = "primary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -26,7 +26,7 @@ test.describe("IconButton: primary", () => {
 });
 
 test.describe("IconButton: secondary", () => {
-  const componentName = "components-iconbutton";
+  const componentName = "components-buttons-iconbutton";
   const componentStory = "secondary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
