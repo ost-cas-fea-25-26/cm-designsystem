@@ -80,7 +80,7 @@ export const LogOutButton: Story = {
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(canvas.getByRole("button")).toBeVisible();
-      await expect(canvas.getByRole("button")).toHaveTextContent("Settings");
+      await expect(canvas.getByRole("button")).toHaveTextContent("Log out");
     });
 
     await step("Check click event", async () => {

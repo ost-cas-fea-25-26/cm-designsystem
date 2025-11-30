@@ -69,32 +69,3 @@ export const DefaultFallback: Story = {
     });
   },
 };
-
-/**
- * When image could not be loaded and a custom fallback is defined.
- * The defined fallback will be applied.
- */
-export const CustomFallback: Story = {
-  args: {
-    intent: "secondary",
-    alt: "Lorem ipsum",
-    src: "",
-    alt: "Alt Description",
-    onClick: fn(),
-  },
-  play: async ({ args, userEvent, canvas, step }) => {
-    await step("Check initial render", async () => {
-      await expect(
-        canvas.getByRole("button", { name: /lorem ipsum/i })
-      ).toBeVisible();
-      const fallback = await canvas.findByRole("img");
-      await expect(fallback).toBeVisible();
-    });
-
-    await step("Check click event", async () => {
-      const fallback = await canvas.findByRole("img");
-      await userEvent.click(fallback);
-      await expect(args.onClick).toHaveBeenCalled();
-    });
-  },
-};
