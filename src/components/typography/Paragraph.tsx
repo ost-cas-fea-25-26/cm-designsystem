@@ -29,6 +29,6 @@ export const Paragraph: React.FC<ParagraphProps> = ({
   className,
   ...props
 }: ParagraphProps) => {
-  const styles = cn(className, paragraphStyles(props));
+  const styles = cn(paragraphStyles(props), className);
   return <AccessibleTypography as={as} className={styles} {...props} />;
 };

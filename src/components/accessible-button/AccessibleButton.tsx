@@ -54,8 +54,8 @@ export const AccessibleButton: React.FC<AccessibleButtonProps> = ({
     <button
       type={type}
       className={cn(
-        className,
-        accessibleButtonStyles({ isClickable: !!onClick })
+        accessibleButtonStyles({ isClickable: !!onClick }),
+        className
       )}
       aria-label={ariaLabel}
       onClick={onClick}
