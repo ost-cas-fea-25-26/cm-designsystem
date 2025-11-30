@@ -66,6 +66,13 @@ function getLabelSize(size: UserInfoSize): LabelSize {
   }
 }
 
+/**
+ * UserInfo Component
+ *
+ * Displays a user avatar, display name, username, and a timestamp indicating
+ * when an activity occurred. The entire component acts as an interactive button
+ * and includes keyboard accessibility using `Enter` and `Space`.
+ */
 export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
   const { base, userInfo, displayName, detailInfo, timeInfo } =
     userInfoStyles(props);
