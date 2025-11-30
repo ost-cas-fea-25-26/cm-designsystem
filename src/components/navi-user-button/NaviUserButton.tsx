@@ -67,7 +67,7 @@ export const NaviUserButton: React.FC<NaviUserButtonProps> = ({
 }: NaviUserButtonProps) => {
   return (
     <AccessibleButton
-      className={cn(className, naviUserButtonStyles({ intent, ...props }))}
+      className={cn(naviUserButtonStyles({ intent, ...props }), className)}
       {...props}
     >
       <Avatar alt={props.alt} size="sm" src={props.src} />

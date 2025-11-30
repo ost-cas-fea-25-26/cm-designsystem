@@ -156,7 +156,7 @@ export const TimedButton: React.FC<TimedButtonProps> = ({
 
   return (
     <AccessibleButton
-      className={cn(className, base(props))}
+      className={cn(base(props), className)}
       onClick={handleClick}
       {...props}
     >

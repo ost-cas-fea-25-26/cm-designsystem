@@ -65,7 +65,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   const { base, icon } = iconButtonStyles();
 
   return (
-    <AccessibleButton className={cn(className, base(props))} {...props}>
+    <AccessibleButton className={cn(base(props), className)} {...props}>
       {props.icon && <props.icon className={icon(props)} />}
       <Label as="span" size="md">
         {props.children}
