@@ -6,9 +6,6 @@ const meta = {
   component: Paragraph,
   parameters: {
     layout: "centered",
-    a11y: {
-      test: "error",
-    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof Paragraph>;

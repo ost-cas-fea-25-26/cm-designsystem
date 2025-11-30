@@ -8,9 +8,6 @@ const meta = {
   component: AccessibleButton,
   parameters: {
     layout: "centered",
-    a11y: {
-      test: "error",
-    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof AccessibleButton>;

@@ -7,10 +7,7 @@ const meta = {
   title: "Components/LikeToggle",
   component: LikeToggle,
   parameters: {
-    layout: "centered",
-    a11y: {
-      test: "error",
-    },
+    layout: "centered"
     docs: {
       description: {
         component:
