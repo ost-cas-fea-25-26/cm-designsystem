@@ -71,7 +71,18 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
     userInfoStyles(props);
 
   return (
-    <div className={base()} onClick={props.onClick}>
+    <div
+      className={base()}
+      onClick={props.onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          props.onClick();
+        }
+      }}
+    >
       {props.src && <Avatar alt="Profile" size="sm" src={props.src} />}
       <div className={userInfo()}>
         <Label size={getLabelSize(props.size)} className={displayName()}>
