@@ -1,4 +1,8 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
+import {
+  AccessibleButton,
+  type BaseAccessibleButtonProps,
+} from "../accessible-button/AccessibleButton";
 import { Avatar } from "../avatar/Avatar";
 
 const naviUserButtonStyles = tv({
@@ -27,25 +31,46 @@ const naviUserButtonStyles = tv({
 type NaviUserButtonVariants = VariantProps<typeof naviUserButtonStyles>;
 type NaviUserButtonIntent = "secondary";
 
-interface NaviUserButtonProps extends NaviUserButtonVariants {
-  ariaLabel: string;
-  alt: string;
+/**
+ * Props for the NaviUserButton component.
+ *
+ * @inheritdoc BaseAccessibleButtonProps
+ * @inheritdoc NaviUserButtonVariants
+ */
+interface NaviUserButtonProps
+  extends NaviUserButtonVariants, BaseAccessibleButtonProps {
+  /**
+   * Visual intent of the button (controls background color, hover, and active styles).
+   */
   intent?: NaviUserButtonIntent;
+
+  /**
+   * Source URL for the user avatar image.
+   */
   src: string;
-  onClick: () => void;
+
+  /**
+   * Accessible alt text describing the avatar.
+   * Required for proper screen reader support.
+   */
+  alt: string;
 }
 
-export const NaviUserButton = ({
+/**
+ * A user-focused navigation button that displays a user avatar and behaves
+ * like an accessible, keyboard-friendly button.
+ */
+export const NaviUserButton: React.FC<NaviUserButtonProps> = ({
   intent = "secondary",
+  className,
   ...props
 }: NaviUserButtonProps) => {
   return (
-    <button
-      className={naviUserButtonStyles({ intent, ...props })}
-      onClick={props.onClick}
-      aria-label={props.ariaLabel}
+    <AccessibleButton
+      className={cn(className, naviUserButtonStyles({ intent, ...props }))}
+      {...props}
     >
       <Avatar alt={props.alt} size="sm" src={props.src} />
-    </button>
+    </AccessibleButton>
   );
 };

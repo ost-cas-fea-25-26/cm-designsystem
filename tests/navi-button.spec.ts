@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("NaviButton: secondary", () => {
-  const componentName = "components-navibutton";
+  const componentName = "components-buttons-navibutton";
   const componentStory = "secondary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 

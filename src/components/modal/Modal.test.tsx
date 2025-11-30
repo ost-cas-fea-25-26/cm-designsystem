@@ -12,16 +12,16 @@ describe("Modal", () => {
         <Modal open onOpenChange={() => {}} title="Modal">
           <Modal.Body>Body</Modal.Body>
           <Modal.Actions>
-            <Button intent="primary" size="md" label="Exit" onClick={() => {}}>
-              <Cancel />
+            <Button intent="primary" size="md" onClick={() => {}} icon={Cancel}>
+              Exit
             </Button>
             <Button
               intent="secondary"
               size="md"
-              label="Save"
               onClick={() => {}}
+              icon={Checkmark}
             >
-              <Checkmark />
+              Save
             </Button>
           </Modal.Actions>
         </Modal>
@@ -43,16 +43,16 @@ describe("Modal", () => {
         <Modal open={false} onOpenChange={() => {}} title="Modal">
           <Modal.Body>Body</Modal.Body>
           <Modal.Actions>
-            <Button intent="primary" size="md" label="Exit" onClick={() => {}}>
-              <Cancel />
+            <Button intent="primary" size="md" onClick={() => {}} icon={Cancel}>
+              Exit
             </Button>
             <Button
               intent="secondary"
               size="md"
-              label="Save"
               onClick={() => {}}
+              icon={Checkmark}
             >
-              <Checkmark />
+              Save
             </Button>
           </Modal.Actions>
         </Modal>

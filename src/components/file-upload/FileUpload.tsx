@@ -120,10 +120,10 @@ export const FileUpload = ({
         className={action(props)}
         intent="primary"
         size="md"
-        label={actionLabel}
+        icon={Upload}
         onClick={() => document.getElementById("fileInput")?.click()}
       >
-        <Upload />
+        {actionLabel}
       </Button>
 
       {/* Hidden File Input */}
