@@ -117,6 +117,7 @@ export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
     <RadixAvatar.Root
       onClick={props.onAvatarClick}
       className={base({ isClickable: !!props.onAvatarClick, ...props })}
+      data-testid="avatar"
     >
       <RadixAvatar.Image
         src={props.src}

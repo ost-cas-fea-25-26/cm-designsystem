@@ -33,7 +33,7 @@ export const Small: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
+      await userEvent.click(canvas.getByTestId("avatar"));
       await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
@@ -54,7 +54,7 @@ export const Medium: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
+      await userEvent.click(canvas.getByTestId("avatar"));
       await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
@@ -75,7 +75,7 @@ export const Large: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
+      await userEvent.click(canvas.getByTestId("avatar"));
       await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
@@ -96,7 +96,7 @@ export const ExtraLarge: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
+      await userEvent.click(canvas.getByTestId("avatar"));
       await expect(args.onAvatarClick).toHaveBeenCalled();
     });
   },
@@ -122,7 +122,7 @@ export const ExtraLargeWithAction: Story = {
     });
 
     await step("Check click event", async () => {
-      await userEvent.click(canvas.getByRole("img"));
+      await userEvent.click(canvas.getByTestId("avatar"));
       await expect(args.onAvatarClick).toHaveBeenCalled();
     });
 
