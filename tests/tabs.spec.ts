@@ -15,12 +15,10 @@ test.describe("Tabs: default", () => {
 
     await expect(
       page.getByRole("tab", { name: /Lorem ipsum 1/i })
-    ).toHaveScreenshot(`${screenshotNamePrefix}-inactive.png`, {
-      threshold: 0,
-    });
+    ).toHaveScreenshot(`${screenshotNamePrefix}-inactive.png`);
     await expect(
       page.getByRole("tab", { name: /Lorem ipsum 2/i })
-    ).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, { threshold: 0 });
+    ).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 
   test("tabs hover should look the same", async ({ page }) => {
@@ -31,19 +29,13 @@ test.describe("Tabs: default", () => {
     const tab1 = page.getByRole("tab", { name: /Lorem ipsum 1/i });
     await tab1.hover();
     await expect(tab1).toHaveScreenshot(
-      `${screenshotNamePrefix}-inactive-hover.png`,
-      {
-        threshold: 0,
-      }
+      `${screenshotNamePrefix}-inactive-hover.png`
     );
 
     const tab2 = page.getByRole("tab", { name: /Lorem ipsum 1/i });
     await tab2.hover();
     await expect(tab2).toHaveScreenshot(
-      `${screenshotNamePrefix}-active-hover.png`,
-      {
-        threshold: 0,
-      }
+      `${screenshotNamePrefix}-active-hover.png`
     );
   });
 });

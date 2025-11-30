@@ -12,6 +12,9 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
@@ -153,12 +156,9 @@ export const RequiredValidation: Story = {
         <Input {...args} />
       </Form.Fields>
       <Form.Action>
-        <Button
-          intent="secondary"
-          label="Test required"
-          size="md"
-          onClick={fn()}
-        />
+        <Button type="submit" intent="secondary" size="md" onClick={fn()}>
+          Test required
+        </Button>
       </Form.Action>
     </Form>
   ),

@@ -1,32 +1,36 @@
-import { createElement, type JSX } from "react";
-import { twMerge } from "tailwind-merge";
-import { type VariantProps } from "tailwind-variants";
+import { cn, type VariantProps } from "tailwind-variants";
+import {
+  AccessibleTypography,
+  type AccessibleTypographyProps,
+} from "./AccessibleTypography";
 import { validationMessageStyles } from "./styles";
 
 type ValidationMessageVariants = VariantProps<typeof validationMessageStyles>;
 type ValidationMessageType = "error";
 
-interface ValidationMessageProps extends ValidationMessageVariants {
-  as?: keyof JSX.IntrinsicElements;
+/**
+ * ValidationMessage component props.
+ *
+ * @inheritDoc TypographyProps
+ * @inheritDoc ValidationMessageVariants
+ */
+interface ValidationMessageProps
+  extends ValidationMessageVariants, AccessibleTypographyProps {
+  /**
+   * Controls the visual variant of the validation message.
+   */
   type?: ValidationMessageType;
-  className?: string;
-  children: React.ReactNode;
 }
 
-export const ValidationMessage = ({
+/**
+ * A semantic, accessible ValidationMessage component built on top of the AccessibleTypography component.
+ */
+export const ValidationMessage: React.FC<ValidationMessageProps> = ({
   as = "span",
   type = "error",
   className,
   ...props
 }: ValidationMessageProps) => {
-  return createElement(
-    as,
-    {
-      className: twMerge(
-        className,
-        validationMessageStyles({ type, ...props })
-      ),
-    },
-    props.children
-  );
+  const styles = cn(className, validationMessageStyles({ type, ...props }));
+  return <AccessibleTypography as={as} className={styles} {...props} />;
 };

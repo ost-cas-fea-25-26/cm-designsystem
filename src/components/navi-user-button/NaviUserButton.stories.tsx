@@ -3,52 +3,28 @@ import avatarImage from "../../assets/avatar.svg";
 import { NaviUserButton } from "./NaviUserButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: "Components/NaviUserButton",
+  title: "Components/Buttons/NaviUserButton",
   component: NaviUserButton,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {
-    intent: {
-      control: "select",
-      description: "Button style variant (secondary).",
-    },
-    label: {
-      control: "text",
-      description: "Accessible label for the button and avatar.",
-    },
-    src: {
-      control: "text",
-      description: "Image source URL for the avatar.",
-    },
-    onClick: {
-      description: "Callback function when button is clicked.",
-    },
-    children: {
-      control: "object",
-      description:
-        "Fallback content (initials) for avatar when image is not available.",
-    },
-  },
 } satisfies Meta<typeof NaviUserButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Secondary: Story = {
   args: {
     intent: "secondary",
-    label: "Lorem ipsum",
+    ariaLabel: "Lorem ipsum",
+    alt: "Alt Description",
     src: avatarImage,
     onClick: fn(),
-    children: "PA",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -56,7 +32,7 @@ export const Secondary: Story = {
       await expect(button).toBeVisible();
       await expect(button).toHaveAccessibleName(/lorem ipsum/i);
       await waitFor(() =>
-        expect(canvas.getByRole("img")).toHaveAccessibleName(/lorem ipsum/i)
+        expect(canvas.getByRole("img")).toHaveAccessibleName(/alt description/i)
       );
       await expect(canvas.queryByText("PA")).not.toBeInTheDocument();
     });
@@ -68,25 +44,26 @@ export const Secondary: Story = {
   },
 };
 
-export const Fallback: Story = {
+/**
+ * When image could not be loaded and no custom fallback defined.
+ * A default fallback will be applied.
+ */
+export const DefaultFallback: Story = {
   args: {
     intent: "secondary",
-    label: "Lorem ipsum",
+    alt: "Lorem ipsum",
     src: "",
     onClick: fn(),
-    children: "PA",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
-      await expect(
-        canvas.getByRole("button", { name: /lorem ipsum/i })
-      ).toBeVisible();
-      const fallback = await canvas.findByText("PA");
+      await expect(canvas.getByRole("button")).toBeVisible();
+      const fallback = await canvas.findByAltText("Lorem ipsum");
       await expect(fallback).toBeVisible();
     });
 
     await step("Check click event", async () => {
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.findByAltText("Lorem ipsum");
       await userEvent.click(fallback);
       await expect(args.onClick).toHaveBeenCalled();
     });

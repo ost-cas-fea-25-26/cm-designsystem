@@ -12,6 +12,9 @@ const meta = {
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
@@ -51,12 +54,9 @@ export const Default: Story = {
     const [open, setOpen] = useState(args.open);
     return (
       <div>
-        <Button
-          intent="primary"
-          size="lg"
-          label="Click Me!"
-          onClick={() => setOpen(true)}
-        />
+        <Button intent="primary" size="lg" onClick={() => setOpen(true)}>
+          Click Me!
+        </Button>
 
         <Modal open={open} onOpenChange={setOpen} title={args.title}>
           <Modal.Body>Hello, this is a Modal!!!</Modal.Body>
@@ -64,18 +64,18 @@ export const Default: Story = {
             <Button
               intent="primary"
               size="md"
-              label="Cancel"
+              icon={Cancel}
               onClick={() => setOpen(false)}
             >
-              <Cancel />
+              Cancel
             </Button>
             <Button
               intent="secondary"
               size="md"
-              label="Save"
+              icon={Checkmark}
               onClick={() => setOpen(false)}
             >
-              <Checkmark />
+              Save
             </Button>
           </Modal.Actions>
         </Modal>

@@ -1,4 +1,8 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
+import {
+  AccessibleButton,
+  type BaseAccessibleButtonProps,
+} from "../accessible-button/AccessibleButton";
 import type { IconBaseProps } from "../icons/IconBase";
 
 const roundButtonStyles = tv({
@@ -28,24 +32,45 @@ const roundButtonStyles = tv({
 type RoundButtonVariants = VariantProps<typeof roundButtonStyles>;
 type RoundButtonIntent = "primary";
 
-interface RoundButtonProps extends RoundButtonVariants {
+/**
+ * Props for the RoundButton component.
+ *
+ * @inheritdoc BaseAccessibleButtonProps
+ * @inheritdoc RoundButtonVariants
+ */
+interface RoundButtonProps
+  extends RoundButtonVariants, BaseAccessibleButtonProps {
+  /**
+   * Visual intent of the button (controls background color, hover, and active styles).
+   */
   intent?: RoundButtonIntent;
-  label: string;
-  onClick: () => void;
-  children: React.ReactElement<IconBaseProps>;
+
+  /**
+   * Accessible label for the button, used by screen readers.
+   */
+  ariaLabel: string;
+
+  /**
+   * Icon element rendered alongside the button label.
+   */
+  icon: React.ComponentType<IconBaseProps>;
 }
 
-export const RoundButton = ({
+/**
+ * A circular, icon-only button component that provides full accessibility,
+ * keyboard interaction, and visual feedback through hover and active states.
+ */
+export const RoundButton: React.FC<RoundButtonProps> = ({
   intent = "primary",
+  className,
   ...props
 }: RoundButtonProps) => {
   return (
-    <button
-      className={roundButtonStyles({ intent })}
-      onClick={props.onClick}
-      aria-label={props.label}
+    <AccessibleButton
+      className={cn(className, roundButtonStyles({ intent }))}
+      {...props}
     >
-      {props.children}
-    </button>
+      <props.icon />
+    </AccessibleButton>
   );
 };

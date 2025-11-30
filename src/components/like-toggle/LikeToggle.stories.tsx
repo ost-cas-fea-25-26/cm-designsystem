@@ -1,4 +1,4 @@
-import { expect, userEvent } from "storybook/test";
+import { expect, userEvent, waitFor } from "storybook/test";
 import { LikeToggle } from "./LikeToggle";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -8,6 +8,9 @@ const meta = {
   component: LikeToggle,
   parameters: {
     layout: "centered",
+    a11y: {
+      test: "error",
+    },
     docs: {
       description: {
         component:
@@ -20,10 +23,6 @@ const meta = {
     pressed: {
       control: "boolean",
       description: "Whether toggle is visually pressed",
-    },
-    ariaLabel: {
-      control: "text",
-      description: "Accessible label for the toggle",
     },
     likes: {
       control: { type: "number", min: 0 },
@@ -42,7 +41,6 @@ type Story = StoryObj<typeof meta>;
 export const NoLikes: Story = {
   args: {
     pressed: false,
-    ariaLabel: "Like",
     likes: 0,
     onLikeChange: () => {},
   },
@@ -57,7 +55,6 @@ export const NoLikes: Story = {
 export const NoLikesHover: Story = {
   args: {
     pressed: false,
-    ariaLabel: "Like",
     likes: 0,
     onLikeChange: () => {},
   },
@@ -65,7 +62,7 @@ export const NoLikesHover: Story = {
     const button = canvas.getByRole("button", { name: /Like/i });
     await step("Hover over Like", async () => {
       await userEvent.hover(button);
-      // We can't directly assert Tailwind classes via testing-library, but we can check aria-label stays and text still visible
+
       await expect(button).toBeVisible();
       await expect(canvas.getByText(/Like$/)).toBeVisible();
     });
@@ -75,7 +72,6 @@ export const NoLikesHover: Story = {
 export const ExistingLikes: Story = {
   args: {
     pressed: false,
-    ariaLabel: "5 Likes",
     likes: 5,
     onLikeChange: () => {},
   },
@@ -100,7 +96,6 @@ export const ExistingLikes: Story = {
 export const ExistingLikesLiked: Story = {
   args: {
     pressed: true,
-    ariaLabel: "5 Likes",
     likes: 5,
     onLikeChange: () => {},
   },
@@ -116,7 +111,6 @@ export const ExistingLikesLiked: Story = {
 
 export const FirstLikeAnimation: Story = {
   args: {
-    ariaLabel: "Like",
     likes: 0,
     onLikeChange: () => {},
   },
@@ -139,7 +133,6 @@ export const FirstLikeAnimation: Story = {
 export const Liked: Story = {
   args: {
     pressed: true,
-    ariaLabel: "1 Like",
     likes: 1,
     onLikeChange: () => {},
   },
@@ -156,7 +149,6 @@ export const Liked: Story = {
 export const LikedMultiple: Story = {
   args: {
     pressed: true,
-    ariaLabel: "12 Likes",
     likes: 12,
     onLikeChange: () => {},
   },
@@ -170,8 +162,17 @@ export const LikedMultiple: Story = {
 
     await step("Unlike", async () => {
       await userEvent.click(canvas.getByRole("button", { name: /12 Likes/i }));
-      await new Promise((r) => setTimeout(r, 2500));
-      await expect(canvas.getByText(/11 Likes/)).toBeVisible();
+
+      // Wait for the label to update
+      await waitFor(
+        () => {
+          expect(canvas.getByText(/11 Likes/)).toBeVisible();
+        },
+        {
+          timeout: 3000, // Maximum wait time in ms (default 1000ms)
+          interval: 50, // How often to check in ms (default 50ms)
+        }
+      );
     });
   },
 };

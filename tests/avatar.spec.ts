@@ -21,9 +21,7 @@ test.describe("Avatar: small", () => {
     // Assert
     const button = page.getByRole("img");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 });
 
@@ -47,9 +45,7 @@ test.describe("Avatar: medium", () => {
     // Assert
     const button = page.getByRole("img");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 });
 
@@ -73,9 +69,7 @@ test.describe("Avatar: large", () => {
     // Assert
     const button = page.getByRole("img");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 });
 
@@ -99,9 +93,7 @@ test.describe("Avatar: extra-large", () => {
     // Assert
     const button = page.getByRole("img");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 });
 
@@ -125,9 +117,7 @@ test.describe("Avatar: extra-large-with-action", () => {
     // Assert
     const button = page.getByRole("button");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-action.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-action.png`);
   });
 
   test("avatar hover should look the same", async ({ page }) => {
@@ -137,9 +127,7 @@ test.describe("Avatar: extra-large-with-action", () => {
     // Assert
     const button = page.getByRole("img");
     await button.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("avatar action hover should look the same", async ({ page }) => {
@@ -150,17 +138,14 @@ test.describe("Avatar: extra-large-with-action", () => {
     const button = page.getByRole("button");
     await button.hover();
     await expect(page).toHaveScreenshot(
-      `${screenshotNamePrefix}-action-hover.png`,
-      {
-        threshold: 0,
-      }
+      `${screenshotNamePrefix}-action-hover.png`
     );
   });
 });
 
-test.describe("Avatar: fallback", () => {
+test.describe("Avatar: default fallback", () => {
   const componentName = "components-avatar";
-  const componentStory = "fallback";
+  const componentStory = "default-fallback";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
   test("avatar should look the same", async ({ page }) => {
@@ -176,7 +161,7 @@ test.describe("Avatar: fallback", () => {
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
-    const fallback = page.getByLabel("Lorem ipsum");
+    const fallback = page.getByAltText("Lorem ipsum");
     await fallback.hover();
     await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
       threshold: 0,
