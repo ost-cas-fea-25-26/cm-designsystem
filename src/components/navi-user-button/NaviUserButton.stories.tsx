@@ -84,12 +84,12 @@ export const Fallback: Story = {
       await expect(
         canvas.getByRole("button", { name: /lorem ipsum/i })
       ).toBeVisible();
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.findByRole("img");
       await expect(fallback).toBeVisible();
     });
 
     await step("Check click event", async () => {
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.findByRole("img");
       await userEvent.click(fallback);
       await expect(args.onClick).toHaveBeenCalled();
     });
