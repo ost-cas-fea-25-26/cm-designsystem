@@ -137,7 +137,7 @@ export const TimedButton: React.FC<TimedButtonProps> = ({
     // Klick -> Pressed
     setPressed(true);
     setAnimating(true);
-    onClick();
+    onClick?.();
 
     // Hover -> Pressed: Dissolve über 350ms
     const timeout1 = setTimeout(() => setAnimating(false), 350);

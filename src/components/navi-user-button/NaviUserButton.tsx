@@ -54,12 +54,6 @@ interface NaviUserButtonProps
    * Required for proper screen reader support.
    */
   alt: string;
-
-  /**
-   * Optional fallback content rendered when the image cannot load.
-   * Typically initials or an icon.
-   */
-  children?: React.ReactNode;
 }
 
 /**
@@ -76,9 +70,7 @@ export const NaviUserButton: React.FC<NaviUserButtonProps> = ({
       className={cn(className, naviUserButtonStyles({ intent, ...props }))}
       {...props}
     >
-      <Avatar alt={props.alt} size="sm" src={props.src}>
-        {props.children}
-      </Avatar>
+      <Avatar alt={props.alt} size="sm" src={props.src} />
     </AccessibleButton>
   );
 };
