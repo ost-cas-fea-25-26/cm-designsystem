@@ -22,7 +22,7 @@ const avatarStyles = tv({
   },
   variants: {
     isClickable: {
-      true: { base: ["cursor-pointer"] },
+      true: { base: ["**:cursor-pointer"] },
     },
     size: {
       sm: { avatar: ["w-10", "h-10", "hover:scale-105"] },

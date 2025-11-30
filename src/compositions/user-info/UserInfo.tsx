@@ -6,11 +6,11 @@ import { Label, type LabelSize } from "../../components/typography/Label";
 
 const userInfoStyles = tv({
   slots: {
-    base: ["flex", "gap-2", "items-center", "**:cursor-pointer"],
+    base: ["flex", "gap-2", "items-center"],
     userInfo: ["flex", "flex-col", "gap-2", "justify-center", "items-start"],
-    displayName: ["text-slate-900"],
+    displayName: ["text-slate-900", "**:cursor-pointer"],
     detailInfo: ["flex", "flex", "gap-4"],
-    timeInfo: ["text-slate-400"],
+    timeInfo: ["text-slate-500"],
   },
 });
 
@@ -78,29 +78,30 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
     userInfoStyles(props);
 
   return (
-    <div
-      className={base()}
-      onClick={props.onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          props.onClick();
-        }
-      }}
-    >
-      {props.src && <Avatar alt="Profile" size="sm" src={props.src} />}
+    <div className={base()}>
+      {props.src && (
+        <Avatar
+          alt="Profile"
+          size="sm"
+          src={props.src}
+          onAvatarClick={props.onClick}
+        />
+      )}
       <div className={userInfo()}>
-        <Label size={getLabelSize(props.size)} className={displayName()}>
-          {props.displayName}
-        </Label>
+        <button onClick={props.onClick} className={displayName()}>
+          <Label size={getLabelSize(props.size)}>{props.displayName}</Label>
+        </button>
         <div className={detailInfo()}>
-          <IconButton intent="secondary" icon={Profile}>
+          <IconButton intent="secondary" icon={Profile} onClick={props.onClick}>
             {props.userName}
           </IconButton>
 
-          <IconButton intent="primary" icon={Time} className={timeInfo()}>
+          <IconButton
+            intent="primary"
+            icon={Time}
+            className={timeInfo()}
+            onClick={props.onClick}
+          >
             {timeSince(props.timestamp)}
           </IconButton>
         </div>
