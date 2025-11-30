@@ -6,9 +6,6 @@ const meta = {
   component: ValidationMessage,
   parameters: {
     layout: "centered",
-    a11y: {
-      test: "error",
-    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof ValidationMessage>;
