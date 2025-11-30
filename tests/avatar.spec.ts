@@ -143,9 +143,9 @@ test.describe("Avatar: extra-large-with-action", () => {
   });
 });
 
-test.describe("Avatar: fallback", () => {
+test.describe("Avatar: default fallback", () => {
   const componentName = "components-avatar";
-  const componentStory = "fallback";
+  const componentStory = "default-fallback";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
   test("avatar should look the same", async ({ page }) => {
@@ -161,8 +161,10 @@ test.describe("Avatar: fallback", () => {
     await goToStorybook(page, componentName, componentStory);
 
     // Assert
-    const fallback = page.getByTestId("fallback");
+    const fallback = page.getByAltText("Lorem ipsum");
     await fallback.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
+      threshold: 0,
+    });
   });
 });

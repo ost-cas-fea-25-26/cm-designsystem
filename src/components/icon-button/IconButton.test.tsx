@@ -7,8 +7,8 @@ describe("IconButton", () => {
   test("should render icon-button with icon", async () => {
     // Arrange
     render(
-      <IconButton intent="primary" label="button" onClick={vi.fn()}>
-        <Profile />
+      <IconButton intent="primary" icon={Profile} onClick={vi.fn()}>
+        button
       </IconButton>
     );
 
@@ -22,8 +22,8 @@ describe("IconButton", () => {
     // Arrange
     const onClick = vi.fn();
     render(
-      <IconButton intent="primary" label="button" onClick={onClick}>
-        <Profile />
+      <IconButton intent="primary" icon={Profile} onClick={onClick}>
+        button
       </IconButton>
     );
 

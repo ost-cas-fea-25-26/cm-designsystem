@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { goToStorybook } from "./test.utils";
 
 test.describe("Button: primary", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "primary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -38,7 +38,7 @@ test.describe("Button: primary", () => {
 });
 
 test.describe("Button: secondary", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "secondary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -74,7 +74,7 @@ test.describe("Button: secondary", () => {
 });
 
 test.describe("Button: tertiary", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "tertiary";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -110,7 +110,7 @@ test.describe("Button: tertiary", () => {
 });
 
 test.describe("Button: large", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "large";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
@@ -124,7 +124,7 @@ test.describe("Button: large", () => {
 });
 
 test.describe("Button: no-icon", () => {
-  const componentName = "components-button";
+  const componentName = "components-buttons-button";
   const componentStory = "no-icon";
   const screenshotNamePrefix = `${componentName}--${componentStory}`;
 
