@@ -6,10 +6,11 @@ import { Label, type LabelSize } from "../../components/typography/Label";
 
 const userInfoStyles = tv({
   slots: {
-    base: ["flex", "gap-2", "items-center", "cursor-pointer"],
+    base: ["flex", "gap-2", "items-center", "**:cursor-pointer"],
     userInfo: ["flex", "flex-col", "gap-2", "justify-center", "items-start"],
     displayName: ["text-slate-900"],
     detailInfo: ["flex", "flex", "gap-4"],
+    timeInfo: ["text-slate-400"],
   },
 });
 
@@ -66,28 +67,22 @@ function getLabelSize(size: UserInfoSize): LabelSize {
 }
 
 export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
-  const { base, userInfo, displayName, detailInfo } = userInfoStyles(props);
+  const { base, userInfo, displayName, detailInfo, timeInfo } =
+    userInfoStyles(props);
 
   return (
-    <div className={base()}>
-      {props.src && (
-        <Avatar
-          alt="Profile"
-          size="sm"
-          src={props.src}
-          onAvatarClick={props.onClick}
-        />
-      )}
+    <div className={base()} onClick={props.onClick}>
+      {props.src && <Avatar alt="Profile" size="sm" src={props.src} />}
       <div className={userInfo()}>
         <Label size={getLabelSize(props.size)} className={displayName()}>
           {props.displayName}
         </Label>
         <div className={detailInfo()}>
-          <IconButton intent="secondary" onClick={props.onClick} icon={Profile}>
+          <IconButton intent="secondary" icon={Profile}>
             {props.userName}
           </IconButton>
 
-          <IconButton intent="primary" onClick={props.onClick} icon={Time}>
+          <IconButton intent="primary" icon={Time} className={timeInfo()}>
             {timeSince(props.timestamp)}
           </IconButton>
         </div>
