@@ -1,4 +1,3 @@
-import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Avatar } from "../avatar/Avatar";
 
@@ -30,10 +29,10 @@ type NaviUserButtonIntent = "secondary";
 
 interface NaviUserButtonProps extends NaviUserButtonVariants {
   ariaLabel: string;
+  alt: string;
   intent?: NaviUserButtonIntent;
   src: string;
   onClick: () => void;
-  children: React.ReactNode;
 }
 
 export const NaviUserButton = ({
@@ -46,9 +45,7 @@ export const NaviUserButton = ({
       onClick={props.onClick}
       aria-label={props.ariaLabel}
     >
-      <Avatar label={props.ariaLabel} size="sm" src={props.src}>
-        {props.children}
-      </Avatar>
+      <Avatar alt={props.alt} size="sm" src={props.src} />
     </button>
   );
 };

@@ -49,9 +49,9 @@ export const Secondary: Story = {
   args: {
     intent: "secondary",
     ariaLabel: "Lorem ipsum",
+    alt: "Alt Description",
     src: avatarImage,
     onClick: fn(),
-    children: "PA",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -59,7 +59,7 @@ export const Secondary: Story = {
       await expect(button).toBeVisible();
       await expect(button).toHaveAccessibleName(/lorem ipsum/i);
       await waitFor(() =>
-        expect(canvas.getByRole("img")).toHaveAccessibleName(/lorem ipsum/i)
+        expect(canvas.getByRole("img")).toHaveAccessibleName(/alt description/i)
       );
       await expect(canvas.queryByText("PA")).not.toBeInTheDocument();
     });
@@ -76,20 +76,20 @@ export const Fallback: Story = {
     intent: "secondary",
     ariaLabel: "Lorem ipsum",
     src: "",
+    alt: "Alt Description",
     onClick: fn(),
-    children: "PA",
   },
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
       await expect(
         canvas.getByRole("button", { name: /lorem ipsum/i })
       ).toBeVisible();
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.findByRole("img");
       await expect(fallback).toBeVisible();
     });
 
     await step("Check click event", async () => {
-      const fallback = await canvas.findByText("PA");
+      const fallback = await canvas.findByRole("img");
       await userEvent.click(fallback);
       await expect(args.onClick).toHaveBeenCalled();
     });
