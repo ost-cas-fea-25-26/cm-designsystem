@@ -1,5 +1,5 @@
 import React from "react";
-import { cnBase, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
@@ -40,8 +40,7 @@ type NaviButtonIntent = "secondary";
  * @inheritdoc NaviButtonVariants
  */
 interface NaviButtonProps
-  extends NaviButtonVariants,
-    BaseAccessibleButtonProps {
+  extends NaviButtonVariants, BaseAccessibleButtonProps {
   /**
    * Visual intent of the button (controls background color, hover, and active styles).
    */
@@ -74,7 +73,7 @@ export const NaviButton: React.FC<NaviButtonProps> = ({
 }: NaviButtonProps) => {
   return (
     <AccessibleButton
-      className={cnBase(className, naviButtonStyles({ intent, ...props }))}
+      className={cn(className, naviButtonStyles({ intent, ...props }))}
       {...props}
     >
       {props.icon && <props.icon className={props.iconClassName} />}

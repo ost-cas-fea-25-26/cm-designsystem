@@ -1,4 +1,4 @@
-import { cnBase, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
@@ -39,8 +39,7 @@ type RoundButtonIntent = "primary";
  * @inheritdoc RoundButtonVariants
  */
 interface RoundButtonProps
-  extends RoundButtonVariants,
-    BaseAccessibleButtonProps {
+  extends RoundButtonVariants, BaseAccessibleButtonProps {
   /**
    * Visual intent of the button (controls background color, hover, and active styles).
    */
@@ -68,7 +67,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
 }: RoundButtonProps) => {
   return (
     <AccessibleButton
-      className={cnBase(className, roundButtonStyles({ intent }))}
+      className={cn(className, roundButtonStyles({ intent }))}
       {...props}
     >
       <props.icon />

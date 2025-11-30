@@ -1,10 +1,10 @@
 import { cn, tv, type VariantProps } from "tailwind-variants";
-import { Label } from "../typography/Label";
-import type { IconBaseProps } from "../icons/IconBase";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
 } from "../accessible-button/AccessibleButton";
+import { Label } from "../typography/Label";
+import type { IconBaseProps } from "../icons/IconBase";
 
 const buttonStyles = tv({
   base: [

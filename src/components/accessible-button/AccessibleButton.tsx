@@ -1,4 +1,4 @@
-import { cnBase, tv } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
 
 const accessibleButtonStyles = tv({
   variants: {
@@ -30,7 +30,7 @@ export interface BaseAccessibleButtonProps {
   /**
    * Click handler for the button.
    */
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 interface AccessibleButtonProps extends BaseAccessibleButtonProps {
@@ -53,7 +53,7 @@ export const AccessibleButton: React.FC<AccessibleButtonProps> = ({
   return (
     <button
       type={type}
-      className={cnBase(
+      className={cn(
         className,
         accessibleButtonStyles({ isClickable: !!onClick })
       )}

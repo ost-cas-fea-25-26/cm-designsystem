@@ -131,9 +131,7 @@ export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
             ariaLabel={props.actionAriaLabel ?? ""}
             icon={Edit}
             onClick={props.onActionClick}
-          >
-            <Edit />
-          </RoundButton>
+          ></RoundButton>
         </div>
       )}
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { cnBase, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
@@ -86,8 +86,7 @@ type TimedButtonVariants = VariantProps<typeof timedButtonStyles>;
  * @inheritdoc TimedButtonVariants
  */
 interface TimedButtonProps
-  extends TimedButtonVariants,
-    BaseAccessibleButtonProps {
+  extends TimedButtonVariants, BaseAccessibleButtonProps {
   /**
    * Optional icon element rendered alongside the button label.
    */
@@ -157,7 +156,7 @@ export const TimedButton: React.FC<TimedButtonProps> = ({
 
   return (
     <AccessibleButton
-      className={cnBase(className, base(props))}
+      className={cn(className, base(props))}
       onClick={handleClick}
       {...props}
     >

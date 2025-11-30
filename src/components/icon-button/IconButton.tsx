@@ -1,5 +1,5 @@
 import React from "react";
-import { cnBase, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import {
   AccessibleButton,
   type BaseAccessibleButtonProps,
@@ -30,8 +30,7 @@ type IconButtonIntent = "primary" | "secondary";
  * @inheritdoc IconButtonVariants
  */
 interface IconButtonProps
-  extends IconButtonVariants,
-    BaseAccessibleButtonProps {
+  extends IconButtonVariants, BaseAccessibleButtonProps {
   /**
    * Visual intent of the button (controls background color, hover, and active styles).
    */
@@ -59,7 +58,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   const { base, icon } = iconButtonStyles();
 
   return (
-    <AccessibleButton className={cnBase(className, base(props))} {...props}>
+    <AccessibleButton className={cn(className, base(props))} {...props}>
       {props.icon && <props.icon className={icon(props)} />}
       <Label as="span" size="md">
         {props.children}
