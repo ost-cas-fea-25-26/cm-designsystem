@@ -89,7 +89,7 @@ export const TimedButton = ({
 }: TimedButtonProps) => {
   const [pressed, setPressed] = useState(false);
   const [animating, setAnimating] = useState(false);
-  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const {
     base,

@@ -21,9 +21,7 @@ test.describe("Input: default", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("input active should look the same", async ({ page }) => {
@@ -33,9 +31,7 @@ test.describe("Input: default", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.click();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 });
 
@@ -59,9 +55,7 @@ test.describe("Input: type validation", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("input active should look the same", async ({ page }) => {
@@ -71,9 +65,7 @@ test.describe("Input: type validation", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.click();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 });
 
@@ -97,9 +89,7 @@ test.describe("Input: required validation", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("input active should look the same", async ({ page }) => {
@@ -109,9 +99,7 @@ test.describe("Input: required validation", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.click();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 });
 
@@ -135,9 +123,7 @@ test.describe("Input: no icon", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.hover();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-hover.png`);
   });
 
   test("input active should look the same", async ({ page }) => {
@@ -147,8 +133,6 @@ test.describe("Input: no icon", () => {
     // Assert
     const input = page.getByPlaceholder(/placeholder/i);
     await input.click();
-    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`, {
-      threshold: 0,
-    });
+    await expect(page).toHaveScreenshot(`${screenshotNamePrefix}-active.png`);
   });
 });

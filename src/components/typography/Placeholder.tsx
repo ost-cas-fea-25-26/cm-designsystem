@@ -14,8 +14,7 @@ type PlaceholderVariants = VariantProps<typeof placeholderStyles>;
  * @inheritDoc PlaceholderVariants
  */
 interface PlaceholderProps
-  extends PlaceholderVariants,
-    AccessibleTypographyProps {}
+  extends PlaceholderVariants, AccessibleTypographyProps {}
 
 /**
  * A semantic, accessible Placeholder component built on top of the AccessibleTypography component.

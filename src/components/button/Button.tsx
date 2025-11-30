@@ -1,5 +1,4 @@
-import { twMerge } from "tailwind-merge";
-import { tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import { Label } from "../typography/Label";
 import type { IconBaseProps } from "../icons/IconBase";
 
@@ -83,7 +82,7 @@ export const Button = (props: ButtonProps) => {
   return (
     <button
       {...rest}
-      className={twMerge(props.className, buttonStyles(props))}
+      className={cn(props.className, buttonStyles(props))}
       onClick={props.onClick}
       aria-label={finalAriaLabel}
     >
