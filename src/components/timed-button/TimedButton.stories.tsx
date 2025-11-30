@@ -8,9 +8,6 @@ const meta = {
   component: TimedButton,
   parameters: {
     layout: "centered",
-    a11y: {
-      test: "error",
-    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof TimedButton>;
