@@ -31,6 +31,6 @@ export const ValidationMessage: React.FC<ValidationMessageProps> = ({
   className,
   ...props
 }: ValidationMessageProps) => {
-  const styles = cn(className, validationMessageStyles({ type, ...props }));
+  const styles = cn(validationMessageStyles({ type, ...props }), className);
   return <AccessibleTypography as={as} className={styles} {...props} />;
 };

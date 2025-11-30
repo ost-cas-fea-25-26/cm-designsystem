@@ -67,7 +67,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
 }: RoundButtonProps) => {
   return (
     <AccessibleButton
-      className={cn(className, roundButtonStyles({ intent }))}
+      className={cn(roundButtonStyles({ intent }), className)}
       {...props}
     >
       <props.icon />

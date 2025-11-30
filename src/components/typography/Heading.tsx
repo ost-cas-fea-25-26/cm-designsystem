@@ -31,6 +31,6 @@ export const Heading: React.FC<HeadingProps> = ({
   className,
   ...props
 }: HeadingProps) => {
-  const styles = cn(className, headingStyles(props));
+  const styles = cn(headingStyles(props), className);
   return <AccessibleTypography as={as} className={styles} {...props} />;
 };

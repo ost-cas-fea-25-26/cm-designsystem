@@ -97,7 +97,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }: ButtonProps) => {
   return (
-    <AccessibleButton className={cn(className, buttonStyles(props))} {...props}>
+    <AccessibleButton className={cn(buttonStyles(props), className)} {...props}>
       <Label as="span" size="md">
         {props.children}
       </Label>

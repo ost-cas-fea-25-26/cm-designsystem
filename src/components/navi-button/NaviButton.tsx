@@ -73,7 +73,7 @@ export const NaviButton: React.FC<NaviButtonProps> = ({
 }: NaviButtonProps) => {
   return (
     <AccessibleButton
-      className={cn(className, naviButtonStyles({ intent, ...props }))}
+      className={cn(naviButtonStyles({ intent, ...props }), className)}
       {...props}
     >
       {props.icon && <props.icon className={props.iconClassName} />}
