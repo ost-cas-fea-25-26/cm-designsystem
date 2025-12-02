@@ -78,7 +78,7 @@
     "knip": "5.70.2",
     "playwright": "1.57.0",
     "prettier": "3.7.3",
-    "prettier-plugin-tailwindcss": "0.7.1",
+    "prettier-plugin-tailwindcss": "0.7.2",
     "semantic-release": "25.0.2",
     "storybook": "10.1.2",
     "tailwind-merge": "3.4.0",
