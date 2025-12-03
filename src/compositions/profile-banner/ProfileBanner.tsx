@@ -83,12 +83,12 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = (
             onError={() => setSrc("")}
           />
           {/* Overlay*/}
-          <div className={cn(image(), overlay())} onClick={props.onClick}>
+          <button className={cn(image(), overlay())} onClick={props.onClick}>
             <Edit className={icon()} />
-          </div>
+          </button>
         </AspectRatio.Root>
       ) : (
-        <div className={image({ isFallback: true })}></div>
+        <div className={image({ isFallback: true })} />
       )}
     </div>
   );
