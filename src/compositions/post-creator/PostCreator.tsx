@@ -1,4 +1,7 @@
+import { Form } from "@radix-ui/react-form";
+import { useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
+import { Button, FileUpload, Heading, Modal, Textarea } from "../../components";
 import { Avatar } from "../../components/avatar/Avatar";
 import {
   Cancel,
@@ -6,9 +9,6 @@ import {
   Send,
   Upload,
 } from "../../components/icons/generated";
-import { Button, FileUpload, Heading, Modal, Textarea } from "../../components";
-import { Form } from "@radix-ui/react-form";
-import { useState } from "react";
 
 const PostCreatorStyles = tv({
   slots: {
@@ -74,12 +74,12 @@ export const PostCreator: React.FC<PostCreatorProps> = (
                 name="post"
                 placeholder="Your opinion matters!"
                 onChange={setText}
-              ></Textarea>
+               />
             </div>
             <div className={action()}>
               <Button
                 intent="primary"
-                size={"md"}
+                size="md"
                 icon={Upload}
                 onClick={() => setOpen(true)}
               >
@@ -87,7 +87,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
               </Button>
               <Button
                 intent="secondary"
-                size={"md"}
+                size="md"
                 icon={Send}
                 onClick={() => props.onSendClick(text, file)}
               >
