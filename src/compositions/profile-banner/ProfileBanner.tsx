@@ -1,0 +1,95 @@
+import * as AspectRatio from "@radix-ui/react-aspect-ratio";
+import { useState } from "react";
+import { cn, tv, type VariantProps } from "tailwind-variants";
+import { Edit } from "../../components/icons/generated";
+
+const ProfileBannerStyles = tv({
+  slots: {
+    base: ["w-170", "h-80"],
+    image: [
+      "h-full",
+      "w-full",
+      "cursor-pointer",
+      "rounded-2xl",
+      "object-cover",
+    ],
+    overlay: [
+      "group",
+      "absolute",
+      "flex",
+      "items-center",
+      "justify-center",
+      "text-white",
+      "inset-0",
+      "bg-violet-600/0",
+      "hover:bg-violet-600/50",
+      "transition",
+      "duration-500",
+      "ease-in-out",
+    ],
+    icon: [
+      "w-8",
+      "h-8",
+      "opacity-0",
+      "group-hover:opacity-100",
+      "transition",
+      "duration-500",
+      "rotate-15",
+      "group-hover:rotate-0",
+    ],
+  },
+  variants: {
+    isFallback: {
+      true: { image: ["bg-violet-200"] },
+    },
+  },
+});
+
+type ProfileBannerVariants = VariantProps<typeof ProfileBannerStyles>;
+
+interface ProfileBannerProps extends ProfileBannerVariants {
+  /** Avatar image URL */
+  src: string;
+
+  /**
+   * Alternative text for the image, used for accessibility.
+   */
+  alt: string;
+
+  /** Click handler for the whole ProfileBanner component */
+  onClick: () => void;
+}
+
+/**
+ * ProfileBanner component
+ *
+ * Displays a banner image with a fixed aspect ratio (17:8) and an optional overlay icon.
+ * If the image fails to load, a fallback element is displayed instead.
+ */
+export const ProfileBanner: React.FC<ProfileBannerProps> = (
+  props: ProfileBannerProps
+) => {
+  const { base, image, overlay, icon } = ProfileBannerStyles(props);
+  const [src, setSrc] = useState<string>(props.src);
+
+  return (
+    <div className={base()}>
+      {src ? (
+        <AspectRatio.Root ratio={17 / 8}>
+          <img
+            className={image()}
+            src={src}
+            alt={props.alt}
+            onError={() => setSrc("")}
+          />
+          {/* Overlay*/}
+          <div className={cn(image(), overlay())} onClick={props.onClick}>
+            <Edit className={icon()} />
+          </div>
+        </AspectRatio.Root>
+      ) : (
+        <div className={image({ isFallback: true })}></div>
+      )}
+    </div>
+  );
+};
