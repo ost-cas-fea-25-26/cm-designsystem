@@ -81,7 +81,7 @@ export const CommentCreator: React.FC<CommentCreatorProps> = (
               name="post"
               placeholder="Your opinion matters!"
               onChange={setText}
-             />
+            />
           </div>
           <div className={action()}>
             <Button
