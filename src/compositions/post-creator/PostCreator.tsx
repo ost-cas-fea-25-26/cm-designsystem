@@ -74,7 +74,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
                 name="post"
                 placeholder="Your opinion matters!"
                 onChange={setText}
-               />
+              />
             </div>
             <div className={action()}>
               <Button
