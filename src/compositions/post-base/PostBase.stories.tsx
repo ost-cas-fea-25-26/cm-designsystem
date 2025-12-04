@@ -1,7 +1,7 @@
 import { fn } from "storybook/test";
+import { Heading, Paragraph } from "../../components";
 import { PostBase } from "./PostBase";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Heading, Paragraph } from "../../components";
 
 const meta = {
   title: "Compositions/Posts/PostBase",

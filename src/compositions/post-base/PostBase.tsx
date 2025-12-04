@@ -1,4 +1,4 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import { Avatar } from "../../components/avatar/Avatar";
 
 const PostBaseStyles = tv({
@@ -13,6 +13,8 @@ const PostBaseStyles = tv({
       "flex",
       "relative",
       "w-full",
+      "hover:ring-2",
+      "hover:ring-slate-200",
     ],
     avatar: ["absolute", "-left-5", "top-6"],
   },
@@ -29,6 +31,11 @@ export interface PostBaseProps extends PostBaseVariants {
    */
   onAvatarClick: () => void;
 
+  /**
+   * Additional CSS class names to apply to the component.
+   */
+  className?: string;
+
   /** Content to be rendered inside the PostBase component */
   children: React.ReactNode;
 }
@@ -41,7 +48,7 @@ export const PostBase: React.FC<PostBaseProps> = (props: PostBaseProps) => {
   const { base, avatar } = PostBaseStyles(props);
 
   return (
-    <div className={base()}>
+    <div className={cn(base(), props.className)}>
       <div className={avatar()}>
         <Avatar
           alt="Profile"
