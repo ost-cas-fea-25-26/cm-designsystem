@@ -12,7 +12,7 @@ import { PostBase, type PostBaseProps } from "../post-base/PostBase";
 
 const PostCreatorStyles = tv({
   slots: {
-    creator: ["flex", "flex-col", "gap-4"],
+    content: ["flex", "flex-col", "gap-4"],
     title: ["text-black"],
     input: ["w-146", "h-40"],
     action: ["flex", "gap-4"],
@@ -21,7 +21,8 @@ const PostCreatorStyles = tv({
 
 type PostCreatorVariants = VariantProps<typeof PostCreatorStyles>;
 
-interface PostCreatorProps extends PostBaseProps, PostCreatorVariants {
+interface PostCreatorProps
+  extends PostCreatorVariants, Omit<PostBaseProps, "children"> {
   /**
    * Callback fired when the "Send" button is clicked.
    *   Receives the textarea text and the optionally uploaded file.
@@ -37,7 +38,7 @@ interface PostCreatorProps extends PostBaseProps, PostCreatorVariants {
 export const PostCreator: React.FC<PostCreatorProps> = (
   props: PostCreatorProps
 ) => {
-  const { creator, title, input, action } = PostCreatorStyles(props);
+  const { content, title, input, action } = PostCreatorStyles(props);
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
@@ -46,7 +47,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
     <>
       <PostBase src={props.src} onAvatarClick={props.onAvatarClick}>
         <Form>
-          <div className={creator()}>
+          <div className={content()}>
             <Heading size="4" as="h4" className={title()}>
               Hey, what's up?
             </Heading>
