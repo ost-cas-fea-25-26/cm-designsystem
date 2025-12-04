@@ -12,6 +12,7 @@ const PostBaseStyles = tv({
       "pb-8",
       "flex",
       "relative",
+      "w-full",
     ],
     avatar: ["absolute", "-left-5", "top-6"],
   },

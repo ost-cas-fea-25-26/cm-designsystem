@@ -12,9 +12,9 @@ import { PostBase, type PostBaseProps } from "../post-base/PostBase";
 
 const PostCreatorStyles = tv({
   slots: {
-    content: ["flex", "flex-col", "gap-4"],
+    content: ["flex", "flex-col", "gap-4", "w-full"],
     title: ["text-slate-900"],
-    input: ["w-146", "h-40"],
+    input: ["w-full", "h-40"],
     action: ["flex", "gap-4"],
   },
 });
@@ -46,7 +46,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
   return (
     <>
       <PostBase src={props.src} onAvatarClick={props.onAvatarClick}>
-        <Form>
+        <Form className="w-full">
           <div className={content()}>
             <Heading size="4" as="h4" className={title()}>
               Hey, what's up?
