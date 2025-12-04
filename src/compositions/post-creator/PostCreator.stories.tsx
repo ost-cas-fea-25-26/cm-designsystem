@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     src: "",
-    onSendClick: (text: string, file: File | null) => console.log(text, file),
+    onSendClick: fn(),
     onAvatarClick: fn(),
   },
 };
