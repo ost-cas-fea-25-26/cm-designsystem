@@ -13,7 +13,7 @@ import { PostBase, type PostBaseProps } from "../post-base/PostBase";
 const PostCreatorStyles = tv({
   slots: {
     content: ["flex", "flex-col", "gap-4"],
-    title: ["text-black"],
+    title: ["text-slate-900"],
     input: ["w-146", "h-40"],
     action: ["flex", "gap-4"],
   },
