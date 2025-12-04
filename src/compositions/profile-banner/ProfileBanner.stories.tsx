@@ -1,0 +1,31 @@
+import { fn } from "storybook/test";
+import { ProfileBanner } from "./ProfileBanner";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+const meta = {
+  title: "Compositions/ProfileBanner",
+  component: ProfileBanner,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+} satisfies Meta<typeof ProfileBanner>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    src: "https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80",
+    alt: "Profile banner image",
+    onClick: () => console.log,
+  },
+};
+
+export const Fallback: Story = {
+  args: {
+    src: "",
+    alt: "Profile banner image",
+    onClick: fn(),
+  },
+};
