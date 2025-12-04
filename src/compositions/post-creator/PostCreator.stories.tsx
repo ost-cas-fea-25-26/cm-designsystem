@@ -3,7 +3,7 @@ import { PostCreator } from "./PostCreator";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: "Compositions/PostCreator",
+  title: "Compositions/Posts/PostCreator",
   component: PostCreator,
   parameters: {
     layout: "centered",
