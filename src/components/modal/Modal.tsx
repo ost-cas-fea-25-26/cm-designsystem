@@ -11,8 +11,7 @@ const modalStyles = tv({
       "fixed",
       "top-1/2",
       "left-1/2",
-      "w-full",
-      "max-w-md",
+      "w-123",
       "-translate-x-1/2",
       "-translate-y-1/2",
       "rounded-2xl",
@@ -30,7 +29,7 @@ const modalStyles = tv({
       "text-white",
     ],
     container: ["flex", "flex-col", "items-center", "gap-12", "p-8"],
-    actions: ["flex", "items-center", "gap-4"],
+    actions: ["flex", "items-center", "gap-4", "w-full"],
   },
 });
 
@@ -82,7 +81,7 @@ export const Modal: React.FC<ModalProps> & {
           {/* Content */}
           <div className={container()}>
             {/* Body */}
-            <div>{modalBody}</div>
+            {modalBody}
             {/* Footer */}
             <div className={actions()}>{modalActions}</div>
           </div>
