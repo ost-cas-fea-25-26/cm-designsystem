@@ -1,10 +1,5 @@
 import { tv, type VariantProps } from "tailwind-variants";
-import {
-  LikeToggle,
-  Paragraph,
-  TimedButton,
-  Toggle,
-} from "../../components";
+import { LikeToggle, Paragraph, TimedButton, Toggle } from "../../components";
 import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
 import { PostBase } from "../post-base/PostBase";
