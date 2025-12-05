@@ -8,7 +8,7 @@ const ProfileBannerStyles = tv({
     base: ["flex", "flex-col", "gap-6", "w-170", "h-80", "relative"],
     avatar: ["absolute", "-bottom-20", "right-6"],
     info: ["flex", "flex-col", "gap-3"],
-    description: ["text-slate-400"],
+    description: ["text-slate-500"],
   },
 });
 
