@@ -8,29 +8,20 @@ import {
   Send,
   Upload,
 } from "../../components/icons/generated";
+import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
 
-const CommentCreatorStyles = tv({
+const ResponseCreatorStyles = tv({
   slots: {
-    base: [
-      "flex",
-      "flex-col",
-      "gap-4",
-      "bg-white",
-      "rounded-2xl",
-      "pl-12",
-      "pr-12",
-      "pt-8",
-      "pb-8",
-    ],
-    input: ["w-146", "h-40"],
+    content: ["flex", "flex-col", "gap-4", "w-full"],
+    input: ["w-full", "h-40"],
     action: ["flex", "gap-4"],
   },
 });
 
-type CommentCreatorVariants = VariantProps<typeof CommentCreatorStyles>;
+type ResponseCreatorVariants = VariantProps<typeof ResponseCreatorStyles>;
 
-interface CommentCreatorProps extends CommentCreatorVariants {
+interface ResponseCreatorProps extends ResponseCreatorVariants {
   /** Avatar image URL */
   src: string;
 
@@ -53,22 +44,22 @@ interface CommentCreatorProps extends CommentCreatorVariants {
 }
 
 /**
- * CommentCreator component
+ * ResponseCreator component
  *
- * Renders a comment creation component.
+ * Renders a Response creation component.
  */
-export const CommentCreator: React.FC<CommentCreatorProps> = (
-  props: CommentCreatorProps
+export const ResponseCreator: React.FC<ResponseCreatorProps> = (
+  props: ResponseCreatorProps
 ) => {
-  const { base, input, action } = CommentCreatorStyles(props);
+  const { content, input, action } = ResponseCreatorStyles(props);
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
 
   return (
     <>
-      <Form>
-        <div className={base()}>
+      <PostBase>
+        <Form className={content()}>
           <UserInfo
             displayName={props.displayName}
             onClick={props.onAvatarClick}
@@ -101,8 +92,8 @@ export const CommentCreator: React.FC<CommentCreatorProps> = (
               Send
             </Button>
           </div>
-        </div>
-      </Form>
+        </Form>
+      </PostBase>
 
       <Modal open={open} onOpenChange={setOpen} title="Picture upload">
         <Modal.Body>

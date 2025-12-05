@@ -1,15 +1,15 @@
 import { fn } from "storybook/test";
-import { CommentCreator } from "./CommentCreator";
+import { ResponseCreator } from "./ResponseCreator";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: "Compositions/CommentCreator",
-  component: CommentCreator,
+  title: "Compositions/Posts/ResponseCreator",
+  component: ResponseCreator,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof CommentCreator>;
+} satisfies Meta<typeof ResponseCreator>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

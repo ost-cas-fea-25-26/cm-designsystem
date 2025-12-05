@@ -15,7 +15,7 @@ import {
   Send,
   Upload,
 } from "../../components/icons/generated";
-import { PostBase, type PostBaseProps } from "../post-base/PostBase";
+import { PostBase } from "../post-base/PostBase";
 
 const PostCreatorStyles = tv({
   slots: {
@@ -29,8 +29,7 @@ const PostCreatorStyles = tv({
 
 type PostCreatorVariants = VariantProps<typeof PostCreatorStyles>;
 
-interface PostCreatorProps
-  extends PostCreatorVariants{
+interface PostCreatorProps extends PostCreatorVariants {
   /** Avatar image URL */
   src: string;
 
@@ -69,36 +68,34 @@ export const PostCreator: React.FC<PostCreatorProps> = (
           />
         </div>
 
-        <Form className="w-full">
-          <div className={content()}>
-            <Heading size="4" as="h4" className={title()}>
-              Hey, what's up?
-            </Heading>
-            <div className={input()}>
-              <Textarea
-                name="post"
-                placeholder="Your opinion matters!"
-                onChange={setText}
-              />
-            </div>
-            <div className={action()}>
-              <Button
-                intent="primary"
-                size="md"
-                icon={Upload}
-                onClick={() => setOpen(true)}
-              >
-                Picture upload
-              </Button>
-              <Button
-                intent="secondary"
-                size="md"
-                icon={Send}
-                onClick={() => props.onSendClick(text, file)}
-              >
-                Send
-              </Button>
-            </div>
+        <Form className={content()}>
+          <Heading size="4" as="h4" className={title()}>
+            Hey, what's up?
+          </Heading>
+          <div className={input()}>
+            <Textarea
+              name="post"
+              placeholder="Your opinion matters!"
+              onChange={setText}
+            />
+          </div>
+          <div className={action()}>
+            <Button
+              intent="primary"
+              size="md"
+              icon={Upload}
+              onClick={() => setOpen(true)}
+            >
+              Picture upload
+            </Button>
+            <Button
+              intent="secondary"
+              size="md"
+              icon={Send}
+              onClick={() => props.onSendClick(text, file)}
+            >
+              Send
+            </Button>
           </div>
         </Form>
       </PostBase>

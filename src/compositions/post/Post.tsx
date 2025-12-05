@@ -8,7 +8,7 @@ import {
 } from "../../components";
 import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
-import { PostBase, type PostBaseProps } from "../post-base/PostBase";
+import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
 
 const PostStyles = tv({
@@ -76,9 +76,7 @@ export const Post: React.FC<PostProps> = (props: PostProps) => {
   const { base, avatar, content, text, action } = PostStyles(props);
 
   return (
-    <PostBase
-      className={base()}
-    >
+    <PostBase className={base()}>
       <div className={avatar()}>
         <Avatar
           alt="Profile"

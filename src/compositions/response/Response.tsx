@@ -1,6 +1,5 @@
 import { tv, type VariantProps } from "tailwind-variants";
 import {
-  Avatar,
   LikeToggle,
   Paragraph,
   TimedButton,
@@ -8,8 +7,8 @@ import {
 } from "../../components";
 import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
-import { UserInfo } from "../user-info/UserInfo";
 import { PostBase } from "../post-base/PostBase";
+import { UserInfo } from "../user-info/UserInfo";
 
 const ResponseStyles = tv({
   slots: {
