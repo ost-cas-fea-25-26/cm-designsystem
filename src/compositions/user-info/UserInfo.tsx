@@ -27,7 +27,7 @@ interface UserInfoProps extends UserInfoVariants {
   /** Username of the user */
   userName: string;
   /** Timestamp for the user activity */
-  timestamp: Date;
+  timestamp?: Date;
   /** Click handler for the whole UserInfo component */
   onClick: () => void;
 }
@@ -96,14 +96,16 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
             {props.userName}
           </IconButton>
 
-          <IconButton
-            intent="primary"
-            icon={Time}
-            className={timeInfo()}
-            onClick={props.onClick}
-          >
-            {timeSince(props.timestamp)}
-          </IconButton>
+          {props.timestamp && (
+            <IconButton
+              intent="primary"
+              icon={Time}
+              className={timeInfo()}
+              onClick={props.onClick}
+            >
+              {timeSince(props.timestamp)}
+            </IconButton>
+          )}
         </div>
       </div>
     </div>
