@@ -1,19 +1,14 @@
 import { Form } from "@radix-ui/react-form";
 import { useRef, useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
-import { Button, FileUpload, Modal, Textarea } from "../../components";
-import {
-  Cancel,
-  Checkmark,
-  Send,
-  Upload,
-} from "../../components/icons/generated";
-import { PostBase } from "../post-base/PostBase";
-import { UserInfo } from "../user-info/UserInfo";
+import { Button, Textarea } from "../../components";
+import { Send, Upload } from "../../components/icons/generated";
 import {
   type ImageUploadModalRef,
   ImageUploadModal,
 } from "../image-upload-modal/ImageUploadModal";
+import { PostBase } from "../post-base/PostBase";
+import { UserInfo } from "../user-info/UserInfo";
 
 const ResponseCreatorStyles = tv({
   slots: {

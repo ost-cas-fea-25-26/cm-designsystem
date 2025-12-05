@@ -1,12 +1,12 @@
+import { useRef } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Avatar, Paragraph } from "../../components";
-import { ProfileBannerImage } from "../profile-banner-image/ProfileBannerImage";
-import { ProfileBannerInfo } from "../profile-banner-info/ProfileBannerInfo";
 import {
   ImageUploadModal,
   type ImageUploadModalRef,
 } from "../image-upload-modal/ImageUploadModal";
-import { useRef, useState } from "react";
+import { ProfileBannerImage } from "../profile-banner-image/ProfileBannerImage";
+import { ProfileBannerInfo } from "../profile-banner-info/ProfileBannerInfo";
 
 const ProfileBannerStyles = tv({
   slots: {

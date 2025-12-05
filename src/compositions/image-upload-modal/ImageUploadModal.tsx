@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 import { Button, FileUpload, Modal } from "../../components";
 import { Cancel, Checkmark } from "../../components/icons/generated";
-import { forwardRef, useImperativeHandle } from "react";
 
 interface ImageUploadModalProps {
   /** Callback fired when the user selects a file. `null` is passed if no file is selected. */
