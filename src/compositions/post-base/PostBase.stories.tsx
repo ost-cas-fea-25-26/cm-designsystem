@@ -1,4 +1,3 @@
-import { fn } from "storybook/test";
 import { Heading, Paragraph } from "../../components";
 import { PostBase } from "./PostBase";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -17,8 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    src: "",
-    onAvatarClick: fn(),
     children: (
       <div>
         <Heading size="4" as="h4">
