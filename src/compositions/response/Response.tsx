@@ -1,49 +1,32 @@
 import { tv, type VariantProps } from "tailwind-variants";
-import {
-  Avatar,
-  LikeToggle,
-  Paragraph,
-  TimedButton,
-  Toggle,
-} from "../../components";
+import { LikeToggle, Paragraph, TimedButton, Toggle } from "../../components";
 import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
 import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
 
-const PostStyles = tv({
+const ResponseStyles = tv({
   slots: {
     base: [],
-    avatar: ["absolute", "-left-8", "top-6"],
-    content: ["flex", "flex-col", "gap-6"],
+    content: ["flex", "flex-col", "gap-4"],
     text: ["text-slate-900"],
     action: ["flex", "gap-10", "justify-start", "-ml-3"],
   },
-  variants: {
-    size: {
-      lg: { base: ["rounded-b-none"] },
-      md: {},
-    },
-  },
 });
 
-type PostVariants = VariantProps<typeof PostStyles>;
-type PostSize = "md" | "lg";
+type ResponseVariants = VariantProps<typeof ResponseStyles>;
 
-interface PostProps extends PostVariants {
-  /** Size of the post, affecting layout and styling. */
-  size: PostSize;
-
-  /** The display name of the user who created the post. */
+interface ResponseProps extends ResponseVariants {
+  /** The display name of the user who created the Response. */
   displayName: string;
 
-  /** The username or handle associated with the post. */
+  /** The username or handle associated with the Response. */
   userName: string;
 
-  /** The date and time when the post was created. */
+  /** The date and time when the Response was created. */
   timestamp: Date;
 
-  /** The main text content of the post. */
+  /** The main text content of the Response. */
   text: string;
 
   /** Avatar image URL */
@@ -52,10 +35,10 @@ interface PostProps extends PostVariants {
   /** Triggered when the avatar is clicked. */
   onAvatarClick: () => void;
 
-  /** Optional image source URL displayed within the post. */
+  /** Optional image source URL displayed within the Response. */
   imageSrc?: string;
 
-  /** Optional alt text for the post image, used for accessibility. */
+  /** Optional alt text for the Response image, used for accessibility. */
   imageAlt?: string;
 
   /** Callback fired when the comment button is clicked. */
@@ -69,32 +52,24 @@ interface PostProps extends PostVariants {
 }
 
 /**
- * Detailed post component displaying user info, text content,
+ * Detailed Response component displaying user info, text content,
  * optional image, and action buttons (comment, like, share).
  */
-export const Post: React.FC<PostProps> = (props: PostProps) => {
-  const { base, avatar, content, text, action } = PostStyles(props);
+export const Response: React.FC<ResponseProps> = (props: ResponseProps) => {
+  const { base, content, text, action } = ResponseStyles(props);
 
   return (
     <PostBase className={base()}>
-      <div className={avatar()}>
-        <Avatar
-          alt="Profile"
-          size="md"
-          src={props.src}
-          onAvatarClick={props.onAvatarClick}
-        />
-      </div>
-
       <div className={content()}>
         <UserInfo
-          size={props.size}
+          size="sm"
+          src={props.src}
           displayName={props.displayName}
           userName={props.userName}
           timestamp={props.timestamp}
           onClick={props.onAvatarClick}
         />
-        <Paragraph size={props.size} className={text()}>
+        <Paragraph size="md" className={text()}>
           {props.text}
         </Paragraph>
         {props.imageSrc && (
