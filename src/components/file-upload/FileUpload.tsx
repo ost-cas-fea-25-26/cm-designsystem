@@ -7,7 +7,7 @@ import { Paragraph } from "../typography/Paragraph";
 
 const fileUploadStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "items-center", "gap-4"],
+    base: ["flex", "flex-col", "items-center", "gap-4", "w-full"],
     dropzone: [
       "flex",
       "w-full",

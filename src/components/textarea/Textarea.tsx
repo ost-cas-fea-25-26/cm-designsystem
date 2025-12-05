@@ -6,9 +6,10 @@ import { ValidationMessage } from "../typography/ValidationMessage";
 
 const textareaStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "gap-1"],
+    base: ["flex", "flex-col", "gap-1", "w-full", "h-full"],
     control: [
       "w-full",
+      "h-full",
       "ring",
       "hover:ring-2",
       "focus:ring-2",
@@ -64,17 +65,15 @@ export const Textarea = ({ isRequired = false, ...props }: TextareaProps) => {
       )}
 
       {/* Control */}
-      <div>
-        <RadixForm.Control asChild>
-          <textarea
-            className={control(props)}
-            required={isRequired}
-            placeholder={props.placeholder}
-            onChange={(e) => setValue(e.target.value)}
-            onBlur={() => props.onChange(value)}
-          />
-        </RadixForm.Control>
-      </div>
+      <RadixForm.Control asChild>
+        <textarea
+          className={control(props)}
+          required={isRequired}
+          placeholder={props.placeholder}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={() => props.onChange(value)}
+        />
+      </RadixForm.Control>
 
       {/* Validation Messages */}
       <div className={message(props)}>
