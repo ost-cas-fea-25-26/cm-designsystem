@@ -3,7 +3,7 @@ import { ProfileBannerInfo } from "./ProfileBannerInfo";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: "Compositions/ProfileBannerInfo",
+  title: "Compositions/Profile/ProfileBannerInfo",
   component: ProfileBannerInfo,
   parameters: {
     layout: "centered",
@@ -14,12 +14,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const LoggedOut: Story = {
   args: {
+    isCurrentUser: false,
     displayName: "Display Name",
     userName: "Username",
     location: "Location",
     joinedTimestamp: new Date(new Date().getTime() - 5 * 60 * 1000),
-    onClick: fn(),
+    onProfileClick: fn(),
+  },
+};
+
+export const LoggedIn: Story = {
+  args: {
+    isCurrentUser: true,
+    displayName: "Display Name",
+    userName: "Username",
+    location: "Location",
+    joinedTimestamp: new Date(new Date().getTime() - 5 * 60 * 1000),
+    onProfileClick: fn(),
+    onSettingsClick: fn(),
   },
 };

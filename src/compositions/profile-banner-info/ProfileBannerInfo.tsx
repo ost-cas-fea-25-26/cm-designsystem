@@ -1,11 +1,18 @@
 import { tv, type VariantProps } from "tailwind-variants";
 import { IconButton } from "../../components/icon-button/IconButton";
-import { Profile, Location, Calendar } from "../../components/icons/generated";
+import {
+  Profile,
+  Location,
+  Calendar,
+  Settings,
+} from "../../components/icons/generated";
 import { Label } from "../../components/typography/Label";
 
 const profileBannerInfoStyles = tv({
   slots: {
     base: ["flex", "flex-col", "gap-2", "items-start"],
+    title: ["flex", "gap-1", "items-center"],
+    icon: ["text-violet-600", "-mt-0.5"],
     displayName: ["text-slate-900", "**:cursor-pointer"],
     detailInfo: ["flex", "gap-4"],
     secondaryInfo: ["text-slate-500"],
@@ -15,6 +22,9 @@ const profileBannerInfoStyles = tv({
 type ProfileBannerInfoVariants = VariantProps<typeof profileBannerInfoStyles>;
 
 interface ProfileBannerInfoProps extends ProfileBannerInfoVariants {
+  /** Whether the profile being viewed belongs to the logged-in user. */
+  isCurrentUser: boolean;
+
   /**
    * The user's full display name (e.g., "John Doe").
    */
@@ -40,7 +50,10 @@ interface ProfileBannerInfoProps extends ProfileBannerInfoVariants {
    * Callback fired whenever any profile-related element is clicked.
    * Typically used to open the profile or navigate to a user page.
    */
-  onClick: () => void;
+  onProfileClick: () => void;
+
+  /** A function called when the settings button is clicked. */
+  onSettingsClick?: () => void;
 }
 
 function timeSince(timestamp: Date | number): string {
@@ -73,23 +86,30 @@ const memberSincePrefix: string = "Member since ";
 export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = (
   props: ProfileBannerInfoProps
 ) => {
-  const { base, displayName, detailInfo, secondaryInfo } =
+  const { base, title, icon, displayName, detailInfo, secondaryInfo } =
     profileBannerInfoStyles(props);
 
   return (
     <div className={base()}>
-      <button onClick={props.onClick} className={displayName()}>
-        <Label size="xl">{props.displayName}</Label>
-      </button>
+      <div className={title()}>
+        <button onClick={props.onProfileClick} className={displayName()}>
+          <Label size="xl">{props.displayName}</Label>
+        </button>
+        {props.isCurrentUser && <Settings className={icon()} />}
+      </div>
       <div className={detailInfo()}>
-        <IconButton intent="secondary" icon={Profile} onClick={props.onClick}>
+        <IconButton
+          intent="secondary"
+          icon={Profile}
+          onClick={props.onProfileClick}
+        >
           {props.userName}
         </IconButton>
 
         <IconButton
           intent="primary"
           icon={Location}
-          onClick={props.onClick}
+          onClick={props.onProfileClick}
           className={secondaryInfo()}
         >
           {props.location}
@@ -98,7 +118,7 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = (
         <IconButton
           intent="primary"
           icon={Calendar}
-          onClick={props.onClick}
+          onClick={props.onProfileClick}
           className={secondaryInfo()}
         >
           {memberSincePrefix + timeSince(props.joinedTimestamp)}
