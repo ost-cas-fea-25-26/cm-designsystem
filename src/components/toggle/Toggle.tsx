@@ -22,6 +22,7 @@ const toggleStyles = tv({
       "focus-visible:ring-offset-2",
       "disabled:opacity-50",
       "disabled:pointer-events-none",
+      "cursor-pointer",
     ],
     icon: ["inline-flex"],
     label: [],
