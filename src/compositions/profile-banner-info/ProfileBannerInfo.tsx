@@ -11,9 +11,9 @@ import { Label } from "../../components/typography/Label";
 const profileBannerInfoStyles = tv({
   slots: {
     base: ["flex", "flex-col", "gap-2", "items-start"],
-    title: ["flex", "gap-1", "items-center"],
+    title: ["flex", "gap-1", "items-center", "**:cursor-pointer"],
     icon: ["text-violet-600", "-mt-0.5"],
-    displayName: ["text-slate-900", "**:cursor-pointer"],
+    displayName: ["text-slate-900"],
     detailInfo: ["flex", "gap-4"],
     secondaryInfo: ["text-slate-500"],
   },
@@ -95,7 +95,12 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = (
         <button onClick={props.onProfileClick} className={displayName()}>
           <Label size="xl">{props.displayName}</Label>
         </button>
-        {props.isCurrentUser && <Settings className={icon()} />}
+
+        {props.isCurrentUser && (
+          <button onClick={props.onSettingsClick}>
+            <Settings className={icon()} />
+          </button>
+        )}
       </div>
       <div className={detailInfo()}>
         <IconButton
