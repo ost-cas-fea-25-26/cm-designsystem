@@ -1,20 +1,12 @@
 import { Form } from "@radix-ui/react-form";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
+import { Avatar, Button, Heading, Textarea } from "../../components";
+import { Send, Upload } from "../../components/icons/generated";
 import {
-  Avatar,
-  Button,
-  FileUpload,
-  Heading,
-  Modal,
-  Textarea,
-} from "../../components";
-import {
-  Cancel,
-  Checkmark,
-  Send,
-  Upload,
-} from "../../components/icons/generated";
+  ImageUploadModal,
+  type ImageUploadModalRef,
+} from "../image-upload-modal/ImageUploadModal";
 import { PostBase } from "../post-base/PostBase";
 
 const PostCreatorStyles = tv({
@@ -52,9 +44,9 @@ export const PostCreator: React.FC<PostCreatorProps> = (
   props: PostCreatorProps
 ) => {
   const { content, avatar, title, input, action } = PostCreatorStyles(props);
-  const [open, setOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
+  const imageUploadModalRef = useRef<ImageUploadModalRef>(null);
 
   return (
     <>
@@ -84,7 +76,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
               intent="primary"
               size="md"
               icon={Upload}
-              onClick={() => setOpen(true)}
+              onClick={() => imageUploadModalRef.current?.openModal(true)}
             >
               Picture upload
             </Button>
@@ -100,29 +92,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
         </Form>
       </PostBase>
 
-      <Modal open={open} onOpenChange={setOpen} title="Picture upload">
-        <Modal.Body>
-          <FileUpload onFileSelect={setFile} />
-        </Modal.Body>
-        <Modal.Actions>
-          <Button
-            intent="primary"
-            size="md"
-            icon={Cancel}
-            onClick={() => setOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button
-            intent="secondary"
-            size="md"
-            icon={Checkmark}
-            onClick={() => setOpen(false)}
-          >
-            Save
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      <ImageUploadModal ref={imageUploadModalRef} onFileChange={setFile} />
     </>
   );
 };
