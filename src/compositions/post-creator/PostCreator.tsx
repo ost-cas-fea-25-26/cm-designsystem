@@ -1,7 +1,14 @@
 import { Form } from "@radix-ui/react-form";
 import { useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
-import { Button, FileUpload, Heading, Modal, Textarea } from "../../components";
+import {
+  Avatar,
+  Button,
+  FileUpload,
+  Heading,
+  Modal,
+  Textarea,
+} from "../../components";
 import {
   Cancel,
   Checkmark,
@@ -13,6 +20,7 @@ import { PostBase, type PostBaseProps } from "../post-base/PostBase";
 const PostCreatorStyles = tv({
   slots: {
     content: ["flex", "flex-col", "gap-4", "w-full"],
+    avatar: ["absolute", "-left-8", "top-6"],
     title: ["text-slate-900"],
     input: ["w-full", "h-40"],
     action: ["flex", "gap-4"],
@@ -22,7 +30,13 @@ const PostCreatorStyles = tv({
 type PostCreatorVariants = VariantProps<typeof PostCreatorStyles>;
 
 interface PostCreatorProps
-  extends PostCreatorVariants, Omit<PostBaseProps, "children"> {
+  extends PostCreatorVariants{
+  /** Avatar image URL */
+  src: string;
+
+  /** Triggered when the avatar is clicked. */
+  onAvatarClick: () => void;
+
   /**
    * Callback fired when the "Send" button is clicked.
    *   Receives the textarea text and the optionally uploaded file.
@@ -38,14 +52,23 @@ interface PostCreatorProps
 export const PostCreator: React.FC<PostCreatorProps> = (
   props: PostCreatorProps
 ) => {
-  const { content, title, input, action } = PostCreatorStyles(props);
+  const { content, avatar, title, input, action } = PostCreatorStyles(props);
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
 
   return (
     <>
-      <PostBase src={props.src} onAvatarClick={props.onAvatarClick}>
+      <PostBase>
+        <div className={avatar()}>
+          <Avatar
+            alt="Profile"
+            size="md"
+            src={props.src}
+            onAvatarClick={props.onAvatarClick}
+          />
+        </div>
+
         <Form className="w-full">
           <div className={content()}>
             <Heading size="4" as="h4" className={title()}>
