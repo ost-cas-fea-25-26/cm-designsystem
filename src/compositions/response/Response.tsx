@@ -69,7 +69,7 @@ export const Response: React.FC<ResponseProps> = (props: ResponseProps) => {
           timestamp={props.timestamp}
           onClick={props.onAvatarClick}
         />
-        <Paragraph size={props.size} className={text()}>
+        <Paragraph size="md" className={text()}>
           {props.text}
         </Paragraph>
         {props.imageSrc && (
