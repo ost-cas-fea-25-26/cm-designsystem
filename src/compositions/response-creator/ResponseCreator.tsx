@@ -1,5 +1,5 @@
 import { Form } from "@radix-ui/react-form";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Button, FileUpload, Modal, Textarea } from "../../components";
 import {
@@ -10,6 +10,10 @@ import {
 } from "../../components/icons/generated";
 import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
+import {
+  type ImageUploadModalRef,
+  ImageUploadModal,
+} from "../image-upload-modal/ImageUploadModal";
 
 const ResponseCreatorStyles = tv({
   slots: {
@@ -52,9 +56,9 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
   props: ResponseCreatorProps
 ) => {
   const { content, input, action } = ResponseCreatorStyles(props);
-  const [open, setOpen] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
+  const imageUploadModalRef = useRef<ImageUploadModalRef>(null);
 
   return (
     <>
@@ -79,7 +83,7 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
               intent="primary"
               size="md"
               icon={Upload}
-              onClick={() => setOpen(true)}
+              onClick={() => imageUploadModalRef.current?.openModal(true)}
             >
               Picture upload
             </Button>
@@ -95,29 +99,7 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
         </Form>
       </PostBase>
 
-      <Modal open={open} onOpenChange={setOpen} title="Picture upload">
-        <Modal.Body>
-          <FileUpload onFileSelect={setFile} />
-        </Modal.Body>
-        <Modal.Actions>
-          <Button
-            intent="primary"
-            size="md"
-            icon={Cancel}
-            onClick={() => setOpen(false)}
-          >
-            Cancel
-          </Button>
-          <Button
-            intent="secondary"
-            size="md"
-            icon={Checkmark}
-            onClick={() => setOpen(false)}
-          >
-            Save
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      <ImageUploadModal ref={imageUploadModalRef} onFileChange={setFile} />
     </>
   );
 };
