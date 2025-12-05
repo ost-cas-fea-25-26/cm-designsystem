@@ -6,6 +6,7 @@ export * from "./file-upload/FileUpload";
 export * from "./form/Form";
 export * from "./icon-button/IconButton";
 export * from "./icons/IconBase";
+export * from "./icons/generated";
 export * from "./input/Input";
 export * from "./like-toggle/LikeToggle";
 export * from "./logo-link/LogoLink";
