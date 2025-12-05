@@ -3,7 +3,7 @@ import { ProfileBanner } from "./ProfileBanner";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: "Compositions/ProfileBanner",
+  title: "Compositions/Profile/ProfileBanner",
   component: ProfileBanner,
   parameters: {
     layout: "centered",
@@ -14,18 +14,38 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const LoggedOut: Story = {
   args: {
-    src: "https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80",
-    alt: "Profile banner image",
-    onClick: () => console.log,
+    isCurrentUser: false,
+    avatarSrc: "example",
+    avatarAlt: "Avatar image",
+    imageSrc:
+      "https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80",
+    imageAlt: "Profile banner image",
+    displayName: "Display Name",
+    userName: "Username",
+    location: "Location",
+    joinedTimestamp: new Date(),
+    description:
+      "Ostschweizer mit Leidenschaft für Fussball, designaffin, nie ohne Bart, Weinliebhaber, leichte Tendenz zu Football Manager-Sucht, kocht gerne indisch, baut seit neustem Duplotürme und Brio-Bahnanlagen.",
+    onClick: fn(),
   },
 };
 
-export const Fallback: Story = {
+export const LoggedIn: Story = {
   args: {
-    src: "",
-    alt: "Profile banner image",
+    isCurrentUser: true,
+    avatarSrc: "example",
+    avatarAlt: "Avatar image",
+    imageSrc:
+      "https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80",
+    imageAlt: "Profile banner image",
+    displayName: "Display Name",
+    userName: "Username",
+    location: "Location",
+    joinedTimestamp: new Date(),
+    description:
+      "Ostschweizer mit Leidenschaft für Fussball, designaffin, nie ohne Bart, Weinliebhaber, leichte Tendenz zu Football Manager-Sucht, kocht gerne indisch, baut seit neustem Duplotürme und Brio-Bahnanlagen.",
     onClick: fn(),
   },
 };
