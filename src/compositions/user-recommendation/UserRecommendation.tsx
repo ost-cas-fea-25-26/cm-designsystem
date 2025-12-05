@@ -7,7 +7,15 @@ import { Label } from "../../components/typography/Label";
 
 const userRecommendationStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "gap-4", "items-center", "p-4", "bg-white"],
+    base: [
+      "flex",
+      "flex-col",
+      "gap-4",
+      "items-center",
+      "p-4",
+      "bg-white",
+      "rounded-2xl",
+    ],
     userInfo: ["flex", "flex-col", "gap-2", "items-center"],
     displayName: ["text-slate-900", "**:cursor-pointer"],
   },
