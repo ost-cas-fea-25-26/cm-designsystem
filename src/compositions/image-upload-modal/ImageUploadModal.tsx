@@ -4,10 +4,12 @@ import { Cancel, Checkmark } from "../../components/icons/generated";
 import { forwardRef, useImperativeHandle } from "react";
 
 interface ImageUploadModalProps {
+  /** Callback fired when the user selects a file. `null` is passed if no file is selected. */
   onFileChange: (file: File | null) => void;
 }
 
 export type ImageUploadModalRef = {
+  /** Function that opens or closes the modal. Pass `true` to open, `false` to close. */
   openModal: (open: boolean) => void;
 };
 

@@ -27,8 +27,7 @@ export const LoggedOut: Story = {
     location: "Location",
     joinedTimestamp: new Date(),
     description:
-      "Ostschweizer mit Leidenschaft für Fussball, designaffin, nie ohne Bart, Weinliebhaber, leichte Tendenz zu Football Manager-Sucht, kocht gerne indisch, baut seit neustem Duplotürme und Brio-Bahnanlagen.",
-    onClick: fn(),
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi vel consectetur interdum, nisl nisi consectetur nisi, euismod aliquam nisl nisi euismod.",
   },
 };
 
@@ -45,7 +44,8 @@ export const LoggedIn: Story = {
     location: "Location",
     joinedTimestamp: new Date(),
     description:
-      "Ostschweizer mit Leidenschaft für Fussball, designaffin, nie ohne Bart, Weinliebhaber, leichte Tendenz zu Football Manager-Sucht, kocht gerne indisch, baut seit neustem Duplotürme und Brio-Bahnanlagen.",
-    onClick: fn(),
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi vel consectetur interdum, nisl nisi consectetur nisi, euismod aliquam nisl nisi euismod.",
+    onProfileImageChange: fn(),
+    onAvatarImageChange: fn(),
   },
 };

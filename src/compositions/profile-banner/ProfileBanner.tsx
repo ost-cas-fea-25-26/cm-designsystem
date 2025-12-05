@@ -2,6 +2,11 @@ import { tv, type VariantProps } from "tailwind-variants";
 import { Avatar, Paragraph } from "../../components";
 import { ProfileBannerImage } from "../profile-banner-image/ProfileBannerImage";
 import { ProfileBannerInfo } from "../profile-banner-info/ProfileBannerInfo";
+import {
+  ImageUploadModal,
+  type ImageUploadModalRef,
+} from "../image-upload-modal/ImageUploadModal";
+import { useRef, useState } from "react";
 
 const ProfileBannerStyles = tv({
   slots: {
@@ -44,6 +49,18 @@ interface ProfileBannerProps extends ProfileBannerVariants {
 
   /** Whether the profile being viewed belongs to the logged-in user. */
   isCurrentUser: boolean;
+
+  /**
+   *     Optional callback triggered when the profile/banner image changes.
+   *     Receives the selected `File`, or `null` if cleared.
+   */
+  onProfileImageChange?: (file: File | null) => void;
+
+  /**
+   *     Optional callback triggered when the avatar image changes.
+   *     Receives the selected `File`, or `null` if cleared.
+   */
+  onAvatarImageChange?: (file: File | null) => void;
 }
 
 /**
@@ -53,35 +70,52 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = (
   props: ProfileBannerProps
 ) => {
   const { base, avatar, info, description } = ProfileBannerStyles(props);
+  const profileImageUploadModalRef = useRef<ImageUploadModalRef>(null);
+  const avatarImageUploadModalRef = useRef<ImageUploadModalRef>(null);
 
   return (
-    <div className={base()}>
-      <ProfileBannerImage
-        src={props.imageSrc}
-        alt={props.imageAlt}
-        onClick={() => {}}
+    <>
+      <div className={base()}>
+        <ProfileBannerImage
+          src={props.imageSrc}
+          alt={props.imageAlt}
+          onClick={() => profileImageUploadModalRef.current?.openModal(true)}
+        />
+        <div className={avatar()}>
+          <Avatar
+            src={props.avatarSrc}
+            alt={props.avatarAlt}
+            size="xl"
+            onActionClick={
+              props.isCurrentUser
+                ? () => avatarImageUploadModalRef.current?.openModal(true)
+                : undefined
+            }
+          />
+        </div>
+        <div className={info()}>
+          <ProfileBannerInfo
+            isCurrentUser={props.isCurrentUser}
+            displayName={props.displayName}
+            userName={props.userName}
+            location={props.location}
+            joinedTimestamp={props.joinedTimestamp}
+            onProfileClick={() => {}}
+          />
+          <Paragraph size="md" className={description()}>
+            {props.description}
+          </Paragraph>
+        </div>
+      </div>
+
+      <ImageUploadModal
+        ref={profileImageUploadModalRef}
+        onFileChange={props.onProfileImageChange ?? (() => {})}
       />
-      <div className={avatar()}>
-        <Avatar
-          src={props.avatarSrc}
-          alt={props.avatarAlt}
-          size="xl"
-          onActionClick={props.isCurrentUser ? () => {} : undefined}
-        />
-      </div>
-      <div className={info()}>
-        <ProfileBannerInfo
-          isCurrentUser={props.isCurrentUser}
-          displayName={props.displayName}
-          userName={props.userName}
-          location={props.location}
-          joinedTimestamp={props.joinedTimestamp}
-          onProfileClick={() => {}}
-        />
-        <Paragraph size="md" className={description()}>
-          {props.description}
-        </Paragraph>
-      </div>
-    </div>
+      <ImageUploadModal
+        ref={avatarImageUploadModalRef}
+        onFileChange={props.onAvatarImageChange ?? (() => {})}
+      />
+    </>
   );
 };
