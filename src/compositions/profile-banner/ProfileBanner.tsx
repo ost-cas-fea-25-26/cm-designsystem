@@ -1,95 +1,87 @@
-import * as AspectRatio from "@radix-ui/react-aspect-ratio";
-import { useState } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
-import { Edit } from "../../components/icons/generated";
+import { tv, type VariantProps } from "tailwind-variants";
+import { Avatar, Paragraph } from "../../components";
+import { ProfileBannerImage } from "../profile-banner-image/ProfileBannerImage";
+import { ProfileBannerInfo } from "../profile-banner-info/ProfileBannerInfo";
 
 const ProfileBannerStyles = tv({
   slots: {
-    base: ["w-170", "h-80"],
-    image: [
-      "h-full",
-      "w-full",
-      "cursor-pointer",
-      "rounded-2xl",
-      "object-cover",
-    ],
-    overlay: [
-      "group",
-      "absolute",
-      "flex",
-      "items-center",
-      "justify-center",
-      "text-white",
-      "inset-0",
-      "bg-violet-600/0",
-      "hover:bg-violet-600/50",
-      "transition",
-      "duration-500",
-      "ease-in-out",
-    ],
-    icon: [
-      "w-8",
-      "h-8",
-      "opacity-0",
-      "group-hover:opacity-100",
-      "transition",
-      "duration-500",
-      "rotate-15",
-      "group-hover:rotate-0",
-    ],
-  },
-  variants: {
-    isFallback: {
-      true: { image: ["bg-violet-200"] },
-    },
+    base: ["flex", "flex-col", "gap-6", "w-170", "h-80", "relative"],
+    avatar: ["absolute", "-bottom-20", "right-6"],
+    info: ["flex", "flex-col", "gap-3"],
+    description: ["text-slate-500"],
   },
 });
 
 type ProfileBannerVariants = VariantProps<typeof ProfileBannerStyles>;
 
 interface ProfileBannerProps extends ProfileBannerVariants {
-  /** Avatar image URL */
-  src: string;
+  /** URL of the user's avatar image. */
+  avatarSrc: string;
 
-  /**
-   * Alternative text for the image, used for accessibility.
-   */
-  alt: string;
+  /** Alt text for the avatar image. */
+  avatarAlt: string;
 
-  /** Click handler for the whole ProfileBanner component */
-  onClick: () => void;
+  /** URL of the profile banner or main image. */
+  imageSrc: string;
+
+  /** Alt text for the main image. */
+  imageAlt: string;
+
+  /** The user's display name. */
+  displayName: string;
+
+  /** The user’s username/handle. */
+  userName: string;
+
+  /** The user’s location string. */
+  location: string;
+
+  /** Date when the user joined. */
+  joinedTimestamp: Date;
+
+  /** Bio or profile description text. */
+  description: string;
+
+  /** Whether the profile being viewed belongs to the logged-in user. */
+  isCurrentUser: boolean;
 }
 
 /**
- * ProfileBanner component
- *
- * Displays a banner image with a fixed aspect ratio (17:8) and an optional overlay icon.
- * If the image fails to load, a fallback element is displayed instead.
+ * Profile banner component for displaying user profile info.
  */
 export const ProfileBanner: React.FC<ProfileBannerProps> = (
   props: ProfileBannerProps
 ) => {
-  const { base, image, overlay, icon } = ProfileBannerStyles(props);
-  const [src, setSrc] = useState<string>(props.src);
+  const { base, avatar, info, description } = ProfileBannerStyles(props);
 
   return (
     <div className={base()}>
-      {src ? (
-        <AspectRatio.Root ratio={17 / 8}>
-          <img
-            className={image()}
-            src={src}
-            alt={props.alt}
-            onError={() => setSrc("")}
-          />
-          {/* Overlay*/}
-          <button className={cn(image(), overlay())} onClick={props.onClick}>
-            <Edit className={icon()} />
-          </button>
-        </AspectRatio.Root>
-      ) : (
-        <div className={image({ isFallback: true })} />
-      )}
+      <ProfileBannerImage
+        src={props.imageSrc}
+        alt={props.imageAlt}
+        onClick={() => {}}
+      />
+      <div className={avatar()}>
+        <Avatar
+          src={props.avatarSrc}
+          alt={props.avatarAlt}
+          size="xl"
+          onActionClick={props.isCurrentUser ? () => {} : undefined}
+        />
+      </div>
+      <div className={info()}>
+        <ProfileBannerInfo
+          isCurrentUser={props.isCurrentUser}
+          displayName={props.displayName}
+          userName={props.userName}
+          location={props.location}
+          joinedTimestamp={props.joinedTimestamp}
+          onProfileClick={() => {}}
+        />
+        <Paragraph size="md" className={description()}>
+          {props.description}
+        </Paragraph>
+      </div>
     </div>
   );
 };
