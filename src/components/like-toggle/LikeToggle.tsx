@@ -1,3 +1,5 @@
+"use client";
+
 import * as RadixToggle from "@radix-ui/react-toggle";
 import { useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";

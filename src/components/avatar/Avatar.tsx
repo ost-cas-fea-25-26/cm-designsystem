@@ -1,3 +1,5 @@
+"use client";
+
 import * as RadixAvatar from "@radix-ui/react-avatar";
 import { tv, type VariantProps } from "tailwind-variants";
 import fallbackImage from "../../assets/fallback.png";

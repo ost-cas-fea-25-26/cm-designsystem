@@ -1,3 +1,5 @@
+"use client";
+
 import * as RadixToggle from "@radix-ui/react-toggle";
 import { tv, type VariantProps } from "tailwind-variants";
 import { ReplyFilled, ReplyOutline } from "../icons/generated";
