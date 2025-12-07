@@ -183,7 +183,7 @@ Best Practices:
 
 Components and their Storybook stories are co-located in the same folder for better organization:
 
-```
+```text
 src/components/
 ├── button/
 │   ├── Button.tsx           # Component implementation
@@ -214,10 +214,13 @@ SVG icons are automatically converted to React components with proper accessibil
 
 1. Add SVG files to `src/components/icons/svg/`
 2. Optimize SVGs (optional but recommended):
+
    ```bash
    npx svgo -f src/components/icons/svg
    ```
+
 3. Generate React components:
+
    ```bash
    npm run icons:generate
    ```
@@ -344,7 +347,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) for consiste
 
 Format:
 
-```
+```text
 <type>: <description>
 
 [optional body]
@@ -363,7 +366,7 @@ Types:
 
 Examples:
 
-```
+```text
 feat: add new Button variant
 fix: correct Typography component spacing
 docs: update README with visual testing guide
