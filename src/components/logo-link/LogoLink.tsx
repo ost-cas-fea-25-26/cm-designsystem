@@ -1,5 +1,3 @@
-// LogoLink.tsx
-
 import { tv } from "tailwind-variants";
 import hoverLogoDefault from "../branding/hover-logo-default.svg";
 import hoverLogoHovered from "../branding/hover-logo-hovered.svg";
@@ -28,7 +26,7 @@ const logoStyles = tv({
       "duration-200",
       "select-none",
       "hidden",
-      "h-[44px]",
+      "h-11",
       "w-auto",
       "group-hover:block",
     ],

@@ -1,3 +1,5 @@
+"use client";
+
 import { cn, tv } from "tailwind-variants";
 
 const accessibleButtonStyles = tv({
