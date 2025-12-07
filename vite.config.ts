@@ -22,7 +22,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, "src/index.ts"),
       name: "CmDesignSystem",
-      formats: ["es"],
+      formats: ["es", "cjs"],
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
@@ -36,6 +36,7 @@ export default defineConfig({
         },
       },
     },
+    sourcemap: false,
     outDir: "dist",
     emptyOutDir: false,
   },
