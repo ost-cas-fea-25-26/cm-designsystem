@@ -1,4 +1,3 @@
-import { fn } from "storybook/test";
 import { AccessibleTypography } from "./AccessibleTypography";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
@@ -30,6 +29,5 @@ export const Clickable: Story = {
     as: "h1",
     children: "Lorem ipsum dolor sit amet",
     ariaLabel: "Example Text",
-    onClick: fn(),
   },
 };

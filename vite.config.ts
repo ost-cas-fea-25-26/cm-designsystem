@@ -5,10 +5,12 @@ import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { playwright } from "@vitest/browser-playwright";
+import preserveDirectives from "rollup-preserve-directives";
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
+import svgr from "vite-plugin-svgr";
 import { configDefaults } from "vitest/config";
-
-// https://vite.dev/config/
+import pkg from "./package.json";
 
 const dirname =
   typeof __dirname !== "undefined"
@@ -17,27 +19,38 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    svgr(),
+    dts({
+      entryRoot: path.join(dirname, ".src"),
+      tsconfigPath: path.resolve(__dirname, "tsconfig.build.json"),
+      outDir: "dist",
+    }),
+    preserveDirectives(),
+  ],
+  publicDir: false,
   build: {
     lib: {
       entry: path.resolve(dirname, "src/index.ts"),
-      name: "CmDesignSystem",
+      name: "CMDesignSystem",
       formats: ["es"],
-      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      // Externalize peer dependencies (like react)
-      external: ["react", "react-dom"],
+      // Exclude react and any other dependencies from the bundle
+      external: [
+        ...Object.keys(pkg.peerDependencies || {}),
+        ...Object.keys(pkg.dependencies || {}),
+        "react/jsx-runtime",
+      ],
       output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          assetFileNames: "[name][extname]",
-        },
+        entryFileNames: "[name].js",
+        preserveModules: true,
+        preserveModulesRoot: "src",
       },
     },
-    outDir: "dist",
-    emptyOutDir: false,
+    minify: false,
   },
   test: {
     projects: [
