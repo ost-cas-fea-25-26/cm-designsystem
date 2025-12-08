@@ -24,7 +24,7 @@ export default defineConfig({
     tailwindcss(),
     svgr(),
     dts({
-      entryRoot: path.join(dirname, ".src"),
+      entryRoot: path.join(dirname, "src"),
       tsconfigPath: path.resolve(__dirname, "tsconfig.build.json"),
       outDir: "dist",
     }),
