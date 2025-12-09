@@ -12,6 +12,7 @@ const iconButtonStyles = tv({
     base: [
       "flex",
       "gap-1",
+      "items-center",
       "transition",
       "duration-350",
       "ease-in-out",

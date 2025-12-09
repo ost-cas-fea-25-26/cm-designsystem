@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, forwardRef, useImperativeHandle } from "react";
 import { Button, FileUpload, Modal } from "../../components";
 import { Cancel, Checkmark } from "../../components/icons/generated";
