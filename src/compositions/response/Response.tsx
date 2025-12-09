@@ -1,3 +1,5 @@
+"use client";
+
 import { tv, type VariantProps } from "tailwind-variants";
 import { LikeToggle, Paragraph, TimedButton, Toggle } from "../../components";
 import { Share } from "../../components/icons/generated";

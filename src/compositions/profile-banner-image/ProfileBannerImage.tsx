@@ -1,3 +1,5 @@
+"use client";
+
 import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import { useState } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";

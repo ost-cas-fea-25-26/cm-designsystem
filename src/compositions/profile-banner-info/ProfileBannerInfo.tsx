@@ -1,3 +1,5 @@
+"use client";
+
 import { tv, type VariantProps } from "tailwind-variants";
 import { IconButton } from "../../components/icon-button/IconButton";
 import {

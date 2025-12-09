@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Avatar, Paragraph } from "../../components";

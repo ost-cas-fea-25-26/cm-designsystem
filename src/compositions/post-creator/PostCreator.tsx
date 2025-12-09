@@ -1,3 +1,5 @@
+"use client";
+
 import { Form } from "@radix-ui/react-form";
 import { useRef, useState } from "react";
 import { tv, type VariantProps } from "tailwind-variants";

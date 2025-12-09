@@ -1,3 +1,5 @@
+"use client";
+
 import { tv, type VariantProps } from "tailwind-variants";
 import {
   Avatar,
@@ -16,7 +18,7 @@ const PostStyles = tv({
     base: [],
     avatar: ["absolute", "-left-8", "top-6"],
     content: ["flex", "flex-col", "gap-6"],
-    text: ["text-slate-900"],
+    text: ["text-slate-900", "text-wrap", "wrap-anywhere"],
     action: ["flex", "gap-10", "justify-start", "-ml-3"],
   },
   variants: {
