@@ -12,13 +12,19 @@ import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
 import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
+import { Keyword } from "../keyword/Keyword";
 
 const PostStyles = tv({
   slots: {
     base: [],
     avatar: ["absolute", "-left-8", "top-6"],
     content: ["flex", "flex-col", "gap-6"],
-    text: ["text-slate-900", "text-wrap", "wrap-anywhere"],
+    text: [
+      "text-slate-900",
+      "text-wrap",
+      "wrap-anywhere",
+      "whitespace-pre-wrap",
+    ],
     action: ["flex", "gap-10", "justify-start", "-ml-3"],
   },
   variants: {
@@ -70,6 +76,34 @@ interface PostProps extends PostVariants {
   onShareClick: () => void;
 }
 
+function renderWithHashtags(text: string) {
+  const regex = /#\w+/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    const { index } = match;
+
+    // normal text before hashtag
+    if (index > lastIndex) {
+      parts.push(text.substring(lastIndex, index));
+    }
+
+    // hashtag
+    parts.push(<Keyword key={index}>{match[0]}</Keyword>);
+
+    lastIndex = index + match[0].length;
+  }
+
+  // remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts;
+}
+
 /**
  * Detailed post component displaying user info, text content,
  * optional image, and action buttons (comment, like, share).
@@ -97,7 +131,7 @@ export const Post: React.FC<PostProps> = (props: PostProps) => {
           onClick={props.onAvatarClick}
         />
         <Paragraph size={props.size} className={text()}>
-          {props.text}
+          {renderWithHashtags(props.text)}
         </Paragraph>
         {props.imageSrc && (
           <ImageBanner
