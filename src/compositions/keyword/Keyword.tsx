@@ -1,6 +1,6 @@
+import { type ReactNode } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { Paragraph } from "../../components";
-import { ReactNode } from "react";
 
 const keywordStyles = tv({
   slots: {

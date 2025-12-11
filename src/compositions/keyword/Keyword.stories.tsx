@@ -1,4 +1,3 @@
-import { fn } from "storybook/test";
 import { Keyword } from "./Keyword";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
