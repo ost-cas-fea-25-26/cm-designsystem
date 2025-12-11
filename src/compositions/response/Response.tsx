@@ -6,12 +6,18 @@ import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
 import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
+import { renderWithHashtags } from "../utils/keyword.utils";
 
 const ResponseStyles = tv({
   slots: {
     base: [],
     content: ["flex", "flex-col", "gap-4"],
-    text: ["text-slate-900"],
+    text: [
+      "text-slate-900",
+      "text-wrap",
+      "wrap-anywhere",
+      "whitespace-pre-wrap",
+    ],
     action: ["flex", "gap-10", "justify-start", "-ml-3"],
   },
 });
@@ -72,7 +78,7 @@ export const Response: React.FC<ResponseProps> = (props: ResponseProps) => {
           onClick={props.onAvatarClick}
         />
         <Paragraph size="md" className={text()}>
-          {props.text}
+          {renderWithHashtags(props.text)}
         </Paragraph>
         {props.imageSrc && (
           <ImageBanner

@@ -12,7 +12,7 @@ import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
 import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
-import { Keyword } from "../keyword/Keyword";
+import { renderWithHashtags } from "../utils/keyword.utils";
 
 const PostStyles = tv({
   slots: {
@@ -74,34 +74,6 @@ interface PostProps extends PostVariants {
 
   /** Callback fired when the share button is clicked. */
   onShareClick: () => void;
-}
-
-function renderWithHashtags(text: string) {
-  const regex = /#\w+/g;
-  const parts = [];
-  let lastIndex = 0;
-  let match;
-
-  while ((match = regex.exec(text)) !== null) {
-    const { index } = match;
-
-    // normal text before hashtag
-    if (index > lastIndex) {
-      parts.push(text.substring(lastIndex, index));
-    }
-
-    // hashtag
-    parts.push(<Keyword key={index}>{match[0]}</Keyword>);
-
-    lastIndex = index + match[0].length;
-  }
-
-  // remaining text
-  if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
-  }
-
-  return parts;
 }
 
 /**
