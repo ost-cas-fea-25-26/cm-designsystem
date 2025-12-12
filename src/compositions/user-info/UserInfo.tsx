@@ -25,9 +25,9 @@ interface UserInfoProps extends UserInfoVariants {
   /** Size variant of the component */
   size: UserInfoSize;
   /** Display name of the user */
-  displayName: string;
+  displayName: string | undefined;
   /** Username of the user */
-  userName: string;
+  userName: string | undefined;
   /** Timestamp for the user activity */
   timestamp?: Date;
   /** Click handler for the whole UserInfo component */
@@ -91,12 +91,20 @@ export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
       )}
       <div className={userInfo()}>
         <button onClick={props.onClick} className={displayName()}>
-          <Label size={getLabelSize(props.size)}>{props.displayName}</Label>
+          {props.displayName && (
+            <Label size={getLabelSize(props.size)}>{props.displayName}</Label>
+          )}
         </button>
         <div className={detailInfo()}>
-          <IconButton intent="secondary" icon={Profile} onClick={props.onClick}>
-            {props.userName}
-          </IconButton>
+          {props.userName && (
+            <IconButton
+              intent="secondary"
+              icon={Profile}
+              onClick={props.onClick}
+            >
+              {props.userName}
+            </IconButton>
+          )}
 
           {props.timestamp && (
             <IconButton

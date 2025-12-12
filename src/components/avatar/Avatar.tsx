@@ -84,7 +84,7 @@ interface AvatarProps extends AvatarVariants {
   /**
    * The URL source of the avatar image.
    */
-  src: string;
+  src: string | undefined;
 
   /**
    * Accessible label for the action button that appears on extra-large (`xl`)
