@@ -12,13 +12,19 @@ import { Share } from "../../components/icons/generated";
 import { ImageBanner } from "../image-banner/ImageBanner";
 import { PostBase } from "../post-base/PostBase";
 import { UserInfo } from "../user-info/UserInfo";
+import { renderWithHashtags } from "../utils/keyword.utils";
 
 const PostStyles = tv({
   slots: {
     base: [],
     avatar: ["absolute", "-left-8", "top-6"],
     content: ["flex", "flex-col", "gap-6"],
-    text: ["text-slate-900", "text-wrap", "wrap-anywhere"],
+    text: [
+      "text-slate-900",
+      "text-wrap",
+      "wrap-anywhere",
+      "whitespace-pre-wrap",
+    ],
     action: ["flex", "gap-10", "justify-start", "-ml-3"],
   },
   variants: {
@@ -103,7 +109,7 @@ export const Post: React.FC<PostProps> = (props: PostProps) => {
           onClick={props.onAvatarClick}
         />
         <Paragraph size={props.size} className={text()}>
-          {props.text}
+          {renderWithHashtags(props.text)}
         </Paragraph>
         {props.imageSrc && (
           <ImageBanner

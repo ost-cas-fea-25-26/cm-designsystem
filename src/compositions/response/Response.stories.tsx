@@ -20,7 +20,9 @@ export const Default: Story = {
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),
-    text: "Quia aut et aut. Sunt et eligendi similique enim qui quo minus. Aut aut error velit voluptatum optio sed quis cumque error magni. Deserunt pariatur molestiae incidunt. Omnis deserunt ratione et recusandae quos excepturi ut deleniti ut repellat magni.",
+    text: `Quia aut et aut. Sunt et eligendi similique enim qui quo minus. Aut aut error velit voluptatum optio sed quis cumque error magni. Deserunt pariatur molestiae incidunt. Omnis deserunt ratione et recusandae quos excepturi ut deleniti ut repellat magni.
+    
+#casfee #goOST #smartive #teamCM`,
     nbrOfComments: 0,
     nbrOfLikes: 0,
     onAvatarClick: fn(),
