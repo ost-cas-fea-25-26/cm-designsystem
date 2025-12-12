@@ -11,7 +11,7 @@ import { Keyword } from "../keyword/Keyword";
  * @param {string} text - The input text that may contain hashtags.
  * @returns {(string | React.ReactNode)[]} A list of text segments and `<Keyword>` components.
  */
-export function renderWithHashtags(text: string) {
+export function renderWithHashtags(text: string = "") {
   const regex = /#\w+/g;
   const parts = [];
   let lastIndex = 0;

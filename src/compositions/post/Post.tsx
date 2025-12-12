@@ -43,19 +43,19 @@ interface PostProps extends PostVariants {
   size: PostSize;
 
   /** The display name of the user who created the post. */
-  displayName: string;
+  displayName: string | undefined;
 
   /** The username or handle associated with the post. */
-  userName: string;
+  userName: string | undefined;
 
   /** The date and time when the post was created. */
-  timestamp: Date;
+  timestamp: Date | undefined;
 
   /** The main text content of the post. */
-  text: string;
+  text: string | undefined;
 
   /** Avatar image URL */
-  src: string;
+  src: string | undefined;
 
   /** Triggered when the avatar is clicked. */
   onAvatarClick: () => void;
@@ -67,7 +67,7 @@ interface PostProps extends PostVariants {
   nbrOfComments: number;
 
   /** Optional image source URL displayed within the post. */
-  imageSrc?: string;
+  imageSrc?: string | undefined;
 
   /** Optional alt text for the post image, used for accessibility. */
   imageAlt?: string;
