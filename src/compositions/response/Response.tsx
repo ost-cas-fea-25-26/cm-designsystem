@@ -43,6 +43,12 @@ interface ResponseProps extends ResponseVariants {
   /** Triggered when the avatar is clicked. */
   onAvatarClick: () => void;
 
+  /** Number of likes the post has received. */
+  nbrOfLikes: number;
+
+  /** Number of comments the post has received. */
+  nbrOfComments: number;
+
   /** Optional image source URL displayed within the Response. */
   imageSrc?: string;
 
@@ -90,10 +96,20 @@ export const Response: React.FC<ResponseProps> = (props: ResponseProps) => {
         <div className={action()}>
           <Toggle
             ariaLabel="Comment"
-            labelText="Comment"
+            labelText={
+              props.nbrOfComments === 0
+                ? "Comment"
+                : props.nbrOfComments === 1
+                  ? "1 Comment"
+                  : `${props.nbrOfComments} Comments`
+            }
+            pressed={props.nbrOfComments !== 0}
             onToggle={props.onCommentClick}
           />
-          <LikeToggle onLikeChange={props.onLikeClick} />
+          <LikeToggle
+            likes={props.nbrOfLikes}
+            onLikeChange={props.onLikeClick}
+          />
           <TimedButton
             icon={Share}
             label="Copy Link"
