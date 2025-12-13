@@ -1,0 +1,21 @@
+.storybook/
+storybook-static/
+playwright-report/
+test-results/
+tests/
+scripts/
+public/
+Dockerfile
+*.config.*
+*.test.*
+*.spec.*
+*.md
+*.sh
+*.json
+!package.json
+!dist/
+!src/components/
+!src/assets/
+!src/index.css
+# Exclude Storybook stories
+**/*.stories.tsx
