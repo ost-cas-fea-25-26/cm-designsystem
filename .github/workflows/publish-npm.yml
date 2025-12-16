@@ -8,6 +8,8 @@ on:
 permissions:
   id-token: write # Required for OIDC
   contents: write
+  issues: write # needed to comment on issues
+  pull-requests: write # needed to comment on pull requests
 jobs:
   release:
     runs-on: ubuntu-latest
