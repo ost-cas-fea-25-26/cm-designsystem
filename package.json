@@ -1,5 +1,9 @@
 {
   "name": "@krrli/cm-designsystem",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ost-cas-fea-25-26/cm-designsystem"
+  },
   "version": "0.1.0",
   "type": "module",
   "main": "dist/index.js",
