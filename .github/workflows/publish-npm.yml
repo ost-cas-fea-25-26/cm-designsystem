@@ -5,6 +5,10 @@ on:
       - main # only run on main branch
   workflow_dispatch:
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
