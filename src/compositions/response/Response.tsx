@@ -75,7 +75,6 @@ interface ResponseProps extends ResponseVariants {
 export const Response: React.FC<ResponseProps> = ({
   nbrOfLikes = 0,
   nbrOfComments = 0,
-  likedBySelf = false,
   ...props
 }: ResponseProps) => {
   const { base, content, text, action } = ResponseStyles(props);
@@ -115,7 +114,7 @@ export const Response: React.FC<ResponseProps> = ({
             onToggle={props.onCommentClick}
           />
           <LikeToggle
-            pressed={likedBySelf!}
+            pressed={props.likedBySelf ?? false}
             likes={nbrOfLikes}
             onLikeChange={props.onLikeClick}
           />
