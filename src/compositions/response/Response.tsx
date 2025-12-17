@@ -26,28 +26,28 @@ type ResponseVariants = VariantProps<typeof ResponseStyles>;
 
 interface ResponseProps extends ResponseVariants {
   /** The display name of the user who created the Response. */
-  displayName: string;
+  displayName?: string | null;
 
   /** The username or handle associated with the Response. */
-  userName: string;
+  userName?: string | null;
 
   /** The date and time when the Response was created. */
-  timestamp: Date;
+  timestamp?: Date | null;
 
   /** The main text content of the Response. */
-  text: string;
+  text?: string | null;
 
   /** Avatar image URL */
-  src: string;
+  avatarSrc?: string | null;
 
   /** Triggered when the avatar is clicked. */
   onAvatarClick: () => void;
 
   /** Number of likes the post has received. */
-  nbrOfLikes: number;
+  nbrOfLikes?: number | null;
 
   /** Number of comments the post has received. */
-  nbrOfComments: number;
+  nbrOfComments?: number | null;
 
   /** Optional image source URL displayed within the Response. */
   imageSrc?: string;
@@ -69,7 +69,11 @@ interface ResponseProps extends ResponseVariants {
  * Detailed Response component displaying user info, text content,
  * optional image, and action buttons (comment, like, share).
  */
-export const Response: React.FC<ResponseProps> = (props: ResponseProps) => {
+export const Response: React.FC<ResponseProps> = ({
+  nbrOfLikes = 0,
+  nbrOfComments = 0,
+  ...props
+}: ResponseProps) => {
   const { base, content, text, action } = ResponseStyles(props);
 
   return (
@@ -77,7 +81,7 @@ export const Response: React.FC<ResponseProps> = (props: ResponseProps) => {
       <div className={content()}>
         <UserInfo
           size="sm"
-          src={props.src}
+          src={props.avatarSrc}
           displayName={props.displayName}
           userName={props.userName}
           timestamp={props.timestamp}
@@ -97,19 +101,16 @@ export const Response: React.FC<ResponseProps> = (props: ResponseProps) => {
           <Toggle
             ariaLabel="Comment"
             labelText={
-              props.nbrOfComments === 0
+              nbrOfComments === 0
                 ? "Comment"
-                : props.nbrOfComments === 1
+                : nbrOfComments === 1
                   ? "1 Comment"
-                  : `${props.nbrOfComments} Comments`
+                  : `${nbrOfComments} Comments`
             }
-            pressed={props.nbrOfComments !== 0}
+            pressed={nbrOfComments !== 0}
             onToggle={props.onCommentClick}
           />
-          <LikeToggle
-            likes={props.nbrOfLikes}
-            onLikeChange={props.onLikeClick}
-          />
+          <LikeToggle likes={nbrOfLikes} onLikeChange={props.onLikeClick} />
           <TimedButton
             icon={Share}
             label="Copy Link"

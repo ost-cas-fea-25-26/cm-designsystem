@@ -10,7 +10,7 @@ const userInfoStyles = tv({
   slots: {
     base: ["flex", "gap-2", "items-center"],
     userInfo: ["flex", "flex-col", "gap-2", "justify-center", "items-start"],
-    displayName: ["text-slate-900", "**:cursor-pointer"],
+    name: ["text-slate-900", "**:cursor-pointer"],
     detailInfo: ["flex", "flex", "gap-4"],
     timeInfo: ["text-slate-500"],
   },
@@ -21,15 +21,15 @@ type UserInfoSize = "sm" | "md" | "lg";
 
 interface UserInfoProps extends UserInfoVariants {
   /** Avatar image URL */
-  src?: string;
+  src?: string | null;
   /** Size variant of the component */
   size: UserInfoSize;
   /** Display name of the user */
-  displayName: string | undefined;
+  displayName?: string | null;
   /** Username of the user */
-  userName: string | undefined;
+  userName?: string | null;
   /** Timestamp for the user activity */
-  timestamp?: Date;
+  timestamp?: Date | null;
   /** Click handler for the whole UserInfo component */
   onClick: () => void;
 }
@@ -75,47 +75,39 @@ function getLabelSize(size: UserInfoSize): LabelSize {
  * when an activity occurred. The entire component acts as an interactive button
  * and includes keyboard accessibility using `Enter` and `Space`.
  */
-export const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
-  const { base, userInfo, displayName, detailInfo, timeInfo } =
-    userInfoStyles(props);
+export const UserInfo: React.FC<UserInfoProps> = ({
+  displayName = "New User",
+  userName = "newuser",
+  timestamp = new Date(),
+  ...props
+}: UserInfoProps) => {
+  const { base, userInfo, name, detailInfo, timeInfo } = userInfoStyles(props);
 
   return (
     <div className={base()}>
-      {props.src && (
-        <Avatar
-          alt="Profile"
-          size="sm"
-          src={props.src}
-          onAvatarClick={props.onClick}
-        />
-      )}
+      <Avatar
+        alt="Profile"
+        size="sm"
+        src={props.src}
+        onAvatarClick={props.onClick}
+      />
       <div className={userInfo()}>
-        <button onClick={props.onClick} className={displayName()}>
-          {props.displayName && (
-            <Label size={getLabelSize(props.size)}>{props.displayName}</Label>
-          )}
+        <button onClick={props.onClick} className={name()}>
+          <Label size={getLabelSize(props.size)}>{displayName}</Label>
         </button>
         <div className={detailInfo()}>
-          {props.userName && (
-            <IconButton
-              intent="secondary"
-              icon={Profile}
-              onClick={props.onClick}
-            >
-              {props.userName}
-            </IconButton>
-          )}
+          <IconButton intent="secondary" icon={Profile} onClick={props.onClick}>
+            {userName!}
+          </IconButton>
 
-          {props.timestamp && (
-            <IconButton
-              intent="primary"
-              icon={Time}
-              className={timeInfo()}
-              onClick={props.onClick}
-            >
-              {timeSince(props.timestamp)}
-            </IconButton>
-          )}
+          <IconButton
+            intent="primary"
+            icon={Time}
+            className={timeInfo()}
+            onClick={props.onClick}
+          >
+            {timeSince(timestamp!)}
+          </IconButton>
         </div>
       </div>
     </div>

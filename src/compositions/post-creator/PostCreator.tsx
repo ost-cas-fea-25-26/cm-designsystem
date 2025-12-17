@@ -25,7 +25,7 @@ type PostCreatorVariants = VariantProps<typeof PostCreatorStyles>;
 
 interface PostCreatorProps extends PostCreatorVariants {
   /** Avatar image URL */
-  src: string | undefined;
+  src: string | null;
 
   /** Triggered when the avatar is clicked. */
   onAvatarClick: () => void;

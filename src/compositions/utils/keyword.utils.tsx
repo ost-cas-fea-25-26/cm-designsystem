@@ -11,18 +11,18 @@ import { Keyword } from "../keyword/Keyword";
  * @param {string} text - The input text that may contain hashtags.
  * @returns {(string | React.ReactNode)[]} A list of text segments and `<Keyword>` components.
  */
-export function renderWithHashtags(text: string = "") {
+export function renderWithHashtags(text: string | null = "") {
   const regex = /#\w+/g;
   const parts = [];
   let lastIndex = 0;
   let match;
 
-  while ((match = regex.exec(text)) !== null) {
+  while ((match = regex.exec(text!)) !== null) {
     const { index } = match;
 
     // normal text before hashtag
     if (index > lastIndex) {
-      parts.push(text.substring(lastIndex, index));
+      parts.push(text!.substring(lastIndex, index));
     }
 
     // hashtag
@@ -32,8 +32,8 @@ export function renderWithHashtags(text: string = "") {
   }
 
   // remaining text
-  if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
+  if (lastIndex < text!.length) {
+    parts.push(text!.substring(lastIndex));
   }
 
   return parts;

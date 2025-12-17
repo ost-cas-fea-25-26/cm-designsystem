@@ -24,13 +24,13 @@ type ResponseCreatorVariants = VariantProps<typeof ResponseCreatorStyles>;
 
 interface ResponseCreatorProps extends ResponseCreatorVariants {
   /** Avatar image URL */
-  src: string;
+  src?: string | null;
 
   /** Display name of the user */
-  displayName: string;
+  displayName?: string | null;
 
   /** Username of the user */
-  userName: string;
+  userName?: string | null;
 
   /**
    * Callback fired when the "Send" button is clicked.
