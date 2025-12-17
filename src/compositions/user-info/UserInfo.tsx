@@ -5,6 +5,10 @@ import { Avatar } from "../../components/avatar/Avatar";
 import { IconButton } from "../../components/icon-button/IconButton";
 import { Profile, Time } from "../../components/icons/generated";
 import { Label, type LabelSize } from "../../components/typography/Label";
+import {
+  DEFAULT_DISPLAYNAME,
+  DEFAULT_USERNAME,
+} from "../utils/defaults.constants";
 
 const userInfoStyles = tv({
   slots: {
@@ -76,8 +80,8 @@ function getLabelSize(size: UserInfoSize): LabelSize {
  * and includes keyboard accessibility using `Enter` and `Space`.
  */
 export const UserInfo: React.FC<UserInfoProps> = ({
-  displayName = "New User",
-  userName = "newuser",
+  displayName = DEFAULT_DISPLAYNAME,
+  userName = DEFAULT_USERNAME,
   timestamp = new Date(),
   ...props
 }: UserInfoProps) => {
@@ -97,7 +101,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
         </button>
         <div className={detailInfo()}>
           <IconButton intent="secondary" icon={Profile} onClick={props.onClick}>
-            {userName!}
+            {userName ?? DEFAULT_USERNAME}
           </IconButton>
 
           <IconButton

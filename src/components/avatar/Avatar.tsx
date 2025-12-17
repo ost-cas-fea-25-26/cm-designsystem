@@ -114,7 +114,7 @@ interface AvatarProps extends AvatarVariants {
  * Built on top of Radix UI’s `Avatar` primitives and styled with Tailwind variants.
  */
 export const Avatar: React.FC<AvatarProps> = ({
-  src = "",
+  src,
   ...props
 }: AvatarProps) => {
   const { base, avatar, action } = avatarStyles(props);
@@ -124,7 +124,11 @@ export const Avatar: React.FC<AvatarProps> = ({
       className={base({ isClickable: !!props.onAvatarClick, ...props })}
       data-testid="avatar"
     >
-      <RadixAvatar.Image src={src!} alt={props.alt} className={avatar(props)} />
+      <RadixAvatar.Image
+        src={src ?? ""}
+        alt={props.alt}
+        className={avatar(props)}
+      />
       {props.size === "xl" && props.onActionClick && (
         <div className={action(props)}>
           <RoundButton
