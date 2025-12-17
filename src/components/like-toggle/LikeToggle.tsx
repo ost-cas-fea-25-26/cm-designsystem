@@ -215,6 +215,7 @@ export const LikeToggle = ({
       className={base()}
       pressed={selected}
       onPressedChange={handlePressedChange}
+      onClick={(e) => e.stopPropagation()}
     >
       <span
         className={icon()}
