@@ -29,7 +29,7 @@ const PostStyles = tv({
   },
   variants: {
     size: {
-      lg: { base: ["rounded-b-none"] },
+      lg: {},
       md: {},
     },
   },
