@@ -31,11 +31,8 @@ export interface PostBaseProps extends PostBaseVariants {
   /** Content to be rendered inside the PostBase component */
   children: React.ReactNode;
 
-  /** The HTML element type to render as. */
-  as?: keyof JSX.IntrinsicElements;
-
-  /** The URL to navigate to when the element is clicked, if rendered as an a. */
-  href?: string;
+  /** Navigation via onClick handler */
+  onClick?: () => void;
 }
 
 /**
@@ -43,19 +40,31 @@ export interface PostBaseProps extends PostBaseVariants {
  * and content area.
  */
 export const PostBase: React.FC<PostBaseProps> = ({
-  as = "div",
   className,
-  href,
+  onClick,
   ...props
 }) => {
   const { base } = PostBaseStyles(props);
 
-  return createElement(
-    as ?? "div",
-    {
-      className: cn(base(), as === "a" && "cursor-pointer", className),
-      href: as === "a" ? href : undefined,
-    },
-    props.children
+  return (
+    <div
+      className={cn(
+        base(),
+        className,
+        onClick
+          ? "cursor-pointer focus-visible:ring-2 focus-visible:ring-slate-300"
+          : undefined
+      )}
+      onClick={onClick}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={(e) => {
+        if (onClick && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+    >
+      {props.children}
+    </div>
   );
 };

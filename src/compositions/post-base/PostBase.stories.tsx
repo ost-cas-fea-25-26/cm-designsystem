@@ -32,17 +32,17 @@ export const Default: Story = {
   },
 };
 
-export const Link: Story = {
+export const Clickable: Story = {
   args: {
-    as: "a",
-    href: "https://example.com",
+    onClick: () => alert("Clicked PostBase!"),
     children: (
       <div>
         <Heading size="4" as="h4">
-          This is a Link!
+          This is Clickable!
         </Heading>
         <Paragraph size="lg">
-          This is an example of a PostBase link. Clicking will open a new page.
+          This is an example of a clickable PostBase. Clicking will trigger an
+          action.
         </Paragraph>
       </div>
     ),
