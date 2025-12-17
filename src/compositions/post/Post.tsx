@@ -92,7 +92,6 @@ interface PostProps extends PostVariants {
 export const Post: React.FC<PostProps> = ({
   nbrOfLikes = 0,
   nbrOfComments = 0,
-  likedBySelf = false,
   ...props
 }: PostProps) => {
   const { base, avatar, content, text, action } = PostStyles(props);
@@ -140,7 +139,7 @@ export const Post: React.FC<PostProps> = ({
             onToggle={props.onCommentClick}
           />
           <LikeToggle
-            pressed={likedBySelf!}
+            pressed={props.likedBySelf ?? false}
             likes={nbrOfLikes}
             onLikeChange={props.onLikeClick}
           />
