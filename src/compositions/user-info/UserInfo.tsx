@@ -89,12 +89,14 @@ export const UserInfo: React.FC<UserInfoProps> = ({
 
   return (
     <div className={base()}>
-      <Avatar
-        alt="Profile"
-        size="sm"
-        src={props.src}
-        onAvatarClick={props.onClick}
-      />
+      {props.src && (
+        <Avatar
+          alt="Profile"
+          size="sm"
+          src={props.src}
+          onAvatarClick={props.onClick}
+        />
+      )}
       <div className={userInfo()}>
         <button onClick={props.onClick} className={name()}>
           <Label size={getLabelSize(props.size)}>{displayName}</Label>

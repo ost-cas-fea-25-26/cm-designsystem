@@ -52,7 +52,7 @@ interface PostProps extends PostVariants {
   timestamp?: Date | null;
 
   /** The main text content of the post. */
-  text?: string;
+  text?: string | null;
 
   /** Avatar image URL */
   avatarSrc?: string | null;
