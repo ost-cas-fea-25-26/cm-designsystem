@@ -9,6 +9,11 @@ import {
   Settings,
 } from "../../components/icons/generated";
 import { Label } from "../../components/typography/Label";
+import {
+  DEFAULT_DISPLAYNAME,
+  DEFAULT_LOCATION,
+  DEFAULT_USERNAME,
+} from "../utils/defaults.constants";
 
 const profileBannerInfoStyles = tv({
   slots: {
@@ -86,9 +91,9 @@ const memberSincePrefix: string = "Member since ";
  * Renders profile information used in a user profile banner
  */
 export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = ({
-  displayName = "New User",
-  userName = "newuser",
-  location = "Location",
+  displayName = DEFAULT_DISPLAYNAME,
+  userName = DEFAULT_USERNAME,
+  location = DEFAULT_LOCATION,
   joinedTimestamp = new Date(),
   ...props
 }: ProfileBannerInfoProps) => {
@@ -114,7 +119,7 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = ({
           icon={Profile}
           onClick={props.onProfileClick}
         >
-          {userName!}
+          {userName ?? DEFAULT_USERNAME}
         </IconButton>
 
         <IconButton
@@ -123,7 +128,7 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = ({
           onClick={props.onProfileClick}
           className={secondaryInfo()}
         >
-          {location!}
+          {location ?? DEFAULT_LOCATION}
         </IconButton>
 
         <IconButton
