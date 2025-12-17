@@ -1,3 +1,4 @@
+import { createElement, type JSX } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 const PostBaseStyles = tv({
@@ -12,6 +13,7 @@ const PostBaseStyles = tv({
       "flex",
       "relative",
       "w-full",
+      "focus-visible:ring-2",
       "hover:ring-2",
       "hover:ring-slate-200",
     ],
@@ -28,14 +30,32 @@ export interface PostBaseProps extends PostBaseVariants {
 
   /** Content to be rendered inside the PostBase component */
   children: React.ReactNode;
+
+  /** The HTML element type to render as. */
+  as?: keyof JSX.IntrinsicElements;
+
+  /** The URL to navigate to when the element is clicked, if rendered as an a. */
+  href?: string;
 }
 
 /**
  * Base layout wrapper for a post, including an avatar section
  * and content area.
  */
-export const PostBase: React.FC<PostBaseProps> = (props: PostBaseProps) => {
+export const PostBase: React.FC<PostBaseProps> = ({
+  as = "div",
+  className,
+  href,
+  ...props
+}) => {
   const { base } = PostBaseStyles(props);
 
-  return <div className={cn(base(), props.className)}>{props.children}</div>;
+  return createElement(
+    as ?? "div",
+    {
+      className: cn(base(), as === "a" && "cursor-pointer", className),
+      href: as === "a" ? href : undefined,
+    },
+    props.children
+  );
 };

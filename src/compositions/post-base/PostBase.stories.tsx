@@ -31,3 +31,20 @@ export const Default: Story = {
     ),
   },
 };
+
+export const Link: Story = {
+  args: {
+    as: "a",
+    href: "https://example.com",
+    children: (
+      <div>
+        <Heading size="4" as="h4">
+          This is a Link!
+        </Heading>
+        <Paragraph size="lg">
+          This is an example of a PostBase link. Clicking will open a new page.
+        </Paragraph>
+      </div>
+    ),
+  },
+};
