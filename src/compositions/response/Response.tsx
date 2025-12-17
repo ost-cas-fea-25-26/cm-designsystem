@@ -46,6 +46,9 @@ interface ResponseProps extends ResponseVariants {
   /** Number of likes the post has received. */
   nbrOfLikes?: number | null;
 
+  /** Is post liked by self */
+  likedBySelf?: boolean | null;
+
   /** Number of comments the post has received. */
   nbrOfComments?: number | null;
 
@@ -110,7 +113,11 @@ export const Response: React.FC<ResponseProps> = ({
             pressed={nbrOfComments !== 0}
             onToggle={props.onCommentClick}
           />
-          <LikeToggle likes={nbrOfLikes} onLikeChange={props.onLikeClick} />
+          <LikeToggle
+            pressed={props.likedBySelf ?? false}
+            likes={nbrOfLikes}
+            onLikeChange={props.onLikeClick}
+          />
           <TimedButton
             icon={Share}
             label="Copy Link"
