@@ -6,7 +6,15 @@ import type { TabItemProps } from "./TabItem";
 
 const tabStyles = tv({
   slots: {
-    list: ["bg-slate-200", "rounded-lg", "p-1", "flex", "gap-2", "group"],
+    list: [
+      "bg-slate-200",
+      "rounded-lg",
+      "p-1",
+      "flex",
+      "gap-2",
+      "group",
+      "w-fit",
+    ],
     trigger: ["pt-2", "pb-2", "pr-3", "pl-3", "rounded-md"],
   },
   variants: {
