@@ -80,6 +80,9 @@ interface PostProps extends PostVariants {
 
   /** Callback fired when the share button is clicked. */
   onShareClick: () => void;
+
+  /** Link to Detail Post */
+  detailLink?: string;
 }
 
 /**
@@ -89,8 +92,17 @@ interface PostProps extends PostVariants {
 export const Post: React.FC<PostProps> = (props: PostProps) => {
   const { base, avatar, content, text, action } = PostStyles(props);
 
+  const handlePostClick = () => {
+    if (!props.detailLink) return;
+    // Navigate to the detail link, without Nextjs Link so that it stys framework agnostic
+    window.location.href = props.detailLink;
+  };
+
   return (
-    <PostBase className={base()}>
+    <PostBase
+      className={base()}
+      onClick={props.detailLink ? handlePostClick : undefined}
+    >
       <div className={avatar()}>
         <Avatar
           alt="Profile"
@@ -131,10 +143,12 @@ export const Post: React.FC<PostProps> = (props: PostProps) => {
             pressed={props.nbrOfComments !== 0}
             onToggle={props.onCommentClick}
           />
+
           <LikeToggle
             likes={props.nbrOfLikes}
             onLikeChange={props.onLikeClick}
           />
+
           <TimedButton
             icon={Share}
             label="Copy Link"
