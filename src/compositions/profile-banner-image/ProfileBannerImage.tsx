@@ -51,7 +51,7 @@ type ProfileBannerImageVariants = VariantProps<typeof ProfileBannerImageStyles>;
 
 interface ProfileBannerImageProps extends ProfileBannerImageVariants {
   /** Avatar image URL */
-  src: string;
+  src?: string | null;
 
   /**
    * Alternative text for the image, used for accessibility.
@@ -72,7 +72,7 @@ export const ProfileBannerImage: React.FC<ProfileBannerImageProps> = (
   props: ProfileBannerImageProps
 ) => {
   const { base, image, overlay, icon } = ProfileBannerImageStyles(props);
-  const [src, setSrc] = useState<string>(props.src);
+  const [src, setSrc] = useState<string>(props.src ?? "");
 
   return (
     <div className={base()}>

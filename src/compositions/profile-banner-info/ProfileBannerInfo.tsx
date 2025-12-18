@@ -9,13 +9,18 @@ import {
   Settings,
 } from "../../components/icons/generated";
 import { Label } from "../../components/typography/Label";
+import {
+  DEFAULT_DISPLAYNAME,
+  DEFAULT_LOCATION,
+  DEFAULT_USERNAME,
+} from "../utils/defaults.constants";
 
 const profileBannerInfoStyles = tv({
   slots: {
     base: ["flex", "flex-col", "gap-2", "items-start"],
     title: ["flex", "gap-1", "items-center", "**:cursor-pointer"],
     icon: ["text-violet-600", "-mt-0.5"],
-    displayName: ["text-slate-900"],
+    name: ["text-slate-900"],
     detailInfo: ["flex", "gap-4"],
     secondaryInfo: ["text-slate-500"],
   },
@@ -30,29 +35,29 @@ interface ProfileBannerInfoProps extends ProfileBannerInfoVariants {
   /**
    * The user's full display name (e.g., "John Doe").
    */
-  displayName: string;
+  displayName?: string | null;
 
   /**
    * The user's username or handle (e.g., "@john").
    */
-  userName: string;
+  userName?: string | null;
 
   /**
    * The user's location as a readable text label.
    */
-  location: string;
+  location?: string | null;
 
   /**
    * A timestamp representing when the user joined.
    * Used to generate the "Member since" relative date.
    */
-  joinedTimestamp: Date;
+  joinedTimestamp?: Date | null;
 
   /**
    * Callback fired whenever any profile-related element is clicked.
    * Typically used to open the profile or navigate to a user page.
    */
-  onProfileClick: () => void;
+  onProfileClick?: () => void;
 
   /** A function called when the settings button is clicked. */
   onSettingsClick?: () => void;
@@ -85,17 +90,21 @@ const memberSincePrefix: string = "Member since ";
  *
  * Renders profile information used in a user profile banner
  */
-export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = (
-  props: ProfileBannerInfoProps
-) => {
-  const { base, title, icon, displayName, detailInfo, secondaryInfo } =
+export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = ({
+  displayName = DEFAULT_DISPLAYNAME,
+  userName = DEFAULT_USERNAME,
+  location = DEFAULT_LOCATION,
+  joinedTimestamp = new Date(),
+  ...props
+}: ProfileBannerInfoProps) => {
+  const { base, title, icon, name, detailInfo, secondaryInfo } =
     profileBannerInfoStyles(props);
 
   return (
     <div className={base()}>
       <div className={title()}>
-        <button onClick={props.onProfileClick} className={displayName()}>
-          <Label size="xl">{props.displayName}</Label>
+        <button onClick={props.onProfileClick} className={name()}>
+          <Label size="xl">{displayName}</Label>
         </button>
 
         {props.isCurrentUser && (
@@ -110,7 +119,7 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = (
           icon={Profile}
           onClick={props.onProfileClick}
         >
-          {props.userName}
+          {userName ?? DEFAULT_USERNAME}
         </IconButton>
 
         <IconButton
@@ -119,7 +128,7 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = (
           onClick={props.onProfileClick}
           className={secondaryInfo()}
         >
-          {props.location}
+          {location ?? DEFAULT_LOCATION}
         </IconButton>
 
         <IconButton
@@ -128,7 +137,7 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = (
           onClick={props.onProfileClick}
           className={secondaryInfo()}
         >
-          {memberSincePrefix + timeSince(props.joinedTimestamp)}
+          {memberSincePrefix + timeSince(joinedTimestamp!)}
         </IconButton>
       </div>
     </div>

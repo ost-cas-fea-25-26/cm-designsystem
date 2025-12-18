@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    src: "example",
+    avatarSrc: "example",
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),
@@ -34,7 +34,7 @@ export const Default: Story = {
 
 export const ResponseWithImage: Story = {
   args: {
-    src: "example",
+    avatarSrc: "example",
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),
@@ -53,7 +53,7 @@ export const ResponseWithImage: Story = {
 
 export const LikesAndComments: Story = {
   args: {
-    src: "example",
+    avatarSrc: "example",
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),

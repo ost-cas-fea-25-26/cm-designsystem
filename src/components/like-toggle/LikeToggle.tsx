@@ -150,7 +150,7 @@ type LikeToggleVariants = VariantProps<typeof toggleStyles>;
 
 interface LikeToggleProps extends LikeToggleVariants {
   pressed?: boolean;
-  likes?: number;
+  likes?: number | null;
   onLikeChange: (liked: boolean) => void;
 }
 
@@ -161,7 +161,7 @@ export const LikeToggle = ({
 }: LikeToggleProps) => {
   const [animating, setAnimating] = useState(false);
   const [selected, setSelected] = useState(pressed);
-  const [currentLikes, setCurrentLikes] = useState(likes);
+  const [currentLikes, setCurrentLikes] = useState(likes!);
   const [label, setLabel] = useState(
     likes ? (likes === 1 ? `${likes} Like` : `${likes} Likes`) : "Like"
   );

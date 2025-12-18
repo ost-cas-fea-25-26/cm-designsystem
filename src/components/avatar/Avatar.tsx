@@ -84,7 +84,7 @@ interface AvatarProps extends AvatarVariants {
   /**
    * The URL source of the avatar image.
    */
-  src: string | undefined;
+  src?: string | null;
 
   /**
    * Accessible label for the action button that appears on extra-large (`xl`)
@@ -113,7 +113,10 @@ interface AvatarProps extends AvatarVariants {
  * A flexible and accessible user avatar component.
  * Built on top of Radix UI’s `Avatar` primitives and styled with Tailwind variants.
  */
-export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
+export const Avatar: React.FC<AvatarProps> = ({
+  src,
+  ...props
+}: AvatarProps) => {
   const { base, avatar, action } = avatarStyles(props);
   return (
     <RadixAvatar.Root
@@ -122,7 +125,7 @@ export const Avatar: React.FC<AvatarProps> = (props: AvatarProps) => {
       data-testid="avatar"
     >
       <RadixAvatar.Image
-        src={props.src}
+        src={src ?? ""}
         alt={props.alt}
         className={avatar(props)}
       />

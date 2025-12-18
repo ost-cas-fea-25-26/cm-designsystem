@@ -12,8 +12,8 @@ import { ProfileBannerInfo } from "../profile-banner-info/ProfileBannerInfo";
 
 const ProfileBannerStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "gap-6", "w-170", "h-80", "relative"],
-    avatar: ["absolute", "-bottom-20", "right-6"],
+    base: ["flex", "flex-col", "gap-6", "w-170", "relative"],
+    avatar: ["absolute", "top-60", "right-6"],
     info: ["flex", "flex-col", "gap-3"],
     description: ["text-slate-500"],
   },
@@ -23,31 +23,31 @@ type ProfileBannerVariants = VariantProps<typeof ProfileBannerStyles>;
 
 interface ProfileBannerProps extends ProfileBannerVariants {
   /** URL of the user's avatar image. */
-  avatarSrc: string;
+  avatarSrc?: string | null;
 
   /** Alt text for the avatar image. */
   avatarAlt: string;
 
   /** URL of the profile banner or main image. */
-  imageSrc: string;
+  imageSrc?: string | null;
 
   /** Alt text for the main image. */
   imageAlt: string;
 
   /** The user's display name. */
-  displayName: string;
+  displayName?: string | null;
 
   /** The user’s username/handle. */
-  userName: string;
+  userName?: string | null;
 
   /** The user’s location string. */
-  location: string;
+  location?: string | null;
 
   /** Date when the user joined. */
-  joinedTimestamp: Date;
+  joinedTimestamp?: Date | null;
 
   /** Bio or profile description text. */
-  description: string;
+  description?: string | null;
 
   /** Whether the profile being viewed belongs to the logged-in user. */
   isCurrentUser: boolean;
@@ -102,7 +102,6 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = (
             userName={props.userName}
             location={props.location}
             joinedTimestamp={props.joinedTimestamp}
-            onProfileClick={() => {}}
           />
           <Paragraph size="md" className={description()}>
             {props.description}

@@ -43,34 +43,37 @@ interface PostProps extends PostVariants {
   size: PostSize;
 
   /** The display name of the user who created the post. */
-  displayName: string | undefined;
+  displayName?: string | null;
 
   /** The username or handle associated with the post. */
-  userName: string | undefined;
+  userName?: string | null;
 
   /** The date and time when the post was created. */
-  timestamp: Date | undefined;
+  timestamp?: Date | null;
 
   /** The main text content of the post. */
-  text: string | undefined;
+  text?: string | null;
 
   /** Avatar image URL */
-  src: string | undefined;
+  avatarSrc?: string | null;
+
+  /** Number of likes the post has received. */
+  nbrOfLikes?: number | null;
+
+  /** Is post liked by self */
+  likedBySelf?: boolean | null;
+
+  /** Number of comments the post has received. */
+  nbrOfComments?: number | null;
+
+  /** Optional image source URL displayed within the post. */
+  imageSrc?: string | null;
+
+  /** Optional alt text for the post image, used for accessibility. */
+  imageAlt?: string | null;
 
   /** Triggered when the avatar is clicked. */
   onAvatarClick: () => void;
-
-  /** Number of likes the post has received. */
-  nbrOfLikes: number;
-
-  /** Number of comments the post has received. */
-  nbrOfComments: number;
-
-  /** Optional image source URL displayed within the post. */
-  imageSrc?: string | undefined;
-
-  /** Optional alt text for the post image, used for accessibility. */
-  imageAlt?: string;
 
   /** Callback fired when the comment button is clicked. */
   onCommentClick: () => void;
@@ -89,7 +92,11 @@ interface PostProps extends PostVariants {
  * Detailed post component displaying user info, text content,
  * optional image, and action buttons (comment, like, share).
  */
-export const Post: React.FC<PostProps> = (props: PostProps) => {
+export const Post: React.FC<PostProps> = ({
+  nbrOfLikes = 0,
+  nbrOfComments = 0,
+  ...props
+}: PostProps) => {
   const { base, avatar, content, text, action } = PostStyles(props);
 
   const handlePostClick = () => {
@@ -107,7 +114,7 @@ export const Post: React.FC<PostProps> = (props: PostProps) => {
         <Avatar
           alt="Profile"
           size="md"
-          src={props.src}
+          src={props.avatarSrc}
           onAvatarClick={props.onAvatarClick}
         />
       </div>
@@ -134,18 +141,19 @@ export const Post: React.FC<PostProps> = (props: PostProps) => {
           <Toggle
             ariaLabel="Comment"
             labelText={
-              props.nbrOfComments === 0
+              nbrOfComments === 0
                 ? "Comment"
-                : props.nbrOfComments === 1
+                : nbrOfComments === 1
                   ? "1 Comment"
-                  : `${props.nbrOfComments} Comments`
+                  : `${nbrOfComments} Comments`
             }
-            pressed={props.nbrOfComments !== 0}
+            pressed={nbrOfComments !== 0}
             onToggle={props.onCommentClick}
           />
 
           <LikeToggle
-            likes={props.nbrOfLikes}
+            pressed={props.likedBySelf ?? false}
+            likes={nbrOfLikes}
             onLikeChange={props.onLikeClick}
           />
 
