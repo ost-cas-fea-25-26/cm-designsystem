@@ -1,8 +1,8 @@
+import React from "react";
 import { expect } from "storybook/test";
 import { TabItem } from "./TabItem";
 import { Tabs } from "./Tabs";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import React from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
