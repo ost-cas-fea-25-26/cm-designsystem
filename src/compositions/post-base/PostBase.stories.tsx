@@ -31,3 +31,20 @@ export const Default: Story = {
     ),
   },
 };
+
+export const Clickable: Story = {
+  args: {
+    onClick: () => alert("Clicked PostBase!"),
+    children: (
+      <div>
+        <Heading size="4" as="h4">
+          This is Clickable!
+        </Heading>
+        <Paragraph size="lg">
+          This is an example of a clickable PostBase. Clicking will trigger an
+          action.
+        </Paragraph>
+      </div>
+    ),
+  },
+};

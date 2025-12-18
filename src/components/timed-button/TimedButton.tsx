@@ -133,11 +133,13 @@ export const TimedButton: React.FC<TimedButtonProps> = ({
     };
   }, []);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
     // Klick -> Pressed
     setPressed(true);
     setAnimating(true);
-    onClick?.();
+    onClick?.(e);
 
     // Hover -> Pressed: Dissolve über 350ms
     const timeout1 = setTimeout(() => setAnimating(false), 350);
