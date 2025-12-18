@@ -1,13 +1,13 @@
 import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 import { TabItem } from "./TabItem";
 import { Tabs } from "./Tabs";
-import userEvent from "@testing-library/user-event";
 
 describe("Tabs", () => {
   test("should render three tabs", async () => {
     // Arrange
-    var value = "1";
+    let value = "1";
     render(
       <Tabs value={value} onChange={(change) => (value = change)}>
         <TabItem label="tab1" value="1">
@@ -41,7 +41,7 @@ describe("Tabs", () => {
 
   test("should render first tab as selected when value = 1 is set", async () => {
     // Arrange
-    var value = "1";
+    let value = "1";
     render(
       <Tabs value={value} onChange={(change) => (value = change)}>
         <TabItem label="tab1" value="1">
@@ -72,7 +72,7 @@ describe("Tabs", () => {
 
   test("should render second tab as selected when value = 2 is set", async () => {
     // Arrange
-    var value = "2";
+    let value = "2";
     render(
       <Tabs value={value} onChange={(change) => (value = change)}>
         <TabItem label="tab1" value="1">
