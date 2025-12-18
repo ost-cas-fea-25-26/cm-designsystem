@@ -2,6 +2,7 @@ import { expect } from "storybook/test";
 import { TabItem } from "./TabItem";
 import { Tabs } from "./Tabs";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import React from "react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -48,6 +49,15 @@ export const Default: Story = {
       </TabItem>,
     ],
   },
+  render: (args) => {
+    const [value, setValue] = React.useState(args.value);
+
+    return (
+      <Tabs value={value} onChange={setValue}>
+        {args.children}
+      </Tabs>
+    );
+  },
   play: async ({ canvas, userEvent, step }) => {
     await step("Check initial render", async () => {
       await expect(
@@ -90,6 +100,15 @@ export const Binary: Story = {
         <div style={{ padding: "1rem", maxWidth: "400px" }}>Lorem ipsum 2</div>
       </TabItem>,
     ],
+  },
+  render: (args) => {
+    const [value, setValue] = React.useState(args.value);
+
+    return (
+      <Tabs value={value} onChange={setValue}>
+        {args.children}
+      </Tabs>
+    );
   },
   play: async ({ canvas, userEvent, step }) => {
     await step("Check initial render", async () => {
