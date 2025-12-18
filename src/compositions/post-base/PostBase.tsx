@@ -1,4 +1,3 @@
-import { createElement, type JSX } from "react";
 import { cn, tv, type VariantProps } from "tailwind-variants";
 
 const PostBaseStyles = tv({
