@@ -1,3 +1,5 @@
+"use client";
+
 import * as RadixTabs from "@radix-ui/react-tabs";
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
@@ -36,76 +38,58 @@ const tabStyles = tv({
     {
       selected: true,
       effect: "first",
-      class: {
-        trigger: ["group-hover:pr-6"],
-      },
+      class: { trigger: ["group-hover:pr-6"] },
     },
     {
       selected: true,
       effect: "middle",
-      class: {
-        trigger: ["group-hover:pr-6", "group-hover:pl-6"],
-      },
+      class: { trigger: ["group-hover:pr-6", "group-hover:pl-6"] },
     },
     {
       selected: true,
       effect: "last",
-      class: {
-        trigger: ["group-hover:pl-6"],
-      },
+      class: { trigger: ["group-hover:pl-6"] },
     },
   ],
 });
 
 type TabVariants = VariantProps<typeof tabStyles>;
 
-export interface TabLabelProps {
-  value: string;
-  label: string;
-}
-
 export interface TabProps extends TabVariants {
   value: string;
   onChange?: (value: string) => void;
-  children: React.ReactElement<TabItemProps>[];
+  children: React.ReactNode;
 }
 
-export const Tabs = (props: TabProps) => {
-  const { list, trigger } = tabStyles(props);
-  const [currentSelection, setSelection] = React.useState(props.value);
+export const Tabs = ({ value, onChange, children, ...variants }: TabProps) => {
+  const { list, trigger } = tabStyles(variants);
+
+  const items = React.Children.toArray(children).filter(
+    (child): child is React.ReactElement<TabItemProps> =>
+      React.isValidElement(child)
+  );
 
   const getEffectVariant = (index: number, max: number) =>
-    index === 0 ? "first" : max === index ? "last" : "middle";
-
-  const onClick = (value: string) => {
-    setSelection(value);
-    props.onChange?.(value);
-  };
+    index === 0 ? "first" : index === max ? "last" : "middle";
 
   return (
-    <RadixTabs.Root defaultValue={props.value}>
+    <RadixTabs.Root value={value} onValueChange={onChange}>
       <RadixTabs.List className={list()}>
-        {props.children.map((child, index) => (
+        {items.map((child, index) => (
           <RadixTabs.Trigger
             key={child.props.value}
             value={child.props.value}
             className={trigger({
-              selected: child.props.value === currentSelection,
-              effect: getEffectVariant(index, props.children.length - 1),
+              selected: child.props.value === value,
+              effect: getEffectVariant(index, items.length - 1),
             })}
-            onClick={() => onClick(child.props.value)}
           >
             <Label size="lg">{child.props.label}</Label>
           </RadixTabs.Trigger>
         ))}
       </RadixTabs.List>
 
-      {React.Children.map(props.children, (child, index) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, { key: props.value || index });
-        }
-        return child;
-      })}
+      {items}
     </RadixTabs.Root>
   );
 };

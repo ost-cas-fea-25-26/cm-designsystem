@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 import { TabItem } from "./TabItem";
 import { Tabs } from "./Tabs";
@@ -6,8 +7,9 @@ import { Tabs } from "./Tabs";
 describe("Tabs", () => {
   test("should render three tabs", async () => {
     // Arrange
+    let value = "1";
     render(
-      <Tabs value="1">
+      <Tabs value={value} onChange={(change) => (value = change)}>
         <TabItem label="tab1" value="1">
           tabItem1
         </TabItem>
@@ -39,8 +41,9 @@ describe("Tabs", () => {
 
   test("should render first tab as selected when value = 1 is set", async () => {
     // Arrange
+    let value = "1";
     render(
-      <Tabs value="1">
+      <Tabs value={value} onChange={(change) => (value = change)}>
         <TabItem label="tab1" value="1">
           tabItem1
         </TabItem>
@@ -69,8 +72,9 @@ describe("Tabs", () => {
 
   test("should render second tab as selected when value = 2 is set", async () => {
     // Arrange
+    let value = "2";
     render(
-      <Tabs value="2">
+      <Tabs value={value} onChange={(change) => (value = change)}>
         <TabItem label="tab1" value="1">
           tabItem1
         </TabItem>
@@ -97,11 +101,11 @@ describe("Tabs", () => {
     expect(tabItems.length).toBe(2);
   });
 
-  test("should call onChange when second tab clicked", () => {
+  test("should call onChange when second tab clicked", async () => {
     // Arrange
     const onValueChange = vi.fn();
     render(
-      <Tabs value="2" onChange={onValueChange}>
+      <Tabs value="1" onChange={onValueChange}>
         <TabItem label="tab1" value="1">
           tabItem1
         </TabItem>
@@ -114,7 +118,11 @@ describe("Tabs", () => {
       </Tabs>
     );
 
-    fireEvent.click(screen.getByRole("tab", { name: /tab2/i }));
+    // fireEvent.click(screen.getByRole("tab", { name: /tab2/i }));
+    const tabList = screen.getByRole("tablist");
+    const tabs = within(tabList).getAllByRole("tab");
+
+    await userEvent.click(tabs[1]);
     expect(onValueChange).toHaveBeenCalledWith("2");
   });
 });
