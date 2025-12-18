@@ -32,7 +32,7 @@ export interface BaseAccessibleButtonProps {
   /**
    * Click handler for the button.
    */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 interface AccessibleButtonProps extends BaseAccessibleButtonProps {

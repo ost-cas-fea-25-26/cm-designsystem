@@ -22,7 +22,7 @@ export const Large: Story = {
     displayName: "Display Name",
     timestamp: new Date(),
     text: `Quia aut et aut. Sunt et eligendi similique enim qui quo minus. Aut aut error velit voluptatum optio sed quis cumque error magni. Deserunt pariatur molestiae incidunt. Omnis deserunt ratione et recusandae quos excepturi ut deleniti ut repellat magni.
-    
+
 #casfee #goOST #smartive #teamCM`,
     nbrOfComments: 0,
     nbrOfLikes: 0,
@@ -84,5 +84,27 @@ export const LikesAndComments: Story = {
     onCommentClick: fn(),
     onLikeClick: fn(),
     onShareClick: fn(),
+  },
+};
+
+export const PostWithDetailLink: Story = {
+  name: "Post with Link to Detail Page",
+  args: {
+    size: "md",
+    displayName: "Jane Doe",
+    userName: "janedoe",
+    timestamp: new Date(),
+    text: "This is a post with a detail link. #example #storybook",
+    avatarSrc: "https://randomuser.me/api/portraits/women/44.jpg",
+    onAvatarClick: fn(),
+    nbrOfLikes: 5,
+    nbrOfComments: 2,
+    // imageSrc:
+    //   "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    // imageAlt: "Example banner",
+    onCommentClick: fn(),
+    onLikeClick: fn(),
+    onShareClick: fn(),
+    detailLink: "https://example.com/detail/123",
   },
 };
