@@ -95,7 +95,7 @@ export const PostWithDetailLink: Story = {
     userName: "janedoe",
     timestamp: new Date(),
     text: "This is a post with a detail link. #example #storybook",
-    src: "https://randomuser.me/api/portraits/women/44.jpg",
+    avatarSrc: "https://randomuser.me/api/portraits/women/44.jpg",
     onAvatarClick: fn(),
     nbrOfLikes: 5,
     nbrOfComments: 2,
