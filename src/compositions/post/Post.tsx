@@ -106,7 +106,8 @@ export const Post: React.FC<PostProps> = ({
   nbrOfComments = 0,
   ...props
 }: PostProps) => {
-  const { base, header, avatar, userInfoWrapper, content, text, action } = PostStyles(props);
+  const { base, header, avatar, userInfoWrapper, content, text, action } =
+    PostStyles(props);
 
   const handlePostClick = () => {
     if (!props.detailLink) return;
