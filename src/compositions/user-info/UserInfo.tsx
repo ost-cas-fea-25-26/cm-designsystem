@@ -14,8 +14,14 @@ const userInfoStyles = tv({
   slots: {
     base: ["flex", "gap-2", "items-center"],
     userInfo: ["flex", "flex-col", "gap-2", "justify-center", "items-start"],
-    name: ["text-slate-900", "**:cursor-pointer"],
-    detailInfo: ["flex", "flex", "gap-4"],
+    name: [
+      "text-slate-900",
+      "bg-transparent",
+      "border-0",
+      "p-0",
+      "**:cursor-pointer",
+    ],
+    detailInfo: ["flex", "flex-col", "md:flex-row", "gap-2", "md:gap-4"],
     timeInfo: ["text-slate-500"],
   },
 });

@@ -16,8 +16,8 @@ export const paragraphStyles = tv({
   base: ["font-medium", "tracking-normal"],
   variants: {
     size: {
-      lg: ["text-[24px]/[145%]"],
-      md: ["text-[18px]/[140%]"],
+      lg: ["text-[20px]/[145%]", "md:text-[24px]/[145%]"],
+      md: ["text-[16px]/[140%]", "md:text-[18px]/[140%]"],
     },
   },
 });

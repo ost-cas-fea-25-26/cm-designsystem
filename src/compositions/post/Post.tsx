@@ -16,16 +16,25 @@ import { renderWithHashtags } from "../utils/keyword.utils";
 
 const PostStyles = tv({
   slots: {
-    base: [],
-    avatar: ["absolute", "-left-8", "top-6"],
-    content: ["flex", "flex-col", "gap-6"],
+    base: ["flex", "flex-col", "gap-4", "md:gap-6", "md:relative"],
+    header: ["flex", "gap-3", "items-start", "md:gap-0"],
+    avatar: ["flex-shrink-0", "md:absolute", "md:-left-8", "md:top-6"],
+    userInfoWrapper: ["flex-1", "min-w-0"],
+    content: ["flex", "flex-col", "gap-4", "md:gap-6"],
     text: [
       "text-slate-900",
       "text-wrap",
       "wrap-anywhere",
       "whitespace-pre-wrap",
     ],
-    action: ["flex", "gap-10", "justify-start", "-ml-3"],
+    action: [
+      "flex",
+      "flex-row",
+      "gap-4",
+      "md:gap-10",
+      "justify-start",
+      "items-start",
+    ],
   },
   variants: {
     size: {
@@ -97,7 +106,8 @@ export const Post: React.FC<PostProps> = ({
   nbrOfComments = 0,
   ...props
 }: PostProps) => {
-  const { base, avatar, content, text, action } = PostStyles(props);
+  const { base, header, avatar, userInfoWrapper, content, text, action } =
+    PostStyles(props);
 
   const handlePostClick = () => {
     if (!props.detailLink) return;
@@ -110,23 +120,28 @@ export const Post: React.FC<PostProps> = ({
       className={base()}
       onClick={props.detailLink ? handlePostClick : undefined}
     >
-      <div className={avatar()}>
-        <Avatar
-          alt="Profile"
-          size="md"
-          src={props.avatarSrc}
-          onAvatarClick={props.onAvatarClick}
-        />
+      <div className={header()}>
+        <div className={avatar()}>
+          <Avatar
+            alt="Profile"
+            size="md"
+            src={props.avatarSrc}
+            onAvatarClick={props.onAvatarClick}
+          />
+        </div>
+        <div className={userInfoWrapper()}>
+          <UserInfo
+            size={props.size}
+            displayName={props.displayName}
+            userName={props.userName}
+            timestamp={props.timestamp}
+            onClick={props.onAvatarClick}
+            src={null}
+          />
+        </div>
       </div>
 
       <div className={content()}>
-        <UserInfo
-          size={props.size}
-          displayName={props.displayName}
-          userName={props.userName}
-          timestamp={props.timestamp}
-          onClick={props.onAvatarClick}
-        />
         <Paragraph size={props.size} className={text()}>
           {renderWithHashtags(props.text)}
         </Paragraph>
