@@ -71,6 +71,7 @@ interface ToggleProps extends ToggleVariants {
   labelText: string;
   pressed?: boolean;
   onToggle: (toggled: boolean) => void;
+  disabled?: boolean;
 }
 
 export const Toggle = ({
@@ -78,6 +79,7 @@ export const Toggle = ({
   labelText,
   pressed = false,
   onToggle,
+  disabled = false,
 }: ToggleProps) => {
   const { base, icon, label: labelSlot } = toggleStyles({ pressed });
 
@@ -87,6 +89,7 @@ export const Toggle = ({
       className={base()}
       pressed={pressed}
       onPressedChange={onToggle}
+      disabled={disabled}
     >
       <span
         className={icon()}
