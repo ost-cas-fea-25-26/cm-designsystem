@@ -66,6 +66,9 @@ interface ResponseProps extends ResponseVariants {
 
   /** Callback fired when the share button is clicked. */
   onShareClick: () => void;
+
+  /** Whether the comment button is disabled. */
+  commentsDisabled?: boolean;
 }
 
 /**
@@ -75,6 +78,7 @@ interface ResponseProps extends ResponseVariants {
 export const Response: React.FC<ResponseProps> = ({
   nbrOfLikes = 0,
   nbrOfComments = 0,
+  commentsDisabled = false,
   ...props
 }: ResponseProps) => {
   const { base, content, text, action } = ResponseStyles(props);
@@ -102,6 +106,7 @@ export const Response: React.FC<ResponseProps> = ({
         )}
         <div className={action()}>
           <Toggle
+            disabled={commentsDisabled}
             ariaLabel="Comment"
             labelText={
               nbrOfComments === 0
