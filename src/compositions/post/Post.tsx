@@ -16,9 +16,10 @@ import { renderWithHashtags } from "../utils/keyword.utils";
 
 const PostStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "gap-4", "md:gap-6"],
-    header: ["flex", "gap-3", "md:gap-4", "items-start"],
-    avatar: ["flex-shrink-0"],
+    base: ["flex", "flex-col", "gap-4", "md:gap-6", "md:relative"],
+    header: ["flex", "gap-3", "items-start", "md:gap-0"],
+    avatar: ["flex-shrink-0", "md:absolute", "md:-left-8", "md:top-6"],
+    userInfoWrapper: ["flex-1", "min-w-0"],
     content: ["flex", "flex-col", "gap-4", "md:gap-6"],
     text: [
       "text-slate-900",
@@ -105,7 +106,7 @@ export const Post: React.FC<PostProps> = ({
   nbrOfComments = 0,
   ...props
 }: PostProps) => {
-  const { base, header, avatar, content, text, action } = PostStyles(props);
+  const { base, header, avatar, userInfoWrapper, content, text, action } = PostStyles(props);
 
   const handlePostClick = () => {
     if (!props.detailLink) return;
@@ -127,14 +128,16 @@ export const Post: React.FC<PostProps> = ({
             onAvatarClick={props.onAvatarClick}
           />
         </div>
-        <UserInfo
-          size={props.size}
-          displayName={props.displayName}
-          userName={props.userName}
-          timestamp={props.timestamp}
-          onClick={props.onAvatarClick}
-          src={null}
-        />
+        <div className={userInfoWrapper()}>
+          <UserInfo
+            size={props.size}
+            displayName={props.displayName}
+            userName={props.userName}
+            timestamp={props.timestamp}
+            onClick={props.onAvatarClick}
+            src={null}
+          />
+        </div>
       </div>
 
       <div className={content()}>
