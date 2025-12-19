@@ -17,15 +17,22 @@ import { renderWithHashtags } from "../utils/keyword.utils";
 const PostStyles = tv({
   slots: {
     base: [],
-    avatar: ["absolute", "-left-8", "top-6"],
-    content: ["flex", "flex-col", "gap-6"],
+    avatar: ["absolute", "right-3", "md:-left-8", "top-1"],
+    content: ["flex", "flex-col", "gap-4", "md:gap-6"],
     text: [
       "text-slate-900",
       "text-wrap",
       "wrap-anywhere",
       "whitespace-pre-wrap",
     ],
-    action: ["flex", "gap-10", "justify-start", "-ml-3"],
+    action: [
+      "flex",
+      "flex-row",
+      "gap-4",
+      "md:gap-10",
+      "justify-start",
+      "items-start",
+    ],
   },
   variants: {
     size: {
