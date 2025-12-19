@@ -16,8 +16,9 @@ import { renderWithHashtags } from "../utils/keyword.utils";
 
 const PostStyles = tv({
   slots: {
-    base: [],
-    avatar: ["absolute", "right-3", "md:-left-8", "top-1"],
+    base: ["flex", "flex-col", "gap-4", "md:gap-6"],
+    header: ["flex", "gap-3", "md:gap-4", "items-start"],
+    avatar: ["flex-shrink-0"],
     content: ["flex", "flex-col", "gap-4", "md:gap-6"],
     text: [
       "text-slate-900",
@@ -104,7 +105,7 @@ export const Post: React.FC<PostProps> = ({
   nbrOfComments = 0,
   ...props
 }: PostProps) => {
-  const { base, avatar, content, text, action } = PostStyles(props);
+  const { base, header, avatar, content, text, action } = PostStyles(props);
 
   const handlePostClick = () => {
     if (!props.detailLink) return;
@@ -117,23 +118,26 @@ export const Post: React.FC<PostProps> = ({
       className={base()}
       onClick={props.detailLink ? handlePostClick : undefined}
     >
-      <div className={avatar()}>
-        <Avatar
-          alt="Profile"
-          size="md"
-          src={props.avatarSrc}
-          onAvatarClick={props.onAvatarClick}
-        />
-      </div>
-
-      <div className={content()}>
+      <div className={header()}>
+        <div className={avatar()}>
+          <Avatar
+            alt="Profile"
+            size="md"
+            src={props.avatarSrc}
+            onAvatarClick={props.onAvatarClick}
+          />
+        </div>
         <UserInfo
           size={props.size}
           displayName={props.displayName}
           userName={props.userName}
           timestamp={props.timestamp}
           onClick={props.onAvatarClick}
+          src={null}
         />
+      </div>
+
+      <div className={content()}>
         <Paragraph size={props.size} className={text()}>
           {renderWithHashtags(props.text)}
         </Paragraph>
