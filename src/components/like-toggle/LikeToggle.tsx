@@ -13,10 +13,10 @@ const toggleStyles = tv({
       "items-center",
       "justify-center",
       "gap-0",
-      "md:gap-2",
+      "lg:gap-2",
       "h-8",
       "px-2",
-      "md:px-3",
+      "lg:px-3",
       "py-2",
       "rounded-full",
       "transition-all",
@@ -30,7 +30,7 @@ const toggleStyles = tv({
       "cursor-pointer",
     ],
     icon: ["inline-flex"],
-    label: ["hidden", "md:inline"],
+    label: ["hidden", "lg:inline"],
   },
   variants: {
     pressed: {

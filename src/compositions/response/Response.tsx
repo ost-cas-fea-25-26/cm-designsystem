@@ -11,14 +11,21 @@ import { renderWithHashtags } from "../utils/keyword.utils";
 const ResponseStyles = tv({
   slots: {
     base: [],
-    content: ["flex", "flex-col", "gap-4"],
+    content: ["flex", "flex-col", "gap-4", "md:gap-6"],
     text: [
       "text-slate-900",
       "text-wrap",
       "wrap-anywhere",
       "whitespace-pre-wrap",
     ],
-    action: ["flex", "gap-10", "justify-start", "-ml-3"],
+    action: [
+      "flex",
+      "flex-row",
+      "gap-4",
+      "md:gap-10",
+      "justify-start",
+      "items-start",
+    ],
   },
 });
 
