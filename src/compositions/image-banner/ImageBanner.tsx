@@ -7,7 +7,7 @@ import { Fullscreen } from "../../components/icons/generated";
 
 const ImageBannerStyles = tv({
   slots: {
-    base: ["w-148", "h-80"],
+    base: ["w-full", "md:w-148"],
     image: ["h-full", "w-full", "cursor-pointer", "rounded-lg", "object-cover"],
     overlay: [
       "group",
@@ -53,6 +53,17 @@ interface ImageBannerProps extends ImageBannerVariants {
 
   /** Click handler for the whole ImageBanner component */
   onClick: () => void;
+
+  /**
+   * Optional custom image component (e.g., Next.js Image).
+   * If not provided, uses standard HTML img element.
+   */
+  ImageComponent?: React.ComponentType<{
+    src: string;
+    alt: string;
+    className?: string;
+    onError?: () => void;
+  }>;
 }
 
 /**
@@ -61,21 +72,24 @@ interface ImageBannerProps extends ImageBannerVariants {
  * Displays a banner image with a fixed aspect ratio (17:8) and an optional overlay icon.
  * If the image fails to load, a fallback element is displayed instead.
  */
-export const ImageBanner: React.FC<ImageBannerProps> = (
-  props: ImageBannerProps
-) => {
+export const ImageBanner: React.FC<ImageBannerProps> = ({
+  ImageComponent,
+  ...props
+}: ImageBannerProps) => {
   const { base, image, overlay, icon } = ImageBannerStyles(props);
   const [src, setSrc] = useState<string>(props.src);
+  const ImageElement = ImageComponent || "img";
 
   return (
     <div className={base()}>
       {src ? (
         <AspectRatio.Root ratio={37 / 20}>
-          <img
+          <ImageElement
             className={image()}
             src={src}
             alt={props.alt}
             onError={() => setSrc("")}
+            loading="lazy"
           />
           {/* Overlay*/}
           <button className={cn(image(), overlay())} onClick={props.onClick}>
