@@ -20,30 +20,55 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 
 ## Usage in Your Project
 
-To use the components and styles in your project:
+To use the components and styles in your project with Tailwind CSS v4:
 
-1. Install the package:
+### 1. Install the package
 
 ```bash
-npm i @krrli/cm-designsystem
+npm install @krrli/cm-designsystem
 ```
 
-2. Import the bundled CSS in your app entry (e.g., `main.tsx` or `App.tsx`):
+### 2. Configure Tailwind CSS in your consuming app
 
-```js
-import "cm-designsystem/dist/cm-designsystem.css";
+In your app's CSS file (e.g., `app/globals.css` or `src/index.css`), add:
+
+```css
+@import "tailwindcss";
+
+/* Import the design system's Tailwind configuration and theme */
+@import "@krrli/cm-designsystem/src/index.css";
+
+/* Scan the design system's components for Tailwind classes */
+@source "../node_modules/@krrli/cm-designsystem/dist/**/*.js";
+
+/* Your app's custom theme/styles can go here */
 ```
 
-3. Import and use components as needed:
+### 3. Install required peer dependencies
 
-```js
-import { Button } from "cm-designsystem";
+```bash
+npm install @radix-ui/react-accessible-icon @radix-ui/react-aspect-ratio @radix-ui/react-avatar @radix-ui/react-dialog @radix-ui/react-form @radix-ui/react-tabs @radix-ui/react-toggle
+```
+
+### 4. Import and use components
+
+```tsx
+import { Button } from "@krrli/cm-designsystem";
 
 function App() {
   return (
-    <Button label="Click me" intent="primary" size="md" onClick={() => {}} />
+    <Button intent="primary" size="md" onClick={() => console.log("Clicked!")}>
+      Click me
+    </Button>
   );
 }
+```
+
+### Notes
+
+- **Tailwind CSS v4**: This design system uses Tailwind CSS v4. Your consuming app must also use Tailwind v4 with the `@tailwindcss/vite` plugin.
+- **Source-based approach**: The design system ships JavaScript/TypeScript source files. Your app's Tailwind processes all utility classes, including responsive variants.
+- **Font**: The design system uses the Poppins font. Make sure to include it in your app (e.g., via Google Fonts or locally).
 ```
 
 ---
