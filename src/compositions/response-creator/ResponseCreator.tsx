@@ -17,6 +17,16 @@ const ResponseCreatorStyles = tv({
     content: ["flex", "flex-col", "gap-4", "w-full"],
     input: ["w-full", "h-40"],
     action: ["flex", "gap-4"],
+    button: [
+      "flex",
+      "items-center",
+      "justify-center",
+      "gap-2",
+      "whitespace-nowrap",
+      "flex-1",
+    ],
+
+    icon: ["h-5", "w-5"],
   },
 });
 
@@ -52,7 +62,7 @@ interface ResponseCreatorProps extends ResponseCreatorVariants {
 export const ResponseCreator: React.FC<ResponseCreatorProps> = (
   props: ResponseCreatorProps
 ) => {
-  const { content, input, action } = ResponseCreatorStyles(props);
+  const { content, input, action, button, icon } = ResponseCreatorStyles(props);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
   const imageUploadModalRef = useRef<ImageUploadModalRef>(null);
@@ -79,16 +89,18 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
             <Button
               intent="primary"
               size="md"
-              icon={Upload}
+              icon={() => <Upload className={icon()} />}
               onClick={() => imageUploadModalRef.current?.openModal(true)}
+              className={button()}
             >
               Picture upload
             </Button>
             <Button
               intent="secondary"
               size="md"
-              icon={Send}
+              icon={() => <Send className={icon()} />}
               onClick={() => props.onSendClick(text, file)}
+              className={button()}
             >
               Send
             </Button>
