@@ -18,7 +18,8 @@
     "./tailwind.preset": {
       "types": "./dist/tailwind.preset.d.ts",
       "import": "./dist/tailwind.preset.js"
-    }
+    },
+    "./base.css": "./src/base.css"
   },
   "files": [
     "dist",

@@ -11,7 +11,7 @@
 
 @layer base {
   html {
-    font-family: Poppins, sans-serif;
-    color: oklch(0.446 0.043 257.281); /* slate-600 */
+    font-family: theme("fontFamily.poppins");
+    color: theme("colors.slate.600");
   }
 }
