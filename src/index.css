@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../src/**/*.{ts,tsx,js,jsx}";
 
 /* Import Poppins font */
 @import "@fontsource/poppins/400.css";
