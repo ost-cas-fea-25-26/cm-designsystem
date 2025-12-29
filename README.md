@@ -20,7 +20,12 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 
 ## Usage in Your Project
 
-To use the components and styles in your project with Tailwind CSS v4:
+The CM Design System provides four key exports:
+
+1. **Design Tokens** - Colors, spacing, fonts (framework-agnostic)
+2. **Tailwind Preset** - Pre-configured Tailwind theme
+3. **React Components** - Built with Radix UI + Tailwind
+4. **Base Styles** - Font imports and base CSS
 
 ### 1. Install the package
 
@@ -28,29 +33,40 @@ To use the components and styles in your project with Tailwind CSS v4:
 npm install @krrli/cm-designsystem
 ```
 
-### 2. Configure Tailwind CSS in your consuming app
-
-In your app's CSS file (e.g., `app/globals.css` or `src/index.css`), add:
-
-```css
-@import "tailwindcss";
-
-/* Import the design system's Tailwind configuration and theme */
-@import "@krrli/cm-designsystem/src/index.css";
-
-/* Scan the design system's components for Tailwind classes */
-@source "../node_modules/@krrli/cm-designsystem/dist/**/*.js";
-
-/* Your app's custom theme/styles can go here */
-```
-
-### 3. Install required peer dependencies
+### 2. Install peer dependencies
 
 ```bash
 npm install @radix-ui/react-accessible-icon @radix-ui/react-aspect-ratio @radix-ui/react-avatar @radix-ui/react-dialog @radix-ui/react-form @radix-ui/react-tabs @radix-ui/react-toggle
 ```
 
-### 4. Import and use components
+### 3. Configure Tailwind CSS
+
+Create or update your `tailwind.config.ts`:
+
+```typescript
+import type { Config } from "tailwindcss";
+import designSystemPreset from "@krrli/cm-designsystem/tailwind.preset";
+
+export default {
+  presets: [designSystemPreset],
+  content: [
+    "./src/**/*.{ts,tsx,js,jsx}",
+    // Scan design system components for Tailwind classes
+    "./node_modules/@krrli/cm-designsystem/dist/**/*.js",
+  ],
+} satisfies Config;
+```
+
+### 4. Import base styles
+
+In your app's CSS file (e.g., `app/globals.css` or `src/index.css`):
+
+```css
+@import "tailwindcss";
+@import "@krrli/cm-designsystem/base.css";
+```
+
+### 5. Use components
 
 ```tsx
 import { Button } from "@krrli/cm-designsystem";
@@ -64,11 +80,25 @@ function App() {
 }
 ```
 
-### Notes
+### Optional: Use design tokens directly
 
-- **Tailwind CSS v4**: This design system uses Tailwind CSS v4. Your consuming app must also use Tailwind v4 with the `@tailwindcss/vite` plugin.
-- **Source-based approach**: The design system ships JavaScript/TypeScript source files. Your app's Tailwind processes all utility classes, including responsive variants.
-- **Font**: The Poppins font is bundled with the design system and will be automatically available when you import the CSS.
+```typescript
+import { colors, fonts, spacing } from "@krrli/cm-designsystem/tokens";
+
+// Use in your own components
+const customStyle = {
+  color: colors.violet[600],
+  fontFamily: fonts.poppins.join(", "),
+};
+```
+
+### Architecture Benefits
+
+- ✅ **SSR-safe**: No runtime CSS-in-JS
+- ✅ **All responsive variants work**: Your Tailwind scans the design system
+- ✅ **Type-safe tokens**: Import and use tokens directly
+- ✅ **Clean separation**: Tokens, config, components, and styles are separate
+- ✅ **Framework-compatible**: Works with Next.js, Vite, and other tools
 
 ````
 

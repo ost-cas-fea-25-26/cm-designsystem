@@ -26,13 +26,18 @@ export default defineConfig({
       entryRoot: path.join(dirname, "src"),
       tsconfigPath: path.resolve(__dirname, "tsconfig.build.json"),
       outDir: "dist",
+      exclude: ["**/*.test.ts", "**/*.test.tsx", "**/setupTests.ts"],
     }),
     preserveDirectives(),
   ],
   publicDir: false,
   build: {
     lib: {
-      entry: path.resolve(dirname, "src/index.ts"),
+      entry: {
+        index: path.resolve(dirname, "src/index.ts"),
+        tokens: path.resolve(dirname, "src/tokens/index.ts"),
+        "tailwind.preset": path.resolve(dirname, "src/tailwind.preset.ts"),
+      },
       name: "CMDesignSystem",
       formats: ["es"],
     },
@@ -42,6 +47,7 @@ export default defineConfig({
         ...Object.keys(pkg.peerDependencies || {}),
         ...Object.keys(pkg.dependencies || {}),
         "react/jsx-runtime",
+        "tailwindcss",
       ],
       output: {
         entryFileNames: "[name].js",

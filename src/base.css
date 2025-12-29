@@ -1,0 +1,17 @@
+/**
+ * Base styles for CM Design System
+ * Import this in your consuming app's CSS file
+ */
+
+/* Import Poppins font */
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+
+@layer base {
+  html {
+    font-family: theme("fontFamily.poppins");
+    color: theme("colors.slate.600");
+  }
+}
