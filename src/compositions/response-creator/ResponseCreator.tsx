@@ -27,8 +27,6 @@ const ResponseCreatorStyles = tv({
       "text-sm",
       "sm:text-base",
     ],
-
-    icon: ["h-5", "w-5"],
   },
 });
 
@@ -64,7 +62,7 @@ interface ResponseCreatorProps extends ResponseCreatorVariants {
 export const ResponseCreator: React.FC<ResponseCreatorProps> = (
   props: ResponseCreatorProps
 ) => {
-  const { content, input, action, button, icon } = ResponseCreatorStyles(props);
+  const { content, input, action, button } = ResponseCreatorStyles(props);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
   const imageUploadModalRef = useRef<ImageUploadModalRef>(null);
@@ -91,7 +89,7 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
             <Button
               intent="primary"
               size="md"
-              icon={() => <Upload className={icon()} />}
+              icon={Upload}
               onClick={() => imageUploadModalRef.current?.openModal(true)}
               className={button()}
             >
@@ -100,7 +98,7 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
             <Button
               intent="secondary"
               size="md"
-              icon={() => <Send className={icon()} />}
+              icon={Send}
               onClick={() => props.onSendClick(text, file)}
               className={button()}
             >
