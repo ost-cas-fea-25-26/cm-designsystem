@@ -31,7 +31,9 @@
   },
   "scripts": {
     "preflight": "npm run prettier && npm run lint && npm run typecheck && npm run build && npm run knip",
-    "build": "vite build",
+    "build": "npm run build:lib && npm run build:css",
+    "build:lib": "vite build",
+    "build:css": "vite build --config vite.config.css.ts && mv dist-css/assets/*.css dist/styles.css && rm -rf dist-css",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "typecheck": "npx tsc -b --noEmit",

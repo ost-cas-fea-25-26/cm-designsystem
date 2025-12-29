@@ -1,9 +1,9 @@
 /**
  * Base styles for CM Design System
- * Import this in your consuming app's CSS file
+ * Import this in your consuming app's CSS file AFTER tailwindcss
  */
 
-/* Import Poppins font */
+/* Poppins font - Consumer needs to install @fontsource/poppins */
 @import "@fontsource/poppins/400.css";
 @import "@fontsource/poppins/500.css";
 @import "@fontsource/poppins/600.css";
