@@ -7,7 +7,7 @@ import { Edit } from "../../components/icons/generated";
 
 const ProfileBannerImageStyles = tv({
   slots: {
-    base: ["w-170", "h-80"],
+    base: ["w-full", "max-w-[680px]", "min-w-[680px]", "sm:min-w-[320px]"],
     image: [
       "h-full",
       "w-full",
@@ -76,22 +76,24 @@ export const ProfileBannerImage: React.FC<ProfileBannerImageProps> = (
 
   return (
     <div className={base()}>
-      {src ? (
-        <AspectRatio.Root ratio={17 / 8}>
-          <img
-            className={image()}
-            src={src}
-            alt={props.alt}
-            onError={() => setSrc("")}
-          />
-          {/* Overlay*/}
-          <button className={cn(image(), overlay())} onClick={props.onClick}>
-            <Edit className={icon()} />
-          </button>
-        </AspectRatio.Root>
-      ) : (
-        <div className={image({ isFallback: true })} />
-      )}
+      <AspectRatio.Root ratio={17 / 8}>
+        {src ? (
+          <>
+            <img
+              className={image()}
+              src={src}
+              alt={props.alt}
+              onError={() => setSrc("")}
+            />
+            {/* Overlay*/}
+            <button className={cn(image(), overlay())} onClick={props.onClick}>
+              <Edit className={icon()} />
+            </button>
+          </>
+        ) : (
+          <div className={image({ isFallback: true })} />
+        )}
+      </AspectRatio.Root>
     </div>
   );
 };
