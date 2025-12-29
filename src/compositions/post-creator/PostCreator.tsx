@@ -14,10 +14,20 @@ import { PostBase } from "../post-base/PostBase";
 const PostCreatorStyles = tv({
   slots: {
     content: ["flex", "flex-col", "gap-4", "w-full"],
-    avatar: ["absolute", "-left-8", "top-6"],
+    header: ["flex", "items-center", "gap-3"],
     title: ["text-slate-900"],
     input: ["w-full", "h-40"],
-    action: ["flex", "gap-4"],
+    action: ["flex", "flex-col", "sm:flex-row", "gap-4"],
+    button: [
+      "flex",
+      "items-center",
+      "justify-center",
+      "gap-2",
+      "whitespace-nowrap",
+      "flex-1",
+      "text-sm",
+      "sm:text-base",
+    ],
   },
 });
 
@@ -45,7 +55,8 @@ interface PostCreatorProps extends PostCreatorVariants {
 export const PostCreator: React.FC<PostCreatorProps> = (
   props: PostCreatorProps
 ) => {
-  const { content, avatar, title, input, action } = PostCreatorStyles(props);
+  const { content, header, title, input, action, button } =
+    PostCreatorStyles(props);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
   const imageUploadModalRef = useRef<ImageUploadModalRef>(null);
@@ -53,19 +64,18 @@ export const PostCreator: React.FC<PostCreatorProps> = (
   return (
     <>
       <PostBase>
-        <div className={avatar()}>
-          <Avatar
-            alt="Profile"
-            size="md"
-            src={props.src}
-            onAvatarClick={props.onAvatarClick}
-          />
-        </div>
-
         <Form className={content()}>
-          <Heading size="4" as="h4" className={title()}>
-            Hey, what's up?
-          </Heading>
+          <div className={header()}>
+            <Avatar
+              alt="Profile"
+              size="sm"
+              src={props.src}
+              onAvatarClick={props.onAvatarClick}
+            />
+            <Heading size="4" as="h4" className={title()}>
+              Hey, what's up?
+            </Heading>
+          </div>
           <div className={input()}>
             <Textarea
               name="post"
@@ -79,6 +89,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
               size="md"
               icon={Upload}
               onClick={() => imageUploadModalRef.current?.openModal(true)}
+              className={button()}
             >
               Picture upload
             </Button>
@@ -87,6 +98,7 @@ export const PostCreator: React.FC<PostCreatorProps> = (
               size="md"
               icon={Send}
               onClick={() => props.onSendClick(text, file)}
+              className={button()}
             >
               Send
             </Button>
