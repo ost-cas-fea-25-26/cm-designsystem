@@ -1,14 +1,13 @@
-import type {} from "vitest/config";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
-import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { playwright } from "@vitest/browser-playwright";
 import preserveDirectives from "rollup-preserve-directives";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import svgr from "vite-plugin-svgr";
+import type {} from "vitest/config";
 import { configDefaults } from "vitest/config";
 import pkg from "./package.json";
 
@@ -21,7 +20,7 @@ const dirname =
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    // tailwindcss(), // Disabled: Let consuming apps process Tailwind
     svgr(),
     dts({
       entryRoot: path.join(dirname, "src"),
