@@ -1,3 +1,4 @@
+import tailwindcss from "@tailwindcss/vite";
 import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
@@ -15,6 +16,12 @@ const config: StorybookConfig = {
   staticDirs: ["../public"],
   core: {
     disableTelemetry: true,
+  },
+  viteFinal: async (config) => {
+    // Add Tailwind plugin for Storybook (needed for development)
+    config.plugins = config.plugins || [];
+    config.plugins.push(tailwindcss());
+    return config;
   },
 };
 export default config;
