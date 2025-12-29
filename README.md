@@ -68,7 +68,7 @@ function App() {
 
 - **Tailwind CSS v4**: This design system uses Tailwind CSS v4. Your consuming app must also use Tailwind v4 with the `@tailwindcss/vite` plugin.
 - **Source-based approach**: The design system ships JavaScript/TypeScript source files. Your app's Tailwind processes all utility classes, including responsive variants.
-- **Font**: The design system uses the Poppins font. Make sure to include it in your app (e.g., via Google Fonts or locally).
+- **Font**: The Poppins font is bundled with the design system and will be automatically available when you import the CSS.
 ```
 
 ---
