@@ -16,7 +16,17 @@ const ResponseCreatorStyles = tv({
   slots: {
     content: ["flex", "flex-col", "gap-4", "w-full"],
     input: ["w-full", "h-40"],
-    action: ["flex", "gap-4"],
+    action: ["flex", "flex-col", "sm:flex-row", "gap-4"],
+    button: [
+      "flex",
+      "items-center",
+      "justify-center",
+      "gap-2",
+      "whitespace-nowrap",
+      "flex-1",
+      "text-sm",
+      "sm:text-base",
+    ],
   },
 });
 
@@ -52,7 +62,7 @@ interface ResponseCreatorProps extends ResponseCreatorVariants {
 export const ResponseCreator: React.FC<ResponseCreatorProps> = (
   props: ResponseCreatorProps
 ) => {
-  const { content, input, action } = ResponseCreatorStyles(props);
+  const { content, input, action, button } = ResponseCreatorStyles(props);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
   const imageUploadModalRef = useRef<ImageUploadModalRef>(null);
@@ -81,6 +91,7 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
               size="md"
               icon={Upload}
               onClick={() => imageUploadModalRef.current?.openModal(true)}
+              className={button()}
             >
               Picture upload
             </Button>
@@ -89,6 +100,7 @@ export const ResponseCreator: React.FC<ResponseCreatorProps> = (
               size="md"
               icon={Send}
               onClick={() => props.onSendClick(text, file)}
+              className={button()}
             >
               Send
             </Button>

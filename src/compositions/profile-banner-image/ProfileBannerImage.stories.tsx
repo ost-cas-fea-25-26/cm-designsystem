@@ -6,8 +6,15 @@ const meta = {
   title: "Compositions/Profile/ProfileBannerImage",
   component: ProfileBannerImage,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
+  decorators: [
+    (Story) => (
+      <div className="flex justify-center">
+        <Story />
+      </div>
+    ),
+  ],
   tags: ["autodocs"],
 } satisfies Meta<typeof ProfileBannerImage>;
 
