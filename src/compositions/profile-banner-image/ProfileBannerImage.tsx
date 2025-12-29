@@ -7,7 +7,7 @@ import { Edit } from "../../components/icons/generated";
 
 const ProfileBannerImageStyles = tv({
   slots: {
-    base: ["w-full", "max-w-[680px]", "min-w-[680px]", "sm:min-w-[320px]"],
+    base: ["w-full", "max-w-[680px]", "sm:min-w-[320px]", "lg:min-w-[680px]"],
     image: [
       "h-full",
       "w-full",
