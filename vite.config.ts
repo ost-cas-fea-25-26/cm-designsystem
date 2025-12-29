@@ -26,6 +26,7 @@ export default defineConfig({
       entryRoot: path.join(dirname, "src"),
       tsconfigPath: path.resolve(__dirname, "tsconfig.build.json"),
       outDir: "dist",
+      exclude: ["**/*.test.ts", "**/*.test.tsx", "**/setupTests.ts"],
     }),
     preserveDirectives(),
   ],
