@@ -14,8 +14,9 @@ import { PostBase } from "../post-base/PostBase";
 const PostCreatorStyles = tv({
   slots: {
     content: ["flex", "flex-col", "gap-4", "w-full"],
-    header: ["flex", "items-center", "gap-3"],
-    title: ["text-slate-900"],
+    avatar: ["absolute", "-left-8", "top-6", "hidden", "sm:block"],
+    mobileHeader: ["flex", "items-center", "gap-3", "sm:hidden"],
+    title: ["text-slate-900", "hidden", "sm:block"],
     input: ["w-full", "h-40"],
     action: ["flex", "flex-col", "sm:flex-row", "gap-4"],
     button: [
@@ -55,7 +56,7 @@ interface PostCreatorProps extends PostCreatorVariants {
 export const PostCreator: React.FC<PostCreatorProps> = (
   props: PostCreatorProps
 ) => {
-  const { content, header, title, input, action, button } =
+  const { content, avatar, mobileHeader, title, input, action, button } =
     PostCreatorStyles(props);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>("");
@@ -64,18 +65,30 @@ export const PostCreator: React.FC<PostCreatorProps> = (
   return (
     <>
       <PostBase>
+        <div className={avatar()}>
+          <Avatar
+            alt="Profile"
+            size="md"
+            src={props.src}
+            onAvatarClick={props.onAvatarClick}
+          />
+        </div>
+
         <Form className={content()}>
-          <div className={header()}>
+          <div className={mobileHeader()}>
             <Avatar
               alt="Profile"
               size="sm"
               src={props.src}
               onAvatarClick={props.onAvatarClick}
             />
-            <Heading size="4" as="h4" className={title()}>
+            <Heading size="4" as="h4" className="text-slate-900">
               Hey, what's up?
             </Heading>
           </div>
+          <Heading size="4" as="h4" className={title()}>
+            Hey, what's up?
+          </Heading>
           <div className={input()}>
             <Textarea
               name="post"
