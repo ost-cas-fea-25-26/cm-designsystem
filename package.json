@@ -6,9 +6,24 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.js"
+    },
+    "./tailwind.preset": {
+      "types": "./dist/tailwind.preset.d.ts",
+      "import": "./dist/tailwind.preset.js"
+    },
+    "./base.css": "./src/base.css"
+  },
   "files": [
     "dist",
-    "src/index.css"
+    "src/base.css"
   ],
   "sideEffects": false,
   "publishConfig": {
