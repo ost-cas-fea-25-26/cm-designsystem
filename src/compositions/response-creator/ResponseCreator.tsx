@@ -16,7 +16,7 @@ const ResponseCreatorStyles = tv({
   slots: {
     content: ["flex", "flex-col", "gap-4", "w-full"],
     input: ["w-full", "h-40"],
-    action: ["flex", "gap-4"],
+    action: ["flex", "flex-col", "sm:flex-row", "gap-4"],
     button: [
       "flex",
       "items-center",
@@ -24,6 +24,8 @@ const ResponseCreatorStyles = tv({
       "gap-2",
       "whitespace-nowrap",
       "flex-1",
+      "text-sm",
+      "sm:text-base",
     ],
 
     icon: ["h-5", "w-5"],
