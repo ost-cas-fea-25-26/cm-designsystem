@@ -20,12 +20,7 @@ A modern React component library built with TypeScript, Tailwind CSS, and Storyb
 
 ## Usage in Your Project
 
-The CM Design System provides four key exports:
-
-1. **Design Tokens** - Colors, spacing, fonts (framework-agnostic)
-2. **Tailwind Preset** - Pre-configured Tailwind theme
-3. **React Components** - Built with Radix UI + Tailwind
-4. **Base Styles** - Font imports and base CSS
+**Easiest approach:** Just import the complete CSS bundle with all styles and responsive breakpoints!
 
 ### 1. Install the package
 
@@ -39,9 +34,34 @@ npm install @krrli/cm-designsystem
 npm install @radix-ui/react-accessible-icon @radix-ui/react-aspect-ratio @radix-ui/react-avatar @radix-ui/react-dialog @radix-ui/react-form @radix-ui/react-tabs @radix-ui/react-toggle
 ```
 
-### 3. Configure Tailwind CSS
+### 3. Import the complete CSS
 
-Create or update your `tailwind.config.ts`:
+In your app's CSS file (e.g., `app/globals.css`):
+
+```css
+@import "tailwindcss";
+@import "@krrli/cm-designsystem/styles.css";
+```
+
+### 4. Use components
+
+```tsx
+import { Button, Post } from "@krrli/cm-designsystem";
+
+export default function Page() {
+  return <Button intent="primary">Click me</Button>;
+}
+```
+
+**That's it!** All responsive breakpoints (sm:, md:, lg:, etc.) work automatically.
+
+---
+
+### Advanced: Use Tailwind Preset (Optional)
+
+If you want to customize or extend the design system:
+
+**Configure Tailwind:**
 
 ```typescript
 import type { Config } from "tailwindcss";
@@ -49,55 +69,16 @@ import designSystemPreset from "@krrli/cm-designsystem/tailwind.preset";
 
 export default {
   presets: [designSystemPreset],
-  content: [
-    "./src/**/*.{ts,tsx,js,jsx}",
-    // Scan design system components for Tailwind classes
-    "./node_modules/@krrli/cm-designsystem/dist/**/*.js",
-  ],
+  content: ["./src/**/*.{ts,tsx}"],
 } satisfies Config;
 ```
 
-### 4. Import base styles
-
-In your app's CSS file (e.g., `app/globals.css` or `src/index.css`):
-
-```css
-@import "tailwindcss";
-@import "@krrli/cm-designsystem/base.css";
-```
-
-### 5. Use components
-
-```tsx
-import { Button } from "@krrli/cm-designsystem";
-
-function App() {
-  return (
-    <Button intent="primary" size="md" onClick={() => console.log("Clicked!")}>
-      Click me
-    </Button>
-  );
-}
-```
-
-### Optional: Use design tokens directly
+**Use design tokens:**
 
 ```typescript
-import { colors, fonts, spacing } from "@krrli/cm-designsystem/tokens";
-
-// Use in your own components
-const customStyle = {
-  color: colors.violet[600],
-  fontFamily: fonts.poppins.join(", "),
-};
+import { colors, fonts } from "@krrli/cm-designsystem/tokens";
 ```
 
-### Architecture Benefits
-
-- ✅ **SSR-safe**: No runtime CSS-in-JS
-- ✅ **All responsive variants work**: Your Tailwind scans the design system
-- ✅ **Type-safe tokens**: Import and use tokens directly
-- ✅ **Clean separation**: Tokens, config, components, and styles are separate
 - ✅ **Framework-compatible**: Works with Next.js, Vite, and other tools
 
 ````
