@@ -69,7 +69,8 @@ function App() {
 - **Tailwind CSS v4**: This design system uses Tailwind CSS v4. Your consuming app must also use Tailwind v4 with the `@tailwindcss/vite` plugin.
 - **Source-based approach**: The design system ships JavaScript/TypeScript source files. Your app's Tailwind processes all utility classes, including responsive variants.
 - **Font**: The Poppins font is bundled with the design system and will be automatically available when you import the CSS.
-```
+
+````
 
 ---
 
@@ -96,7 +97,7 @@ npm install
 
 # Start Storybook development server
 npm run storybook
-```
+````
 
 Storybook will be available at [http://localhost:6006](http://localhost:6006)
 
