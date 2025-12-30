@@ -64,11 +64,14 @@ export const Default: Story = {
     children: <Mumble />,
   },
   render: (args) => (
-    <Form>
-      <Form.Fields>
-        <Input {...args} />
-      </Form.Fields>
-    </Form>
+    <Form
+      fields={<Input {...args} />}
+      action={
+        <Button type="submit" intent="primary" size="md">
+          Submit
+        </Button>
+      }
+    />
   ),
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -103,11 +106,14 @@ export const TypeValidation: Story = {
     children: <Mumble />,
   },
   render: (args) => (
-    <Form>
-      <Form.Fields>
-        <Input {...args} />
-      </Form.Fields>
-    </Form>
+    <Form
+      fields={<Input {...args} />}
+      action={
+        <Button type="submit" intent="primary" size="md">
+          Submit
+        </Button>
+      }
+    />
   ),
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -148,16 +154,14 @@ export const RequiredValidation: Story = {
     children: <Mumble />,
   },
   render: (args) => (
-    <Form>
-      <Form.Fields>
-        <Input {...args} />
-      </Form.Fields>
-      <Form.Action>
+    <Form
+      fields={<Input {...args} />}
+      action={
         <Button type="submit" intent="secondary" size="md" onClick={fn()}>
           Test required
         </Button>
-      </Form.Action>
-    </Form>
+      }
+    />
   ),
   play: async ({ userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
@@ -201,11 +205,14 @@ export const NoIcon: Story = {
     onChange: fn(),
   },
   render: (args) => (
-    <Form>
-      <Form.Fields>
-        <Input {...args} />
-      </Form.Fields>
-    </Form>
+    <Form
+      fields={<Input {...args} />}
+      action={
+        <Button type="submit" intent="primary" size="md">
+          Submit
+        </Button>
+      }
+    />
   ),
   play: async ({ args, userEvent, canvas, step }) => {
     await step("Check initial render", async () => {
