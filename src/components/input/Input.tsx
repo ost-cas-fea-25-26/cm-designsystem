@@ -50,18 +50,26 @@ interface InputProps extends InputVariants {
   isRequired?: boolean;
   children?: React.ReactElement<IconBaseProps>;
   onChange: (value: string) => void;
+  value?: string;
+  defaultValue?: string;
 }
 
 export const Input = ({
   type = "text",
   isRequired = false,
+  value: controlledValue,
+  defaultValue = "",
   ...props
 }: InputProps) => {
   const { base, controlContainer, control, message, icon } = inputStyles({
     hasIcon: !!props.children,
     ...props,
   });
-  const [value, setValue] = useState("");
+  const [internalValue, setInternalValue] = useState(defaultValue);
+
+  // Determine if controlled or uncontrolled
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
 
   return (
     <RadixForm.Field name={props.name} className={base(props)}>
@@ -78,8 +86,14 @@ export const Input = ({
             type={type}
             required={isRequired}
             placeholder={props.placeholder}
-            onChange={(e) => setValue(e.target.value)}
-            onBlur={() => props.onChange(value)}
+            value={value}
+            onChange={(e) => {
+              const newValue = e.target.value;
+              if (!isControlled) {
+                setInternalValue(newValue);
+              }
+              props.onChange(newValue);
+            }}
           />
         </RadixForm.Control>
         {props.children &&
