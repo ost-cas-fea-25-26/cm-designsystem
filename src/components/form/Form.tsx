@@ -12,48 +12,32 @@ const formStyles = tv({
 type FormVariants = VariantProps<typeof formStyles>;
 
 interface FormProps extends FormVariants {
-  children?: React.ReactNode;
+  /**
+   * Form fields
+   */
+  fields: React.ReactNode;
+  /**
+   * Submit button
+   */
+  action: React.ReactElement;
+  /**
+   * Submit handler
+   */
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export const Form: React.FC<FormProps> & {
-  Fields: typeof FormFields;
-  Action: typeof FormAction;
-} = (props) => {
-  const { base, fields } = formStyles(props);
-  let fieldElements: React.ReactElement | null = null;
-  let actionElement: React.ReactElement | null = null;
-
-  React.Children.forEach(props.children, (child) => {
-    if (!React.isValidElement(child)) return;
-
-    switch (child.type) {
-      case FormFields:
-        fieldElements = child;
-        break;
-      case FormAction:
-        actionElement = child;
-        break;
-    }
-  });
+export const Form: React.FC<FormProps> = ({
+  fields,
+  action,
+  onSubmit,
+  ...variantProps
+}) => {
+  const { base, fields: fieldsClass } = formStyles(variantProps);
 
   return (
-    <RadixForm.Root className={base()}>
-      <div className={fields()}>{fieldElements}</div>
-
-      <RadixForm.Submit asChild>{actionElement}</RadixForm.Submit>
+    <RadixForm.Root className={base()} onSubmit={onSubmit}>
+      <div className={fieldsClass()}>{fields}</div>
+      <RadixForm.Submit asChild>{action}</RadixForm.Submit>
     </RadixForm.Root>
   );
 };
-
-FormFields.displayName = "FormField";
-export function FormFields({ children }: { children: React.ReactNode }) {
-  return children;
-}
-
-FormAction.displayName = "ModalActions";
-export function FormAction({ children }: { children: React.ReactElement }) {
-  return children;
-}
-
-Form.Fields = FormFields;
-Form.Action = FormAction;

@@ -16,8 +16,14 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    children: {
-      description: "Fields and Action Button.",
+    fields: {
+      description: "Form fields content.",
+    },
+    action: {
+      description: "Submit button element.",
+    },
+    onSubmit: {
+      description: "Submit handler function.",
     },
   },
 } satisfies Meta<typeof Form>;
@@ -25,36 +31,43 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const inputFields = (
+  <>
+    <Input
+      name="input1"
+      placeholder="Placeholder"
+      onChange={fn()}
+      label="Input 1"
+    />
+    <Input
+      name="input2"
+      placeholder="Placeholder"
+      onChange={fn()}
+      label="Input 2"
+    />
+    <Input
+      name="input3"
+      placeholder="Placeholder"
+      onChange={fn()}
+      label="Input 3"
+    />
+  </>
+);
+
+const submitButton = (
+  <Button type="submit" intent="primary" size="md">
+    Submit
+  </Button>
+);
+
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
-  args: {},
-  render: () => (
-    <Form>
-      <Form.Fields>
-        <Input
-          name="Test"
-          placeholder="Placeholder"
-          onChange={fn()}
-          label="Input"
-        />
-        <Input
-          name="Test"
-          placeholder="Placeholder"
-          onChange={fn()}
-          label="Input"
-        />
-        <Input
-          name="Test"
-          placeholder="Placeholder"
-          onChange={fn()}
-          label="Input"
-        />
-      </Form.Fields>
-      <Form.Action>
-        <Button type="submit" intent="primary" size="md" onClick={fn()}>
-          Submit
-        </Button>
-      </Form.Action>
-    </Form>
-  ),
+  args: {
+    fields: inputFields,
+    action: submitButton,
+    onSubmit: (e) => {
+      e.preventDefault();
+      fn()(e);
+    },
+  },
 };
