@@ -6,6 +6,5 @@
   },
   "tags": ["-lintignore"],
   "entry": ["src/**/*.{ts,tsx,js,jsx,mdx}"],
-  "project": ["src/**/*.{ts,tsx,js,jsx,mdx}"],
-  "ignoreDependencies": ["@fontsource/poppins", "@tailwindcss/vite"]
+  "project": ["src/**/*.{ts,tsx,js,jsx,mdx}"]
 }
