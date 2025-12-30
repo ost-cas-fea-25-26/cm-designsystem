@@ -86,7 +86,7 @@ export const Modal: React.FC<ModalProps> & {
             <Heading as="span" size="3">
               {props.title}
             </Heading>
-            <RadixDialog.Close>
+            <RadixDialog.Close aria-label="Close modal">
               <Cancel />
             </RadixDialog.Close>
           </RadixDialog.Title>
