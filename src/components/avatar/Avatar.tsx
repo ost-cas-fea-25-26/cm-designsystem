@@ -96,7 +96,7 @@ interface AvatarProps extends AvatarVariants {
    * Click handler for the entire avatar.
    * Makes the outer wrapper clickable.
    */
-  onAvatarClick?: () => void;
+  onAvatarClick?: (e: React.MouseEvent) => void;
 
   /**
    * Optional click handler for the action button.
@@ -121,7 +121,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   return (
     <RadixAvatar.Root
       onClick={(e) => {
-        props.onAvatarClick?.();
+        props.onAvatarClick?.(e);
         e.stopPropagation();
       }}
       className={base({ isClickable: !!props.onAvatarClick, ...props })}
