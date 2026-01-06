@@ -70,7 +70,12 @@ export const NaviUserButton: React.FC<NaviUserButtonProps> = ({
       className={cn(naviUserButtonStyles({ intent, ...props }), className)}
       {...props}
     >
-      <Avatar alt={props.alt} size="sm" src={props.src} />
+      <Avatar
+        alt={props.alt}
+        size="sm"
+        src={props.src}
+        onAvatarClick={props.onClick}
+      />
     </AccessibleButton>
   );
 };

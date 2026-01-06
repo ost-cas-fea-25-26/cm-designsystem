@@ -120,7 +120,10 @@ export const Avatar: React.FC<AvatarProps> = ({
   const { base, avatar, action } = avatarStyles(props);
   return (
     <RadixAvatar.Root
-      onClick={props.onAvatarClick}
+      onClick={(e) => {
+        props.onAvatarClick?.(e);
+        e.stopPropagation();
+      }}
       className={base({ isClickable: !!props.onAvatarClick, ...props })}
       data-testid="avatar"
     >
