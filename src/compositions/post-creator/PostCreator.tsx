@@ -82,11 +82,11 @@ export const PostCreator: React.FC<PostCreatorProps> = (
               src={props.src}
               onAvatarClick={props.onAvatarClick}
             />
-            <Heading size="4" as="h4" className="text-slate-900">
+            <Heading size="4" as="h3" className="text-slate-900">
               Hey, what's up?
             </Heading>
           </div>
-          <Heading size="4" as="h4" className={title()}>
+          <Heading size="4" as="h3" className={title()}>
             Hey, what's up?
           </Heading>
           <div className={input()}>
