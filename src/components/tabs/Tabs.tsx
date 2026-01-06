@@ -84,7 +84,9 @@ export const Tabs = ({ value, onChange, children, ...variants }: TabProps) => {
               effect: getEffectVariant(index, items.length - 1),
             })}
           >
-            <Label size="lg">{child.props.label}</Label>
+            <Label as="span" size="lg">
+              {child.props.label}
+            </Label>
           </RadixTabs.Trigger>
         ))}
       </RadixTabs.List>
