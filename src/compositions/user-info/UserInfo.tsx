@@ -105,7 +105,9 @@ export const UserInfo: React.FC<UserInfoProps> = ({
       )}
       <div className={userInfo()}>
         <button onClick={props.onClick} className={name()}>
-          <Label size={getLabelSize(props.size)}>{displayName}</Label>
+          <Label as="span" size={getLabelSize(props.size)}>
+            {displayName}
+          </Label>
         </button>
         <div className={detailInfo()}>
           <IconButton intent="secondary" icon={Profile} onClick={props.onClick}>
