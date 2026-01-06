@@ -141,7 +141,7 @@ export const TimedButton: React.FC<TimedButtonProps> = ({
     };
   }, []);
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     // Klick -> Pressed

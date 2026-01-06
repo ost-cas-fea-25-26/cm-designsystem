@@ -117,10 +117,7 @@ export const Post: React.FC<PostProps> = ({
             alt="Profile"
             size="md"
             src={props.avatarSrc}
-            onAvatarClick={(e) => {
-              props.onAvatarClick?.();
-              e.stopPropagation();
-            }}
+            onAvatarClick={props.onAvatarClick}
           />
         </div>
         <div className={userInfoWrapper()}>
@@ -129,10 +126,7 @@ export const Post: React.FC<PostProps> = ({
             displayName={props.displayName}
             userName={props.userName}
             timestamp={props.timestamp}
-            onClick={(e) => {
-              props.onAvatarClick?.();
-              e.stopPropagation();
-            }}
+            onClick={props.onAvatarClick}
             src={null}
           />
         </div>

@@ -41,7 +41,7 @@ interface UserInfoProps extends UserInfoVariants {
   /** Timestamp for the user activity */
   timestamp?: Date | null;
   /** Click handler for the whole UserInfo component */
-  onClick: (e: React.MouseEvent) => void;
+  onClick: () => void;
 }
 
 function timeSince(timestamp: Date | number): string {
@@ -93,6 +93,11 @@ export const UserInfo: React.FC<UserInfoProps> = ({
 }: UserInfoProps) => {
   const { base, userInfo, name, detailInfo, timeInfo } = userInfoStyles(props);
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    props.onClick();
+  };
+
   return (
     <div className={base()}>
       {props.src && (
@@ -110,7 +115,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
           </Label>
         </button>
         <div className={detailInfo()}>
-          <IconButton intent="secondary" icon={Profile} onClick={props.onClick}>
+          <IconButton intent="secondary" icon={Profile} onClick={handleClick}>
             {userName ?? DEFAULT_USERNAME}
           </IconButton>
 
@@ -118,7 +123,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
             intent="primary"
             icon={Time}
             className={timeInfo()}
-            onClick={props.onClick}
+            onClick={handleClick}
           >
             {timeSince(timestamp!)}
           </IconButton>
