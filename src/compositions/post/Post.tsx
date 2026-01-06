@@ -110,10 +110,7 @@ export const Post: React.FC<PostProps> = ({
     PostStyles(props);
 
   return (
-    <PostBase
-      className={base()}
-      onClick={props.onPostClick}
-    >
+    <PostBase className={base()} onClick={props.onPostClick}>
       <div className={header()}>
         <div className={avatar()}>
           <Avatar
