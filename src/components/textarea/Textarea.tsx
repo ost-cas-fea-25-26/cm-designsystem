@@ -74,6 +74,7 @@ export const Textarea = ({ isRequired = false, ...props }: TextareaProps) => {
           placeholder={props.placeholder}
           onChange={(e) => setValue(e.target.value)}
           onBlur={() => props.onChange(value)}
+          aria-label={props.label ? undefined : props.placeholder}
         />
       </RadixForm.Control>
 
