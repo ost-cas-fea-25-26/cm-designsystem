@@ -82,7 +82,7 @@ interface PostProps extends PostVariants {
   imageAlt?: string | null;
 
   /** Triggered when the avatar is clicked. */
-  onAvatarClick: () => void;
+  onAvatarClick: (e: React.MouseEvent) => void;
 
   /** Callback fired when the comment button is clicked. */
   onCommentClick: () => void;
