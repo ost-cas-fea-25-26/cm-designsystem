@@ -41,7 +41,7 @@ interface UserInfoProps extends UserInfoVariants {
   /** Timestamp for the user activity */
   timestamp?: Date | null;
   /** Click handler for the whole UserInfo component */
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
 }
 
 function timeSince(timestamp: Date | number): string {

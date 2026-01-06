@@ -96,7 +96,7 @@ interface AvatarProps extends AvatarVariants {
    * Click handler for the entire avatar.
    * Makes the outer wrapper clickable.
    */
-  onAvatarClick?: () => void;
+  onAvatarClick?: (e: React.MouseEvent) => void;
 
   /**
    * Optional click handler for the action button.

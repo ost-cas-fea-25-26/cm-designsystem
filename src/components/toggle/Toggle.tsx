@@ -91,6 +91,7 @@ export const Toggle = ({
       className={base()}
       pressed={pressed}
       onPressedChange={onToggle}
+      onClick={(e) => e.stopPropagation()}
       disabled={disabled}
     >
       <span
