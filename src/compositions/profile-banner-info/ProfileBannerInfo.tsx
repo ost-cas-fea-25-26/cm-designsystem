@@ -21,7 +21,14 @@ const profileBannerInfoStyles = tv({
     title: ["flex", "gap-1", "items-center", "**:cursor-pointer"],
     icon: ["text-violet-600", "-mt-0.5"],
     name: ["text-slate-900"],
-    detailInfo: ["flex", "flex-col", "gap-2", "sm:flex-row", "sm:gap-4"],
+    detailInfo: [
+      "flex",
+      "flex-col",
+      "gap-2",
+      "sm:flex-row",
+      "sm:gap-4",
+      "py-2",
+    ],
     secondaryInfo: ["text-slate-500"],
   },
 });
