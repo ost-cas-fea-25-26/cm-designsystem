@@ -6,7 +6,41 @@ const meta = {
   title: "Compositions/Profile/ProfileBanner",
   component: ProfileBanner,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
+    viewport: {
+      defaultViewport: "responsive",
+      viewports: {
+        smallMobile: {
+          name: "Small mobile",
+          styles: { width: "320px", height: "568px" },
+        },
+        largeMobile: {
+          name: "Large mobile",
+          styles: { width: "414px", height: "896px" },
+        },
+        tablet: {
+          name: "Tablet",
+          styles: { width: "834px", height: "1112px" },
+        },
+        desktop: {
+          name: "Desktop",
+          styles: { width: "1280px", height: "800px" },
+        },
+      },
+    },
+    backgrounds: {
+      default: "white",
+      values: [{ name: "white", value: "#fff" }],
+    },
+    docs: {
+      description: {
+        story:
+          "Nutze das Viewport-Addon unten rechts, um das Responsive-Verhalten zu testen (z.B. mobile, tablet, desktop).",
+      },
+    },
+    options: {
+      storyPadding: false,
+    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof ProfileBanner>;
