@@ -74,7 +74,7 @@ interface AvatarProps extends AvatarVariants {
   /**
    * Alternative text describing the avatar image.
    */
-  alt: string;
+  alt?: string;
 
   /**
    * Controls the visual size of the avatar.
