@@ -12,10 +12,22 @@ import { ProfileBannerInfo } from "../profile-banner-info/ProfileBannerInfo";
 
 const ProfileBannerStyles = tv({
   slots: {
-    base: ["flex", "flex-col", "gap-6", "w-170", "relative"],
-    avatar: ["absolute", "top-60", "right-6"],
-    info: ["flex", "flex-col", "gap-3"],
-    description: ["text-slate-500"],
+    base: [
+      "flex",
+      "flex-col",
+      "gap-4",
+      "w-full",
+      "max-w-[680px]",
+      "sm:min-w-[320px]",
+      "lg:min-w-[680px]",
+      "relative",
+      "px-2",
+      "sm:px-4",
+      "md:px-8",
+    ],
+    avatar: ["absolute", "top-28", "right-2", "sm:top-60", "sm:right-6"],
+    info: ["flex", "flex-col", "gap-2", "sm:gap-3"],
+    description: ["text-slate-500", "text-sm", "sm:text-base"],
   },
 });
 
@@ -87,7 +99,11 @@ export const ProfileBanner: React.FC<ProfileBannerProps> = (
           <Avatar
             src={props.avatarSrc}
             alt={props.avatarAlt}
-            size="xl"
+            size={
+              typeof window !== "undefined" && window.innerWidth < 640
+                ? "md"
+                : "xl"
+            }
             onActionClick={
               props.isCurrentUser
                 ? () => avatarImageUploadModalRef.current?.openModal(true)
