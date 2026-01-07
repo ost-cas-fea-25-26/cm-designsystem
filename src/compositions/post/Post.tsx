@@ -66,6 +66,9 @@ interface PostProps extends PostVariants {
   /** Avatar image URL */
   avatarSrc?: string | null;
 
+  /** Avatar image alt */
+  avatarAlt?: string;
+
   /** Number of likes the post has received. */
   nbrOfLikes?: number | null;
 
@@ -114,7 +117,7 @@ export const Post: React.FC<PostProps> = ({
       <div className={header()}>
         <div className={avatar()}>
           <Avatar
-            alt="Profile"
+            alt={props.avatarAlt}
             size="md"
             src={props.avatarSrc}
             onAvatarClick={props.onAvatarClick}
