@@ -18,6 +18,7 @@ export const Large: Story = {
   args: {
     size: "lg",
     avatarSrc: "",
+    avatarAlt: "User Avatar",
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),
@@ -38,6 +39,7 @@ export const Medium: Story = {
   args: {
     size: "md",
     avatarSrc: "",
+    avatarAlt: "User Avatar",
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),
@@ -56,6 +58,7 @@ export const PostWithImage: Story = {
   args: {
     size: "lg",
     avatarSrc: "",
+    avatarAlt: "User Avatar",
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),
@@ -77,6 +80,7 @@ export const LikesAndComments: Story = {
   args: {
     size: "md",
     avatarSrc: "",
+    avatarAlt: "User Avatar",
     userName: "UserName",
     displayName: "Display Name",
     timestamp: new Date(),
