@@ -1,34 +1,22 @@
 import { tv } from "tailwind-variants";
-import hoverLogoDefault from "../branding/hover-logo-default.svg";
-import hoverLogoHovered from "../branding/hover-logo-hovered.svg";
+import { Mumble } from "../icons/generated";
 
 const logoStyles = tv({
   slots: {
-    link: [
-      "focus-ring-neutral",
-      "inline-flex",
-      "items-center",
-      "gap-2",
-      "align-middle",
-    ],
-    container: ["group", "relative", "w-auto"],
-    default: [
-      "transition-all",
-      "duration-200",
-      "select-none",
-      "block",
+    base: ["flex", "items-center", "focus-ring-neutral", "gap-3", "group"],
+    icon: [
+      "text-white",
+      "w-10",
       "h-10",
-      "w-auto",
-      "group-hover:hidden",
+      "group-hover:scale-125",
+      "transition-transform",
     ],
-    hover: [
-      "transition-all",
-      "duration-200",
-      "select-none",
-      "hidden",
-      "h-11",
-      "w-auto",
-      "group-hover:block",
+    text: [
+      "text-white",
+      "text-[40px]/[100%]",
+      "font-bold",
+      "tracking-[-0.1rem]",
+      "font-bold",
     ],
   },
 });
@@ -46,22 +34,9 @@ type LogoLinkProps = React.ComponentPropsWithoutRef<"a"> & {
 export const LogoLink = ({ href = "/", ...props }: LogoLinkProps) => {
   const styles = logoStyles();
   return (
-    <a href={href} className={styles.link()} {...props}>
-      {/* Logo Container */}
-      <div className={styles.container()}>
-        <img
-          src={hoverLogoDefault}
-          alt="Logo Default"
-          className={styles.default()}
-          draggable={false}
-        />
-        <img
-          src={hoverLogoHovered}
-          alt="Logo Hovered"
-          className={styles.hover()}
-          draggable={false}
-        />
-      </div>
+    <a href={href} className={styles.base()} {...props}>
+      <Mumble className={styles.icon()} />
+      <span className={styles.text()}>Mumble</span>
     </a>
   );
 };
