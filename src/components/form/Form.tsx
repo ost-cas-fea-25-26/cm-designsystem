@@ -4,7 +4,7 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const formStyles = tv({
   slots: {
-    base: ["gap-16", "flex", "flex-col"],
+    base: ["gap-16", "flex", "flex-col", "w-full"],
     fields: ["gap-4", "flex", "flex-col"],
   },
 });
