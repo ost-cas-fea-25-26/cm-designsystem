@@ -2,7 +2,7 @@
 
 import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import { useState } from "react";
-import { cn, tv } from "tailwind-variants";
+import { cn, tv, type VariantProps } from "tailwind-variants";
 import { Edit } from "../../components/icons/generated";
 
 const ProfileBannerImageStyles = tv({
@@ -46,6 +46,8 @@ const ProfileBannerImageStyles = tv({
     },
   },
 });
+
+type ProfileBannerImageVariants = VariantProps<typeof ProfileBannerImageStyles>;
 
 interface ProfileBannerImageProps extends ProfileBannerImageVariants {
   /** Banner image URL */
