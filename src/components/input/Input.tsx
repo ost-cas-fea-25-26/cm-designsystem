@@ -75,7 +75,9 @@ export const Input = ({
     <RadixForm.Field name={props.name} className={base(props)}>
       {/* Label */}
       <RadixForm.Label>
-        <Label size="md">{props.label}</Label>
+        <Label size="md" as="span">
+          {props.label}
+        </Label>
       </RadixForm.Label>
 
       {/* Control */}
