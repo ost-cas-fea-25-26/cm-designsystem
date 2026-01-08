@@ -6,15 +6,33 @@ const meta = {
   title: "Compositions/Profile/ProfileBannerInfo",
   component: ProfileBannerInfo,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof ProfileBannerInfo>;
+
+const Container = (props: { children: React.ReactNode }) => (
+  <div
+    style={{
+      maxWidth: 900,
+      margin: "0 auto",
+      width: "100%",
+      paddingBlock: "20px",
+    }}
+  >
+    {props.children}
+  </div>
+);
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const LoggedOut: Story = {
+  render: (args) => (
+    <Container>
+      <ProfileBannerInfo {...args} />
+    </Container>
+  ),
   args: {
     isCurrentUser: false,
     displayName: "Display Name",
@@ -26,6 +44,11 @@ export const LoggedOut: Story = {
 };
 
 export const LoggedIn: Story = {
+  render: (args) => (
+    <Container>
+      <ProfileBannerInfo {...args} />
+    </Container>
+  ),
   args: {
     isCurrentUser: true,
     displayName: "Display Name",

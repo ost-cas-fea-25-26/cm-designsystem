@@ -7,7 +7,7 @@ import { Edit } from "../../components/icons/generated";
 
 const ProfileBannerImageStyles = tv({
   slots: {
-    base: ["w-full", "max-w-[680px]", "sm:min-w-[320px]", "lg:min-w-[680px]"],
+    base: ["w-full", "sm:min-w-[320px]", "lg:min-w-[680px]"],
     image: [
       "h-full",
       "w-full",
@@ -50,7 +50,7 @@ const ProfileBannerImageStyles = tv({
 type ProfileBannerImageVariants = VariantProps<typeof ProfileBannerImageStyles>;
 
 interface ProfileBannerImageProps extends ProfileBannerImageVariants {
-  /** Avatar image URL */
+  /** Banner image URL */
   src?: string | null;
 
   /**

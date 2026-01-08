@@ -17,22 +17,12 @@ const ProfileBannerStyles = tv({
       "flex-col",
       "gap-4",
       "w-full",
-      "max-w-[680px]",
-      "w-full",
       "relative",
+      "aspect-[17/8]",
       "px-2",
-      "sm:px-4",
-      "md:px-8",
     ],
-    avatar: [
-      "absolute",
-      "top-28",
-      "md:top-52",
-      "md:right-12",
-      "right-2",
-      "sm:top-60",
-      "sm:right-6",
-    ],
+    bannerAvatarContainer: ["relative", "w-full", "h-full"],
+    avatar: ["absolute", "bottom-0", "right-4", "translate-y-1/2", "md:mr-4"],
     info: ["flex", "flex-col", "gap-2", "sm:gap-3"],
     description: ["text-slate-500", "text-sm", "sm:text-base"],
   },
@@ -90,33 +80,36 @@ interface ProfileBannerProps extends ProfileBannerVariants {
 export const ProfileBanner: React.FC<ProfileBannerProps> = (
   props: ProfileBannerProps
 ) => {
-  const { base, avatar, info, description } = ProfileBannerStyles(props);
+  const { base, bannerAvatarContainer, avatar, info, description } =
+    ProfileBannerStyles(props);
   const profileImageUploadModalRef = useRef<ImageUploadModalRef>(null);
   const avatarImageUploadModalRef = useRef<ImageUploadModalRef>(null);
 
   return (
     <>
       <div className={base()}>
-        <ProfileBannerImage
-          src={props.imageSrc}
-          alt={props.imageAlt}
-          onClick={() => profileImageUploadModalRef.current?.openModal(true)}
-        />
-        <div className={avatar()}>
-          <Avatar
-            src={props.avatarSrc}
-            alt={props.avatarAlt}
-            size={
-              typeof window !== "undefined" && window.innerWidth < 640
-                ? "md"
-                : "xl"
-            }
-            onActionClick={
-              props.isCurrentUser
-                ? () => avatarImageUploadModalRef.current?.openModal(true)
-                : undefined
-            }
+        <div className={bannerAvatarContainer()}>
+          <ProfileBannerImage
+            src={props.imageSrc}
+            alt={props.imageAlt}
+            onClick={() => profileImageUploadModalRef.current?.openModal(true)}
           />
+          <div className={avatar()}>
+            <Avatar
+              src={props.avatarSrc}
+              alt={props.avatarAlt}
+              size={
+                typeof window !== "undefined" && window.innerWidth < 640
+                  ? "md"
+                  : "xl"
+              }
+              onActionClick={
+                props.isCurrentUser
+                  ? () => avatarImageUploadModalRef.current?.openModal(true)
+                  : undefined
+              }
+            />
+          </div>
         </div>
         <div className={info()}>
           <ProfileBannerInfo
