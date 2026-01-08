@@ -32,12 +32,7 @@ const meta = {
       default: "white",
       values: [{ name: "white", value: "#fff" }],
     },
-    docs: {
-      description: {
-        story:
-          "Nutze das Viewport-Addon unten rechts, um das Responsive-Verhalten zu testen (z.B. mobile, tablet, desktop).",
-      },
-    },
+
     options: {
       storyPadding: false,
     },
@@ -54,7 +49,7 @@ const Container = (props: { children: React.ReactNode }) => (
       maxWidth: 900,
       margin: "0 auto",
       width: "100%",
-      paddingTop: "20px",
+      paddingBlock: "20px",
     }}
   >
     {props.children}
