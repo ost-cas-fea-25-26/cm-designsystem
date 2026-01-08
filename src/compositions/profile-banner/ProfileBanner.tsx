@@ -17,8 +17,6 @@ const ProfileBannerStyles = tv({
       "flex-col",
       "gap-4",
       "w-full",
-      "max-w-[680px]",
-      "w-full",
       "relative",
       "px-2",
       "sm:px-4",

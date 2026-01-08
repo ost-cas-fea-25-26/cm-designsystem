@@ -48,7 +48,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const Container = (props: { children: React.ReactNode }) => (
+  <div
+    style={{
+      maxWidth: 900,
+      margin: "0 auto",
+      width: "100%",
+      paddingTop: "20px",
+    }}
+  >
+    {props.children}
+  </div>
+);
+
 export const LoggedOut: Story = {
+  render: (args) => (
+    <Container>
+      <ProfileBanner {...args} />
+    </Container>
+  ),
   args: {
     isCurrentUser: false,
     avatarSrc: "example",
@@ -66,6 +84,11 @@ export const LoggedOut: Story = {
 };
 
 export const LoggedIn: Story = {
+  render: (args) => (
+    <Container>
+      <ProfileBanner {...args} />
+    </Container>
+  ),
   args: {
     isCurrentUser: true,
     avatarSrc: "example",

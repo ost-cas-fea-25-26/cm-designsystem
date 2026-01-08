@@ -2,12 +2,12 @@
 
 import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 import { useState } from "react";
-import { cn, tv, type VariantProps } from "tailwind-variants";
+import { cn, tv } from "tailwind-variants";
 import { Edit } from "../../components/icons/generated";
 
 const ProfileBannerImageStyles = tv({
   slots: {
-    base: ["w-full", "max-w-[680px]", "sm:min-w-[320px]", "lg:min-w-[680px]"],
+    base: ["w-full", "sm:min-w-[320px]", "lg:min-w-[680px]"],
     image: [
       "h-full",
       "w-full",
@@ -47,10 +47,8 @@ const ProfileBannerImageStyles = tv({
   },
 });
 
-type ProfileBannerImageVariants = VariantProps<typeof ProfileBannerImageStyles>;
-
 interface ProfileBannerImageProps extends ProfileBannerImageVariants {
-  /** Avatar image URL */
+  /** Banner image URL */
   src?: string | null;
 
   /**
