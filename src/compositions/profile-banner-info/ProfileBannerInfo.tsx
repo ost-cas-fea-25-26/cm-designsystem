@@ -111,7 +111,7 @@ export const ProfileBannerInfo: React.FC<ProfileBannerInfoProps> = ({
     <div className={base()}>
       <div className={title()}>
         <button onClick={props.onProfileClick} className={name()}>
-          <Label as="h2" size="xl">
+          <Label as="h1" size="xl">
             {displayName}
           </Label>
         </button>
