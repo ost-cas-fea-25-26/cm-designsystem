@@ -12,15 +12,7 @@ import { ProfileBannerInfo } from "../profile-banner-info/ProfileBannerInfo";
 
 const ProfileBannerStyles = tv({
   slots: {
-    base: [
-      "flex",
-      "flex-col",
-      "gap-4",
-      "w-full",
-      "relative",
-      "aspect-[17/8]",
-      "px-2",
-    ],
+    base: ["flex", "flex-col", "gap-4", "w-full", "relative", "aspect-[17/8]"],
     bannerAvatarContainer: ["relative", "w-full", "h-full"],
     avatar: ["absolute", "bottom-0", "right-4", "translate-y-1/2", "md:mr-4"],
     info: ["flex", "flex-col", "gap-2", "sm:gap-3"],
