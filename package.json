@@ -98,7 +98,7 @@
     "eslint-plugin-unused-imports": "4.4.1",
     "globals": "17.3.0",
     "jsdom": "27.4.0",
-    "knip": "5.83.1",
+    "knip": "5.84.0",
     "playwright": "1.58.2",
     "prettier": "3.8.1",
     "prettier-plugin-tailwindcss": "0.7.2",
