@@ -97,7 +97,7 @@
     "eslint-plugin-storybook": "10.2.10",
     "eslint-plugin-unused-imports": "4.4.1",
     "globals": "17.3.0",
-    "jsdom": "27.4.0",
+    "jsdom": "28.1.0",
     "knip": "5.84.1",
     "playwright": "1.58.2",
     "prettier": "3.8.1",
