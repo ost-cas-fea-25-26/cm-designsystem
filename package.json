@@ -63,7 +63,7 @@
     "@radix-ui/react-form": "0.1.13",
     "@radix-ui/react-tabs": "1.1.18",
     "@radix-ui/react-toggle": "1.1.15",
-    "react": "19.2.7",
+    "react": "19.2.8",
     "react-dom": "19.2.7"
   },
   "devDependencies": {
