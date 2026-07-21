@@ -1,0 +1,76 @@
+import { Meta, Source, Unstyled } from "@storybook/addon-docs/blocks";
+import { Heading } from "./Heading";
+import { Paragraph } from "./Paragraph";
+import { Label } from "./Label";
+import { Placeholder } from "./Placeholder";
+import { ValidationMessage } from "./ValidationMessage";
+
+<Meta title="Typography" />
+
+# Typography
+
+**Font:** Google Font "Poppins"
+
+**Weights:** 500(medium), 600(semibold), 700(bold)
+
+## Headings
+
+<Unstyled>
+  <Heading size="1" as="h1">
+    Lorem ipsum dolor sit amet
+  </Heading>
+  <Heading size="2" as="h2">
+    Lorem ipsum dolor sit amet
+  </Heading>
+  <Heading size="3" as="h3">
+    Lorem ipsum dolor sit amet
+  </Heading>
+  <Heading size="4" as="h4">
+    Lorem ipsum dolor sit amet
+  </Heading>
+</Unstyled>
+
+## Paragraphs
+
+<Unstyled>
+  <Paragraph size="lg" as="p">
+    Lorem ipsum dolor sit amet
+  </Paragraph>
+  <Paragraph size="md" as="p">
+    Lorem ipsum dolor sit amet
+  </Paragraph>
+</Unstyled>
+
+## Labels
+
+<Unstyled>
+  <Label size="xl" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>{" "}
+  <br />
+  <Label size="lg" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>{" "}
+  <br />
+  <Label size="md" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>{" "}
+  <br />
+  <Label size="sm" as="label">
+    Lorem ipsum dolor sit amet
+  </Label>
+</Unstyled>
+
+## Placeholders
+
+<Unstyled>
+  <Placeholder as="span">Lorem ipsum dolor sit amet</Placeholder>
+</Unstyled>
+
+## Validation messages
+
+<Unstyled>
+  <ValidationMessage as="span" type="error">
+    Lorem ipsum dolor sit amet
+  </ValidationMessage>
+</Unstyled>
