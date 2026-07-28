@@ -101,7 +101,7 @@
     "knip": "5.84.1",
     "playwright": "1.58.2",
     "prettier": "3.8.1",
-    "prettier-plugin-tailwindcss": "0.7.2",
+    "prettier-plugin-tailwindcss": "0.8.1",
     "rollup-preserve-directives": "1.1.3",
     "semantic-release": "25.0.8",
     "storybook": "10.3.3",
