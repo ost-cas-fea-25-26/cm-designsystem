@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.2.7",
-    "tailwind-variants": "3.2.2"
+    "tailwind-variants": "3.3.0"
   },
   "peerDependencies": {
     "@radix-ui/react-accessible-icon": "1.1.15",
